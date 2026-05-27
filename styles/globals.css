@@ -1,0 +1,22 @@
+@import "tailwindcss";
+
+
+/* styles/globals.css */
+body {
+  background: #0B0B0B;
+  color: #EDEDED;
+  font-family: system-ui, sans-serif;
+}
+
+.glow {
+  box-shadow: 0 0 20px rgba(124, 58, 237, 0.5);
+}
+
+/* Prefer component-level transforms; keep global button transitions minimal */
+button {
+  transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+}
+
+button:hover {
+  /* Intentionally empty: component-specific scale/transform should be applied locally */
+}
