@@ -1,4 +1,8 @@
 export function formatProjectTitle(slug: string) {
+  if (slug === "project-one") {
+    return "Music Player";
+  }
+
   return slug.replace(/-/g, " ").replace(/\b\w/g, (char) => char.toUpperCase());
 }
 

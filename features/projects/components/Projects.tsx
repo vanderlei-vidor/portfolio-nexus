@@ -32,7 +32,7 @@ export default function Projects() {
         viewport={{ once: true }}
         className="grid md:grid-cols-2 gap-10"
       >
-        <ProjectCard title="Project One" desc="High performance web app" slug="project-one" />
+        <ProjectCard title="Music Player" desc="Offline audio experience" slug="project-one" />
         <ProjectCard title="Project Two" desc="SaaS Data Control" slug="project-two" />
         <ProjectCard title="Project Three" desc="Modern UI system" slug="project-three" />
         <ProjectCard title="Project Four" desc="Scalable backend" slug="project-four" />

@@ -17,7 +17,8 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
+export const metadata = {
+  metadataBase: new URL('https://seusite.com'),
   title: "Portfolio AAA",
   description: "Portfolio de experiencias digitais premium com Next.js.",
 };

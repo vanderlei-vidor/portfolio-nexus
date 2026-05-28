@@ -1,4 +1,4 @@
-import ProjectContentSection from "./ProjectContentSection";
+import ProjectContentSection from "../music-player/components/ProjectExperience";
 import ProjectHeroSection from "./ProjectHeroSection";
 
 import { formatProjectTitle } from "@/features/projects/lib/project-format";
@@ -13,7 +13,7 @@ export default function ProjectDetailPage({ slug }: ProjectDetailPageProps) {
   return (
     <main className="min-h-screen bg-zinc-950 text-zinc-100 selection:bg-accent selection:text-black">
       <ProjectHeroSection slug={slug} formattedTitle={formattedTitle} />
-      <ProjectContentSection slug={slug} formattedTitle={formattedTitle} />
+      <ProjectContentSection />
     </main>
   );
 }

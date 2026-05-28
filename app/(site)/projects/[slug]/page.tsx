@@ -3,6 +3,7 @@ import ProjectDetailPage from "@/features/projects/components/ProjectDetailPage"
 import SaaSProjectLayout from "@/features/projects/components/SaaSProjectLayout";
 import EnglishTutorProjectLayout from "@/features/projects/components/EnglishTutorProjectLayout";
 import PortfolioNexusLayout from "@/features/projects/components/PortfolioNexusLayout";
+import ProjectExperience from "@/features/projects/music-player/components/ProjectExperience";
 import {
   formatProjectTitle,
   getProjectDescription,
@@ -15,6 +16,10 @@ interface ProjectPageProps {
 
 export default async function ProjectPage({ params }: ProjectPageProps) {
   const { slug } = await params;
+
+  if (slug === "project-one") {
+    return <ProjectExperience />;
+  }
 
   // Render a custom layout for the SaaS demo project
   if (slug === "project-two") {
