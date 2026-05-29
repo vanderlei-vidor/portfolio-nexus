@@ -2,10 +2,10 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "@/styles/globals.css"; // Ajustado para a pasta que você criou!
-import { MagneticProvider } from "@/shared/components/magnetic/MagneticContext";
-import Grain from "@/shared/components/effects/Grain";
-import PageTransition from "@/shared/components/effects/PageTransition";
-import SmoothScroll from "@/shared/components/effects/SmoothScroll";
+import { MagneticProvider } from "@/shared/effects/magnetic/MagneticContext";
+import Grain from "@/shared/effects/Grain";
+import PageTransition from "@/shared/effects/PageTransition";
+import SmoothScroll from "@/shared/effects/SmoothScroll";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

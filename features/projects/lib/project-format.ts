@@ -1,5 +1,5 @@
 export function formatProjectTitle(slug: string) {
-  if (slug === "project-one") {
+  if (slug === "music-player") {
     return "Music Player";
   }
 

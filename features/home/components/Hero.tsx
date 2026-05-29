@@ -5,8 +5,8 @@ import Link from "next/link"; // Import Link
 import { useEffect } from "react";
 import { useLenis } from "lenis/react";
 import gsap from "gsap";
-import Magnetic from "@/shared/components/magnetic/Magnetic";
-import { useMagnetic } from "@/shared/components/magnetic/MagneticContext";
+import Magnetic from "@/shared/effects/magnetic/Magnetic";
+import { useMagnetic } from "@/shared/effects/magnetic/MagneticContext";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 const MotionLink = motion.create(Link);

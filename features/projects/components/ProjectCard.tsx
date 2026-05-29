@@ -8,9 +8,10 @@ interface ProjectCardProps {
   title: string;
   desc: string;
   slug: string;
+  imageUrl: string;
 }
 
-export default function ProjectCard({ title, desc, slug }: ProjectCardProps) {
+export default function ProjectCard({ title, desc, slug, imageUrl }: ProjectCardProps) {
   return (
     <Link href={`/projects/${slug}`}>
       <motion.div
@@ -20,7 +21,7 @@ export default function ProjectCard({ title, desc, slug }: ProjectCardProps) {
       >
         <div className="h-48 relative overflow-hidden">
           <Image
-            src={`/textures/${slug}.jpg`}
+            src={imageUrl}
             alt={title}
             fill
             className="object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700"

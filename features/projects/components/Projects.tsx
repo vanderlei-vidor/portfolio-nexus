@@ -2,6 +2,7 @@
 "use client";
 import ProjectCard from "./ProjectCard";
 import { motion } from "framer-motion";
+import { projectsList } from "@/features/projects/registry";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -32,10 +33,15 @@ export default function Projects() {
         viewport={{ once: true }}
         className="grid md:grid-cols-2 gap-10"
       >
-        <ProjectCard title="Music Player" desc="Offline audio experience" slug="project-one" />
-        <ProjectCard title="Project Two" desc="SaaS Data Control" slug="project-two" />
-        <ProjectCard title="Project Three" desc="Modern UI system" slug="project-three" />
-        <ProjectCard title="Project Four" desc="Scalable backend" slug="project-four" />
+        {projectsList.map((project) => (
+          <ProjectCard
+            key={project.slug}
+            title={project.title}
+            desc={project.cardDescription}
+            slug={project.slug}
+            imageUrl={project.imageUrl}
+          />
+        ))}
       </motion.div>
     </section>
   );

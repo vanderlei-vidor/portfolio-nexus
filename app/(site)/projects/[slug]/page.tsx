@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
+import { redirect } from "next/navigation";
 import ProjectDetailPage from "@/features/projects/components/ProjectDetailPage";
-import SaaSProjectLayout from "@/features/projects/components/SaaSProjectLayout";
-import EnglishTutorProjectLayout from "@/features/projects/components/EnglishTutorProjectLayout";
-import PortfolioNexusLayout from "@/features/projects/components/PortfolioNexusLayout";
-import ProjectExperience from "@/features/projects/music-player/components/ProjectExperience";
+import { getCanonicalProjectSlug, getProjectBySlug } from "@/features/projects/registry";
 import {
   formatProjectTitle,
   getProjectDescription,
@@ -16,24 +14,17 @@ interface ProjectPageProps {
 
 export default async function ProjectPage({ params }: ProjectPageProps) {
   const { slug } = await params;
+  const canonicalSlug = getCanonicalProjectSlug(slug);
 
-  if (slug === "project-one") {
-    return <ProjectExperience />;
+  if (canonicalSlug !== slug) {
+    redirect(`/projects/${canonicalSlug}`);
   }
 
-  // Render a custom layout for the SaaS demo project
-  if (slug === "project-two") {
-    return <SaaSProjectLayout />;
-  }
+  const project = getProjectBySlug(slug);
 
-  // Render the English Tutor project layout
-  if (slug === "project-three") {
-    return <EnglishTutorProjectLayout />;
-  }
-
-  // Render the Portfolio Nexus project layout
-  if (slug === "project-four") {
-    return <PortfolioNexusLayout />;
+  if (project) {
+    const ProjectComponent = await project.loadComponent();
+    return <ProjectComponent />;
   }
 
   return <ProjectDetailPage slug={slug} />;
@@ -41,22 +32,23 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 
 export async function generateMetadata({ params }: ProjectPageProps): Promise<Metadata> {
   const { slug } = await params;
-  const formattedTitle = formatProjectTitle(slug);
-  const projectDescription = getProjectDescription(formattedTitle);
-  const imageUrl = getProjectImageUrl(slug);
+  const project = getProjectBySlug(slug);
+  const title = project?.title ?? formatProjectTitle(slug);
+  const projectDescription = project?.description ?? getProjectDescription(title);
+  const imageUrl = project?.imageUrl ?? getProjectImageUrl(slug);
 
   return {
-    title: `${formattedTitle} | Meu Portfolio AAA`,
+    title: `${title} | Meu Portfolio AAA`,
     description: projectDescription,
     openGraph: {
-      title: `${formattedTitle} | Meu Portfolio AAA`,
+      title: `${title} | Meu Portfolio AAA`,
       description: projectDescription,
-      images: [{ url: imageUrl, alt: formattedTitle }],
+      images: [{ url: imageUrl, alt: title }],
       type: "article",
     },
     twitter: {
       card: "summary_large_image",
-      title: `${formattedTitle} | Meu Portfolio AAA`,
+      title: `${title} | Meu Portfolio AAA`,
       description: projectDescription,
       images: [imageUrl],
     },

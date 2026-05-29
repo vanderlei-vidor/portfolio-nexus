@@ -1,0 +1,358 @@
+.wrapper {
+    position: relative;
+    display: grid;
+    place-items: center;
+    isolation: isolate;
+    overflow: visible;
+    transform-style: preserve-3d;
+    perspective: 1100px;
+}
+
+.wrapper::before {
+    content: "";
+    position: absolute;
+    inset: 16%;
+    z-index: 1;
+    border-radius: 999px;
+    background:
+        radial-gradient(circle at 38% 32%, rgba(255, 255, 255, .42), transparent 15%),
+        radial-gradient(circle at 58% 62%, rgba(34, 211, 238, .18), transparent 34%),
+        radial-gradient(circle, rgba(139, 92, 246, .24), transparent 68%);
+    filter: blur(18px);
+    opacity: .78;
+    animation: innerAtmosphere 7s ease-in-out infinite;
+}
+
+/* 🔹 Propriedades globais unificadas aqui */
+.auraFar,
+.nebula,
+.glowPurple,
+.glowBlue,
+.glowWhite {
+    position: absolute;
+    border-radius: 999px;
+    pointer-events: none;
+}
+
+.auraFar {
+    width: 182%;
+    height: 182%;
+    z-index: -5;
+    background:
+        radial-gradient(circle, rgba(20, 184, 166, .08), transparent 35%),
+        radial-gradient(circle, rgba(139, 92, 246, .12), rgba(59, 130, 246, .05), transparent 74%);
+    filter: blur(120px);
+    animation: auraBreathing 18s ease-in-out infinite;
+}
+
+.nebula {
+    width: 132%;
+    height: 132%;
+    z-index: -4;
+    background:
+        radial-gradient(circle at 35% 30%, rgba(168, 85, 247, .18), transparent 36%),
+        radial-gradient(circle at 66% 62%, rgba(56, 189, 248, .14), transparent 42%),
+        radial-gradient(circle, rgba(255, 255, 255, .05), transparent 70%);
+    filter: blur(70px);
+    animation: breatheNebula 12s ease-in-out infinite;
+}
+
+.glowPurple {
+    width: 104%;
+    height: 104%;
+    z-index: -3;
+    background: radial-gradient(circle, rgba(139, 92, 246, .2), rgba(96, 165, 250, .06), transparent 70%);
+    filter: blur(54px);
+    animation: pulsePurple 8s ease-in-out infinite;
+}
+
+.glowBlue {
+    width: 88%;
+    height: 88%;
+    z-index: -2;
+    background: radial-gradient(circle, rgba(56, 189, 248, .24), transparent 70%);
+    filter: blur(42px);
+    animation: pulseBlue 10s ease-in-out infinite;
+}
+
+.glowWhite {
+    width: 52%;
+    height: 52%;
+    z-index: -1;
+    background: radial-gradient(circle, rgba(255, 255, 255, .22), transparent 70%);
+    filter: blur(24px);
+    animation: pulseWhite 6s ease-in-out infinite;
+}
+
+.orb {
+    position: relative;
+    z-index: 10;
+    width: 54%;
+    height: 54%;
+    border-radius: 999px;
+    overflow: hidden;
+    background:
+        radial-gradient(circle at 34% 30%, #ffffff 0 7%, #dbeafe 10%, transparent 24%),
+        radial-gradient(circle at 40% 38%, #c4b5fd, #8b5cf6 38%, #2563eb 72%, #0f172a 100%);
+    box-shadow:
+        inset -22px -26px 52px rgba(2, 6, 23, .48),
+        inset 16px 12px 26px rgba(255, 255, 255, .18),
+        0 0 42px rgba(139, 92, 246, .42),
+        0 0 120px rgba(56, 189, 248, .18);
+    
+    /* 🔥 Corrigido: Mudamos para animar o brilho/sombra (box-shadow) em vez do transform/scale */
+    animation: orbPulseSombra 5s ease-in-out infinite; 
+}
+
+.orb::before {
+    content: "";
+    position: absolute;
+    inset: -30%;
+    background:
+        conic-gradient(from 120deg, transparent, rgba(255, 255, 255, .28), transparent 32%, rgba(34, 211, 238, .24), transparent 62%);
+    mix-blend-mode: screen;
+    opacity: .68;
+    animation: surfaceScan 9s linear infinite;
+}
+
+.orb::after {
+    content: "";
+    position: absolute;
+    inset: 10%;
+    border-radius: inherit;
+    border: 1px solid rgba(255, 255, 255, .2);
+    box-shadow: inset 0 0 28px rgba(255, 255, 255, .08);
+}
+
+.core {
+    position: absolute;
+    inset: 30%;
+    border-radius: inherit;
+    background: radial-gradient(circle, rgba(255, 255, 255, .9), rgba(125, 211, 252, .28) 34%, transparent 70%);
+    filter: blur(6px);
+    animation: corePulse 3.8s ease-in-out infinite;
+}
+
+.animate {
+    animation: orbFloat 6s ease-in-out infinite;
+}
+
+.rings {
+    position: absolute;
+    inset: 0;
+    z-index: 12;
+    pointer-events: none;
+    transform-style: preserve-3d;
+    transform: rotateX(58deg) rotateZ(-16deg);
+}
+
+.ring {
+    --size: 100%;
+    --tilt: 0deg;
+    --spin: 20s;
+    --depth: 0px;
+    --opacity: .75;
+    --blur: 0px;
+    --direction: 360deg;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: var(--size);
+    height: var(--size);
+    border-radius: 999px;
+    transform-style: preserve-3d;
+    transform: translate3d(-50%, -50%, var(--depth)) rotateX(var(--tilt)) rotateZ(0deg);
+    opacity: var(--opacity);
+    filter: blur(var(--blur));
+    animation: orbitalSpin var(--spin) linear infinite;
+}
+
+.ring::before,
+.ring::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+}
+
+.ring::before {
+    border: 1px solid rgba(255, 255, 255, .1);
+    background:
+        conic-gradient(from 90deg,
+            transparent 0 9%,
+            rgba(125, 211, 252, .9) 11%,
+            rgba(168, 85, 247, .5) 18%,
+            transparent 28% 54%,
+            rgba(255, 255, 255, .55) 59%,
+            rgba(59, 130, 246, .34) 67%,
+            transparent 76% 100%);
+    -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 2px), #000 calc(100% - 1px));
+    mask: radial-gradient(farthest-side, transparent calc(100% - 2px), #000 calc(100% - 1px));
+    box-shadow:
+        0 0 28px rgba(56, 189, 248, .2),
+        inset 0 0 24px rgba(139, 92, 246, .12);
+}
+
+.ring::after {
+    inset: 1px;
+    border: 1px solid rgba(34, 211, 238, .08);
+    transform: translateZ(-6px);
+}
+
+.ring i {
+    position: absolute;
+    right: -3px;
+    top: 50%;
+    width: 8px;
+    height: 8px;
+    border-radius: 999px;
+    background: #e0f2fe;
+    box-shadow:
+        0 0 10px rgba(255, 255, 255, .95),
+        0 0 24px rgba(56, 189, 248, .85),
+        0 0 48px rgba(139, 92, 246, .52);
+    transform: translateY(-50%) translateZ(14px);
+}
+
+.ring1 { --size: 148%; --tilt: 68deg; --spin: 34s; --depth: -42px; --opacity: .32; --blur: 1.5px; }
+.ring2 { --size: 126%; --tilt: -42deg; --spin: 26s; --depth: -8px; --opacity: .52; --direction: -360deg; }
+.ring3 { --size: 103%; --tilt: 22deg; --spin: 18s; --depth: 26px; --opacity: .72; }
+.ring4 { --size: 78%; --tilt: -64deg; --spin: 12s; --depth: 58px; --opacity: .9; --direction: -360deg; }
+.ring5 { --size: 58%; --tilt: 34deg; --spin: 8.5s; --depth: 92px; --opacity: .95; }
+
+.particle {
+    position: absolute;
+    z-index: 14;
+    width: 6px;
+    height: 6px;
+    border-radius: 999px;
+    background: rgba(224, 242, 254, .96);
+    box-shadow:
+        0 0 14px rgba(255, 255, 255, .9),
+        0 0 30px rgba(56, 189, 248, .62);
+    pointer-events: none;
+}
+
+.p1 { animation: particleDrift1 9s ease-in-out infinite; }
+.p2 { animation: particleDrift2 11s ease-in-out infinite; }
+.p3 { animation: particleDrift3 13s ease-in-out infinite; }
+.p4 { animation: particleDrift4 10s ease-in-out infinite; }
+
+.static, .static *, .static *::before, .static *::after {
+    animation-play-state: paused !important;
+}
+
+.caption {
+    position: absolute;
+    bottom: -86px;
+    left: 50%;
+    z-index: 20;
+    width: max-content;
+    max-width: min(280px, 90vw);
+    padding: 8px 12px;
+    border-radius: 8px;
+    color: rgba(255, 255, 255, .92);
+    text-align: center;
+    font-size: 12px;
+    line-height: 1.2;
+    background: rgba(0, 0, 0, .18);
+    backdrop-filter: blur(6px) saturate(120%);
+    transform: translateX(-50%);
+}
+
+.caption h3 {
+    margin: 0 0 6px;
+    font-size: 11px;
+    letter-spacing: 1.6px;
+    text-transform: uppercase;
+}
+
+.caption ul {
+    display: grid;
+    gap: 4px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.caption li { font-size: 11px; }
+
+/* ==========================================================================
+   KEYFRAMES
+   ========================================================================== */
+
+@keyframes orbitalSpin {
+    from { transform: translate3d(-50%, -50%, var(--depth)) rotateX(var(--tilt)) rotateZ(0deg); }
+    to { transform: translate3d(-50%, -50%, var(--depth)) rotateX(var(--tilt)) rotateZ(var(--direction)); }
+}
+
+@keyframes orbFloat {
+    0%, 100% { transform: translate3d(0, 0, 32px) scale(1); }
+    50% { transform: translate3d(0, -2.5%, 48px) scale(1.025); }
+}
+
+@keyframes surfaceScan {
+    to { transform: rotate(360deg); }
+}
+
+@keyframes corePulse {
+    0%, 100% { opacity: .5; transform: scale(.92); }
+    50% { opacity: .95; transform: scale(1.12); }
+}
+
+@keyframes innerAtmosphere {
+    0%, 100% { transform: scale(.95); opacity: .52; }
+    50% { transform: scale(1.08); opacity: .86; }
+}
+
+@keyframes auraBreathing {
+    0%, 100% { transform: scale(1); opacity: .58; }
+    50% { transform: scale(1.15); opacity: 1; }
+}
+
+@keyframes breatheNebula {
+    0%, 100% { transform: scale(1) rotate(0deg); }
+    50% { transform: scale(1.12) rotate(8deg); }
+}
+
+@keyframes pulsePurple { 0%, 100% { opacity: .45; } 50% { opacity: .95; } }
+@keyframes pulseBlue { 0%, 100% { opacity: .32; } 50% { opacity: .78; } }
+@keyframes pulseWhite { 0%, 100% { opacity: .22; } 50% { opacity: .62; } }
+
+/* 🔥 NOVO KEYFRAME: Altera a intensidade das sombras sem tocar no 'transform' */
+@keyframes orbPulseSombra {
+    0%, 100% {
+        box-shadow:
+            inset -22px -26px 52px rgba(2, 6, 23, .48),
+            inset 16px 12px 26px rgba(255, 255, 255, .18),
+            0 0 30px rgba(139, 92, 246, .35),
+            0 0 90px rgba(56, 189, 248, .12);
+    }
+    50% {
+        box-shadow:
+            inset -22px -26px 52px rgba(2, 6, 23, .48),
+            inset 16px 12px 26px rgba(255, 255, 255, .25),
+            0 0 55px rgba(139, 92, 246, .55),
+            0 0 140px rgba(56, 189, 248, .25);
+    }
+}
+
+@keyframes particleDrift1 {
+    0%, 100% { left: 16%; top: 42%; opacity: .32; transform: translateZ(20px) scale(.7); }
+    50% { left: 22%; top: 24%; opacity: 1; transform: translateZ(76px) scale(1); }
+}
+
+@keyframes particleDrift2 {
+    0%, 100% { right: 18%; top: 28%; opacity: .82; transform: translateZ(84px) scale(1); }
+    50% { right: 11%; top: 55%; opacity: .28; transform: translateZ(10px) scale(.65); }
+}
+
+@keyframes particleDrift3 {
+    0%, 100% { left: 38%; bottom: 12%; opacity: .35; transform: translateZ(-20px) scale(.7); }
+    50% { left: 64%; bottom: 18%; opacity: .9; transform: translateZ(58px) scale(1); }
+}
+
+@keyframes particleDrift4 {
+    0%, 100% { right: 34%; bottom: 20%; opacity: .55; transform: translateZ(34px) scale(.85); }
+    50% { right: 52%; bottom: 34%; opacity: 1; transform: translateZ(96px) scale(1.05); }
+}

@@ -2,7 +2,7 @@
 "use client";
 import { useEffect } from "react";
 import { motion, useSpring, useMotionValue } from "framer-motion";
-import { useMagnetic } from "@/shared/components/magnetic/MagneticContext";
+import { useMagnetic } from "@/shared/effects/magnetic/MagneticContext";
 
 export default function Cursor() {
     const { magneticOffset } = useMagnetic(); // Consome o offset magnético
