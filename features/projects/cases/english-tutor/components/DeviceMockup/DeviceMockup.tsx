@@ -16,9 +16,7 @@ export function DeviceMockup() {
                     <span className={styles.xp}>⭐ XP 5308</span>
                 </header>
 
-                <div className={styles.floatingXp}>
-                    +50 XP
-                </div>
+
 
                 {/* Progresso */}
                 <div className={styles.progressArea}>
@@ -66,17 +64,36 @@ export function DeviceMockup() {
                 </div>
 
                 <div className={styles.statusWrapper}>
+                    <div className={styles.voiceWave}>
+
+                        <span />
+                        <span />
+                        <span />
+                        <span />
+                        <span />
+                        <span />
+                        <span />
+
+                    </div>
 
                     <span className={styles.statusDot} />
 
-                    <span className={styles.aiStatus}>
-                        Listening...
+                </div>
+                <span className={styles.aiStatus}>
+                    AI is listening
+
+                    <span className={styles.dots}>
+                        <span>.</span>
+                        <span>.</span>
+                        <span>.</span>
                     </span>
 
-                </div>
+                </span>
 
                 {/* Chat */}
                 <div className={`${styles.chatArea} chat-area`}>
+
+
                     <div
                         className={`${styles.userBubble} ${styles.message1}`}
                     >
@@ -98,6 +115,21 @@ export function DeviceMockup() {
                     >
                         I am good.
                     </div>
+                </div>
+                <div className={styles.inputBar}>
+
+                    <button className={styles.micButton}>
+                        🎤
+                    </button>
+
+                    <div className={styles.inputField}>
+                        Type or speak...
+                    </div>
+
+                    <button className={styles.sendButton}>
+                        ➜
+                    </button>
+
                 </div>
 
             </div>

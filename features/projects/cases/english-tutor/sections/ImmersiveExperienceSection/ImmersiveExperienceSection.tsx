@@ -13,7 +13,11 @@ export function ImmersiveExperienceSection() {
 
 
     useEffect(() => {
-        initImmersiveAnimation();
+        const timer = setTimeout(() => {
+            initImmersiveAnimation();
+        }, 50);
+
+        return () => clearTimeout(timer);
     }, []);
     return (
         <section className={styles.section}>
@@ -46,7 +50,7 @@ export function ImmersiveExperienceSection() {
                 </div>
 
                 {/* Device Area */}
-                <div className={styles.deviceArea}>
+                <div className={`${styles.deviceArea} immersive-device`}>
                     <DeviceMockup />
                 </div>
             </div>

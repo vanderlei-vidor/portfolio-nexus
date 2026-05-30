@@ -13,7 +13,11 @@ export function HeroSection() {
 
   // 🛠️ 1. Incorporando o useEffect para iniciar a animação do Hero
   useEffect(() => {
-    initHeroAnimation();
+    const timer = setTimeout(() => {
+      initHeroAnimation();
+    }, 50);
+
+    return () => clearTimeout(timer);
   }, []);
 
   return (
