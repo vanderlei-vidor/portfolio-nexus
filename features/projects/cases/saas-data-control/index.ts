@@ -1,1 +1,1 @@
-export { default } from "./SaaSProjectLayout";
+export { TaskManagerPage as default } from "./TaskManagerPage";

@@ -307,3 +307,46 @@
     height: 40px;
   }
 }
+
+
+.node {
+  animation:
+    nodeWakeup .8s forwards;
+}
+
+.userNode {
+  animation-delay: .2s;
+}
+
+.conversationNode {
+  animation-delay: .8s;
+}
+
+.memoryNode {
+  animation-delay: 1.4s;
+}
+
+.aiCore {
+  animation-delay: 2s;
+}
+
+.feedbackNode {
+  animation-delay: 2.6s;
+}
+
+.progressNode {
+  animation-delay: 3.2s;
+}
+
+@keyframes nodeWakeup {
+
+  from {
+    opacity: .35;
+    transform: scale(.96);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

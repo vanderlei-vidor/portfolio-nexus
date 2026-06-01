@@ -1,0 +1,164 @@
+.section {
+  min-height: 100vh;
+  padding: 140px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.header {
+  text-align: center;
+  max-width: 900px;
+  margin-bottom: 80px;
+}
+
+.eyebrow {
+  color: #38bdf8;
+  letter-spacing: 4px;
+  font-size: 12px;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.title {
+  margin-top: 20px;
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  line-height: 1.05;
+  font-weight: 800;
+  color: #ffffff;
+}
+
+/* O CONTAINER DA PAREDE DE MÉTRICAS */
+.metricsWall {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Divide em uma grid simétrica bonita */
+  gap: 24px;
+  width: 100%;
+  max-width: 900px;
+  isolation: isolate;
+}
+
+/* Fundo luminoso pulsante */
+.metricsWall::before {
+  content: "";
+  position: absolute;
+  inset: -100px;
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.05), rgba(139, 92, 246, 0.03), transparent 70%);
+  filter: blur(100px);
+  z-index: -1;
+  pointer-events: none;
+  animation: resultsPulse 10s ease-in-out infinite;
+}
+
+/* ESTILO BASE DE TODOS OS CARDS DE MÉTRICA */
+.metricPrimary,
+.metric {
+  padding: 40px 32px;
+  border-radius: 24px;
+  backdrop-filter: blur(16px);
+  background: rgba(255, 255, 255, 0.01);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  text-align: center;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+  will-change: transform, opacity;
+}
+
+/* CARD DO CONTADOR PRINCIPAL (XP) - Ocupa as duas colunas no topo */
+.metricPrimary {
+  grid-column: span 2;
+  background: rgba(255, 255, 255, 0.02);
+  border-color: rgba(56, 189, 248, 0.1);
+}
+
+.metricPrimary span {
+  display: block;
+  font-size: clamp(3.5rem, 8vw, 6rem);
+  font-weight: 900;
+  letter-spacing: -2px;
+  line-height: 1;
+  background: linear-gradient(90deg, #ffffff, #38bdf8, #8b5cf6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  /* Glow suave infinito */
+  filter: drop-shadow(0 0 20px rgba(56, 189, 248, 0.15));
+  animation: xpGlow 5s ease-in-out infinite;
+}
+
+.metricPrimary p {
+  margin-top: 12px;
+  font-size: 14px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #38bdf8;
+  font-weight: 700;
+}
+
+/* CARDS SECUNDÁRIOS */
+.metric {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.metric span {
+  display: block;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.metric p {
+  margin-top: 8px;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* 🔥 A MÁGICA: COMBINANDO REVEAL COM FLOAT SEM CONFLITO */
+/* O card entra com o Reveal e, ao mesmo tempo, inicia o loop infinito de flutuação */
+.metric:nth-child(2) {
+  animation: metricReveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards, metricFloat 6s ease-in-out infinite 0.8s;
+}
+
+.metric:nth-child(3) {
+  animation: metricReveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards, metricFloat 6s ease-in-out infinite 1.1s;
+}
+
+.metric:nth-child(4) {
+  animation: metricReveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards, metricFloat 6s ease-in-out infinite 1.4s;
+}
+
+.metric:nth-child(5) {
+  animation: metricReveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards, metricFloat 6s ease-in-out infinite 1.7s;
+}
+
+/* ==========================================================================
+   🌌 KEYFRAMES
+   ========================================================================== */
+@keyframes metricReveal {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes metricFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes xpGlow {
+  0%, 100% { filter: drop-shadow(0 0 20px rgba(56, 189, 248, 0.2)); }
+  50% { filter: drop-shadow(0 0 45px rgba(139, 92, 246, 0.5)); }
+}
+
+@keyframes resultsPulse {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50% { opacity: 0.7; transform: scale(1.05); }
+}
+
+/* RESPONSIVIDADE CELULAR */
+@media (max-width: 650px) {
+  .metricsWall { grid-template-columns: 1fr; }
+  .metricPrimary { grid-column: span 1; }
+}

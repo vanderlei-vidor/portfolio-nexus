@@ -1,0 +1,376 @@
+.section {
+    min-height: 100vh;
+    padding: 140px 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle at center, rgba(59, 130, 246, 0.02), transparent 80%);
+}
+
+.header {
+    text-align: center;
+    max-width: 900px;
+    margin-bottom: 80px;
+}
+
+.eyebrow {
+    color: #38bdf8;
+    letter-spacing: 4px;
+    font-size: 12px;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.title {
+    margin-top: 20px;
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    line-height: 1.05;
+    font-weight: 800;
+    color: #ffffff;
+}
+
+.subtitle {
+    margin-top: 24px;
+    color: rgba(255, 255, 255, 0.65);
+    font-size: 1.1rem;
+    max-width: 650px;
+    margin-inline: auto;
+    line-height: 1.6;
+}
+
+.architectureFlow {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 600px;
+}
+
+/* 🔥 ESTILIZAÇÃO COMPARTILHADA DOS NODES (GLASS / BLUR / DEPTH) */
+.node {
+    width: 100%;
+    max-width: 320px;
+    padding: 20px 28px;
+    border-radius: 20px;
+    text-align: center;
+    font-weight: 600;
+    color: #e2e8f0;
+    backdrop-filter: blur(16px);
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+    opacity: 0.35;
+    filter: grayscale(1);
+    transform: scale(0.96);
+    will-change: transform, opacity, filter;
+}
+
+.node h4 {
+    margin: 0;
+    font-size: 16px;
+    color: #ffffff;
+    letter-spacing: 0.5px;
+}
+
+/* CONFIGURAÇÃO DO CORPO DO MOTOR CENTRAL */
+.aiCore {
+    position: relative;
+    width: 220px;
+    height: 220px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 0;
+    opacity: 0.5;
+    transform: scale(0.92);
+    will-change: transform, opacity;
+    animation: aiAwakening 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: 2s;
+}
+
+/* CONEXÕES DE ENERGIA FLUINDO */
+.connection {
+    position: relative;
+    width: 2px;
+    height: 70px;
+    overflow: hidden;
+    background: linear-gradient(180deg, rgba(56, 189, 248, 0.15), rgba(139, 92, 246, 0.15));
+}
+
+.connection::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 40px;
+    background: linear-gradient(180deg, transparent, rgba(56, 189, 248, 0.9), transparent);
+    animation: energyFlow 2.5s linear infinite;
+}
+
+/* ELEMENTOS INTERNOS DO MOTOR DE IA */
+.aiHalo {
+    position: absolute;
+    width: 260px;
+    height: 260px;
+    border-radius: 999px;
+    background: radial-gradient(circle, rgba(139, 92, 246, 0.2), rgba(56, 189, 248, 0.1), transparent 70%);
+    filter: blur(45px);
+    pointer-events: none;
+    animation: haloPulse 6s ease-in-out infinite;
+}
+
+.aiRing {
+    position: absolute;
+    width: 160px;
+    height: 160px;
+    border-radius: 999px;
+    border: 1px solid rgba(56, 189, 248, 0.18);
+    pointer-events: none;
+    /* Começa girando normal, mas ganha uma segunda animação infinita de 'frenesi' de processamento */
+    animation: rotateRing 22s linear infinite, aiThinkingRing 4s ease-in-out infinite alternate;
+}
+
+/* O ORB CENTRAL (Ganha um pulso interno mais rápido e inteligente) */
+.aiOrb {
+    position: relative;
+    width: 110px;
+    height: 110px;
+    border-radius: 999px;
+    z-index: 2;
+    background: radial-gradient(circle at 35% 30%, #ffffff, #c4b5fd 18%, #8b5cf6 55%, #2563eb 80%, #081227 100%);
+    box-shadow: 0 0 50px rgba(139, 92, 246, 0.4), 0 0 100px rgba(56, 189, 248, 0.2);
+    /* Junta a respiração base com o estado 'pensando' sutil */
+    animation: engineBreathing 4s ease-in-out infinite, engineWakeup 2s ease-out 1.5s forwards, aiThinkingOrb 3s ease-in-out infinite alternate;
+}
+
+.aiOrbCore {
+    position: absolute;
+    inset: 34%;
+    border-radius: inherit;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.95), transparent 80%);
+    filter: blur(3px);
+}
+
+.aiLabel {
+    position: absolute;
+    bottom: -10px;
+    font-size: 13px;
+    letter-spacing: 2px;
+    color: #38bdf8;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-shadow: 0 0 12px rgba(56, 189, 248, 0.4);
+    z-index: 3;
+}
+
+/* SEQUÊNCIA DE ACORDAR DOS NODES (AWAKENING) */
+.userNode {
+    animation: nodeAwakening 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: 0.2s;
+}
+
+.conversationNode {
+    animation: nodeAwakening 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: 0.8s;
+}
+
+.memoryNode {
+    animation: nodeAwakening 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: 1.4s;
+}
+
+.feedbackNode {
+    animation: nodeAwakening 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: 2.6s;
+}
+
+.progressNode {
+    animation: nodeAwakening 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: 3.2s;
+}
+
+/* REVELAÇÃO DAS TAGS DE MEMÓRIA */
+.memoryTags {
+    margin-top: 18px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+
+.memoryTag {
+    padding: 8px 14px;
+    border-radius: 999px;
+    background: rgba(56, 189, 248, 0.08);
+    border: 1px solid rgba(56, 189, 248, 0.15);
+    color: #38bdf8;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+    opacity: 0;
+    transform: translateY(12px) scale(0.95);
+    will-change: transform, opacity;
+}
+
+.memory1 {
+    animation: memoryReveal 0.7s forwards;
+    animation-delay: 1.6s;
+}
+
+.memory2 {
+    animation: memoryReveal 0.7s forwards;
+    animation-delay: 1.8s;
+}
+
+.memory3 {
+    animation: memoryReveal 0.7s forwards;
+    animation-delay: 2.0s;
+}
+
+.memory4 {
+    animation: memoryReveal 0.7s forwards;
+    animation-delay: 2.2s;
+}
+
+.memory5 {
+    animation: memoryReveal 0.7s forwards;
+    animation-delay: 2.4s;
+}
+
+/* ==========================================================================
+   🔥 KEYFRAMES CORRIGIDOS E ADICIONADOS
+   ========================================================================== */
+@keyframes nodeAwakening {
+    from {
+        opacity: 0.35;
+        filter: grayscale(1);
+        transform: scale(0.96);
+    }
+
+    to {
+        opacity: 1;
+        filter: grayscale(0);
+        transform: scale(1);
+        border-color: rgba(255, 255, 255, 0.12);
+    }
+}
+
+@keyframes aiAwakening {
+    0% {
+        opacity: 0.5;
+        transform: scale(0.92);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.05);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes memoryReveal {
+    from {
+        opacity: 0;
+        transform: translateY(12px) scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes energyFlow {
+    from {
+        transform: translateY(-70px);
+    }
+
+    to {
+        transform: translateY(70px);
+    }
+}
+
+@keyframes rotateRing {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes engineWakeup {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.08);
+    }
+}
+
+@keyframes engineBreathing {
+
+    0%,
+    100% {
+        transform: scale(1);
+        filter: brightness(1);
+    }
+
+    50% {
+        transform: scale(1.04);
+        filter: brightness(1.08);
+    }
+}
+
+@keyframes haloPulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+        opacity: 0.7;
+    }
+
+    50% {
+        transform: scale(1.12);
+        opacity: 0.9;
+    }
+}
+
+/* Faz o anel mudar de tamanho e cor sutilmente, simulando processamento de dados */
+@keyframes aiThinkingRing {
+  0% {
+    transform: rotate(0deg) scale(1);
+    border-color: rgba(56, 189, 248, 0.2);
+  }
+  50% {
+    transform: rotate(180deg) scale(1.08);
+    border-color: rgba(139, 92, 246, 0.4); /* Fica mais roxo/neon no pico do pensamento */
+    box-shadow: 0 0 15px rgba(139, 92, 246, 0.1);
+  }
+  100% {
+    transform: rotate(360deg) scale(1);
+    border-color: rgba(56, 189, 248, 0.2);
+  }
+}
+
+/* Altera o brilho do motor central simulando sinapses neurais */
+@keyframes aiThinkingOrb {
+  0%, 100% {
+    box-shadow: 0 0 50px rgba(139, 92, 246, 0.4), 0 0 100px rgba(56, 189, 248, 0.2);
+  }
+  50% {
+    /* No meio do ciclo, o glow expande e contrai de leve, parecendo uma oscilação de frequência */
+    box-shadow: 0 0 65px rgba(139, 92, 246, 0.55), 0 0 120px rgba(56, 189, 248, 0.35);
+    filter: brightness(1.05);
+  }
+}
