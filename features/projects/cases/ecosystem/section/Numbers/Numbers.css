@@ -1,0 +1,249 @@
+/* ==========================================================================
+   ESTRUTURA BASE E LAYOUT DA SEÇÃO
+   ========================================================================== */
+.numbers {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+  padding: 12rem 2rem;
+  background: #030712;
+  isolation: isolate;
+}
+
+.numbers__container {
+  position: relative;
+  max-width: 1300px;
+  margin: 0 auto;
+  z-index: 10;
+}
+
+/* ==========================================================================
+   TIPOGRAFIA E TEXTOS PRINCIPAIS
+   ========================================================================== */
+.numbers__label {
+  display: inline-flex;
+  align-items: center;
+  color: #60a5fa;
+  letter-spacing: .4em;
+  font-size: .75rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  opacity: 0; /* Controlado via GSAP */
+}
+
+.numbers__title {
+  color: white;
+  font-size: clamp(3.5rem, 8vw, 7rem);
+  line-height: 0.9;
+  margin-bottom: 2rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  opacity: 0;
+}
+
+.title-gradient {
+  background: linear-gradient(135deg, #ffffff 30%, #3b82f6 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.numbers__description {
+  max-width: 640px;
+  color: rgba(156, 163, 175, 0.8);
+  font-size: 1.2rem;
+  line-height: 1.8;
+  margin-bottom: 7rem;
+  opacity: 0;
+}
+
+/* ==========================================================================
+   GRID E CARDS DE IMPACTO COORDENADO
+   ========================================================================== */
+.numbers__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 2rem;
+}
+
+.numbers-card {
+  position: relative;
+  padding: 3rem 2.5rem;
+  min-height: 290px;
+  border-radius: 24px;
+  background: rgba(10, 15, 30, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  overflow: hidden;
+  opacity: 0;
+  
+  /* Variáveis CSS injetadas progressivamente via GSAP */
+  --connect-progress: 0%;
+  --glow-opacity: 0;
+  
+  transition: 
+    transform 0.5s cubic-bezier(0.25, 1, 0.5, 1),
+    border-color 0.5s ease;
+}
+
+/* Efeito de Conexão: Linha tecnológica que envolve o topo do card */
+.numbers-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: var(--connect-progress);
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #60a5fa, #a78bfa, transparent);
+  transition: width 0.1s linear;
+}
+
+/* Glow Progressivo Interno mapeado */
+.numbers-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 20% 20%, rgba(96, 165, 250, 0.12), transparent 60%);
+  opacity: var(--glow-opacity);
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+}
+
+/* Estado de Foco (Hover Ativo) */
+.numbers-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(96, 165, 250, 0.25);
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.4),
+    0 0 40px rgba(96, 165, 250, 0.05);
+}
+
+.numbers-card__value {
+  display: flex;
+  align-items: baseline;
+  color: white;
+  font-size: clamp(3.5rem, 5vw, 5.5rem);
+  font-weight: 800;
+  line-height: 1;
+  margin-bottom: 1.5rem;
+  font-variant-numeric: tabular-nums; /* Evita que o card "trema" enquanto conta */
+  letter-spacing: -0.02em;
+}
+
+.numbers-card__value-suffix {
+  color: #60a5fa;
+  font-size: 2.5rem;
+  font-weight: 400;
+  margin-left: 2px;
+}
+
+.numbers-card h3 {
+  color: rgba(255, 255, 255, 0.95);
+  font-size: 1.35rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  letter-spacing: -0.01em;
+}
+
+.numbers-card p {
+  color: rgba(156, 163, 175, 0.7);
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+/* Laser Line de varredura no hover */
+.card-laser-line {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent, rgba(96, 165, 250, 0.03), transparent);
+  transform: translateY(-100%);
+  transition: transform 0.6s ease;
+}
+.numbers-card:hover .card-laser-line {
+  transform: translateY(100%);
+}
+
+/* ==========================================================================
+   MANIFESTO FINAL (FECHAMENTO)
+   ========================================================================== */
+.numbers__manifesto {
+  margin-top: 10rem;
+  text-align: center;
+  color: rgba(156, 163, 175, 0.6);
+  font-size: clamp(1.2rem, 2vw, 1.8rem);
+  line-height: 1.6;
+  opacity: 0;
+}
+
+.numbers__manifesto strong {
+  display: block;
+  margin-top: 1.5rem;
+  color: white;
+  font-size: clamp(2.2rem, 5vw, 4rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  background: linear-gradient(to right, #ffffff, #93c5fd, #ffffff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ==========================================================================
+   SISTEMA DE BACKGROUND DE ALTA PROFUNDIDADE (MATRIX-VIBE)
+   ========================================================================== */
+.numbers__background {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 80% 20%, rgba(59, 130, 246, 0.05), transparent 50%);
+  z-index: 1;
+}
+
+.numbers__ambient-glow {
+  position: absolute;
+  bottom: -10%;
+  left: 10%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.03), transparent 70%);
+  filter: blur(80px);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Elementos Gigantes em Vetor Desfocados */
+.numbers__giant-overlay {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  user-select: none;
+  pointer-events: none;
+  z-index: 2;
+  font-family: system-ui, sans-serif;
+  font-weight: 900;
+  color: rgba(255, 255, 255, 0.015);
+  line-height: 1;
+}
+
+.bg-giant-num {
+  position: absolute;
+  will-change: transform;
+  filter: blur(3px);
+}
+
+.num-1 { font-size: 28rem; top: 5%; left: -5%; }
+.num-2 { font-size: 35rem; top: 40%; right: -10%; }
+.num-3 { font-size: 22rem; bottom: 5%; left: 25%; }
+
+/* ==========================================================================
+   RESPONSIVIDADE AJUSTADA
+   ========================================================================== */
+@media (max-width: 768px) {
+  .numbers { padding: 6rem 1.5rem; }
+  .numbers__description { margin-bottom: 4rem; }
+  .numbers__grid { grid-template-columns: 1fr; gap: 1.2rem; }
+  .numbers-card { padding: 2rem; min-height: auto; }
+  .numbers__manifesto { margin-top: 6rem; }
+  .bg-giant-num { display: none; } /* Desativa no mobile para focar em performance pura */
+}

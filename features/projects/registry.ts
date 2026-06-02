@@ -44,7 +44,7 @@ export const projectsRegistry = {
     description:
       "Explore o case Portfolio Nexus: uma experiencia digital com base escalavel, narrativa visual e acabamento premium.",
     imageUrl: "/textures/portfolio-nexus.jpg",
-    loadComponent: async () => (await import("./cases/portfolio-nexus")).default,
+    loadComponent: async () => (await import("./cases/ecosystem")).default,
   },
 } satisfies Record<string, ProjectRegistryEntry>;
 

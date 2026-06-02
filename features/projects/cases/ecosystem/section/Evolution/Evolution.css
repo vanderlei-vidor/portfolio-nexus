@@ -1,0 +1,196 @@
+.evolution {
+    position: relative;
+    min-height: 100vh;
+    padding: 10rem 2rem;
+    overflow: hidden;
+    background: #030712; /* Ajuste para o fundo escuro destacar o neon */
+}
+
+.evolution-container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.evolution-label {
+    display: inline-block;
+    color: #60a5fa;
+    letter-spacing: 0.3em;
+    font-size: 0.8rem;
+    margin-bottom: 1rem;
+}
+
+.evolution-title {
+    color: white;
+    font-size: clamp(3rem, 7vw, 6rem);
+    line-height: .95;
+    margin-bottom: 2rem;
+}
+
+.evolution-description {
+    max-width: 760px;
+    color: rgba(255, 255, 255, .7);
+    font-size: 1.15rem;
+    line-height: 1.9;
+    margin-bottom: 8rem;
+}
+
+.timeline {
+    position: relative;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+/* Linha apagada de fundo */
+.timeline-line {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 2px;
+    transform: translateX(-50%);
+    background: rgba(255, 255, 255, .05);
+}
+
+/* 🔥 A linha de energia neon controlada pelo GSAP */
+.timeline-progress {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 2px;
+    height: 0%; /* Começa em zero e o GSAP aumenta */
+    transform: translateX(-50%);
+    background: linear-gradient(to bottom, #3b82f6, #60a5fa, #93c5fd);
+    box-shadow: 0 0 12px #3b82f6, 0 0 25px rgba(96, 165, 250, 0.5);
+    z-index: 2;
+}
+
+.timeline-item {
+    position: relative;
+    width: 50%;
+    margin-bottom: 8rem;
+}
+
+.timeline-left {
+    padding-right: 5rem;
+}
+
+.timeline-right {
+    margin-left: auto;
+    padding-left: 5rem;
+}
+
+/* Os pontos iniciam opacos e o GSAP acende eles */
+.timeline-dot {
+    position: absolute;
+    top: 2rem;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    background: rgba(17, 24, 39, 0.8);
+    border: 1px solid rgba(255, 255, 255, .08);
+    backdrop-filter: blur(20px);
+    z-index: 5;
+    transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.timeline-left .timeline-dot {
+    right: -35px;
+}
+
+.timeline-right .timeline-dot {
+    left: -35px;
+}
+
+/* Os cards iniciam transparentes para o GSAP fazer a entrada fluida */
+.timeline-card {
+    padding: 2rem;
+    border-radius: 28px;
+    background: rgba(255, 255, 255, .02);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, .04);
+    opacity: 0; 
+    will-change: transform, opacity;
+}
+
+.timeline-card:hover {
+    transform: translateY(-8px) !important; /* O !important garante que o hover funcione mesmo após a animação do GSAP injetar inline styles */
+    border-color: rgba(96, 165, 250, .4);
+    box-shadow: 0 20px 60px rgba(96, 165, 250, .12);
+}
+
+.timeline-year {
+    display: inline-block;
+    margin-bottom: 1rem;
+    color: #60a5fa;
+    font-size: .85rem;
+    letter-spacing: .2em;
+}
+
+.timeline-card h3 {
+    color: white;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.timeline-card p {
+    color: rgba(255, 255, 255, .65);
+    line-height: 1.8;
+}
+
+.evolution-final {
+    margin-top: 10rem;
+    text-align: center;
+}
+
+/* Orb Final modificado para aceitar o "Glow" extra do GSAP */
+.evolution-orb {
+    position: relative;
+    width: 220px;
+    height: 220px;
+    margin: 0 auto 3rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle, rgba(96, 165, 250, 0.15), transparent 70%);
+    border: 1px solid rgba(255, 255, 255, .08);
+    /* Mantém o pulsar leve em idle, mas o tamanho mestre é controlado via scroll */
+    animation: evolutionPulse 4s ease-in-out infinite;
+    will-change: transform, box-shadow;
+}
+
+.evolution-orb-glow {
+    position: absolute;
+    inset: -40px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(96, 165, 250, 0.25), transparent 75%);
+    filter: blur(30px);
+    pointer-events: none;
+}
+
+.evolution-orb span {
+    color: white;
+    font-size: 1.6rem;
+    letter-spacing: .2em;
+    font-weight: 600;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.evolution-manifesto {
+    color: rgba(255, 255, 255, .8);
+    font-size: clamp(1.2rem, 2vw, 2rem);
+    line-height: 2;
+}
+
+@keyframes evolutionPulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.03);
+    }
+}

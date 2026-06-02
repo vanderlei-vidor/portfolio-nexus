@@ -1,0 +1,481 @@
+/* ==========================================================================
+   BASE CINEMATOGRÁFICA
+   ========================================================================== */
+.ecosystem-section {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+  padding: 12rem 2rem;
+  background: #010206;
+  isolation: isolate;
+}
+
+/* Noise overlay para textura cinematográfica */
+.noise-overlay {
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  opacity: 0.03;
+  pointer-events: none;
+  z-index: 1;
+  mix-blend-mode: overlay;
+}
+
+.ecosystem-container {
+  position: relative;
+  max-width: 1300px;
+  margin: 0 auto;
+  z-index: 10;
+}
+
+/* ==========================================================================
+   HUD GRID & BACKGROUND
+   ========================================================================== */
+.hud-grid-bg {
+  position: absolute;
+  inset: 0;
+  background-size: 50px 50px;
+  background-image:
+    linear-gradient(to right, rgba(16, 185, 129, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(16, 185, 129, 0.04) 1px, transparent 1px);
+  mask-image: radial-gradient(circle, black 40%, transparent 80%);
+  -webkit-mask-image: radial-gradient(circle, black 40%, transparent 80%);
+  z-index: 1;
+}
+
+/* ==========================================================================
+   DATA STREAM (Matrix Effect)
+   ========================================================================== */
+.data-stream-container {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0.15;
+}
+
+.data-stream {
+  position: absolute;
+  top: -100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-family: 'Courier New', monospace;
+  font-size: 12px;
+  color: #10b981;
+}
+
+.data-char {
+  text-shadow: 0 0 8px rgba(16, 185, 129, 0.8);
+  animation: charFlicker 2s infinite;
+}
+
+@keyframes charFlicker {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 1; }
+}
+
+/* ==========================================================================
+   LASER SCANNER COM TRAIL
+   ========================================================================== */
+.laser-scanner {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.laser-core {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(16, 185, 129, 0.8), transparent);
+  box-shadow: 0 0 30px rgba(16, 185, 129, 1), 0 0 60px rgba(16, 185, 129, 0.6);
+}
+
+.laser-trail {
+  position: absolute;
+  width: 100%;
+  height: 80px;
+  top: -80px;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(16, 185, 129, 0.1),
+    rgba(16, 185, 129, 0.05)
+  );
+  filter: blur(20px);
+}
+
+/* ==========================================================================
+   RADAR RINGS
+   ========================================================================== */
+.radar-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 600px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.radar-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.radar-ring-1 { animation-delay: 0s; }
+.radar-ring-2 { animation-delay: 1s; }
+.radar-ring-3 { animation-delay: 2s; }
+
+/* ==========================================================================
+   TIPOGRAFIA INDUSTRIAL
+   ========================================================================== */
+.ecosystem-header {
+  margin-bottom: 6rem;
+}
+
+.ecosystem-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 18px;
+  border-radius: 999px;
+  background: rgba(16, 185, 129, 0.08);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  color: #10b981;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.35em;
+  margin-bottom: 2rem;
+  backdrop-filter: blur(10px);
+}
+
+.label-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 10px #10b981;
+  animation: blink 1.5s infinite;
+}
+
+.label-version {
+  padding-left: 12px;
+  border-left: 1px solid rgba(16, 185, 129, 0.3);
+  color: rgba(16, 185, 129, 0.6);
+  font-family: 'SF Mono', monospace;
+  font-size: 0.6875rem;
+}
+
+.control-title {
+  color: white;
+  font-size: clamp(3.5rem, 8vw, 6.5rem);
+  line-height: 0.95;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  margin: 0;
+  text-align: left;
+}
+
+.glow-text {
+  background: linear-gradient(135deg, #ffffff 40%, #10b981 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 30px rgba(16, 185, 129, 0.3));
+  position: relative;
+}
+
+/* Efeito glitch sutil */
+.glow-text::before,
+.glow-text::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: inherit;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.glow-text::before {
+  animation: glitch-1 4s infinite;
+  clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
+}
+
+.glow-text::after {
+  animation: glitch-2 4s infinite;
+  clip-path: polygon(0 55%, 100% 55%, 100% 100%, 0 100%);
+}
+
+@keyframes glitch-1 {
+  0%, 100% { transform: translate(0); }
+  20% { transform: translate(-2px, 2px); }
+  40% { transform: translate(2px, -2px); }
+  60% { transform: translate(-1px, 1px); }
+}
+
+@keyframes glitch-2 {
+  0%, 100% { transform: translate(0); }
+  20% { transform: translate(2px, -2px); }
+  40% { transform: translate(-2px, 2px); }
+  60% { transform: translate(1px, -1px); }
+}
+
+/* ==========================================================================
+   CONSOLE & CARDS
+   ========================================================================== */
+.control-console {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+}
+
+.telemetry-card {
+  position: relative;
+  background: rgba(4, 7, 16, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  border-top: 1px solid rgba(16, 185, 129, 0.1);
+  padding: 2.5rem;
+  border-radius: 16px;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  text-align: left;
+  transition: all 0.4s cubic-bezier(0.2, 1, 0.3, 1);
+  overflow: hidden;
+}
+
+/* HUD Corners */
+.hud-corner {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border-color: rgba(16, 185, 129, 0.4);
+  border-style: solid;
+  border-width: 0;
+  transition: all 0.3s ease;
+}
+
+.hud-corner-tl { top: 12px; left: 12px; border-top-width: 2px; border-left-width: 2px; }
+.hud-corner-tr { top: 12px; right: 12px; border-top-width: 2px; border-right-width: 2px; }
+.hud-corner-bl { bottom: 12px; left: 12px; border-bottom-width: 2px; border-left-width: 2px; }
+.hud-corner-br { bottom: 12px; right: 12px; border-bottom-width: 2px; border-right-width: 2px; }
+
+.telemetry-card:hover .hud-corner {
+  width: 24px;
+  height: 24px;
+  border-color: #10b981;
+}
+
+.featured-card {
+  border-top: 1px solid rgba(16, 185, 129, 0.3);
+  background: rgba(16, 185, 129, 0.02);
+  box-shadow: 0 0 40px rgba(16, 185, 129, 0.05);
+}
+
+.telemetry-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(16, 185, 129, 0.3);
+  box-shadow:
+    0 20px 40px rgba(0, 0, 0, 0.6),
+    0 0 30px rgba(16, 185, 129, 0.08);
+}
+
+/* Card Header */
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.card-icon-wrapper {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  color: #10b981;
+  transition: all 0.3s ease;
+}
+
+.telemetry-card:hover .card-icon-wrapper {
+  background: #10b981;
+  color: white;
+  transform: scale(1.1) rotate(-5deg);
+  box-shadow: 0 8px 20px rgba(16, 185, 129, 0.4);
+}
+
+.card-status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.card-status-dot.online {
+  background: #10b981;
+  box-shadow: 0 0 10px #10b981;
+  animation: blink 1.5s infinite;
+}
+
+.card-status-dot.processing {
+  background: #3b82f6;
+  box-shadow: 0 0 10px #3b82f6;
+  animation: blink 1s infinite;
+}
+
+.card-status-dot.secure {
+  background: #34d399;
+  box-shadow: 0 0 10px #34d399;
+}
+
+.card-tag {
+  display: block;
+  font-size: 0.75rem;
+  color: rgba(156, 163, 175, 0.5);
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  margin-bottom: 1rem;
+  font-family: 'SF Mono', monospace;
+}
+
+.card-metric {
+  color: white;
+  font-size: clamp(3rem, 4vw, 4rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.5rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.card-metric .unit {
+  font-size: 1.2rem;
+  color: #10b981;
+  font-weight: 400;
+  margin-left: 4px;
+}
+
+/* Sparkline */
+.sparkline-container {
+  width: 100%;
+  height: 60px;
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.sparkline-svg {
+  width: 100%;
+  height: 100%;
+}
+
+.sparkline-path {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  filter: drop-shadow(0 0 4px rgba(16, 185, 129, 0.6));
+}
+
+.telemetry-card p {
+  color: rgba(156, 163, 175, 0.7);
+  font-size: 0.95rem;
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+}
+
+/* Terminal Prompt */
+.card-terminal {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(16, 185, 129, 0.1);
+  border-radius: 8px;
+  font-family: 'SF Mono', 'Courier New', monospace;
+  font-size: 0.75rem;
+}
+
+.terminal-prompt {
+  color: #10b981;
+  font-weight: 700;
+}
+
+.terminal-command {
+  color: rgba(255, 255, 255, 0.6);
+  flex: 1;
+}
+
+.terminal-cursor {
+  color: #10b981;
+  animation: cursorBlink 1s infinite;
+}
+
+@keyframes cursorBlink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+.card-glitch-line {
+  position: absolute;
+  bottom: 0;
+  left: 10%;
+  width: 80%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(16, 185, 129, 0.3), transparent);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.telemetry-card:hover .card-glitch-line {
+  opacity: 1;
+}
+
+/* ==========================================================================
+   ANIMAÇÕES
+   ========================================================================== */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+/* ==========================================================================
+   RESPONSIVO
+   ========================================================================== */
+@media (max-width: 768px) {
+  .ecosystem-section {
+    padding: 8rem 1.5rem;
+  }
+
+  .control-title {
+    margin-bottom: 4rem;
+  }
+
+  .control-console {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .laser-scanner,
+  .data-stream-container,
+  .radar-container {
+    display: none;
+  }
+
+  .telemetry-card {
+    padding: 2rem 1.5rem;
+  }
+}

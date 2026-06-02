@@ -1,0 +1,943 @@
+/* ==========================================================================
+   BASE & BACKGROUND CINEMATOGRÁFICO
+   ========================================================================== */
+.connected-worlds {
+  min-height: 140vh;
+  padding: 10rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  background: #030712;
+  isolation: isolate;
+}
+
+/* Grid perspective (estilo Tron) */
+.cw-bg-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(96, 165, 250, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(96, 165, 250, 0.08) 1px, transparent 1px);
+  background-size: 80px 80px;
+  mask-image: radial-gradient(ellipse at center, black 20%, transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse at center, black 20%, transparent 75%);
+  transform: perspective(500px) rotateX(60deg) translateY(-20%);
+  transform-origin: center top;
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+/* Nebulas coloridas */
+.cw-bg-nebula {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.35;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.cw-bg-nebula-1 {
+  width: 700px;
+  height: 700px;
+  background: radial-gradient(circle, rgba(96, 165, 250, 0.4), transparent 70%);
+  top: -200px;
+  left: -200px;
+  animation: nebulaFloat 20s ease-in-out infinite;
+}
+
+.cw-bg-nebula-2 {
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(167, 139, 250, 0.35), transparent 70%);
+  bottom: -150px;
+  right: -150px;
+  animation: nebulaFloat 25s ease-in-out infinite reverse;
+}
+
+.cw-bg-nebula-3 {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(16, 185, 129, 0.25), transparent 70%);
+  top: 40%;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: nebulaFloat 30s ease-in-out infinite;
+}
+
+@keyframes nebulaFloat {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(40px, -30px) scale(1.05); }
+  66% { transform: translate(-30px, 40px) scale(0.95); }
+}
+
+/* Estrelas/partículas */
+.cw-bg-stars {
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(white, rgba(255, 255, 255, 0.3) 1px, transparent 2px),
+    radial-gradient(white, rgba(255, 255, 255, 0.2) 1px, transparent 2px);
+  background-size: 400px 400px, 250px 250px;
+  background-position: 0 0, 50px 80px;
+  opacity: 0.25;
+  mix-blend-mode: screen;
+  pointer-events: none;
+  animation: starsTwinkle 8s ease-in-out infinite;
+}
+
+@keyframes starsTwinkle {
+  0%, 100% { opacity: 0.25; }
+  50% { opacity: 0.4; }
+}
+
+/* Scan line cinematográfica */
+.cw-scanline {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(96, 165, 250, 0.03) 50%,
+    transparent 100%
+  );
+  background-size: 100% 8px;
+  pointer-events: none;
+  z-index: 1;
+  mix-blend-mode: overlay;
+}
+
+/* ==========================================================================
+   HUD CORNERS (telemetria nos cantos)
+   ========================================================================== */
+.cw-hud {
+  position: absolute;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 12px 16px;
+  font-family: 'SF Mono', 'Monaco', 'Consolas', monospace;
+  font-size: 0.6875rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.8s ease 3s;
+}
+
+.is-active .cw-hud {
+  opacity: 1;
+}
+
+.cw-hud-tl { top: 32px; left: 32px; }
+.cw-hud-tr { top: 32px; right: 32px; text-align: right; }
+.cw-hud-bl { bottom: 32px; left: 32px; }
+.cw-hud-br { bottom: 32px; right: 32px; text-align: right; }
+
+.hud-label {
+  color: rgba(96, 165, 250, 0.5);
+  font-size: 0.5625rem;
+  letter-spacing: 0.2em;
+}
+
+.hud-value {
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.cw-hud-tr .hud-value,
+.cw-hud-br .hud-value {
+  justify-content: flex-end;
+}
+
+.hud-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 8px rgba(16, 185, 129, 0.8);
+  animation: hudBlink 2s ease-in-out infinite;
+}
+
+.hud-online {
+  color: #10b981;
+}
+
+@keyframes hudBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+/* ==========================================================================
+   CONTAINER & HEADER
+   ========================================================================== */
+.connected-worlds__container {
+  width: 100%;
+  max-width: 1400px;
+  text-align: center;
+  z-index: 2;
+  position: relative;
+}
+
+.connected-worlds__label {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 1.5rem;
+  padding: 8px 18px;
+  border-radius: 999px;
+  background: rgba(96, 165, 250, 0.08);
+  border: 1px solid rgba(96, 165, 250, 0.2);
+  color: #60a5fa;
+  font-size: 0.75rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  font-weight: 600;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.label-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #60a5fa;
+  box-shadow: 0 0 8px rgba(96, 165, 250, 0.8);
+  animation: hudBlink 2s ease-in-out infinite;
+}
+
+.label-version {
+  padding-left: 12px;
+  border-left: 1px solid rgba(96, 165, 250, 0.3);
+  color: rgba(96, 165, 250, 0.6);
+  font-family: 'SF Mono', monospace;
+  font-size: 0.6875rem;
+}
+
+.connected-worlds__title {
+  font-size: clamp(3rem, 8vw, 6.5rem);
+  line-height: 0.95;
+  color: white;
+  margin: 0 0 2rem;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+}
+
+.title-word {
+  display: inline-block;
+  margin-right: 0.3em;
+}
+
+.title-word-gradient {
+  background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 200% 200%;
+  animation: gradientShift 6s ease infinite;
+}
+
+.title-word-gradient-alt {
+  background: linear-gradient(135deg, #a78bfa 0%, #ec4899 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 200% 200%;
+  animation: gradientShift 6s ease infinite reverse;
+}
+
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.connected-worlds__description {
+  max-width: 760px;
+  margin: 0 auto;
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 1.15rem;
+  line-height: 1.9;
+}
+
+/* ==========================================================================
+   ECOSYSTEM MAP
+   ========================================================================== */
+.ecosystem-map {
+  position: relative;
+  width: 100%;
+  height: 850px;
+  margin-top: 6rem;
+}
+
+/* ==========================================================================
+   ORB CENTRAL ÉPICA
+   ========================================================================== */
+.ecosystem-orb {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 30% 30%,
+    rgba(96, 165, 250, 0.25),
+    rgba(59, 130, 246, 0.08) 50%,
+    rgba(3, 7, 18, 0.9) 100%
+  );
+  border: 1px solid rgba(96, 165, 250, 0.3);
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+  z-index: 5;
+}
+
+/* Glows em camadas */
+.orb-glow {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.orb-glow-outer {
+  inset: -80px;
+  background: radial-gradient(circle, rgba(96, 165, 250, 0.3), transparent 60%);
+  filter: blur(60px);
+  animation: orbGlowPulse 4s ease-in-out infinite;
+}
+
+.orb-glow-inner {
+  inset: -20px;
+  background: radial-gradient(circle, rgba(167, 139, 250, 0.4), transparent 70%);
+  filter: blur(30px);
+  animation: orbGlowPulse 3s ease-in-out infinite reverse;
+}
+
+@keyframes orbGlowPulse {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.1); }
+}
+
+/* Anéis orbitais */
+.orb-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(96, 165, 250, 0.2);
+  pointer-events: none;
+}
+
+.orb-ring-1 {
+  inset: -40px;
+  border-style: dashed;
+  animation: ringRotate 20s linear infinite;
+}
+
+.orb-ring-2 {
+  inset: -70px;
+  border-color: rgba(167, 139, 250, 0.15);
+  animation: ringRotate 30s linear infinite reverse;
+}
+
+.orb-ring-3 {
+  inset: -100px;
+  border-color: rgba(16, 185, 129, 0.1);
+  border-style: dotted;
+  animation: ringRotate 40s linear infinite;
+}
+
+@keyframes ringRotate {
+  to { transform: rotate(360deg); }
+}
+
+/* Radar sweep */
+.orb-radar {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    rgba(96, 165, 250, 0.3) 30deg,
+    transparent 60deg
+  );
+  animation: radarSweep 4s linear infinite;
+  mask: radial-gradient(circle, transparent 40%, black 41%, black 100%);
+  -webkit-mask: radial-gradient(circle, transparent 40%, black 41%, black 100%);
+  pointer-events: none;
+}
+
+@keyframes radarSweep {
+  to { transform: rotate(360deg); }
+}
+
+/* Microtexto circular */
+.orb-circular-text {
+  position: absolute;
+  inset: -30px;
+  width: calc(100% + 60px);
+  height: calc(100% + 60px);
+  animation: ringRotate 25s linear infinite;
+  pointer-events: none;
+}
+
+.orb-circular-text text {
+  fill: rgba(96, 165, 250, 0.5);
+  font-size: 9px;
+  letter-spacing: 3px;
+  font-family: 'SF Mono', monospace;
+  text-transform: uppercase;
+}
+
+/* Core da orb */
+.orb-core {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  text-align: center;
+}
+
+.orb-core-icon {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  background: linear-gradient(135deg, rgba(96, 165, 250, 0.2), rgba(167, 139, 250, 0.2));
+  border: 1px solid rgba(96, 165, 250, 0.3);
+  color: #60a5fa;
+  margin-bottom: 4px;
+  animation: iconPulse 3s ease-in-out infinite;
+}
+
+.orb-core-icon svg {
+  width: 22px;
+  height: 22px;
+  stroke-width: 1.5;
+}
+
+@keyframes iconPulse {
+  0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(96, 165, 250, 0.4); }
+  50% { transform: scale(1.05); box-shadow: 0 0 30px 10px rgba(96, 165, 250, 0.2); }
+}
+
+.orb-label {
+  color: rgba(255, 255, 255, 0.6);
+  letter-spacing: 0.3em;
+  font-size: 0.6875rem;
+  font-weight: 500;
+}
+
+.orb-title {
+  color: white;
+  font-size: 1.75rem;
+  letter-spacing: 0.15em;
+  font-weight: 800;
+  background: linear-gradient(135deg, #fff, #60a5fa);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin: 0;
+}
+
+.orb-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  color: #10b981;
+  font-size: 0.5625rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-family: 'SF Mono', monospace;
+  margin-top: 4px;
+}
+
+.orb-status-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 6px rgba(16, 185, 129, 0.8);
+  animation: hudBlink 2s ease-in-out infinite;
+}
+
+/* ==========================================================================
+   CONEXÕES SVG COM DATA FLOW
+   ========================================================================== */
+.connections-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.data-particle {
+  opacity: 0.9;
+}
+
+/* ==========================================================================
+   NODES DO ECOSSISTEMA
+   ========================================================================== */
+.ecosystem-node {
+  position: absolute;
+  width: 240px;
+  padding: 1.75rem;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  z-index: 4;
+  overflow: hidden;
+  text-align: left;
+}
+
+/* Cores por node */
+.ecosystem-node--cyan { --node-color: 96, 165, 250; }
+.ecosystem-node--purple { --node-color: 167, 139, 250; }
+.ecosystem-node--emerald { --node-color: 16, 185, 129; }
+.ecosystem-node--amber { --node-color: 245, 158, 11; }
+
+/* HUD corners */
+.node-corner {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-color: rgba(var(--node-color), 0.5);
+  border-style: solid;
+  border-width: 0;
+  transition: all 0.4s ease;
+}
+
+.node-corner-tl { top: 8px; left: 8px; border-top-width: 1px; border-left-width: 1px; }
+.node-corner-tr { top: 8px; right: 8px; border-top-width: 1px; border-right-width: 1px; }
+.node-corner-bl { bottom: 8px; left: 8px; border-bottom-width: 1px; border-left-width: 1px; }
+.node-corner-br { bottom: 8px; right: 8px; border-bottom-width: 1px; border-right-width: 1px; }
+
+.ecosystem-node:hover .node-corner {
+  width: 18px;
+  height: 18px;
+  border-color: rgb(var(--node-color));
+}
+
+/* Borda gradiente animada */
+.node-gradient-border {
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  padding: 1px;
+  background: linear-gradient(
+    135deg,
+    transparent 30%,
+    rgba(var(--node-color), 0.5) 50%,
+    transparent 70%
+  );
+  background-size: 300% 300%;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.ecosystem-node:hover .node-gradient-border {
+  opacity: 1;
+  animation: borderRotate 3s linear infinite;
+}
+
+@keyframes borderRotate {
+  to { background-position: 300% 0; }
+}
+
+/* Coordenadas */
+.node-coords {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  font-family: 'SF Mono', monospace;
+  font-size: 0.5625rem;
+  color: rgba(var(--node-color), 0.5);
+  letter-spacing: 0.15em;
+}
+
+/* Status */
+.node-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 8px;
+  border-radius: 4px;
+  background: rgba(var(--node-color), 0.1);
+  border: 1px solid rgba(var(--node-color), 0.2);
+  margin-bottom: 16px;
+}
+
+.node-status-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: rgb(var(--node-color));
+  box-shadow: 0 0 6px rgba(var(--node-color), 0.8);
+  animation: hudBlink 2s ease-in-out infinite;
+}
+
+.node-status-text {
+  font-family: 'SF Mono', monospace;
+  font-size: 0.5625rem;
+  font-weight: 700;
+  color: rgb(var(--node-color));
+  letter-spacing: 0.15em;
+}
+
+/* Ícone */
+.ecosystem-node__icon {
+  width: 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+  background: linear-gradient(
+    135deg,
+    rgba(var(--node-color), 0.15),
+    rgba(var(--node-color), 0.05)
+  );
+  border: 1px solid rgba(var(--node-color), 0.25);
+  color: rgb(var(--node-color));
+  margin-bottom: 16px;
+  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  position: relative;
+}
+
+.ecosystem-node__icon svg {
+  width: 26px;
+  height: 26px;
+}
+
+.ecosystem-node:hover .ecosystem-node__icon {
+  background: rgb(var(--node-color));
+  color: white;
+  transform: scale(1.1) rotate(-6deg);
+  box-shadow: 0 10px 30px rgba(var(--node-color), 0.4);
+  border-color: transparent;
+}
+
+/* Conteúdo */
+.ecosystem-node h3 {
+  color: white;
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin: 0 0 4px;
+}
+
+.node-subtitle {
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 0.8125rem;
+  font-family: 'SF Mono', monospace;
+  letter-spacing: 0.02em;
+}
+
+/* Footer do node */
+.node-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px dashed rgba(255, 255, 255, 0.1);
+}
+
+.node-id {
+  font-family: 'SF Mono', monospace;
+  font-size: 0.6875rem;
+  color: rgba(255, 255, 255, 0.4);
+  letter-spacing: 0.1em;
+}
+
+.node-link {
+  color: rgb(var(--node-color));
+  font-size: 1rem;
+  opacity: 0;
+  transform: translateX(-8px);
+  transition: all 0.3s ease;
+}
+
+.ecosystem-node:hover .node-link {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Hover state */
+.ecosystem-node:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(var(--node-color), 0.4);
+  box-shadow:
+    0 20px 60px rgba(var(--node-color), 0.2),
+    0 0 40px rgba(var(--node-color), 0.1);
+}
+
+/* Posicionamento dos nodes */
+.ecosystem-node--top {
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.ecosystem-node--top:hover { transform: translateX(-50%) translateY(-8px); }
+
+.ecosystem-node--right {
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+}
+.ecosystem-node--right:hover { transform: translateY(-50%) translateX(8px); }
+
+.ecosystem-node--bottom {
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.ecosystem-node--bottom:hover { transform: translateX(-50%) translateY(8px); }
+
+.ecosystem-node--left {
+  top: 50%;
+  left: 20px;
+  transform: translateY(-50%);
+}
+.ecosystem-node--left:hover { transform: translateY(-50%) translateX(-8px); }
+
+/* ==========================================================================
+   EASTER EGG TRANSITION
+   ========================================================================== */
+.easter-egg-transition {
+  margin-top: 8rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.flow-line {
+  position: relative;
+  width: 1px;
+  height: 80px;
+  background: linear-gradient(to bottom, rgba(96, 165, 250, 0.4), transparent);
+  overflow: hidden;
+}
+
+.flow-line-pulse {
+  position: absolute;
+  top: -50%;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  background: linear-gradient(to bottom, transparent, #60a5fa, transparent);
+  animation: flowDown 2s ease-in-out infinite;
+}
+
+@keyframes flowDown {
+  0% { top: -50%; }
+  100% { top: 150%; }
+}
+
+.flow-steps {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.flow-step {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'SF Mono', monospace;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: rgba(255, 255, 255, 0.5);
+  animation: fadeUp 0.6s ease both;
+}
+
+.flow-step-number {
+  color: #60a5fa;
+  font-weight: 700;
+  font-size: 0.6875rem;
+}
+
+.flow-step-label {
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 600;
+}
+
+.flow-arrow {
+  color: #60a5fa;
+  font-size: 1rem;
+  animation: arrowGlow 2s ease-in-out infinite;
+}
+
+@keyframes arrowGlow {
+  0%, 100% { opacity: 0.3; transform: translateY(0); }
+  50% { opacity: 1; transform: translateY(4px); }
+}
+
+.evolution-trigger {
+  margin-top: 1rem;
+  padding: 12px 24px;
+  border: 1px dashed rgba(96, 165, 250, 0.3);
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(96, 165, 250, 0.03);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.evolution-trigger:hover {
+  background: rgba(96, 165, 250, 0.08);
+  border-color: rgba(96, 165, 250, 0.5);
+  transform: translateX(4px);
+}
+
+.evolution-pulse {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #60a5fa;
+  box-shadow: 0 0 12px rgba(96, 165, 250, 0.8);
+  animation: hudBlink 2s ease-in-out infinite;
+}
+
+.next-section-preview {
+  font-size: 0.75rem;
+  letter-spacing: 0.3em;
+  color: #60a5fa;
+  font-weight: 700;
+  font-family: 'SF Mono', monospace;
+}
+
+.evolution-arrow {
+  color: #60a5fa;
+  transition: transform 0.3s ease;
+}
+
+.evolution-trigger:hover .evolution-arrow {
+  transform: translateX(4px);
+}
+
+/* ==========================================================================
+   SISTEMA DE REVELAÇÃO
+   ========================================================================== */
+.reveal-step-20, .reveal-step-35, .reveal-step-50,
+.reveal-step-65, .reveal-step-80, .reveal-step-100 {
+  opacity: 0;
+  transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-step-20 { transform: translateY(30px); }
+.reveal-step-35 { transform: translateY(30px); }
+.reveal-step-50 { transform: translate(-50%, -50%) scale(0.8); }
+.reveal-step-65 { transform: translateY(20px); }
+.reveal-step-80 { transform: scale(0.9); }
+.reveal-step-100 { transform: translateY(30px); }
+
+.is-active .reveal-step-20 { opacity: 1; transform: translateY(0); transition-delay: 0.2s; }
+.is-active .reveal-step-35 { opacity: 1; transform: translateY(0); transition-delay: 0.5s; }
+.is-active .reveal-step-50 {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+  transition-delay: 0.9s;
+}
+.is-active .reveal-step-65 { opacity: 1; transform: translateY(0); transition-delay: 1.4s; }
+.is-active .reveal-step-80 {
+  opacity: 1;
+  transform: var(--node-transform-active, scale(1));
+  transition-delay: calc(1.8s + (var(--node-index) * 0.15s));
+}
+.is-active .reveal-step-100 { opacity: 1; transform: translateY(0); transition-delay: 2.6s; }
+
+/* Posicionamento dos nodes com animação */
+.ecosystem-node--top { --node-transform-active: translateX(-50%) scale(1); }
+.ecosystem-node--bottom { --node-transform-active: translateX(-50%) scale(1); }
+.ecosystem-node--left { --node-transform-active: translateY(-50%) scale(1); }
+.ecosystem-node--right { --node-transform-active: translateY(-50%) scale(1); }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ==========================================================================
+   RESPONSIVO
+   ========================================================================== */
+@media (max-width: 1100px) {
+  .ecosystem-map { height: 750px; }
+  .ecosystem-node { width: 200px; padding: 1.25rem; }
+  .cw-hud { display: none; }
+}
+
+@media (max-width: 768px) {
+  .connected-worlds { padding: 6rem 1rem; }
+  .ecosystem-map { height: auto; min-height: 600px; }
+
+  .ecosystem-orb {
+    width: 200px;
+    height: 200px;
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none;
+    margin: 0 auto 3rem;
+  }
+
+  .is-active .reveal-step-50 {
+    transform: scale(1);
+  }
+
+  .ecosystem-node {
+    position: relative;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    transform: none !important;
+    width: 100%;
+    max-width: 320px;
+    margin: 1rem auto;
+  }
+
+  .is-active .reveal-step-80 {
+    transform: scale(1) !important;
+  }
+
+  .connections-svg { display: none; }
+  .orb-ring-2, .orb-ring-3 { display: none; }
+
+  .flow-steps { flex-direction: column; gap: 0.5rem; }
+  .flow-arrow { transform: rotate(90deg); }
+}

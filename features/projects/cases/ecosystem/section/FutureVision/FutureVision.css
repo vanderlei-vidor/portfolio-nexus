@@ -1,0 +1,556 @@
+/* ==========================================================================
+   BASE & BACKGROUND
+   ========================================================================== */
+.future-vision {
+  position: relative;
+  min-height: 300vh; /* Espaço para scroll animations */
+  overflow: hidden;
+  background: #030712;
+  isolation: isolate;
+}
+
+/* Background gradient */
+.future-background {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(
+    circle at center,
+    rgba(96, 165, 250, 0.08),
+    transparent 70%
+  );
+  z-index: 0;
+}
+
+/* Nebulas */
+.future-nebula {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.3;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.future-nebula-1 {
+  width: 800px;
+  height: 800px;
+  background: radial-gradient(circle, rgba(96, 165, 250, 0.4), transparent 70%);
+  top: -300px;
+  left: -300px;
+  animation: nebulaFloat 25s ease-in-out infinite;
+}
+
+.future-nebula-2 {
+  width: 700px;
+  height: 700px;
+  background: radial-gradient(circle, rgba(167, 139, 250, 0.35), transparent 70%);
+  bottom: -250px;
+  right: -250px;
+  animation: nebulaFloat 30s ease-in-out infinite reverse;
+}
+
+.future-nebula-3 {
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(16, 185, 129, 0.25), transparent 70%);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: nebulaFloat 35s ease-in-out infinite;
+}
+
+@keyframes nebulaFloat {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(50px, -40px) scale(1.05); }
+  66% { transform: translate(-40px, 50px) scale(0.95); }
+}
+
+/* Stars */
+.future-stars {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.future-star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.6);
+  animation: twinkle 4s ease-in-out infinite;
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.5); }
+}
+
+/* Light from orb */
+.future-orb-light {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 100vw;
+  height: 100vh;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(
+    circle at center,
+    rgba(96, 165, 250, 0.3),
+    rgba(167, 139, 250, 0.15) 40%,
+    transparent 70%
+  );
+  opacity: 0;
+  pointer-events: none;
+  z-index: 1;
+  mix-blend-mode: screen;
+}
+
+/* ==========================================================================
+   CONTAINER
+   ========================================================================== */
+.future-container {
+  position: relative;
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 12rem 2rem;
+  text-align: center;
+  z-index: 10;
+}
+
+/* ==========================================================================
+   HEADER
+   ========================================================================== */
+.future-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 1.5rem;
+  padding: 8px 18px;
+  border-radius: 999px;
+  background: rgba(96, 165, 250, 0.08);
+  border: 1px solid rgba(96, 165, 250, 0.2);
+  color: #60a5fa;
+  font-size: 0.75rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  font-weight: 600;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.future-label-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #60a5fa;
+  box-shadow: 0 0 8px rgba(96, 165, 250, 0.8);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.future-label-version {
+  padding-left: 12px;
+  border-left: 1px solid rgba(96, 165, 250, 0.3);
+  color: rgba(96, 165, 250, 0.6);
+  font-family: 'SF Mono', monospace;
+  font-size: 0.6875rem;
+}
+
+.future-title {
+  color: white;
+  font-size: clamp(4rem, 10vw, 9rem);
+  line-height: 0.9;
+  margin: 0 0 2rem;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+}
+
+.future-title-gradient {
+  background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 50%, #ec4899 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 200% 200%;
+  animation: gradientShift 6s ease infinite;
+}
+
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.future-description {
+  color: rgba(255, 255, 255, 0.7);
+  max-width: 700px;
+  margin: 0 auto;
+  font-size: 1.2rem;
+  line-height: 1.8;
+}
+
+/* ==========================================================================
+   ORBITAL SYSTEM
+   ========================================================================== */
+.future-system {
+  position: relative;
+  width: 800px;
+  height: 800px;
+  margin: 8rem auto;
+}
+
+/* Orbits */
+.future-orbit {
+  position: absolute;
+  inset: 0;
+  animation: rotateOrbit linear infinite;
+}
+
+.orbit-1 {
+  animation-duration: 40s;
+}
+
+.orbit-2 {
+  animation-duration: 60s;
+  animation-direction: reverse;
+}
+
+.orbit-3 {
+  animation-duration: 80s;
+}
+
+@keyframes rotateOrbit {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.future-orbit span {
+  position: absolute;
+  padding: 0.8rem 1.4rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.future-orbit span:hover {
+  background: rgba(96, 165, 250, 0.15);
+  border-color: rgba(96, 165, 250, 0.4);
+  color: #60a5fa;
+  transform: scale(1.05);
+}
+
+.future-orbit span:nth-child(1) {
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.future-orbit span:nth-child(2) {
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* ==========================================================================
+   CORE NEXUS
+   ========================================================================== */
+.future-core {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 260px;
+  height: 260px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(
+    circle at 30% 30%,
+    rgba(96, 165, 250, 0.25),
+    rgba(59, 130, 246, 0.08) 50%,
+    rgba(3, 7, 18, 0.9) 100%
+  );
+  border: 1px solid rgba(96, 165, 250, 0.3);
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  overflow: visible;
+}
+
+/* Glows */
+.future-core-glow {
+  position: absolute;
+  inset: -60px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(96, 165, 250, 0.3), transparent 70%);
+  filter: blur(60px);
+  animation: glowPulse 4s ease-in-out infinite;
+}
+
+.future-core-glow-inner {
+  position: absolute;
+  inset: -20px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(167, 139, 250, 0.4), transparent 70%);
+  filter: blur(30px);
+  animation: glowPulse 3s ease-in-out infinite reverse;
+}
+
+@keyframes glowPulse {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.1); }
+}
+
+/* Rings */
+.future-core-ring {
+  position: absolute;
+  inset: -40px;
+  border-radius: 50%;
+  border: 1px solid rgba(96, 165, 250, 0.2);
+  animation: rotateOrbit 30s linear infinite;
+}
+
+.future-core-ring-2 {
+  inset: -80px;
+  border-color: rgba(167, 139, 250, 0.15);
+  animation-duration: 50s;
+  animation-direction: reverse;
+}
+
+.future-core-ring-3 {
+  inset: -120px;
+  border-color: rgba(16, 185, 129, 0.1);
+  border-style: dotted;
+  animation-duration: 70s;
+}
+
+/* Radar sweep */
+.future-core-radar {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    rgba(96, 165, 250, 0.3) 30deg,
+    transparent 60deg
+  );
+  animation: rotateOrbit 4s linear infinite;
+  mask: radial-gradient(circle, transparent 40%, black 41%, black 100%);
+  -webkit-mask: radial-gradient(circle, transparent 40%, black 41%, black 100%);
+  pointer-events: none;
+}
+
+/* Circular text */
+.future-core-text {
+  position: absolute;
+  inset: -30px;
+  width: calc(100% + 60px);
+  height: calc(100% + 60px);
+  animation: rotateOrbit 25s linear infinite;
+  pointer-events: none;
+}
+
+.future-core-text text {
+  fill: rgba(96, 165, 250, 0.5);
+  font-size: 9px;
+  letter-spacing: 3px;
+  font-family: 'SF Mono', monospace;
+  text-transform: uppercase;
+}
+
+/* Core content */
+.future-core-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  text-align: center;
+}
+
+.future-core-icon {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  background: linear-gradient(135deg, rgba(96, 165, 250, 0.2), rgba(167, 139, 250, 0.2));
+  border: 1px solid rgba(96, 165, 250, 0.3);
+  color: #60a5fa;
+  margin-bottom: 4px;
+  animation: iconPulse 3s ease-in-out infinite;
+}
+
+@keyframes iconPulse {
+  0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(96, 165, 250, 0.4); }
+  50% { transform: scale(1.05); box-shadow: 0 0 30px 10px rgba(96, 165, 250, 0.2); }
+}
+
+.future-core-label {
+  color: white;
+  letter-spacing: 0.3em;
+  font-size: 1.6rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #fff, #60a5fa);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.future-core-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  color: #10b981;
+  font-size: 0.5625rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-family: 'SF Mono', monospace;
+  margin-top: 4px;
+}
+
+.status-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 6px rgba(16, 185, 129, 0.8);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+/* ==========================================================================
+   MANIFESTO
+   ========================================================================== */
+.future-manifesto {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.future-manifesto p {
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 1rem;
+  font-size: 1.15rem;
+  line-height: 1.8;
+}
+
+.future-manifesto strong {
+  display: block;
+  margin-top: 2rem;
+  color: white;
+  font-size: clamp(1.4rem, 2vw, 2rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  background: linear-gradient(135deg, #fff, #60a5fa);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ==========================================================================
+   STATUS
+   ========================================================================== */
+.future-status {
+  margin-top: 5rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 24px;
+  border-radius: 999px;
+  background: rgba(96, 165, 250, 0.08);
+  border: 1px solid rgba(96, 165, 250, 0.2);
+  color: #60a5fa;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  font-weight: 600;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.status-pulse {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #60a5fa;
+  box-shadow: 0 0 12px rgba(96, 165, 250, 0.8);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+/* ==========================================================================
+   RESPONSIVO
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .future-system {
+    width: 600px;
+    height: 600px;
+  }
+
+  .future-core {
+    width: 200px;
+    height: 200px;
+  }
+}
+
+@media (max-width: 768px) {
+  .future-vision {
+    min-height: 250vh;
+  }
+
+  .future-container {
+    padding: 8rem 1rem;
+  }
+
+  .future-system {
+    width: 100%;
+    max-width: 400px;
+    height: 400px;
+    margin: 4rem auto;
+  }
+
+  .future-core {
+    width: 160px;
+    height: 160px;
+  }
+
+  .future-orbit span {
+    font-size: 0.75rem;
+    padding: 0.6rem 1rem;
+  }
+
+  .future-title {
+    font-size: clamp(2.5rem, 8vw, 4rem);
+  }
+
+  .future-description {
+    font-size: 1rem;
+  }
+
+  .future-manifesto p {
+    font-size: 1rem;
+  }
+
+  .future-manifesto strong {
+    font-size: 1.25rem;
+  }
+}

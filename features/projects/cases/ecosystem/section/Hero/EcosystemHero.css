@@ -1,0 +1,49 @@
+.ecosystem-section {
+  min-height: 100vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 8rem 2rem;
+}
+
+.ecosystem-container {
+  max-width: 1200px;
+  width: 100%;
+}
+
+.ecosystem-label {
+  display: inline-block;
+
+  margin-bottom: 1rem;
+
+  color: #60a5fa;
+
+  letter-spacing: 0.3em;
+
+  font-size: 0.75rem;
+}
+
+.ecosystem-section h1,
+.ecosystem-section h2 {
+  color: white;
+
+  font-size: clamp(3rem, 8vw, 7rem);
+
+  line-height: 0.95;
+
+  font-weight: 800;
+
+  margin-bottom: 1.5rem;
+}
+
+.ecosystem-section p {
+  max-width: 700px;
+
+  color: rgba(255,255,255,0.7);
+
+  font-size: 1.2rem;
+
+  line-height: 1.8;
+}

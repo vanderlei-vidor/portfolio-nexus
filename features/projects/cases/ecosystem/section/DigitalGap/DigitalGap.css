@@ -1,0 +1,328 @@
+/* ==========================================================================
+   BASE & PINNING STRUCT
+   ========================================================================== */
+.digital-gap {
+  position: relative;
+  min-height: 100vh;
+  background: #02040a;
+  isolation: isolate;
+}
+
+/* O contêiner interno herda a fixação de tela cheia controlada pelo GSAP Pin */
+.digital-gap__pin-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 2rem;
+}
+
+/* Background grid refinado com opacidade reduzida para contraste cirúrgico */
+.digital-gap__grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(96, 165, 250, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(96, 165, 250, 0.03) 1px, transparent 1px);
+  background-size: 100px 100px;
+  mask-image: radial-gradient(circle at center, black 30%, transparent 80%);
+  -webkit-mask-image: radial-gradient(circle at center, black 30%, transparent 80%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.digital-gap__background {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(96, 165, 250, 0.04), transparent 70%);
+  z-index: 0;
+}
+
+/* ==========================================================================
+   CONTAINER
+   ========================================================================== */
+.digital-gap__container {
+  position: relative;
+  max-width: 1200px;
+  width: 100%;
+  text-align: center;
+  z-index: 5;
+}
+
+/* ==========================================================================
+   HEADER & TYPOGRAPHY
+   ========================================================================== */
+.digital-gap__label {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 2rem;
+  padding: 6px 16px;
+  border-radius: 999px;
+  background: rgba(96, 165, 250, 0.05);
+  border: 1px solid rgba(96, 165, 250, 0.15);
+  color: #60a5fa;
+  font-size: 0.7rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  font-weight: 600;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.label-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #60a5fa;
+  box-shadow: 0 0 10px #60a5fa;
+}
+
+.label-version {
+  padding-left: 12px;
+  border-left: 1px solid rgba(96, 165, 250, 0.25);
+  color: rgba(96, 165, 250, 0.5);
+  font-family: monospace;
+}
+
+/* Estrutura de Máscaras para a revelação cinemática das linhas */
+.digital-gap__title-line {
+  overflow: hidden;
+  display: block;
+  padding-bottom: 0.05em;
+}
+
+.digital-gap__title-line span {
+  display: block;
+  will-change: transform;
+}
+
+.digital-gap__title {
+  color: white;
+  font-size: clamp(2.8rem, 7.5vw, 6.5rem);
+  line-height: 0.95;
+  margin: 0 0 2rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+.title-gradient {
+  background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 50%, #f472b6 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.digital-gap__description {
+  max-width: 680px;
+  margin: 0 auto;
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 1.1rem;
+  line-height: 1.8;
+  will-change: transform, opacity;
+}
+
+/* ==========================================================================
+   FRAGMENTS (CARDS DISCONECTADOS)
+   ========================================================================== */
+.digital-gap__fragments {
+  margin-top: 5rem;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  will-change: transform, opacity;
+}
+
+.digital-gap__fragment {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0.9rem 1.5rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  color: rgba(255, 255, 255, 0.8);
+  will-change: transform, opacity, filter;
+}
+
+.fragment-number {
+  font-family: monospace;
+  font-size: 0.7rem;
+  color: #60a5fa;
+  font-weight: 700;
+}
+
+.fragment-text {
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+.fragment-status {
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: rgba(239, 68, 68, 0.08);
+  border: 1px solid rgba(239, 68, 68, 0.15);
+  color: #f87171;
+  font-size: 0.55rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  font-family: monospace;
+}
+
+/* ==========================================================================
+   DIVIDER LINE
+   ========================================================================== */
+.digital-gap__divider {
+  width: 1px;
+  height: 0px; /* Expandido via GSAP */
+  opacity: 0;
+  margin: 3rem auto;
+  background: linear-gradient(to bottom, transparent, #3b82f6, transparent);
+}
+
+/* ==========================================================================
+   MANIFESTO MASCARADO
+   ========================================================================== */
+.digital-gap__manifesto {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem 0.8rem;
+  color: white;
+  font-size: clamp(1.8rem, 4vw, 3.2rem);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+}
+
+.manifesto-word {
+  overflow: hidden;
+  display: inline-block;
+  padding-bottom: 0.05em;
+}
+
+.manifesto-word span {
+  display: block;
+  background: linear-gradient(135deg, #ffffff 30%, #93c5fd 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  will-change: transform;
+}
+
+/* ==========================================================================
+   CONSTELLATION SVG
+   ========================================================================== */
+.digital-gap__constellation {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.constellation-line {
+  stroke-dasharray: 4 4;
+}
+
+.constellation-node-group {
+  will-change: transform, opacity;
+}
+
+/* ==========================================================================
+   SINGULARITY POINT (NEXUS CENTER)
+   ========================================================================== */
+.convergence-point {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.convergence-glow {
+  position: absolute;
+  inset: -60px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.4), rgba(139, 92, 246, 0.15) 50%, transparent 70%);
+  filter: blur(50px);
+}
+
+.convergence-core {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 28px 40px;
+  border-radius: 24px;
+  background: rgba(10, 15, 30, 0.7);
+  border: 1px solid rgba(96, 165, 250, 0.3);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.convergence-label {
+  color: white;
+  font-size: 1.25rem;
+  font-weight: 800;
+  letter-spacing: 0.35em;
+  background: linear-gradient(135deg, #ffffff, #60a5fa);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.convergence-arrow {
+  color: #60a5fa;
+  font-size: 1.5rem;
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN SYSTEM
+   ========================================================================== */
+@media (max-width: 768px) {
+  .digital-gap__pin-container {
+    padding: 1rem;
+  }
+  .digital-gap__title {
+    font-size: clamp(2.2rem, 10vw, 3.5rem);
+  }
+  .digital-gap__fragments {
+    margin-top: 3rem;
+    gap: 0.6rem;
+  }
+  .digital-gap__fragment {
+    padding: 0.7rem 1.1rem;
+  }
+  .fragment-status {
+    display: none;
+  }
+  .digital-gap__manifesto {
+    font-size: 1.8rem;
+  }
+  .convergence-core {
+    padding: 20px 30px;
+  }
+  .convergence-label {
+    font-size: 1rem;
+  }
+}
