@@ -39,7 +39,7 @@ export function Hero() {
             <div className="hero-image-glow" />
             <div className="hero-image">
               <img
-                src="/projects/saas-data-control/textures/hero-dashboard.png"
+                src="/projects/saas-data-control/textures/hero-dashboard.webp"
                 alt="Task Manager Dashboard"
               />
             </div>

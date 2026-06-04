@@ -69,7 +69,7 @@ export function FinalShowcasee() {
                 <h3>Gostou da Engenharia do Projeto?</h3>
                 <p>Vamos construir a próxima solução de alta escalabilidade juntos.</p>
               </div>
-              <a href="mailto:seu-email@Pro.com" className="ctaButton">
+              <a href="/contact_page" className="ctaButton">
                 Entrar em Contato
                 <ArrowRight size={16} />
               </a>

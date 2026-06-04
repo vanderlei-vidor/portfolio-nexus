@@ -53,6 +53,7 @@
   pointer-events: none;
   z-index: 2;
   opacity: 0.15;
+  contain: paint;
 }
 
 .data-stream {
@@ -64,6 +65,7 @@
   font-family: 'Courier New', monospace;
   font-size: 12px;
   color: #10b981;
+  will-change: transform;
 }
 
 .data-char {
@@ -86,6 +88,7 @@
   height: 4px;
   pointer-events: none;
   z-index: 3;
+  will-change: transform;
 }
 
 .laser-core {
@@ -129,6 +132,7 @@
   inset: 0;
   border-radius: 50%;
   border: 1px solid rgba(16, 185, 129, 0.3);
+  will-change: transform, opacity;
 }
 
 .radar-ring-1 { animation-delay: 0s; }
@@ -254,6 +258,7 @@
   text-align: left;
   transition: all 0.4s cubic-bezier(0.2, 1, 0.3, 1);
   overflow: hidden;
+  contain: content;
 }
 
 /* HUD Corners */
@@ -477,5 +482,21 @@
 
   .telemetry-card {
     padding: 2rem 1.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .data-char,
+  .label-dot,
+  .card-status-dot.online,
+  .card-status-dot.processing,
+  .terminal-cursor {
+    animation: none;
+  }
+
+  .data-stream,
+  .laser-scanner,
+  .radar-ring {
+    will-change: auto;
   }
 }

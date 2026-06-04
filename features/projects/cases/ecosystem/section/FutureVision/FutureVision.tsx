@@ -17,6 +17,16 @@ const orbitItems = [
   "Product Innovation",
 ];
 
+const futureStars = Array.from({ length: 60 }, (_, index) => {
+  const seed = index + 1;
+
+  return {
+    left: `${((Math.sin(seed * 9.137) * 37191.91) % 1 + 1) % 1 * 100}%`,
+    top: `${((Math.sin(seed * 41.711) * 15487.37) % 1 + 1) % 1 * 100}%`,
+    animationDelay: `${(((Math.sin(seed * 17.13) * 711.7) % 1 + 1) % 1 * 4).toFixed(2)}s`,
+  };
+});
+
 export default function FutureVision() {
   const sectionRef = useRef<HTMLElement>(null);
   const orbRef = useRef<HTMLDivElement>(null);
@@ -196,15 +206,11 @@ export default function FutureVision() {
 
       {/* Stars */}
       <div className="future-stars">
-        {Array.from({ length: 60 }).map((_, index) => (
+        {futureStars.map((star, index) => (
           <span
             key={index}
             className="future-star"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 4}s`,
-            }}
+            style={star}
           />
         ))}
       </div>

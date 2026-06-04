@@ -58,7 +58,7 @@ export function DashboardAnalytics() {
             </div>
 
             <img
-              src="/projects/saas-data-control/textures/hero-dashboard.png"
+              src="/projects/saas-data-control/textures/hero-dashboard.webp"
               alt="Dashboard Analytics"
             />
           </div>

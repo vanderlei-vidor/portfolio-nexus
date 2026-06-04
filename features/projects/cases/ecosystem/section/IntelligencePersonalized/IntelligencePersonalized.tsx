@@ -37,12 +37,12 @@ export default function IntelligencePersonalized() {
     const ctx = gsap.context(() => {
       // ====== 1. REVELAÇÃO DA REDE CONFORME O SCROLL (IA DESPERTANDO) ======
       const nodes = system.querySelectorAll(".neural-node, .insight-pill, .neural-core");
-      const lines = svg.querySelectorAll(".neural-line");
-      const pulses = svg.querySelectorAll(".neural-pulse");
+      const lines = svg.querySelectorAll<SVGGeometryElement>(".neural-line");
+      const pulses = svg.querySelectorAll<SVGGeometryElement>(".neural-pulse");
 
       // Estado inicial limpo
       gsap.set([nodes, lines, pulses], { opacity: 0 });
-      gsap.set(lines, { strokeDashoffset: (i, t: any) => t.getTotalLength() });
+      gsap.set(lines, { strokeDashoffset: (_index, target: SVGGeometryElement) => target.getTotalLength() });
 
       const awakeTimeline = gsap.timeline({
         scrollTrigger: {
@@ -75,8 +75,8 @@ export default function IntelligencePersonalized() {
 
 
       // ====== 2. FUNÇÃO DE PULSOS NEURAIS LOOPING ======
-      function startSynapticPulses(pulseElements: NodeListOf<Element>) {
-        pulseElements.forEach((pulse: any) => {
+      function startSynapticPulses(pulseElements: NodeListOf<SVGGeometryElement>) {
+        pulseElements.forEach((pulse) => {
           const length = pulse.getTotalLength();
           gsap.set(pulse, { strokeDasharray: `${length / 4} ${length}` });
           

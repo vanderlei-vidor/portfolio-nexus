@@ -6,8 +6,6 @@ import {
     Brain,
     LayoutDashboard,
     Eye,
-    Radio,
-    Activity,
     Cpu,
 } from "lucide-react";
 import "./ConnectedWorlds.css";

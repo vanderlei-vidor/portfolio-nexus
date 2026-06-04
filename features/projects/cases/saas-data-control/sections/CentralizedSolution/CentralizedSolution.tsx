@@ -115,7 +115,7 @@ export function CentralizedSolution() {
               </div>
 
               <img
-                src="/projects/saas-data-control/textures/solution-dashboard.png"
+                src="/projects/saas-data-control/textures/hero-dashboard.png"
                 alt="Centralized Solution"
               />
             </div>

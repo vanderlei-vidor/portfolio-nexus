@@ -1,5 +1,6 @@
 import "./EcosystemSection.css";
 
+import EcosystemCinematicDirector from "./EcosystemCinematicDirector";
 import EcosystemHero from "./section/Hero/EcosystemHero";
 import ConnectedWorlds from "./section/ConnectedWorlds/ConnectedWorlds";
 import DigitalGap from "./section/DigitalGap/DigitalGap";
@@ -15,7 +16,9 @@ import FinalCTA from "./section/FinalCTA/FinalCTA";
 
 export default function EcosystemSection() {
   return (
-    <section className="ecosystem">
+    <section className="ecosystem" data-cinematic-case="portfolio-nexus">
+      <EcosystemCinematicDirector />
+
       <EcosystemHero />
 
       <ConnectedWorlds />
@@ -39,7 +42,6 @@ export default function EcosystemSection() {
       <FutureVision />
 
       <FinalCTA />
-      
     </section>
   );
 }

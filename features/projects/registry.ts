@@ -16,16 +16,16 @@ export const projectsRegistry = {
     cardDescription: "Offline audio experience",
     description:
       "Explore o case Music Player: uma experiencia offline de audio com interface imersiva, motion refinado e foco em performance.",
-    imageUrl: "/textures/music-player.jpg",
+    imageUrl: "/projects/music-player/textures/music-player.webp",
     loadComponent: async () => (await import("./cases/music-player")).default,
   },
   "saas-data-control": {
     slug: "saas-data-control",
     title: "SaaS Data Control",
-    cardDescription: "Cloud-native data platform",
+    cardDescription: "Native data platform",
     description:
       "Explore o case SaaS Data Control: uma experiencia SaaS orientada a dados, controle e clareza operacional.",
-    imageUrl: "/textures/saas-data-control.jpg",
+    imageUrl: "/projects/saas-data-control/textures/hero-dashboard.webp",
     loadComponent: async () => (await import("./cases/saas-data-control")).default,
   },
   "english-tutor": {
@@ -34,7 +34,7 @@ export const projectsRegistry = {
     cardDescription: "AI learning interface",
     description:
       "Explore o case English Tutor: um sistema moderno de aprendizado com hierarquia visual forte e interacoes fluidas.",
-    imageUrl: "/textures/english-tutor.jpg",
+    imageUrl: "/projects/english-tutor/textures/english-tutor-screen.webp",
     loadComponent: async () => (await import("./cases/english-tutor")).default,
   },
   "portfolio-nexus": {
@@ -43,7 +43,7 @@ export const projectsRegistry = {
     cardDescription: "Premium portfolio ecosystem",
     description:
       "Explore o case Portfolio Nexus: uma experiencia digital com base escalavel, narrativa visual e acabamento premium.",
-    imageUrl: "/textures/portfolio-nexus.jpg",
+    imageUrl: "/projects/ecosystem/textures/portfolio-nexus.webp",
     loadComponent: async () => (await import("./cases/ecosystem")).default,
   },
 } satisfies Record<string, ProjectRegistryEntry>;

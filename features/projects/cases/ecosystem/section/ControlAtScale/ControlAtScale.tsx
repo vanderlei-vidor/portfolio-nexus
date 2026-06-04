@@ -3,26 +3,31 @@
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Activity, Cpu, Shield, Zap } from "lucide-react";
+import { Activity, Cpu, Shield } from "lucide-react";
 import "./ControlAtScale.css";
+
+const streamColumns = Array.from({ length: 15 }, (_, column) => ({
+  left: `${(column / 15) * 100}%`,
+  chars: Array.from({ length: 20 }, (_, row) => ((column * 17 + row * 11) % 5 > 1 ? "1" : "0")),
+}));
 
 gsap.registerPlugin(ScrollTrigger);
 
 // Gerar pontos aleatórios para sparklines
-const generateSparklineData = (points: number = 20) => {
+const generateSparklineData = (points: number = 20, seed: number = 1) => {
   return Array.from({ length: points }, (_, i) => ({
     x: (i / (points - 1)) * 100,
-    y: 50 + Math.sin(i * 0.5) * 30 + Math.random() * 20,
+    y: 50 + Math.sin(i * 0.5 + seed) * 26 + Math.cos(i * 0.37 + seed * 1.7) * 12,
   }));
 };
 
 export default function ControlAtScale() {
   const containerRef = useRef<HTMLDivElement>(null);
   const scannerRef = useRef<HTMLDivElement>(null);
-  const [sparklines, setSparklines] = useState([
-    generateSparklineData(),
-    generateSparklineData(),
-    generateSparklineData(),
+  const [sparklines] = useState([
+    generateSparklineData(20, 1),
+    generateSparklineData(20, 2),
+    generateSparklineData(20, 3),
   ]);
 
   useEffect(() => {
@@ -105,21 +110,15 @@ export default function ControlAtScale() {
         );
 
       // 5. TELEMETRIA DINÂMICA
-      const liveElements = document.querySelectorAll(".live-data");
+      const liveElements = container.querySelectorAll<HTMLElement>(".live-data");
       const interval = setInterval(() => {
-        liveElements.forEach((el: any) => {
-          const base = parseFloat(el.getAttribute("data-base"));
-          const variance = parseFloat(el.getAttribute("data-variance"));
-          const randomValue = (base + (Math.random() * variance - variance / 2)).toFixed(1);
+        liveElements.forEach((el) => {
+          const base = parseFloat(el.dataset.base ?? "0");
+          const variance = parseFloat(el.dataset.variance ?? "0");
+          const phase = performance.now() / 900 + base;
+          const randomValue = (base + Math.sin(phase) * (variance / 2)).toFixed(1);
           el.innerText = randomValue;
         });
-
-        // Atualizar sparklines
-        setSparklines([
-          generateSparklineData(),
-          generateSparklineData(),
-          generateSparklineData(),
-        ]);
       }, 800);
 
       return () => clearInterval(interval);
@@ -170,11 +169,11 @@ export default function ControlAtScale() {
       
       {/* Data Stream (Matrix effect) */}
       <div className="data-stream-container">
-        {Array.from({ length: 15 }).map((_, i) => (
-          <div key={i} className="data-stream" style={{ left: `${(i / 15) * 100}%` }}>
-            {Array.from({ length: 20 }).map((_, j) => (
+        {streamColumns.map((column, i) => (
+          <div key={i} className="data-stream" style={{ left: column.left }}>
+            {column.chars.map((char, j) => (
               <span key={j} className="data-char">
-                {Math.random() > 0.5 ? "1" : "0"}
+                {char}
               </span>
             ))}
           </div>

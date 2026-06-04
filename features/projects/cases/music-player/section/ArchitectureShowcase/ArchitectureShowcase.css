@@ -1,0 +1,25 @@
+/* ==========================================================================
+   LINHA DE ENERGIA DINÂMICA (PROPRIEDADES VISUAIS EXTRA)
+   ========================================================================== */
+.energy-flow {
+  will-change: top;
+  filter: drop-shadow(0 0 12px rgba(34, 211, 238, 0.8));
+}
+
+/* ==========================================================================
+   SCAN SCANNER ADICIONAL (SE QUISER USAR COMO OVERLAY)
+   ========================================================================== */
+.scan-line {
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(34, 211, 238, 0.05),
+    transparent
+  );
+  animation: scan-move 4s linear infinite;
+}
+
+@keyframes scan-move {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
+}

@@ -1,11 +1,10 @@
 .ecosystem-section {
   min-height: 100vh;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
-  padding: 8rem 2rem;
+  padding: 2rem;
+  background-color: #030303; /* Fundo bem escuro para o ecossistema */
 }
 
 .ecosystem-container {
@@ -14,36 +13,52 @@
 }
 
 .ecosystem-label {
-  display: inline-block;
-
-  margin-bottom: 1rem;
-
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 1.5rem;
   color: #60a5fa;
-
-  letter-spacing: 0.3em;
-
-  font-size: 0.75rem;
+  letter-spacing: 0.5em;
+  font-size: 0.7rem;
+  font-weight: 600;
+  justify-content: center; /* Centraliza no mobile */
 }
 
-.ecosystem-section h1,
-.ecosystem-section h2 {
+@media (min-width: 768px) {
+  .ecosystem-label {
+    justify-content: flex-start;
+  }
+}
+
+.ecosystem-label .dot {
+  width: 6px;
+  height: 6px;
+  background-color: #60a5fa;
+  border-radius: 50%;
+  box-shadow: 0 0 10px #60a5fa;
+}
+
+.ecosystem-section h1 {
   color: white;
+  font-size: clamp(3rem, 10vw, 8rem);
+  line-height: 0.9;
+  font-weight: 900;
+  letter-spacing: -0.04em;
+}
 
-  font-size: clamp(3rem, 8vw, 7rem);
-
-  line-height: 0.95;
-
-  font-weight: 800;
-
-  margin-bottom: 1.5rem;
+.text-gradient {
+  background: linear-gradient(180deg, #fff 30%, rgba(255,255,255,0.4) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .ecosystem-section p {
-  max-width: 700px;
+  max-width: 600px;
+  color: rgba(255,255,255,0.5);
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  line-height: 1.6;
+}
 
-  color: rgba(255,255,255,0.7);
-
-  font-size: 1.2rem;
-
-  line-height: 1.8;
+.ecosystem-section p span {
+    font-weight: 500;
 }

@@ -33,9 +33,14 @@ export default function ProjectCard({ title, desc, slug, imageUrl }: ProjectCard
           <h3 className="text-2xl font-bold tracking-tight">{title}</h3>
           <p className="opacity-50 text-sm mt-3 leading-relaxed">{desc}</p>
 
-          <div className="mt-4 flex gap-3">
-            <span className="text-accent text-xs uppercase tracking-widest font-bold opacity-70 transition group-hover:opacity-100">Live Demo</span>
-            <span className="text-white/40 text-xs uppercase tracking-widest font-bold transition group-hover:text-white">Source Code</span>
+          {/* Um único indicador limpo e elegante */}
+          <div className="mt-6 flex items-center gap-2">
+            <span className="text-xs uppercase tracking-[0.2em] font-mono text-zinc-400 group-hover:text-white transition-colors duration-300">
+              Explore Case Study
+            </span>
+            <span className="text-zinc-500 group-hover:text-white group-hover:translate-x-1 transition-all duration-300">
+              →
+            </span>
           </div>
         </div>
       </motion.div>

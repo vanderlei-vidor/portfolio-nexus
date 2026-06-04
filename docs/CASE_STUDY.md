@@ -1,11 +1,11 @@
-# 📘 CASE STUDY: PORTFOLIO AAA
+# 📘 CASE STUDY: Portfolio Nexus
 ## Análise Técnica Enterprise de um Portfolio Profissional Premium
 
 ---
 
 ## 🎯 EXECUTIVE SUMMARY
 
-**Portfolio AAA** é um portfólio profissional de qualidade enterprise construído com Next.js 16, React 19 e TypeScript. O projeto demonstra expertise em:
+**Portfolio Nexus** é um portfólio profissional de qualidade enterprise construído com Next.js 16, React 19 e TypeScript. O projeto demonstra expertise em:
 
 - **Arquitetura de Software**: Padrão feature-driven escalável
 - **UX/UI Avançado**: Animações sincronizadas, glassmorphism, design cinemático
@@ -109,7 +109,7 @@ gsap.ticker.add((time) => {
 ### Padrão: Feature-Driven Organization
 
 ```
-Portfolio AAA
+Portfolio Nexus
 │
 ├─ app/                          [Routing Layer - Thin Pages]
 │  ├─ layout.tsx                 [Root: Providers, Metadata]
@@ -228,7 +228,7 @@ Portfolio AAA
 │     ├─ saas-data-control.jpg   [Registry image]
 │     ├─ portfolio-nexus.jpg     [Registry image]
 │     ├─ my-site-preview.JPG     [Portfolio Nexus detail]
-│     └─ noise.jpg               [Film grain texture]
+│     └─ noise.webp              [Film grain texture]
 │
 └─ config/
    ├─ tsconfig.json              [Path aliases: @/features, @/shared]
@@ -469,7 +469,8 @@ import { MagneticContext } from "@/shared/effects/magnetic";
 <div 
   className="fixed inset-0 pointer-events-none"
   style={{
-    backgroundImage: "url('/textures/noise.jpg')",
+    backgroundImage: "url('/textures/noise-webp.webp'),
+   
     backgroundSize: "200px",
     opacity: 0.025,
     mixBlendMode: "overlay",
@@ -792,7 +793,7 @@ TechnicalArchitectureSection/
 
 ### Estratégia de Motion
 
-Portfolio AAA usa **3 camadas de animação sincronizadas**:
+Portfolio Nexus usa **3 camadas de animação sincronizadas**:
 
 ```
 Layer 1: Framer Motion (Component-level)
@@ -1921,7 +1922,7 @@ Este portfólio se destaca porque:
 
 ## 🎬 FINAL THOUGHTS
 
-Portfolio AAA é uma **demonstração masterful de frontend expertise**. Combina:
+Portfolio Nexus é uma **demonstração masterful de frontend expertise**. Combina:
 - Technical depth (Next.js, TypeScript, performance)
 - Design sophistication (animation, color, typography)
 - Software engineering maturity (architecture, scalability)

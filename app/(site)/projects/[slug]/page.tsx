@@ -38,17 +38,17 @@ export async function generateMetadata({ params }: ProjectPageProps): Promise<Me
   const imageUrl = project?.imageUrl ?? getProjectImageUrl(slug);
 
   return {
-    title: `${title} | Meu Portfolio AAA`,
+    title: `${title} | Meu Portfolio Nexus`,
     description: projectDescription,
     openGraph: {
-      title: `${title} | Meu Portfolio AAA`,
+      title: `${title} | Meu Portfolio Nexus`,
       description: projectDescription,
       images: [{ url: imageUrl, alt: title }],
       type: "article",
     },
     twitter: {
       card: "summary_large_image",
-      title: `${title} | Meu Portfolio AAA`,
+      title: `${title} | Meu Portfolio Nexus`,
       description: projectDescription,
       images: [imageUrl],
     },

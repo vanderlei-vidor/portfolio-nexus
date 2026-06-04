@@ -1,4 +1,4 @@
-import ProjectContentSection from "../cases/music-player/components/ProjectExperience";
+import ProjectContentSection from "../cases/music-player/components/ProjectExperience-music-player";
 import ProjectHeroSection from "./ProjectHeroSection";
 
 import { formatProjectTitle } from "@/features/projects/lib/project-format";

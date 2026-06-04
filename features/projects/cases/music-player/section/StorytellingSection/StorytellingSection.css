@@ -1,0 +1,59 @@
+/* ==========================================================================
+   COMPORTAMENTO DOS TEXTOS (RESPONSIVIDADE CIRÚRGICA)
+   ========================================================================== */
+
+/* Padrão para Mobile e Tablet */
+.story-text-item {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* Forçamos os textos inativos no Mobile a sumirem por completo sem ocupar área fantasma */
+.story-text-item.inactive-step {
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.story-text-item.active-step {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Gerenciamento de espaço para os Dispositivos (Imagens) */
+.story-device-wrapper {
+  height: 380px; /* Garante uma altura fixa no Mobile para o mockup não achatar */
+}
+
+.device-card {
+  position: absolute;
+  will-change: transform, opacity, filter;
+}
+
+/* ==========================================================================
+   OTIMIZAÇÃO PREMIUM PARA TELAS DE DESKTOP (lg: 1024px)
+   ========================================================================== */
+@media (min-width: 1024px) {
+  .story-text-wrapper {
+    height: 450px;
+  }
+
+  .story-text-item {
+    position: absolute;
+    inset: 0;
+  }
+
+  .story-device-wrapper {
+    height: auto; /* Deixa o grid natural cuidar do tamanho no Desktop */
+    min-height: 550px;
+  }
+}
+
+/* Otimização extra de performance para a aceleração de hardware do telefone */
+.device-container {
+  will-change: transform;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+}

@@ -42,11 +42,13 @@ export default function Numbers() {
       );
 
       // 2. ORCHESTRATION DOS CARDS (Stagger + Linhas + Glow)
-      const cards = gsap.utils.toArray(".numbers-card");
+      const cards = gsap.utils.toArray<HTMLElement>(".numbers-card");
       
-      cards.forEach((card: any) => {
+      cards.forEach((card) => {
         const valueEl = card.querySelector(".numbers-card__value-num");
-        const targetValue = parseInt(valueEl.getAttribute("data-target"), 10);
+        if (!(valueEl instanceof HTMLElement)) return;
+
+        const targetValue = parseInt(valueEl.dataset.target ?? "0", 10);
         
         // Objeto virtual para rodar o contador numérico nativo
         const counter = { val: 0 };
@@ -69,7 +71,7 @@ export default function Numbers() {
           duration: 2,
           ease: "power4.out",
           onUpdate: () => {
-            valueEl.innerText = Math.floor(counter.val);
+            valueEl.innerText = String(Math.floor(counter.val));
           }
         }, "-=0.6")
         // Acendimento da linha conectora do card

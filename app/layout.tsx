@@ -19,7 +19,7 @@ const geistMono = Geist_Mono({
 
 export const metadata = {
   metadataBase: new URL('https://seusite.com'),
-  title: "Portfolio AAA",
+  title: "Portfolio Nexus",
   description: "Portfolio de experiencias digitais premium com Next.js.",
 };
 

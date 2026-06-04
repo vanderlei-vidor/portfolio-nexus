@@ -1,4 +1,4 @@
-# 🚀 Portfolio AAA - Diretrizes de Desenvolvimento & Contexto (Atualizado)
+# 🚀 Portfolio Nexus - Diretrizes de Desenvolvimento & Contexto (Atualizado)
 
 Este arquivo serve como um diário de bordo técnico e registro de decisões arquiteturais do projeto para **evitar regressões**, quebras de build ou retrabalho. Sempre consulte este arquivo antes de realizar alterações estruturais.
 

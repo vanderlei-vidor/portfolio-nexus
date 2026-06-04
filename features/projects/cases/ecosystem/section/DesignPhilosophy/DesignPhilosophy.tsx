@@ -30,6 +30,16 @@ const principles = [
   },
 ];
 
+const constellationStars = Array.from({ length: 30 }, (_, index) => {
+  const seed = index + 1;
+
+  return {
+    left: `${((Math.sin(seed * 12.9898) * 43758.5453) % 1 + 1) % 1 * 100}%`,
+    top: `${((Math.sin(seed * 78.233) * 24634.6345) % 1 + 1) % 1 * 100}%`,
+    animationDelay: `${(((Math.sin(seed * 37.719) * 991.17) % 1 + 1) % 1 * 5).toFixed(2)}s`,
+  };
+});
+
 export default function DesignPhilosophy() {
   const sectionRef = useRef<HTMLElement>(null);
   const gridRef = useRef<HTMLDivElement>(null);
@@ -133,15 +143,11 @@ export default function DesignPhilosophy() {
       {/* Background Layers */}
       <div className="design-philosophy__bg-gradient" />
       <div className="constellation-layer">
-        {Array.from({ length: 30 }).map((_, i) => (
+        {constellationStars.map((star, i) => (
           <span
             key={i}
             className="constellation-star"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 5}s`,
-            }}
+            style={star}
           />
         ))}
       </div>
