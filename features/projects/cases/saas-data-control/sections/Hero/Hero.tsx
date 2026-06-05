@@ -1,3 +1,4 @@
+import Image from "next/image"; // 1. Importando o componente de alta performance
 import "./Hero.css";
 
 export function Hero() {
@@ -38,10 +39,24 @@ export function Hero() {
           <div className="hero-image-wrapper">
             <div className="hero-image-glow" />
             <div className="hero-image">
-              <img
+              
+              {/* --- IMPLEMENTAÇÃO DO NEXT/IMAGE TURBINADO --- */}
+              <Image
                 src="/projects/saas-data-control/textures/hero-dashboard.webp"
                 alt="Task Manager Dashboard"
+                
+                // Dimensões ideais para um mockup de dashboard/SaaS (proporção widescreen)
+                width={1200}
+                height={750}
+                
+                // CRUCIAL: Diz ao Next.js para pré-carregar essa imagem imediatamente no HTML,
+                // destruindo qualquer delay de carregamento e melhorando o LCP ao máximo!
+                priority
+                
+                // Mantém a compatibilidade com as classes do seu Hero.css
+                className="hero-dashboard-img" 
               />
+
             </div>
           </div>
         </div>

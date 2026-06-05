@@ -1,3 +1,4 @@
+import Image from "next/image"; // 1. IMPORTANDO O NEXT/IMAGE DE ALTA PERFORMANCE
 import "./CentralizedSolution.css";
 
 import {
@@ -114,9 +115,16 @@ export function CentralizedSolution() {
                 <div className="preview-placeholder" />
               </div>
 
-              <img
-                src="/projects/saas-data-control/textures/hero-dashboard.png"
-                alt="Centralized Solution"
+              {/* --- IMPLEMENTAÇÃO DO NEXT/IMAGE TURBINADO --- */}
+              <Image
+                src="/projects/saas-data-control/textures/hero-dashboard.webp"
+                alt="Centralized Operations Solution Dashboard"
+                
+                // Mantendo a proporção estável de 1200x750 para zerar o Layout Shift (CLS)
+                width={1200}
+                height={750}
+                
+                // Sem a tag 'priority' aqui. Lazy load automático ativado!
               />
             </div>
 

@@ -200,7 +200,7 @@ export default function ProcessExperience() {
               </h2>
 
               <Link
-                href="/contact_page"
+                href="/contact"
                 className="group relative px-12 py-5 bg-white text-black font-bold rounded-full overflow-hidden transition-all hover:scale-105 active:scale-95 shadow-2xl"
               >
                 <span className="relative z-10 text-sm uppercase tracking-widest">Initialize Partnership</span>

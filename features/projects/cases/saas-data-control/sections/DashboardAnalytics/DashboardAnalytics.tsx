@@ -1,3 +1,7 @@
+"use client";
+
+import { useState } from "react";
+import Image from "next/image"; // 1. IMPORTANDO O NEXT/IMAGE
 import "./DashboardAnalytics.css";
 
 import { ClipboardList, CheckCircle, Clock, AlertTriangle } from "lucide-react";
@@ -57,10 +61,19 @@ export function DashboardAnalytics() {
               <div className="preview-placeholder" />
             </div>
 
-            <img
+            {/* --- IMPLEMENTAÇÃO COM NEXT/IMAGE PARA LAZY LOADING --- */}
+            <Image
               src="/projects/saas-data-control/textures/hero-dashboard.webp"
-              alt="Dashboard Analytics"
+              alt="Task Manager Analytics Dashboard"
+              
+              // Mantemos a mesma proporção widescreen do Hero (1200x750)
+              width={800}
+              height={400}
+              
+              // NÃO adicionamos 'priority' aqui. O Next.js vai segurar o download
+              // até que o usuário faça scroll perto dessa seção (economia de banda pura!).
             />
+
           </div>
         </div>
       </div>

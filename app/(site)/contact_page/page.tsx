@@ -1,5 +1,5 @@
-import ContactPage from "@/features/home/components/contact_page";
+import { permanentRedirect } from "next/navigation";
 
 export default function Page() {
-    return <ContactPage />;
+  permanentRedirect("/contact");
 }

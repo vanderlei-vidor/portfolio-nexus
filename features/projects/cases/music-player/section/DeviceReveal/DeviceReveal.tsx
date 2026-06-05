@@ -1,3 +1,7 @@
+"use client";
+
+import Image from "next/image"; // 1. Importando o componente de alta performance
+
 export default function DeviceReveal() {
   return (
     <section className="relative flex min-h-screen items-center overflow-hidden bg-black px-6 py-32">
@@ -12,7 +16,6 @@ export default function DeviceReveal() {
 
         {/* Left Content */}
         <div className="flex flex-col">
-
           <span className="mb-6 font-mono text-[10px] uppercase tracking-[0.3em] text-blue-400">
             Product Experience
           </span>
@@ -26,7 +29,6 @@ export default function DeviceReveal() {
           <p className="mt-8 max-w-md text-sm leading-relaxed text-zinc-500 md:text-base">
             Designed as a premium music ecosystem focused on music from devices, with immersive interactions, fluid rendering, and cinematic interface movements.
           </p>
-
         </div>
 
         {/* Device Showcase */}
@@ -40,14 +42,24 @@ export default function DeviceReveal() {
 
             <div className="overflow-hidden rounded-[3rem] border border-white/10 bg-zinc-950 p-[2px] shadow-[0_40px_120px_rgba(0,0,0,0.9)]">
 
-              <img
+              {/* --- IMPLEMENTAÇÃO DO NEXT/IMAGE --- */}
+              <Image
                 src="/projects/music-player/textures/tela_player.webp"
-                alt="Music Player"
-                className="block w-full rounded-[2.8rem]"
+                alt="Music Player Interface Architecture"
+                
+                // Substitua pelos valores reais em pixels do seu arquivo webp (ex: 390x844)
+                width={394} 
+                height={839}
+                
+                // Crucial para SEO/Performance se esta seção estiver visível logo no topo da página
+                priority 
+                
+                // Mantém a imagem responsiva respeitando a largura do container pai (w-[240px])
+                className="block w-full h-auto rounded-[2.8rem]"
               />
 
               {/* Glass Reflection */}
-              <div className="absolute inset-0 rounded-[2.8rem] bg-gradient-to-tr from-white/0 via-white/[0.05] to-white/0" />
+              <div className="absolute inset-0 rounded-[2.8rem] bg-gradient-to-tr from-white/0 via-white/[0.05] to-white/0 pointer-events-none" />
 
             </div>
 

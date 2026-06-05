@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Image from "next/image"; // 1. IMPORTANDO O NEXT/IMAGE
 import { offlinePlayerSteps } from "../../data"; 
 import './StorytellingSection.css';
 
@@ -85,7 +86,7 @@ export default function StorytellingSection() {
 
       <div className="relative z-10 mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-12 px-6 py-12 lg:grid-cols-12 lg:py-0">
 
-        {/* LEFT SIDE: TEXT CONTENT (A mágica da responsividade está nas classes customizadas aqui) */}
+        {/* LEFT SIDE: TEXT CONTENT */}
         <div className="story-text-wrapper relative h-[380px] sm:h-[420px] lg:h-[450px] lg:col-span-5">
           {offlinePlayerSteps.map((step, index) => {
             const Icon = step.icon;
@@ -128,7 +129,7 @@ export default function StorytellingSection() {
             );
           })}
 
-          {/* PROGRESS TIMELINE (Dots Verticais - Escondidos abaixo de Desktop) */}
+          {/* PROGRESS TIMELINE */}
           <div className="absolute -left-12 top-1/2 hidden -translate-y-1/2 flex-col gap-4 lg:flex">
             {offlinePlayerSteps.map((_, index) => (
               <div
@@ -141,7 +142,7 @@ export default function StorytellingSection() {
           </div>
         </div>
 
-        {/* RIGHT SIDE: DEVICE PREVIEW (Ajustado o tamanho para telas menores) */}
+        {/* RIGHT SIDE: DEVICE PREVIEW */}
         <div className="story-device-wrapper relative flex items-center justify-center lg:col-span-7">
           {offlinePlayerSteps.map((step, index) => (
             <div
@@ -161,11 +162,23 @@ export default function StorytellingSection() {
               {/* DEVICE CONTAINER */}
               <div className="device-container relative w-[220px] sm:w-[260px] md:w-[280px] transform-gpu">
                 <div className="overflow-hidden rounded-[2.8rem] sm:rounded-[3.2rem] border border-white/10 bg-zinc-950 p-[3px] shadow-[0_30px_80px_rgba(0,0,0,0.9)]">
-                  <img
+                  
+                  {/* --- NOVA IMPLEMENTAÇÃO ULTRA PERFORMÁTICA DO NEXT/IMAGE --- */}
+                  <Image
                     src={step.img}
                     alt={step.title}
-                    className="block w-full rounded-[2.6rem] sm:rounded-[3rem] transition-transform duration-700"
+                    
+                    // Defina uma proporção padrão baseada nos seus mockups (ex: proporção clássica de tela mobile)
+                    width={320}
+                    height={690}
+                    
+                    // SÓ DÁ PRIORIDADE SE FOR O PRIMEIRO PASSO DA ANIMAÇÃO!
+                    priority={index === 0} 
+                    
+                    // Mantém as classes originais e o comportamento fluido com o GSAP
+                    className="block w-full h-auto rounded-[2.6rem] sm:rounded-[3rem] transition-transform duration-700"
                   />
+
                   {/* GLASS REFLECTION */}
                   <div className="absolute inset-0 rounded-[2.6rem] sm:rounded-[3rem] bg-gradient-to-tr from-white/0 via-white/[0.02] to-white/0 pointer-events-none" />
                 </div>

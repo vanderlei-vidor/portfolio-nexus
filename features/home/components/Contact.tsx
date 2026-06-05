@@ -57,7 +57,7 @@ export default function Contact() {
           className="flex flex-col sm:flex-row gap-6 justify-center items-center"
         >
           <Link
-            href="/contact_page"
+            href="/contact"
             className="group relative inline-flex items-center gap-3 px-10 py-5 bg-white text-black font-bold rounded-full hover:bg-blue-500 hover:text-white transition-all duration-500 transform hover:scale-105 shadow-[0_0_40px_rgba(255,255,255,0.1)] hover:shadow-[0_0_60px_rgba(59,130,246,0.3)]"
           >
             <span>Start a Project</span>

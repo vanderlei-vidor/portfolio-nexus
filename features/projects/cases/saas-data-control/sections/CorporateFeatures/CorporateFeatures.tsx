@@ -130,7 +130,7 @@ export function CorporateFeatures() {
                     </p>
                   </div>
 
-                  {/* Seta no hover */}
+                  {/* Seta no hover 
                   <div className="feature-arrow">
                     <span>View details</span>
                     <svg
@@ -146,7 +146,7 @@ export function CorporateFeatures() {
                       <line x1="5" y1="12" x2="19" y2="12" />
                       <polyline points="12 5 19 12 12 19" />
                     </svg>
-                  </div>
+                  </div>*/}
                 </div>
 
                 {/* Glow no hover */}

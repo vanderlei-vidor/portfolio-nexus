@@ -128,8 +128,8 @@ export function EnterpriseArchitecture() {
                       <h4>{feature.label}</h4>
                       <span>{feature.desc}</span>
                     </div>
-
-                    <div className="feature-arrow">→</div>
+                    {/* flecha no hover
+                    <div className="feature-arrow">→</div>  */}
                   </div>
                 );
               })}

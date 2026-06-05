@@ -1,7 +1,11 @@
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 import ProjectDetailPage from "@/features/projects/components/ProjectDetailPage";
-import { getCanonicalProjectSlug, getProjectBySlug } from "@/features/projects/registry";
+import {
+  getCanonicalProjectSlug,
+  getProjectBySlug,
+  projectsList,
+} from "@/features/projects/registry";
 import {
   formatProjectTitle,
   getProjectDescription,
@@ -10,6 +14,12 @@ import {
 
 interface ProjectPageProps {
   params: Promise<{ slug: string }>;
+}
+
+export function generateStaticParams() {
+  return projectsList.map((project) => ({
+    slug: project.slug,
+  }));
 }
 
 export default async function ProjectPage({ params }: ProjectPageProps) {
