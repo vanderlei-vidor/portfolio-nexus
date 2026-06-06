@@ -57,3 +57,9 @@
   transform-style: preserve-3d;
   backface-visibility: hidden;
 }
+
+.device-card {
+  /* Força o navegador a jogar a renderização das transições diretamente para a placa de vídeo (GPU) */
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+}

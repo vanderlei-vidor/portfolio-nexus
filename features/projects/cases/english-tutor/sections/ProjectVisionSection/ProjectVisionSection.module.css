@@ -133,3 +133,11 @@
 
   -webkit-text-fill-color: transparent;
 }
+@keyframes progressLinear {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}

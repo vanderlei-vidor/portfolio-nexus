@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Image from "next/image"; // 1. IMPORTANDO O NEXT/IMAGE
+import Image from "next/image";
 import { offlinePlayerSteps } from "../../data"; 
 import './StorytellingSection.css';
 
@@ -16,6 +16,10 @@ export default function StorytellingSection() {
   useEffect(() => {
     if (!sectionRef.current) return;
 
+    // Detecta se o dispositivo possui cursor de mouse (Desktop)
+    const isDesktop = window.matchMedia("(hover: hover)").matches;
+
+    // Configuração do GSAP quickTo para animações suaves de alta performance
     const xTo = gsap.quickTo(".parallax-bg", "x", { duration: 0.8, ease: "power3.out" });
     const yTo = gsap.quickTo(".parallax-bg", "y", { duration: 0.8, ease: "power3.out" });
 
@@ -26,7 +30,8 @@ export default function StorytellingSection() {
       ScrollTrigger.create({
         trigger: sectionRef.current,
         start: "top top",
-        end: () => `+=${(offlinePlayerSteps.length - 1) * 45}%`,
+        // Ajuste fino do end baseado no tamanho dos passos para o scroll durar o tempo certo
+        end: () => `+=${(offlinePlayerSteps.length - 1) * 60}%`,
         scrub: true,
         pin: true,
         anticipatePin: 1,
@@ -41,7 +46,10 @@ export default function StorytellingSection() {
       });
     }, sectionRef);
 
+    // Handler de movimento do mouse otimizado e restrito ao desktop
     const handleMouseMove = (e: MouseEvent) => {
+      if (!isDesktop) return; // Ignora completamente se for mobile/touch
+
       const { clientX, clientY } = e;
       const xPos = (clientX / window.innerWidth - 0.5) * 40;
       const yPos = (clientY / window.innerHeight - 0.5) * 40;
@@ -52,11 +60,15 @@ export default function StorytellingSection() {
       rotateYTo(xPos * 0.6);
     };
 
-    window.addEventListener("mousemove", handleMouseMove);
+    if (isDesktop) {
+      window.addEventListener("mousemove", handleMouseMove);
+    }
 
     return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
-      ctx.revert();
+      if (isDesktop) {
+        window.removeEventListener("mousemove", handleMouseMove);
+      }
+      ctx.revert(); // Garante o desmonte limpo do ScrollTrigger para evitar vazamento de memória
     };
   }, []);
 
@@ -67,7 +79,7 @@ export default function StorytellingSection() {
       <div className="pointer-events-none absolute inset-0 opacity-[0.025] mix-blend-soft-light z-50" style={{ backgroundImage: "url('/textures/noise-webp.webp')" }} />
 
       {/* PARALLAX BACKGROUND LAYERS */}
-      <div className="parallax-bg absolute inset-0">
+      <div className="parallax-bg absolute inset-0 will-change-transform">
         <div className="absolute left-[10%] top-[15%] h-[500px] w-[500px] rounded-full bg-blue-500/[0.04] blur-[180px]" />
         <div className="absolute right-[5%] top-[40%] h-[400px] w-[400px] rounded-full bg-violet-500/[0.04] blur-[160px]" />
         <div className="absolute bottom-[-10%] left-[30%] h-[600px] w-[600px] rounded-full bg-cyan-500/[0.05] blur-[200px]" />
@@ -78,7 +90,7 @@ export default function StorytellingSection() {
 
       {/* DINAMIC AMBIENT GLOW */}
       <div
-        className="absolute inset-0 transition-colors duration-1000 ease-in-out"
+        className="absolute inset-0 transition-colors duration-1000 ease-in-out pointer-events-none"
         style={{
           background: `radial-gradient(circle at center, ${offlinePlayerSteps[active].color}10 0%, transparent 70%)`
         }}
@@ -95,10 +107,10 @@ export default function StorytellingSection() {
             return (
               <div
                 key={step.id}
-                className={`story-text-item flex flex-col justify-center transition-all duration-700 ease-out ${
+                className={`story-text-item flex flex-col justify-center transition-all duration-700 ease-out will-change-[transform,opacity] ${
                   isActive 
-                    ? "active-step translate-y-0 opacity-100 blur-0" 
-                    : "inactive-step translate-y-12 opacity-0 blur-md pointer-events-none"
+                    ? "active-step translate-y-0 opacity-100" 
+                    : "inactive-step translate-y-12 opacity-0 pointer-events-none"
                 }`}
               >
                 <div className="mb-4 sm:mb-6 flex items-center gap-4">
@@ -143,48 +155,52 @@ export default function StorytellingSection() {
         </div>
 
         {/* RIGHT SIDE: DEVICE PREVIEW */}
-        <div className="story-device-wrapper relative flex items-center justify-center lg:col-span-7">
-          {offlinePlayerSteps.map((step, index) => (
-            <div
-              key={step.id}
-              className={`device-card transition-all duration-1000 ease-[cubic-bezier(0.23,1,0.32,1)] ${
-                active === index 
-                  ? "active-device scale-100 opacity-100 rotate-[-3deg]" 
-                  : "inactive-device scale-90 opacity-0 rotate-[-10deg] blur-xl"
-              }`}
-            >
-              {/* GLOW ATRÁS DO TELEFONE */}
+        <div className="story-device-wrapper relative flex items-center justify-center lg:col-span-7 h-[500px] sm:h-[600px] w-full">
+          {offlinePlayerSteps.map((step, index) => {
+            const isActive = active === index;
+
+            return (
               <div
-                className="absolute inset-0 -z-10 rounded-full blur-[80px] sm:blur-[120px] opacity-20 animate-pulse"
-                style={{ backgroundColor: step.color }}
-              />
+                key={step.id}
+                className={`device-card absolute inset-0 flex items-center justify-center transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] will-change-[transform,opacity] ${
+                  isActive 
+                    ? "active-device scale-100 opacity-100 rotate-[-3deg] pointer-events-auto" 
+                    : "inactive-device scale-95 opacity-0 rotate-[-8deg] pointer-events-none"
+                }`}
+              >
+                {/* GLOW ATRÁS DO TELEFONE */}
+                <div
+                  className="absolute h-[350px] w-[350px] -z-10 rounded-full blur-[100px] opacity-15"
+                  style={{ backgroundColor: step.color }}
+                />
 
-              {/* DEVICE CONTAINER */}
-              <div className="device-container relative w-[220px] sm:w-[260px] md:w-[280px] transform-gpu">
-                <div className="overflow-hidden rounded-[2.8rem] sm:rounded-[3.2rem] border border-white/10 bg-zinc-950 p-[3px] shadow-[0_30px_80px_rgba(0,0,0,0.9)]">
-                  
-                  {/* --- NOVA IMPLEMENTAÇÃO ULTRA PERFORMÁTICA DO NEXT/IMAGE --- */}
-                  <Image
-                    src={step.img}
-                    alt={step.title}
+                {/* DEVICE CONTAINER */}
+                <div className="device-container relative w-[220px] sm:w-[260px] md:w-[280px] transform-gpu">
+                  <div className="overflow-hidden rounded-[2.8rem] sm:rounded-[3.2rem] border border-white/10 bg-zinc-950 p-[3px] shadow-[0_30px_80px_rgba(0,0,0,0.9)]">
                     
-                    // Defina uma proporção padrão baseada nos seus mockups (ex: proporção clássica de tela mobile)
-                    width={320}
-                    height={690}
-                    
-                    // SÓ DÁ PRIORIDADE SE FOR O PRIMEIRO PASSO DA ANIMAÇÃO!
-                    priority={index === 0} 
-                    
-                    // Mantém as classes originais e o comportamento fluido com o GSAP
-                    className="block w-full h-auto rounded-[2.6rem] sm:rounded-[3rem] transition-transform duration-700"
-                  />
+                    {/* --- NEXT/IMAGE OTIMIZADO PARA ANIMAÇÃO --- */}
+                    <Image
+                      src={step.img}
+                      alt={step.title}
+                      width={320}
+                      height={690}
+                      
+                      // Carregamento inteligente: Dá prioridade para o primeiro frame, 
+                      // e faz o lazy-load inteligente dos outros passos em background.
+                      priority={index === 0} 
+                      
+                      // Adicionamos tamanhos de renderização corretos para telas responsivas
+                      sizes="(max-width: 640px) 220px, (max-width: 768px) 260px, 280px"
+                      className="block w-full h-auto rounded-[2.6rem] sm:rounded-[3rem]"
+                    />
 
-                  {/* GLASS REFLECTION */}
-                  <div className="absolute inset-0 rounded-[2.6rem] sm:rounded-[3rem] bg-gradient-to-tr from-white/0 via-white/[0.02] to-white/0 pointer-events-none" />
+                    {/* GLASS REFLECTION */}
+                    <div className="absolute inset-0 rounded-[2.6rem] sm:rounded-[3rem] bg-gradient-to-tr from-white/0 via-white/[0.02] to-white/0 pointer-events-none" />
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
       </div>
