@@ -43,7 +43,7 @@ export default function Hero() {
   // Essa função vai monitorar o springX e o springY e gerar o texto do CSS injetando os valores na hora certa
   const backgroundGradient = useTransform(
     [lightX, lightY],
-    ([x, y]) => `radial-gradient(circle at ${x}px ${y}px, rgba(var(--accent-rgb), 0.25) 0%, transparent 70%)`
+    ([x, y]) => `radial-gradient(circle at ${x}px ${y}px, rgba(var(--color-accent-rgb), 0.25) 0%, transparent 70%)`
   );
 
   useEffect(() => {
@@ -76,7 +76,18 @@ export default function Hero() {
 
   return (
     <section
-      className="h-screen flex flex-col justify-center items-center text-center px-6 relative overflow-hidden bg-black"
+      className="
+    min-h-screen
+    flex
+    flex-col
+    justify-center
+    items-center
+    text-center
+    px-[clamp(1.25rem,4vw,6rem)]
+    relative
+    overflow-hidden
+    bg-black
+  "
     >
       <motion.div
         className="hero-bg absolute inset-0 -z-10 pointer-events-none"
@@ -91,7 +102,12 @@ export default function Hero() {
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
-        className="text-[10px] md:text-xs uppercase tracking-[0.4em] text-zinc-500 mb-8 font-medium"
+        className="uppercase
+  tracking-[0.4em]
+  text-zinc-500
+  font-medium
+  mb-[clamp(1.5rem,3vw,3rem)]
+  text-[clamp(0.65rem,1vw,0.8rem)]"
       >
         DIGITAL EXPERIENCES
       </motion.p>
@@ -100,9 +116,17 @@ export default function Hero() {
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-        className="text-6xl md:text-[120px] font-black leading-[0.9] tracking-tighter text-white"
+        className="
+    font-black
+    leading-[0.82]
+    tracking-[-0.06em]
+    text-white
+    text-[clamp(3rem,11vw,8rem)]
+    max-w-[10ch]
+  "
       >
-        CRAFTING <br />
+        CRAFTING
+        <br />
         THE FUTURE.
       </motion.h1>
 
@@ -110,7 +134,12 @@ export default function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1.5, delay: 0.8 }}
-        className="mt-10 text-lg md:text-xl opacity-40 font-light max-w-lg leading-relaxed"
+        className=" mt-[clamp(1.5rem,4vw,3rem)]
+  opacity-40
+  font-light
+  leading-relaxed
+  max-w-[40ch]
+  text-[clamp(1rem,2vw,1.4rem)]"
       >
         Smooth. Elegant. Cinematic.
       </motion.p>
@@ -119,14 +148,31 @@ export default function Hero() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, delay: 1.2 }}
-        className="mt-12 flex gap-6"
+        className="
+  mt-[clamp(2rem,6vw,5rem)]
+  flex
+  flex-col
+  sm:flex-row
+  items-center
+  gap-[clamp(1rem,2vw,2rem)]
+  w-full
+  sm:w-auto
+"
       >
         <Magnetic strength={0.2}>
           <motion.button
             whileHover={{ scale: 1.05, backgroundColor: "#f0f0f0" }} // Levemente fora do branco para um feedback sutil
             transition={{ duration: 0.2, ease: "easeInOut" }}
             onClick={scrollToProjects}
-            className="px-10 py-4 bg-white text-black rounded-full font-bold text-sm"
+            className="w-full
+  sm:w-auto
+  px-[clamp(1.5rem,3vw,3rem)]
+  py-[clamp(0.9rem,2vw,1.25rem)]
+  bg-white
+  text-black
+  rounded-full
+  font-bold
+  text-[clamp(0.85rem,1vw,1rem)]"
           >
             Explore Work
           </motion.button>
@@ -136,7 +182,17 @@ export default function Hero() {
             href="/process"
             whileHover={{ scale: 1.05, backgroundColor: "rgba(255, 255, 255, 0.1)" }}
             transition={{ duration: 0.2, ease: "easeInOut" }}
-            className="inline-flex px-10 py-4 border border-white/10 rounded-full font-bold text-sm"
+            className="inline-flex
+  justify-center
+  w-full
+  sm:w-auto
+  px-[clamp(1.5rem,3vw,3rem)]
+  py-[clamp(0.9rem,2vw,1.25rem)]
+  border
+  border-white/10
+  rounded-full
+  font-bold
+  text-[clamp(0.85rem,1vw,1rem)]"
           >
             The Process
           </MotionLink>

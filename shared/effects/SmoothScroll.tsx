@@ -2,7 +2,7 @@
 "use client";
 
 import { ReactLenis, type LenisRef } from "lenis/react";
-import { useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { usePathname } from "next/navigation";
@@ -10,6 +10,35 @@ import { usePathname } from "next/navigation";
 export default function SmoothScroll({ children }: { children: React.ReactNode }) {
     const lenisRef = useRef<LenisRef>(null);
     const pathname = usePathname();
+
+    const scrollToHash = useCallback((hash: string) => {
+        if (!hash) {
+            return false;
+        }
+
+        try {
+            const selector = decodeURIComponent(hash);
+            const target = document.querySelector(selector);
+
+            if (!target) {
+                return false;
+            }
+
+            lenisRef.current?.lenis?.scrollTo(target as HTMLElement, {
+                immediate: true,
+                force: true,
+            });
+
+            if (!lenisRef.current?.lenis) {
+                target.scrollIntoView({ block: "start" });
+            }
+
+            ScrollTrigger.refresh();
+            return true;
+        } catch {
+            return false;
+        }
+    }, []);
 
     useEffect(() => {
         window.history.scrollRestoration = "manual";
@@ -33,13 +62,29 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
 
     useEffect(() => {
         const resetFrame = requestAnimationFrame(() => {
-            lenisRef.current?.lenis?.scrollTo(0, { immediate: true, force: true });
-            window.scrollTo(0, 0);
+            const didScrollToHash = scrollToHash(window.location.hash);
+
+            if (!didScrollToHash) {
+                lenisRef.current?.lenis?.scrollTo(0, { immediate: true, force: true });
+                window.scrollTo(0, 0);
+            }
+
             ScrollTrigger.refresh();
         });
 
         return () => cancelAnimationFrame(resetFrame);
-    }, [pathname]);
+    }, [pathname, scrollToHash]);
+
+    useEffect(() => {
+        const handleHashChange = () => {
+            requestAnimationFrame(() => {
+                scrollToHash(window.location.hash);
+            });
+        };
+
+        window.addEventListener("hashchange", handleHashChange);
+        return () => window.removeEventListener("hashchange", handleHashChange);
+    }, [scrollToHash]);
 
     return (
         <ReactLenis

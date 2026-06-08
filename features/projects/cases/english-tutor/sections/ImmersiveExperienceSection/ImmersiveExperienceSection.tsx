@@ -1,7 +1,6 @@
 "use client";
 
 import { EnergyOrb } from "../../components/EnergyOrb";
-import Link from "next/link";
 
 import styles from "./ImmersiveExperienceSection.module.css";
 import { useEffect } from "react";
@@ -45,7 +44,7 @@ export function ImmersiveExperienceSection() {
                     <p className={`${styles.description} immersive-description`}>
                         Every interaction is personalized,
                         context-aware and designed to evolve
-                        alongside the learner's progress.
+                        alongside the learner&apos;s progress.
                     </p>
                 </div>
 

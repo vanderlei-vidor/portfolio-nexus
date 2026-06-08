@@ -1,24 +1,8 @@
-"use client";
-
-import { useEffect, useState } from "react";
 import styles from "./FutureVisionOrb.module.css";
 
 export function FutureVisionOrb() {
-    const [isLoaded, setIsLoaded] = useState(false);
-
-    useEffect(() => {
-        // Trigger animation after mount for entrance effect
-        setIsLoaded(true);
-    }, []);
-
     return (
-        <div
-            className={styles.wrapper}
-            style={{
-                animation: isLoaded ? undefined : "none",
-                opacity: isLoaded ? 1 : 0.8,
-            }}
-        >
+        <div className={styles.wrapper}>
             {/* HALO - Atmospherique glow backdrop */}
             <div className={styles.halo} />
 

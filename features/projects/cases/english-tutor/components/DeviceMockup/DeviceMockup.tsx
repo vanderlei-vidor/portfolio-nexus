@@ -107,7 +107,7 @@ export function DeviceMockup() {
                         A more natural version:
                         <br />
                         <strong>
-                            "How are you doing today?"
+                            &quot;How are you doing today?&quot;
                         </strong>
                     </div>
                     <div

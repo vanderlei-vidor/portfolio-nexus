@@ -30,7 +30,7 @@ export default function Terminal() {
 
   const handleCommand = (cmd: string) => {
     const cleanCmd = cmd.trim().toLowerCase();
-    let responses: string[] = [`> ${cmd}`];
+    const responses: string[] = [`> ${cmd}`];
 
     switch (cleanCmd) {
       case "projects":

@@ -1,13 +1,12 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 // Ícones premium para os controles do showcase
 import { Play, Pause, ChevronLeft, ChevronRight } from "lucide-react";
 import { FutureVisionOrb } from "../../components/FutureVisionOrb/FutureVisionOrb";
 
 import styles from "./ProjectVisionSection.module.css";
-import router from "next/router";
 import { useRouter } from "next/navigation";
 
 // Dados estruturados dos slides do English Tutor AI
@@ -40,6 +39,14 @@ export function ProjectVisionSection() {
 
   const router = useRouter();
 
+  const nextSlide = useCallback(() => {
+    setCurrentSlide((prev) => (prev === demoSlides.length - 1 ? 0 : prev + 1));
+  }, []);
+
+  const prevSlide = useCallback(() => {
+    setCurrentSlide((prev) => (prev === 0 ? demoSlides.length - 1 : prev - 1));
+  }, []);
+
   // Lógica do Timer Automatizado (Autoplay dos slides)
   useEffect(() => {
     if (isDemoOpen && isPlaying) {
@@ -51,17 +58,9 @@ export function ProjectVisionSection() {
     return () => {
       if (timerRef.current) clearInterval(timerRef.current);
     };
-  }, [isDemoOpen, isPlaying, currentSlide]);
+  }, [isDemoOpen, isPlaying, nextSlide]);
 
   // Funções de Navegação dos Slides
-  const nextSlide = () => {
-    setCurrentSlide((prev) => (prev === demoSlides.length - 1 ? 0 : prev + 1));
-  };
-
-  const prevSlide = () => {
-    setCurrentSlide((prev) => (prev === 0 ? demoSlides.length - 1 : prev - 1));
-  };
-
   return (
     <section className={styles.section}>
       <div className={styles.header}>

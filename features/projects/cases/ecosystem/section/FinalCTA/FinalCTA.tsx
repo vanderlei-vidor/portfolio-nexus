@@ -49,7 +49,7 @@ export default function FinalCTA() {
     if (!ctx) return;
 
     let animationFrameId: number;
-    let particles: Array<{
+    const particles: Array<{
       x: number;
       y: number;
       radius: number;
@@ -161,7 +161,7 @@ export default function FinalCTA() {
         {/* Divisão estrutural em linhas separadas para o GSAP fazer a revelação cirúrgica */}
         <h2 className="final-cta__title">
           <div className="final-cta__title-line">
-            <span>LET'S BUILD</span>
+            <span>LET&apos;S BUILD</span>
           </div>
           <div className="final-cta__title-line">
             <span>SOMETHING</span>
@@ -174,7 +174,7 @@ export default function FinalCTA() {
         <p className="final-cta__description">
           From ideas to ecosystems. From concepts to products.
           <br />
-          Let's create the next chapter together.
+          Let&apos;s create the next chapter together.
         </p>
 
         <div className="final-cta__actions">
@@ -182,7 +182,7 @@ export default function FinalCTA() {
             Start a Project
           </a>
           <a href="#contact" className="final-cta__button final-cta__button--secondary">
-            Let's Talk
+            Let&apos;s Talk
           </a>
         </div>
 

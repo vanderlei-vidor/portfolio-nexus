@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
-import { offlinePlayerSteps } from "../../data"; 
+import { offlinePlayerSteps } from "../../data";
 import './StorytellingSection.css';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -96,7 +96,7 @@ export default function StorytellingSection() {
         }}
       />
 
-      <div className="relative z-10 mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-12 px-6 py-12 lg:grid-cols-12 lg:py-0">
+      <div className="relative z-10 mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-6 px-6 py-0 lg:grid-cols-12">
 
         {/* LEFT SIDE: TEXT CONTENT */}
         <div className="story-text-wrapper relative h-[380px] sm:h-[420px] lg:h-[450px] lg:col-span-5">
@@ -107,11 +107,10 @@ export default function StorytellingSection() {
             return (
               <div
                 key={step.id}
-                className={`story-text-item flex flex-col justify-center transition-all duration-700 ease-out will-change-[transform,opacity] ${
-                  isActive 
-                    ? "active-step translate-y-0 opacity-100" 
+                className={`story-text-item flex flex-col justify-center transition-all duration-700 ease-out will-change-[transform,opacity] ${isActive
+                    ? "active-step translate-y-0 opacity-100"
                     : "inactive-step translate-y-12 opacity-0 pointer-events-none"
-                }`}
+                  }`}
               >
                 <div className="mb-4 sm:mb-6 flex items-center gap-4">
                   <div
@@ -146,56 +145,50 @@ export default function StorytellingSection() {
             {offlinePlayerSteps.map((_, index) => (
               <div
                 key={index}
-                className={`rounded-full transition-all duration-500 ${
-                  active === index ? "h-12 w-[3px] bg-white" : "h-3 w-[3px] bg-zinc-800"
-                }`}
+                className={`rounded-full transition-all duration-500 ${active === index ? "h-12 w-[3px] bg-white" : "h-3 w-[3px] bg-zinc-800"
+                  }`}
               />
             ))}
           </div>
         </div>
 
         {/* RIGHT SIDE: DEVICE PREVIEW */}
-        <div className="story-device-wrapper relative flex items-center justify-center lg:col-span-7 h-[500px] sm:h-[600px] w-full">
-          {offlinePlayerSteps.map((step, index) => {
-            const isActive = active === index;
+        {/* 2. MUDANÇA NO CONTAINER DA IMAGEM: Reduzimos a largura para o celular respirar */}
+  <div className="story-device-wrapper relative flex items-center justify-center lg:col-span-7 w-full">
+    {offlinePlayerSteps.map((step, index) => {
+      const isActive = active === index;
 
-            return (
-              <div
-                key={step.id}
-                className={`device-card absolute inset-0 flex items-center justify-center transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] will-change-[transform,opacity] ${
-                  isActive 
-                    ? "active-device scale-100 opacity-100 rotate-[-3deg] pointer-events-auto" 
-                    : "inactive-device scale-95 opacity-0 rotate-[-8deg] pointer-events-none"
-                }`}
-              >
+      return (
+        <div
+          key={step.id}
+          className={`device-card flex items-center justify-center transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] will-change-[transform,opacity] ${
+            isActive 
+              ? "active-device scale-100 opacity-100 rotate-[-3deg] pointer-events-auto" 
+              : "inactive-device scale-95 opacity-0 rotate-[-8deg] pointer-events-none"
+          }`}
+        >
                 {/* GLOW ATRÁS DO TELEFONE */}
                 <div
-                  className="absolute h-[350px] w-[350px] -z-10 rounded-full blur-[100px] opacity-15"
+                  className="absolute h-[280px] w-[280px] sm:h-[350px] sm:w-[350px] -z-10 rounded-full blur-[100px] opacity-15"
                   style={{ backgroundColor: step.color }}
                 />
 
                 {/* DEVICE CONTAINER */}
-                <div className="device-container relative w-[220px] sm:w-[260px] md:w-[280px] transform-gpu">
-                  <div className="overflow-hidden rounded-[2.8rem] sm:rounded-[3.2rem] border border-white/10 bg-zinc-950 p-[3px] shadow-[0_30px_80px_rgba(0,0,0,0.9)]">
-                    
-                    {/* --- NEXT/IMAGE OTIMIZADO PARA ANIMAÇÃO --- */}
+                <div className="device-container relative w-[200px] sm:w-[240px] md:w-[280px] transform-gpu">
+                  <div className="overflow-hidden rounded-[2.5rem] sm:rounded-[3.2rem] border border-white/10 bg-zinc-950 p-[3px] shadow-[0_30px_80px_rgba(0,0,0,0.9)]">
+
                     <Image
                       src={step.img}
                       alt={step.title}
                       width={320}
                       height={690}
-                      
-                      // Carregamento inteligente: Dá prioridade para o primeiro frame, 
-                      // e faz o lazy-load inteligente dos outros passos em background.
-                      priority={index === 0} 
-                      
-                      // Adicionamos tamanhos de renderização corretos para telas responsivas
-                      sizes="(max-width: 640px) 220px, (max-width: 768px) 260px, 280px"
-                      className="block w-full h-auto rounded-[2.6rem] sm:rounded-[3rem]"
+                      priority={index === 0}
+                      sizes="(max-width: 640px) 200px, (max-width: 768px) 240px, 280px"
+                      className="block w-full h-auto rounded-[2.3rem] sm:rounded-[3rem]"
                     />
 
                     {/* GLASS REFLECTION */}
-                    <div className="absolute inset-0 rounded-[2.6rem] sm:rounded-[3rem] bg-gradient-to-tr from-white/0 via-white/[0.02] to-white/0 pointer-events-none" />
+                    <div className="absolute inset-0 rounded-[2.3rem] sm:rounded-[3rem] bg-gradient-to-tr from-white/0 via-white/[0.02] to-white/0 pointer-events-none" />
                   </div>
                 </div>
               </div>

@@ -28,9 +28,18 @@ export default function ProcessExperience() {
   const [currentSection, setCurrentSection] = useState(0);
   const totalSections = sectionColors.length;
 
+  // Garante que a página comece no topo e atualiza o ScrollTrigger com o Lenis
   useEffect(() => {
     window.scrollTo(0, 0);
     lenis?.scrollTo(0, { immediate: true });
+
+    if (!lenis) return;
+    const convertScroll = () => ScrollTrigger.update();
+    lenis.on("scroll", convertScroll);
+
+    return () => {
+      lenis.off("scroll", convertScroll);
+    };
   }, [lenis]);
 
   useLayoutEffect(() => {
@@ -43,6 +52,8 @@ export default function ProcessExperience() {
 
     const ctx = gsap.context(() => {
       const sections = sectionsRef.current.filter(Boolean);
+      
+      // Distância exata que o container vai andar para o lado
       const getScrollDistance = () => horizontalWrapper.scrollWidth - window.innerWidth;
 
       gsap.set(horizontalWrapper, {
@@ -50,6 +61,7 @@ export default function ProcessExperience() {
         x: 0,
       });
 
+      // 🔥 ANIMAÇÃO PRINCIPAL DO SCROLL HORIZONTAL CORRIGIDA
       const horizontalScroll = gsap.to(horizontalWrapper, {
         x: () => -getScrollDistance(),
         ease: "none",
@@ -58,31 +70,40 @@ export default function ProcessExperience() {
           trigger: mainContainer,
           scrub: 1,
           start: "top top",
-          end: "bottom bottom",
+          // Define dinamicamente o fim baseado na largura real das seções
+          end: () => `+=${getScrollDistance()}`, 
+          pin: true,           
+          pinSpacing: true,    // Deixa o GSAP empurrar o resto da página para baixo perfeitamente
           invalidateOnRefresh: true,
-          snap: 1 / (sections.length - 1),
+          snap: {
+            snapTo: 1 / (sections.length - 1),
+            duration: { min: 0.1, max: 0.4 },
+            ease: "power1.inOut"
+          },
           onUpdate: (self) => {
             setCurrentSection(Math.round(self.progress * (sections.length - 1)));
           },
         },
       });
 
+      // Linha de progresso sincronizada com o mesmo fim dinâmico
       gsap.to(progressBar, {
         scaleX: 1,
         ease: "none",
         scrollTrigger: {
           trigger: mainContainer,
           start: "top top",
-          end: "bottom bottom",
+          end: () => `+=${getScrollDistance()}`,
           scrub: true,
         },
       });
 
+      // Troca suave de cores de fundo sincronizada
       const colorTimeline = gsap.timeline({
         scrollTrigger: {
           trigger: mainContainer,
           start: "top top",
-          end: "bottom bottom",
+          end: () => `+=${getScrollDistance()}`,
           scrub: true,
         },
       });
@@ -97,7 +118,7 @@ export default function ProcessExperience() {
     }, mainContainer);
 
     return () => ctx.revert();
-  }, [lenis]);
+  }, []);
 
   return (
     <>
@@ -112,13 +133,12 @@ export default function ProcessExperience() {
         <span>Total_{String(totalSections).padStart(2, '0')}</span>
       </div>
 
-      <main
-        ref={mainContainerRef}
-        className="relative w-full bg-black"
-        style={{ height: `${sectionColors.length * 100}vh` }}
-      >
-        <div ref={stickyStageRef} className="sticky top-0 h-screen w-full overflow-hidden bg-black border-y border-white/5">
-          
+      {/* REMOVIDO: A altura em VH engessada que quebrava o fim do scroll */}
+      <main ref={mainContainerRef} className="relative w-full bg-black">
+        
+        {/* CORREÇÃO: Removido a classe 'sticky top-0' que brigava com o GSAP */}
+        <div ref={stickyStageRef} className="h-screen w-full overflow-hidden bg-black border-y border-white/5 relative">
+
           {/* Engineering Grid */}
           <div className="absolute inset-0 opacity-[0.05] pointer-events-none"
             style={{
@@ -129,7 +149,7 @@ export default function ProcessExperience() {
 
           <div ref={horizontalWrapperRef} className="flex h-screen absolute top-0 left-0 will-change-transform">
 
-            {/* Section 0: Hero - Refined Technical Intro */}
+            {/* Section 0: Hero */}
             <section
               ref={(el) => { if (el) sectionsRef.current[0] = el; }}
               className="w-screen h-full flex flex-col items-center justify-center text-white px-6 flex-shrink-0 relative"
@@ -146,7 +166,7 @@ export default function ProcessExperience() {
                 <span className="text-zinc-700">Engineering</span> <br />
                 <span className="bg-gradient-to-b from-white to-zinc-500 bg-clip-text text-transparent">Digital Excellence</span>
               </h1>
-              
+
               <p className="mt-8 font-mono text-[10px] text-zinc-600 max-w-md text-center leading-relaxed">
                 A systematic approach to building high-performance applications through rigorous architecture and precise execution.
               </p>
@@ -194,7 +214,7 @@ export default function ProcessExperience() {
               className="w-screen h-full flex flex-col items-center justify-center text-white px-6 flex-shrink-0 relative"
             >
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-white/5 rounded-full blur-[120px] pointer-events-none" />
-              
+
               <h2 className="text-4xl md:text-7xl font-bold tracking-tighter uppercase mb-12 text-center">
                 Ready to scale <br /> your vision?
               </h2>
@@ -228,8 +248,6 @@ const ProcessStep = forwardRef<HTMLElement, ProcessStepProps>(({ step, tag, titl
       className="w-screen h-full flex items-center justify-center flex-shrink-0 px-8 md:px-24 border-l border-white/5 relative group overflow-hidden"
     >
       <div className="max-w-5xl w-full grid grid-cols-1 md:grid-cols-[100px_1fr] gap-12 items-start relative z-10">
-        
-        {/* Technical Sidebar */}
         <div className="hidden md:flex flex-col gap-4">
           <span className="font-mono text-[10px] text-white/20 rotate-90 origin-left translate-x-4 whitespace-nowrap tracking-[0.5em]">
             REF_DATA_{step}
@@ -239,9 +257,11 @@ const ProcessStep = forwardRef<HTMLElement, ProcessStepProps>(({ step, tag, titl
 
         <div className="flex flex-col">
           <span className="font-mono text-[11px] text-zinc-500 mb-4 tracking-[0.3em] uppercase">
-            {tag} // 0{step}
+            {tag}
+            {" // "}
+            0{step}
           </span>
-          
+
           <h3 className="text-4xl md:text-7xl font-bold mb-8 tracking-tighter uppercase leading-none text-white">
             {title}
           </h3>

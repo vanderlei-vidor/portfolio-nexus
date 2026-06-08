@@ -1,39 +1,53 @@
 @import "tailwindcss";
 
+@theme {
+  /* Cores */
+  --color-accent-rgb: 124, 58, 237;
 
-/* styles/globals.css */
+  /* Tipografia Fluida (Gerará classes como text-hero, text-fluid-md...) */
+  --text-hero: clamp(3.5rem, 11vw, 8.5rem);
+  --text-fluid-p: clamp(1.1rem, 2vw, 1.45rem);
+  --text-fluid-xs: clamp(0.75rem, 1vw, 0.85rem);
+  --text-fluid-btn: clamp(0.85rem, 1vw, 1rem);
+
+  /* Espaçamentos Fluidos (Gerará classes para padding, margin e gap) */
+  --spacing-fluid-layout: clamp(1.5rem, 6vw, 7.5rem);
+  --spacing-fluid-gap-sm: clamp(1.5rem, 4vw, 3rem);
+  --spacing-fluid-gap-md: clamp(2.5rem, 6vw, 5.5rem);
+  --spacing-fluid-btn-x: clamp(1.75rem, 3vw, 3.2rem);
+  --spacing-fluid-btn-y: clamp(0.95rem, 2vw, 1.25rem);
+}
+
+/* Estilos Globais do App */
+html,
 body {
+  overflow-x: hidden;
+  width: 100%;
   background: #0B0B0B;
   color: #EDEDED;
   font-family: system-ui, sans-serif;
 }
 
-.glow {
-  box-shadow: 0 0 20px rgba(124, 58, 237, 0.5);
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
-/* Prefer component-level transforms; keep global button transitions minimal */
-/*button {
-  transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+[data-nextjs-dialog-backdrop] {
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+
+.glow {
+  box-shadow: 0 0 20px rgba(var(--color-accent-rgb), 0.5);
+}
+
+button {
+  -webkit-appearance: none;
+  appearance: none;
 }
 
 button:hover {
-  /* Intentionally empty: component-specific scale/transform should be applied locally */
- 
-
-/*
-@keyframes float {
-  0% {
-    transform: translateY(0px);
-  }
-
-  50% {
-    transform: translateY(-18px);
-  }
-
-  100% {
-    transform: translateY(0px);
-  }
+  /* Controle feito localmente via Framer Motion */
 }
-*/
-

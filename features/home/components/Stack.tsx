@@ -9,6 +9,7 @@ import {
   SiFlutter, SiApple, SiAndroid, SiDart,
   SiPython, SiOpenai, SiGreensock
 } from "react-icons/si";
+import type { IconType } from "react-icons";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -32,6 +33,11 @@ const coreTechs = [
   { name: "Android Native", icon: SiAndroid },
   { name: "React Native", icon: SiReact },
 ];
+
+type StackTech = {
+  name: string;
+  icon: IconType;
+};
 
 export default function Stack() {
   const marquee1Ref = useRef<HTMLDivElement>(null);
@@ -114,7 +120,7 @@ export default function Stack() {
 }
 
 // Subcomponente item isolado para manter o código limpo
-const MarqueeItem = ({ tech }: { tech: any }) => {
+const MarqueeItem = ({ tech }: { tech: StackTech }) => {
   const Icon = tech.icon;
   return (
     <div className="flex items-center gap-5 px-12 md:px-16 group cursor-default">
