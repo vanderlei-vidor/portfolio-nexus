@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://seu-dominio-real.com";
+  const baseUrl = "https://portfolio-nexus-six.vercel.app/";
   const currentDate = new Date();
 
   // 1. Rotas estáticas principais do ecossistema

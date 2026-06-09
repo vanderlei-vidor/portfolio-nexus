@@ -71,7 +71,7 @@ Formato baseado em [Keep a Changelog](https://keepachangelog.com/) e organizado 
 - **[P3]** Limitar o parâmetro `quality` de renderização de imagens do Next.js para o range ideal de `70–75` dentro de `ProjectCard.tsx`.
 
 #### 📋 Ajustes de Layout & SEO Geral
-- Revisar `metadataBase` em `app/layout.tsx` e substituir `https://seusite.com` pelo domínio real definitivo.
+- Revisar `metadataBase` em `app/layout.tsx` e substituir `https://portfolio-nexus-six.vercel.app/` pelo domínio real definitivo.
 - Validar visualmente desktop e mobile:
   - primeira dobra da home;
   - cards de projetos;

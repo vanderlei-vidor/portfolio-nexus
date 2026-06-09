@@ -2,11 +2,12 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "@/styles/globals.css";
 import { MagneticProvider } from "@/shared/effects/magnetic/MagneticContext";
-import { MouseProvider } from "@/shared/context/MouseContext"; // 🚀 1. Importa o novo Provider
-import Cursor from "@/shared/effects/Cursor"; // 🖱️ Importa o Cursor se ele for global
+import { MouseProvider } from "@/shared/context/MouseContext"; 
+import Cursor from "@/shared/effects/Cursor"; 
 import Grain from "@/shared/effects/Grain";
 import PageTransition from "@/shared/effects/PageTransition";
 import SmoothScroll from "@/shared/effects/SmoothScroll";
+import { SpeedInsights } from "@vercel/speed-insights/next"; 
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -18,10 +19,12 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const baseUrl = "https://seusite.com";
+// 🌐 SEU LINK OFICIAL DA VERCEL CONFIGURADO!
+const baseUrl = "https://portfolio-nexus-six.vercel.app"; 
 
 export const metadata: Metadata = {
-  metadataBase: new URL(baseUrl),
+  // 🎯 O Next.js usa essa base para resolver caminhos de sitemap e imagens do OG de forma absoluta
+  metadataBase: new URL(baseUrl), 
   title: {
     default: "Portfolio Nexus | Premium Digital Experiences",
     template: "%s | Portfolio Nexus",
@@ -37,7 +40,7 @@ export const metadata: Metadata = {
     locale: "pt_BR",
     url: baseUrl,
     title: "Portfolio Nexus | Premium Digital Experiences",
-    description: "Exploração de cases de alta performance, design imersivo e arquitetura de software refinada.",
+    description: "Exploração de cases de alta performance, design imersivo and arquitetura de software refinada.",
     siteName: "Portfolio Nexus",
     images: [
       {
@@ -71,16 +74,17 @@ export default function RootLayout({
         {/* Adiciona a textura de granulação sobre todo o site */}
         <Grain />
 
-        {/* 🚀 2. Envolve a árvore com o MouseProvider junto com o MagneticProvider */}
+        {/* Envolve a árvore com o MouseProvider junto com o MagneticProvider */}
         <MouseProvider>
           <MagneticProvider>
             <SmoothScroll>
               <PageTransition>
-                {/* 🖱️ DICA MESTRE: Coloque o Cursor aqui! 
-                    Como ele está dentro dos Providers, ele vai funcionar automaticamente em todas as páginas do seu portfólio. */}
                 <Cursor /> 
                 
                 {children}
+
+                {/* 📊 Real User Monitoring ativo! Medindo performance de dispositivos reais */}
+                <SpeedInsights />
               </PageTransition>
             </SmoothScroll>
           </MagneticProvider>
