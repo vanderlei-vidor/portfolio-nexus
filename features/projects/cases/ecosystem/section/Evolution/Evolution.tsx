@@ -6,7 +6,6 @@ import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import "./Evolution.css";
 
-// Garante o registro do plugin (boa prática para evitar problemas em produção)
 gsap.registerPlugin(ScrollTrigger);
 
 const milestones = [
@@ -37,78 +36,94 @@ const milestones = [
 ];
 
 export default function Evolution() {
-    const sectionRef = useRef(null);
-    const progressRef = useRef(null);
-    const orbRef = useRef(null);
+    const sectionRef = useRef<HTMLElement>(null);
+    const progressRef = useRef<HTMLDivElement>(null);
+    const orbRef = useRef<HTMLDivElement>(null);
 
     useGSAP(() => {
-        // Timeline mestre acoplada ao scroll da seção inteira
-        const tl = gsap.timeline({
-            scrollTrigger: {
-                trigger: sectionRef.current,
-                start: "top center+=100", // Começa um pouco antes do meio da tela
-                end: "bottom center+=100", // Termina quando o final da seção passa pelo meio
-                scrub: 1, // Suaviza o movimento em 1 segundo (efeito amanteigado)
-            }
-        });
+        // ⚡ Criação do contexto responsivo nativo do GSAP
+        const mm = gsap.matchMedia();
 
-        // 1. Animação da Linha Energética (Preenchimento)
-        tl.to(progressRef.current, {
-            height: "100%",
-            ease: "none"
-        }, 0);
+        mm.add({
+            isDesktop: "(min-width: 769px)",
+            isMobile: "(max-width: 768px)"
+        }, (context) => {
+            // Captura qual condição de tela está ativa no momento
+            const { isDesktop } = context.conditions ?? { isDesktop: true };
 
-        // 2. Animação Progressiva dos Itens da Timeline (Cards e Ícones)
-        const items = gsap.utils.toArray<HTMLElement>(".timeline-item");
-        items.forEach((item: HTMLElement) => {
-            const dot = item.querySelector(".timeline-dot");
-            const card = item.querySelector(".timeline-card");
-            const isLeft = item.classList.contains("timeline-left");
+            const tl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: sectionRef.current,
+                    start: "top center+=100",
+                    end: "bottom center+=100",
+                    scrub: 1,
+                }
+            });
 
-            // Ativa o brilho do ícone/dot quando a energia passa por ele
-            tl.to(dot, {
-                backgroundColor: "rgba(96, 165, 250, 0.25)",
-                borderColor: "#60a5fa",
-                boxShadow: "0 0 20px rgba(96, 165, 250, 0.6)",
-                scale: 1.1,
-                duration: 0.2
-            }, ">-0.1"); // Inicia um pouquinho antes da barra terminar de passar
+            // 1. Linha Energética preenche igual em ambos
+            tl.to(progressRef.current, {
+                height: "100%",
+                ease: "none"
+            }, 0);
 
-            // Faz o card surgir vindo do lado correto (efeito de conexão)
-            tl.fromTo(card,
+            // 2. Animação condicional dos itens baseado no dispositivo
+            const items = gsap.utils.toArray<HTMLElement>(".timeline-item");
+            items.forEach((item: HTMLElement) => {
+                const dot = item.querySelector(".timeline-dot");
+                const card = item.querySelector(".timeline-card");
+                const isLeft = item.classList.contains("timeline-left");
+
+                tl.to(dot, {
+                    backgroundColor: "rgba(96, 165, 250, 0.25)",
+                    borderColor: "#60a5fa",
+                    boxShadow: "0 0 20px rgba(96, 165, 250, 0.6)",
+                    scale: 1.1,
+                    duration: 0.2
+                }, ">-0.1");
+
+                // ⚡ Configura direções profissionais de entrada
+                // Desktop: Alterna esquerda (-50) e direita (50) | Mobile: Todos sobem suavemente (y: 30)
+                const startX = isDesktop ? (isLeft ? -50 : 50) : 0;
+                const startY = isDesktop ? 0 : 30;
+
+                tl.fromTo(card,
+                    {
+                        opacity: 0,
+                        x: startX,
+                        y: startY,
+                        scale: 0.95
+                    },
+                    {
+                        opacity: 1,
+                        x: 0,
+                        y: 0,
+                        scale: 1,
+                        duration: 0.4,
+                        ease: "power2.out"
+                    },
+                    "<"
+                );
+            });
+
+            // 3. Orb Final
+            tl.fromTo(orbRef.current,
                 {
-                    opacity: 0,
-                    x: isLeft ? -50 : 50,
-                    scale: 0.9
+                    scale: 0.8,
+                    boxShadow: "0 0 0px rgba(96, 165, 250, 0)"
                 },
                 {
-                    opacity: 1,
-                    x: 0,
-                    scale: 1,
-                    duration: 0.4,
-                    ease: "power2.out"
+                    scale: isDesktop ? 1.25 : 1.1, // Escala um pouco menor no mobile para não estourar a viewport
+                    borderColor: "#60a5fa",
+                    boxShadow: "0 0 50px rgba(96, 165, 250, 0.5), inset 0 0 30px rgba(96, 165, 250, 0.3)",
+                    duration: 0.5,
+                    ease: "back.out(2)"
                 },
-                "<" // Começa exatamente junto com a ativação do dot
+                ">"
             );
         });
 
-        // 3. Upgrade do Orb Final (Crescendo e brilhando com energia acumulada)
-        tl.fromTo(orbRef.current,
-            {
-                scale: 0.8,
-                boxShadow: "0 0 0px rgba(96, 165, 250, 0)"
-            },
-            {
-                scale: 1.25,
-                borderColor: "#60a5fa",
-                boxShadow: "0 0 50px rgba(96, 165, 250, 0.5), inset 0 0 30px rgba(96, 165, 250, 0.3)",
-                duration: 0.5,
-                ease: "back.out(2)"
-            },
-            ">" // Entra logo após o último card se consolidar
-        );
-
-    }, { scope: sectionRef }); // Escopo para evitar conflito com outros seletores do app
+        // O matchMedia se limpa sozinho aqui quando o componente desmonta!
+    }, { scope: sectionRef });
 
     return (
         <section ref={sectionRef} className="evolution">
@@ -127,17 +142,15 @@ export default function Evolution() {
                 </p>
 
                 <div className="timeline">
-                    {/* Linha de fundo apagada */}
                     <div className="timeline-line" />
-
-                    {/* 🔥 Linha energética que o GSAP vai preencher */}
                     <div ref={progressRef} className="timeline-progress" />
 
                     {milestones.map((item, index) => (
                         <div
                             key={item.title}
-                            className={`timeline-item ${index % 2 === 0 ? "timeline-left" : "timeline-right"
-                                }`}
+                            className={`timeline-item ${
+                                index % 2 === 0 ? "timeline-left" : "timeline-right"
+                            }`}
                         >
                             <div className="timeline-dot">
                                 {item.icon}
@@ -153,13 +166,12 @@ export default function Evolution() {
                 </div>
 
                 <div className="evolution-final">
-                    {/* 🔥 O Orb agora tem a Ref para expandir no final do scroll */}
                     <div ref={orbRef} className="evolution-orb">
                         <div className="evolution-orb-glow" />
                         <span>NEXUS</span>
                     </div>
 
-                    <p className="evolution-manifesto">
+                    <div className="evolution-manifesto">
                         From Experiences
                         <br />
                         To Intelligence
@@ -167,7 +179,7 @@ export default function Evolution() {
                         To Systems
                         <br />
                         To Ecosystems
-                    </p>
+                    </div>
                 </div>
             </div>
         </section>

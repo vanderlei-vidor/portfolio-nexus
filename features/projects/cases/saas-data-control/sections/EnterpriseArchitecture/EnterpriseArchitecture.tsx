@@ -43,14 +43,12 @@ export function EnterpriseArchitecture() {
           </span>
 
           <h2 className="section-title">
-            Arquitetura{" "}
+            Architecture{" "}
             <span className="title-accent">Enterprise</span>
           </h2>
 
           <p className="section-description">
-            Estrutura organizada em camadas, projetada para
-            escalabilidade, manutenção e evolução contínua
-            em ambientes de alta disponibilidade.
+            A layered structure designed for scalability, maintainability, and continuous evolution in high-availability environments.
           </p>
         </div>
 
@@ -107,7 +105,7 @@ export function EnterpriseArchitecture() {
             <div className="features-header">
               <span className="features-label">CORE STACK</span>
               <h3 className="features-title">
-                Tecnologias Enterprise
+                Technologies Enterprise
               </h3>
             </div>
 

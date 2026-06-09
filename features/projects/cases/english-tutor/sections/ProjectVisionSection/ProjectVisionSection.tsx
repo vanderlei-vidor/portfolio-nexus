@@ -12,17 +12,17 @@ import { useRouter } from "next/navigation";
 // Dados estruturados dos slides do English Tutor AI
 const demoSlides = [
   {
-    src: "/projects/english-tutor/textures/slide1-dashboard.webp",
+    src: "/projects/english-tutor/textures/english-tutor-screen.webp",
     title: "AI Conversation Interface",
     description: "Immersive chat interface designed for real-time natural language processing and voice interaction.",
   },
   {
-    src: "/projects/english-tutor/textures/slide2-corrections.webp",
+    src: "/projects/english-tutor/textures/english-tutor-screen.webp",
     title: "Real-Time Grammar Feedback",
     description: "Proprietary pipeline that intercepts, analyzes, and fixes mistakes on the fly with context-aware suggestions.",
   },
   {
-    src: "/projects/english-tutor/textures/slide3-metrics.webp",
+    src: "/projects/english-tutor/textures/english-tutor-screen.webp",
     title: "Fluency Analytics",
     description: "Deep insights into vocabulary growth, pronunciation accuracy, and operational metrics.",
   },
@@ -114,7 +114,7 @@ export function ProjectVisionSection() {
             className="group relative px-12 py-5 bg-white text-black rounded-full font-bold text-sm overflow-hidden transition-all duration-500 hover:scale-105 active:scale-95 shadow-[0_0_40px_rgba(255,255,255,0.1)]"
           >
             <span className="relative z-10">Start a Project</span>
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-black/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+            <div className="absolute inset-0 bg-linear-to-r from-transparent via-black/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
           </button>
 
 
@@ -151,7 +151,7 @@ export function ProjectVisionSection() {
       {/* --- MODAL INTERATIVO ESTILIZADO AAA (FUSÃO CONCLUÍDA) --- */}
       {isDemoOpen && (
         <div
-          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/95 backdrop-blur-2xl p-4 md:p-10 animate-in fade-in duration-500"
+          className="fixed inset-0 z-100 flex items-center justify-center bg-black/95 backdrop-blur-2xl p-4 md:p-10 animate-in fade-in duration-500"
           onClick={() => setIsDemoOpen(false)} // Fecha o modal clicando no backdrop escuro
         >
           <div
@@ -163,7 +163,7 @@ export function ProjectVisionSection() {
             {isPlaying && (
               <div
                 key={currentSlide} // Elemento crucial: Reinicia o CSS Keyframe ao mudar o index
-                className="absolute top-0 left-0 h-[2px] bg-gradient-to-r from-violet-500 to-fuchsia-500 z-50 origin-left"
+                className="absolute top-0 left-0 h-0.5 bg-linear-to-r from-violet-500 to-fuchsia-500 z-50 origin-left"
                 style={{
                   animation: `progressLinear ${SLIDE_DURATION}ms linear forwards`,
                 }}
@@ -171,7 +171,7 @@ export function ProjectVisionSection() {
             )}
 
             {/* HEADER DO CONTEXTO DE ENGENHARIA */}
-            <div className="w-full p-4 flex justify-between items-center bg-gradient-to-b from-black/80 via-black/40 to-transparent z-40 absolute top-0 left-0">
+            <div className="w-full p-4 flex justify-between items-center bg-linear-to-b from-black/80 via-black/40 to-transparent z-40 absolute top-0 left-0">
               <span className="font-mono text-[9px] text-zinc-400 tracking-[0.4em] uppercase flex items-center gap-2">
                 <span className={`h-1.5 w-1.5 rounded-full ${isPlaying ? 'bg-emerald-500 animate-pulse' : 'bg-amber-500'}`} />
                 Showcase_Module // Slide_0{currentSlide + 1}_of_0{demoSlides.length}
@@ -194,11 +194,11 @@ export function ProjectVisionSection() {
                 className="object-cover animate-in fade-in zoom-in-95 duration-500"
               />
               {/* Overlay de gradiente para garantir contraste e leitura perfeita do texto */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/20 pointer-events-none" />
+              <div className="absolute inset-0 bg-linear-to-t from-black via-transparent to-black/20 pointer-events-none" />
             </div>
 
             {/* CONTAINER INFERIOR (Textos e Painel de Controle) */}
-            <div className="absolute bottom-0 left-0 w-full p-6 md:p-8 bg-gradient-to-t from-black via-black/90 to-transparent z-40 flex flex-col md:flex-row md:items-end justify-between gap-6">
+            <div className="absolute bottom-0 left-0 w-full p-6 md:p-8 bg-linear-to-t from-black via-black/90 to-transparent z-40 flex flex-col md:flex-row md:items-end justify-between gap-6">
 
               {/* Identificadores do Slide Ativo */}
               <div className="max-w-2xl">
@@ -211,7 +211,7 @@ export function ProjectVisionSection() {
               </div>
 
               {/* DOCK DE COMANDOS PREMIUM */}
-              <div className="flex items-center gap-4 self-center md:self-end bg-white/[0.03] border border-white/5 backdrop-blur-md px-4 py-2.5 rounded-full">
+              <div className="flex items-center gap-4 self-center md:self-end bg-white/3 border border-white/5 backdrop-blur-md px-4 py-2.5 rounded-full">
 
                 <button
                   onClick={prevSlide}
@@ -237,7 +237,7 @@ export function ProjectVisionSection() {
                   <ChevronRight size={18} />
                 </button>
 
-                <div className="h-4 w-[1px] bg-white/10 mx-1" />
+                <div className="h-4 w-px bg-white/10 mx-1" />
 
                 {/* Dots Indicadores (Bullets) */}
                 <div className="flex gap-1.5">

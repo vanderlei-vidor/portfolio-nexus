@@ -1,5 +1,6 @@
 @import "tailwindcss";
 
+/* O validador do VS Code pode chiar no @theme, mas pro Tailwind v4 está perfeito */
 @theme {
   /* Cores */
   --color-accent-rgb: 124, 58, 237;
@@ -48,6 +49,5 @@ button {
   appearance: none;
 }
 
-button:hover {
-  /* Controle feito localmente via Framer Motion */
-}
+/* ⚡ SOLUÇÃO DO HOVER: Como o controle é via Framer Motion, 
+   podemos apenas remover o bloco vazio para limpar o aviso do terminal */

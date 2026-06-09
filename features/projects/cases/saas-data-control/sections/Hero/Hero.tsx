@@ -17,14 +17,14 @@ export function Hero() {
             </span>
 
             <h1 className="hero-title">
-              Gestor de Tarefas
+              Task Manager
               <span className="hero-title-accent"> Pro</span>
             </h1>
 
             <p className="hero-description">
-              Plataforma corporativa desenvolvida para
-              gerenciamento de tarefas, produtividade
-              e acompanhamento operacional em escala empresarial.
+              Corporate platform developed for
+              task management, productivity
+              and operational monitoring at enterprise scale.
             </p>
 
             <div className="hero-stack">
@@ -39,22 +39,22 @@ export function Hero() {
           <div className="hero-image-wrapper">
             <div className="hero-image-glow" />
             <div className="hero-image">
-              
+
               {/* --- IMPLEMENTAÇÃO DO NEXT/IMAGE TURBINADO --- */}
               <Image
                 src="/projects/saas-data-control/textures/hero-dashboard.webp"
                 alt="Task Manager Dashboard"
-                
+
                 // Dimensões ideais para um mockup de dashboard/SaaS (proporção widescreen)
                 width={1200}
                 height={750}
-                
+
                 // CRUCIAL: Diz ao Next.js para pré-carregar essa imagem imediatamente no HTML,
                 // destruindo qualquer delay de carregamento e melhorando o LCP ao máximo!
                 priority
-                
+
                 // Mantém a compatibilidade com as classes do seu Hero.css
-                className="hero-dashboard-img" 
+                className="hero-dashboard-img"
               />
 
             </div>

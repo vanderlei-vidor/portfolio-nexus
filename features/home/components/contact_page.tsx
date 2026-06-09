@@ -6,6 +6,18 @@ import { gsap } from "gsap";
 import { GitBranch, LinkIcon, Mail, ArrowLeft, Copy, Check } from "lucide-react";
 import Link from "next/link";
 
+import type { Metadata } from "next";
+
+// 🚀 Adicione este objeto no topo do arquivo
+export const metadata: Metadata = {
+  title: "Contact",
+  description: "Vamos construir o próximo ecossistema digital premium juntos. Entre em contato para parcerias e projetos.",
+  openGraph: {
+    title: "Contact | Portfolio Nexus",
+    description: "Vamos construir o próximo ecossistema digital premium juntos. Entre em contato para parcerias e projetos.",
+  }
+};
+
 export default function ContactPage() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [copied, setCopied] = useState(false);
@@ -47,8 +59,8 @@ export default function ContactPage() {
     >
       
       {/* Background Decor */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff03_1px,transparent_1px),linear-gradient(to_bottom,#ffffff03_1px,transparent_1px)] bg-[size:60px_60px]" />
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-gradient-to-b from-blue-500/10 via-transparent to-transparent pointer-events-none" />
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff03_1px,transparent_1px),linear-gradient(to_bottom,#ffffff03_1px,transparent_1px)] bg-size-[60px_60px]" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-linear-to-b from-blue-500/10 via-transparent to-transparent pointer-events-none" />
 
       <div className="relative z-10 w-full max-w-2xl">
         {/* Botão Voltar */}
@@ -67,7 +79,7 @@ export default function ContactPage() {
           
           {/* Email Card */}
           {/* 🔥 Alterado: border-white/5 -> border-white/10 e bg-white/[0.02] -> bg-white/[0.03] */}
-          <div className="contact-item group relative p-6 rounded-2xl border border-white/10 bg-white/[0.03] hover:bg-white/[0.06] hover:border-blue-500/30 transition-all duration-300">
+          <div className="contact-item group relative p-6 rounded-2xl border border-white/10 bg-white/3 hover:bg-white/6 hover:border-blue-500/30 transition-all duration-300">
             <div className="flex items-center justify-between flex-wrap gap-4 sm:flex-nowrap">
               <div className="flex items-center gap-4">
                 <div className="p-3 rounded-xl bg-blue-500/10 text-blue-400 border border-blue-500/20">
@@ -96,7 +108,7 @@ export default function ContactPage() {
               href="https://linkedin.com/in/vanderlei-vidor-979593410" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="contact-item group p-6 rounded-2xl border border-white/10 bg-white/[0.03] hover:bg-white/[0.06] hover:border-blue-500/30 transition-all duration-300 flex items-center gap-4"
+              className="contact-item group p-6 rounded-2xl border border-white/10 bg-white/3 hover:bg-white/6 hover:border-blue-500/30 transition-all duration-300 flex items-center gap-4"
             >
               <div className="p-3 rounded-xl bg-blue-500/10 text-blue-400 border border-blue-500/20 group-hover:scale-110 transition-transform duration-300">
                 <LinkIcon size={22} />
@@ -112,7 +124,7 @@ export default function ContactPage() {
               href="https://github.com/vanderlei-vidor" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="contact-item group p-6 rounded-2xl border border-white/10 bg-white/[0.03] hover:bg-white/[0.06] hover:border-zinc-500/30 transition-all duration-300 flex items-center gap-4"
+              className="contact-item group p-6 rounded-2xl border border-white/10 bg-white/3 hover:bg-white/6 hover:border-zinc-500/30 transition-all duration-300 flex items-center gap-4"
             >
               <div className="p-3 rounded-xl bg-zinc-500/10 text-zinc-300 border border-white/10 group-hover:scale-110 transition-transform duration-300">
                 <GitBranch size={22} />

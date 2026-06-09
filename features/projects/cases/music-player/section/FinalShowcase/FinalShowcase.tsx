@@ -82,32 +82,40 @@ export default function FinalShowcase() {
   const [isDemoOpen, setIsDemoOpen] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true);
-  
-  // ✅ CORREÇÃO: Touch/Swipe support
+
   const touchStartX = useRef<number | null>(null);
   const touchEndX = useRef<number | null>(null);
-  
+
   const SLIDE_DURATION = 4000;
   const timerRef = useRef<NodeJS.Timeout | null>(null);
   const router = useRouter();
 
-  // ✅ CORREÇÃO: Timer mais robusto
+  // ✅ CORREÇÃO: Declarando os handlers com useCallback no topo do componente
+  const nextSlide = useCallback(() => {
+    setCurrentSlide((prev) => (prev === musicPlayerSlides.length - 1 ? 0 : prev + 1));
+  }, []);
+
+  const prevSlide = useCallback(() => {
+    setCurrentSlide((prev) => (prev === 0 ? musicPlayerSlides.length - 1 : prev - 1));
+  }, []);
+
+  // ✅ CORREÇÃO: Timer robusto com a dependência correta de nextSlide
   useEffect(() => {
     if (isDemoOpen && isPlaying) {
       timerRef.current = setInterval(() => {
-        setCurrentSlide((prev) => (prev === musicPlayerSlides.length - 1 ? 0 : prev + 1));
+        nextSlide();
       }, SLIDE_DURATION);
     }
-    
+
     return () => {
       if (timerRef.current) {
         clearInterval(timerRef.current);
         timerRef.current = null;
       }
     };
-  }, [isDemoOpen, isPlaying]);
+  }, [isDemoOpen, isPlaying, nextSlide]);
 
-  // ✅ CORREÇÃO: Keyboard navigation
+  // ✅ CORREÇÃO: Keyboard navigation agora enxerga as funções e inclui as dependências corretas
   useEffect(() => {
     if (!isDemoOpen) return;
 
@@ -124,16 +132,16 @@ export default function FinalShowcase() {
           break;
         case " ":
           e.preventDefault();
-          setIsPlaying(!isPlaying);
+          setIsPlaying((prev) => !prev);
           break;
       }
     };
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [isDemoOpen, isPlaying]);
+  }, [isDemoOpen, prevSlide, nextSlide]);
 
-  // ✅ CORREÇÃO: Focus trap para acessibilidade
+  // Focus trap básico para controle de overflow do body
   useEffect(() => {
     if (isDemoOpen) {
       document.body.style.overflow = "hidden";
@@ -145,15 +153,7 @@ export default function FinalShowcase() {
     };
   }, [isDemoOpen]);
 
-  const nextSlide = useCallback(() => {
-    setCurrentSlide((prev) => (prev === musicPlayerSlides.length - 1 ? 0 : prev + 1));
-  }, []);
-
-  const prevSlide = useCallback(() => {
-    setCurrentSlide((prev) => (prev === 0 ? musicPlayerSlides.length - 1 : prev - 1));
-  }, []);
-
-  // ✅ CORREÇÃO: Swipe handlers
+  // Swipe handlers
   const handleTouchStart = (e: React.TouchEvent) => {
     touchStartX.current = e.touches[0].clientX;
   };
@@ -164,7 +164,7 @@ export default function FinalShowcase() {
 
   const handleTouchEnd = () => {
     if (!touchStartX.current || !touchEndX.current) return;
-    
+
     const distance = touchStartX.current - touchEndX.current;
     const minSwipeDistance = 50;
 
@@ -190,7 +190,7 @@ export default function FinalShowcase() {
       <div className="pointer-events-none absolute inset-0 opacity-[0.03] mix-blend-soft-light" style={{ backgroundImage: "url('/textures/noise-webp.webp')" }} />
 
       {/* AMBIENT GLOW */}
-      <div className="absolute left-1/2 top-1/2 h-[600px] w-[600px] sm:h-[900px] sm:w-[900px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-violet-500/10 blur-[150px] sm:blur-[220px]" />
+      <div className="absolute left-1/2 top-1/2 h-150 w-150 sm:h-225 sm:w-225 -translate-x-1/2 -translate-y-1/2 rounded-full bg-violet-500/10 blur-[150px] sm:blur-[220px]" />
 
       {/* MAIN LAYOUT CONTENT */}
       <div className="relative z-10 mx-auto flex max-w-7xl flex-col items-center text-center w-full">
@@ -198,8 +198,8 @@ export default function FinalShowcase() {
         {/* DEVICE MOCKUP */}
         <div className="relative mb-12 sm:mb-24">
           <div className="absolute inset-0 -z-10 rounded-full bg-violet-500/20 blur-[120px] sm:blur-[180px]" />
-          <div className="relative w-[260px] sm:w-[320px] animate-[float_6s_ease-in-out_infinite]">
-            <div className="overflow-hidden rounded-[2.5rem] sm:rounded-[3rem] border border-white/10 bg-zinc-950 p-[2px] shadow-[0_40px_120px_rgba(0,0,0,0.9)]">
+          <div className="relative w-65 sm:w-[320px] animate-[float_6s_ease-in-out_infinite]">
+            <div className="overflow-hidden rounded-[2.5rem] sm:rounded-[3rem] border border-white/10 bg-zinc-950 p-0.5 shadow-[0_40px_120px_rgba(0,0,0,0.9)]">
               <Image
                 src="/projects/music-player/textures/tela_player.webp"
                 alt="Music Player Architecture Showcase"
@@ -209,7 +209,7 @@ export default function FinalShowcase() {
                 priority
                 sizes="(max-width: 640px) 260px, 320px"
               />
-              <div className="absolute inset-0 rounded-[2.3rem] sm:rounded-[2.8rem] bg-gradient-to-tr from-white/0 via-white/[0.05] to-white/0" />
+              <div className="absolute inset-0 rounded-[2.3rem] sm:rounded-[2.8rem] bg-linear-to-tr from-white/0 via-white/5 to-white/0" />
             </div>
           </div>
         </div>
@@ -246,7 +246,7 @@ export default function FinalShowcase() {
               className="group relative w-full sm:w-auto px-10 py-4 sm:px-12 sm:py-5 bg-white text-black rounded-full font-bold text-xs sm:text-sm overflow-hidden transition-all duration-500 hover:scale-105 active:scale-95 shadow-[0_0_40px_rgba(255,255,255,0.1)]"
             >
               <span className="relative z-10">Start a Project</span>
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-black/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+              <div className="absolute inset-0 bg-linear-to-r from-transparent via-black/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
             </button>
 
             <div className="flex items-center justify-center gap-4 w-full sm:w-auto">
@@ -256,7 +256,7 @@ export default function FinalShowcase() {
                   setIsPlaying(true);
                   setIsDemoOpen(true);
                 }}
-                className="flex-1 sm:flex-none px-6 py-4 sm:px-8 text-[10px] sm:text-xs font-mono uppercase tracking-widest text-zinc-400 hover:text-white border border-white/5 hover:border-white/20 rounded-full transition-all duration-500 bg-white/[0.02] backdrop-blur-md"
+                className="flex-1 sm:flex-none px-6 py-4 sm:px-8 text-[10px] sm:text-xs font-mono uppercase tracking-widest text-zinc-400 hover:text-white border border-white/5 hover:border-white/20 rounded-full transition-all duration-500 bg-white/2 backdrop-blur-md"
                 aria-label="Open demo slideshow"
               >
                 Watch Demo
@@ -282,10 +282,10 @@ export default function FinalShowcase() {
         </div>
       </div>
 
-      {/* --- 🔥 MODAL INTERATIVO AAA (CORRIGIDO E OTIMIZADO) --- */}
+      {/* MODAL INTERATIVO */}
       {isDemoOpen && (
         <div
-          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/95 backdrop-blur-2xl p-3 sm:p-6 md:p-12 animate-in fade-in duration-500"
+          className="fixed inset-0 z-100 flex items-center justify-center bg-black/95 backdrop-blur-4xl p-3 sm:p-6 md:p-12 animate-in fade-in duration-500"
           onClick={() => setIsDemoOpen(false)}
           role="dialog"
           aria-modal="true"
@@ -303,7 +303,7 @@ export default function FinalShowcase() {
             {isPlaying && (
               <div
                 key={currentSlide}
-                className="absolute top-0 left-0 h-[2px] bg-gradient-to-r from-blue-500 to-indigo-500 z-50 origin-left"
+                className="absolute top-0 left-0 h-0.5 bg-linear-to-r from-blue-500 to-indigo-500 z-50 origin-left"
                 style={{
                   animation: `progressLinear ${SLIDE_DURATION}ms linear forwards`,
                 }}
@@ -311,7 +311,7 @@ export default function FinalShowcase() {
             )}
 
             {/* HEADER METADATA */}
-            <div className="absolute top-0 left-0 w-full p-3 sm:p-4 flex justify-between items-center bg-gradient-to-b from-black/90 to-transparent z-50">
+            <div className="absolute top-0 left-0 w-full p-3 sm:p-4 flex justify-between items-center bg-linear-to-b from-black/90 to-transparent z-50">
               <span className="font-mono text-[8px] sm:text-[9px] text-white/40 tracking-[0.3em] sm:tracking-[0.4em] uppercase flex items-center gap-1.5">
                 <span className={`h-1 w-1 sm:h-1.5 sm:w-1.5 rounded-full ${isPlaying ? 'bg-blue-500 animate-pulse' : 'bg-amber-500'}`} />
                 Telemetry // Stage_0{currentSlide + 1}
@@ -325,7 +325,7 @@ export default function FinalShowcase() {
               </button>
             </div>
 
-            {/* ✅ CORREÇÃO: Container da imagem com object-contain SEMPRE */}
+            {/* Container da imagem */}
             <div className="relative w-full aspect-video md:absolute md:inset-0 md:h-full md:w-full flex items-center justify-center bg-black">
               <Image
                 src={musicPlayerSlides[currentSlide].src}
@@ -335,11 +335,11 @@ export default function FinalShowcase() {
                 className="object-contain animate-in fade-in zoom-in-95 duration-500"
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
               />
-              <div className="hidden md:block absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/20 pointer-events-none" />
+              <div className="hidden md:block absolute inset-0 bg-linear-to-t from-black via-transparent to-black/20 pointer-events-none" />
             </div>
 
             {/* FOOTER DO MODAL */}
-            <div className="relative md:absolute md:bottom-0 md:left-0 w-full p-4 sm:p-6 md:p-8 bg-zinc-950 md:bg-gradient-to-t md:from-black md:via-black/95 md:to-transparent z-40 flex flex-col md:flex-row md:items-end justify-between gap-4 md:gap-6 border-t border-white/5 md:border-none">
+            <div className="relative md:absolute md:bottom-0 md:left-0 w-full p-4 sm:p-6 md:p-8 bg-zinc-950 md:bg-linear-to-t md:from-black md:via-black/95 md:to-transparent z-40 flex flex-col md:flex-row md:items-end justify-between gap-4 md:gap-6 border-t border-white/5 md:border-none">
 
               {/* TEXTO EXPLICATIVO */}
               <div className="max-w-2xl text-left">
@@ -352,7 +352,7 @@ export default function FinalShowcase() {
               </div>
 
               {/* DOCK DOS CONTROLES */}
-              <div className="flex items-center justify-center gap-4 bg-white/[0.02] sm:bg-white/[0.03] border border-white/5 backdrop-blur-md px-4 py-2 sm:py-2.5 rounded-full self-stretch sm:self-center md:self-end">
+              <div className="flex items-center justify-center gap-4 bg-white/2 sm:bg-white/3 border border-white/5 backdrop-blur-md px-4 py-2 sm:py-2.5 rounded-full self-stretch sm:self-center md:self-end">
                 <button
                   onClick={prevSlide}
                   className="p-1 text-zinc-400 hover:text-white transition-colors"
@@ -377,7 +377,7 @@ export default function FinalShowcase() {
                   <ChevronRight size={16} />
                 </button>
 
-                <div className="h-4 w-[1px] bg-white/10 mx-0.5" />
+                <div className="h-4 w-px bg-white/10 mx-0.5" />
 
                 {/* Bullets */}
                 <div className="flex gap-1">
@@ -385,9 +385,8 @@ export default function FinalShowcase() {
                     <button
                       key={index}
                       onClick={() => setCurrentSlide(index)}
-                      className={`h-1 sm:h-1.5 rounded-full transition-all duration-500 ${
-                        index === currentSlide ? "w-3 sm:w-4 bg-blue-500" : "w-1 sm:w-1.5 bg-zinc-600"
-                      }`}
+                      className={`h-1 sm:h-1.5 rounded-full transition-all duration-500 ${index === currentSlide ? "w-3 sm:w-4 bg-blue-500" : "w-1 sm:w-1.5 bg-zinc-600"
+                        }`}
                       aria-label={`Go to slide ${index + 1}`}
                     />
                   ))}
@@ -399,7 +398,7 @@ export default function FinalShowcase() {
           </div>
         </div>
       )}
-      
+
     </section>
   );
 }

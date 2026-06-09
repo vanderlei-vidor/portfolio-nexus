@@ -8,7 +8,6 @@
   isolation: isolate;
 }
 
-/* O contêiner interno herda a fixação de tela cheia controlada pelo GSAP Pin */
 .digital-gap__pin-container {
   position: relative;
   width: 100%;
@@ -20,7 +19,6 @@
   padding: 2rem;
 }
 
-/* Background grid refinado com opacidade reduzida para contraste cirúrgico */
 .digital-gap__grid {
   position: absolute;
   inset: 0;
@@ -88,11 +86,12 @@
   font-family: monospace;
 }
 
-/* Estrutura de Máscaras para a revelação cinemática das linhas */
+/* Evita que letras com "pernas" ou acentos sejam cortadas no overflow hidden */
 .digital-gap__title-line {
   overflow: hidden;
   display: block;
-  padding-bottom: 0.05em;
+  padding-bottom: 0.12em;
+  margin-bottom: -0.12em;
 }
 
 .digital-gap__title-line span {
@@ -103,7 +102,7 @@
 .digital-gap__title {
   color: white;
   font-size: clamp(2.8rem, 7.5vw, 6.5rem);
-  line-height: 0.95;
+  line-height: 1.05;
   margin: 0 0 2rem;
   font-weight: 800;
   letter-spacing: -0.03em;
@@ -129,7 +128,7 @@
    FRAGMENTS (CARDS DISCONECTADOS)
    ========================================================================== */
 .digital-gap__fragments {
-  margin-top: 5rem;
+  margin-top: 4rem;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
@@ -182,7 +181,7 @@
    ========================================================================== */
 .digital-gap__divider {
   width: 1px;
-  height: 0px; /* Expandido via GSAP */
+  height: 0px;
   opacity: 0;
   margin: 3rem auto;
   background: linear-gradient(to bottom, transparent, #3b82f6, transparent);
@@ -206,7 +205,8 @@
 .manifesto-word {
   overflow: hidden;
   display: inline-block;
-  padding-bottom: 0.05em;
+  padding-bottom: 0.12em;
+  margin-bottom: -0.12em;
 }
 
 .manifesto-word span {
@@ -245,7 +245,7 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%) scale(0);
+  /* ⚡ CORREÇÃO DO DESCENTRALIZADO: Zeramos os transforms aqui e deixamos o GSAP cuidar do X/Y nativo */
   width: 260px;
   height: 260px;
   border-radius: 50%;
@@ -274,7 +274,7 @@
   gap: 8px;
   padding: 28px 40px;
   border-radius: 24px;
-  background: rgba(10, 15, 30, 0.7);
+  background: rgba(3, 3, 3, 0.85);
   border: 1px solid rgba(96, 165, 250, 0.3);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
@@ -297,31 +297,65 @@
 }
 
 /* ==========================================================================
-   RESPONSIVE DESIGN SYSTEM
+   RESPONSIVE DESIGN SYSTEM (OTIMIZADO)
    ========================================================================== */
 @media (max-width: 768px) {
   .digital-gap__pin-container {
     padding: 1rem;
   }
+
+  .digital-gap__label {
+    margin-bottom: 1rem;
+  }
+
   .digital-gap__title {
-    font-size: clamp(2.2rem, 10vw, 3.5rem);
+    font-size: clamp(1.8rem, 8vw, 2.6rem);
+    line-height: 1.1;
+    margin-bottom: 1rem;
   }
+
+  .digital-gap__description {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    max-width: 100%;
+  }
+
   .digital-gap__fragments {
-    margin-top: 3rem;
-    gap: 0.6rem;
+    margin-top: 1.5rem; /* Reduzido drasticamente para caber na Viewport */
+    gap: 0.5rem;
   }
+
   .digital-gap__fragment {
-    padding: 0.7rem 1.1rem;
+    padding: 0.5rem 0.9rem;
+    gap: 8px;
   }
+
+  .fragment-text {
+    font-size: 0.8rem;
+  }
+
   .fragment-status {
     display: none;
   }
-  .digital-gap__manifesto {
-    font-size: 1.8rem;
+
+  .digital-gap__divider {
+    margin: 1.5rem auto;
   }
+
+  .digital-gap__manifesto {
+    font-size: 1.5rem;
+  }
+
+  .convergence-point {
+    width: 200px;
+    height: 200px;
+  }
+
   .convergence-core {
     padding: 20px 30px;
+    border-radius: 16px;
   }
+
   .convergence-label {
     font-size: 1rem;
   }

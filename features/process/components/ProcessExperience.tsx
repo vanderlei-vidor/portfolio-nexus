@@ -7,6 +7,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useLenis } from "lenis/react";
 import Link from "next/link";
 
+
 gsap.registerPlugin(ScrollTrigger);
 
 const sectionColors = [
@@ -52,7 +53,7 @@ export default function ProcessExperience() {
 
     const ctx = gsap.context(() => {
       const sections = sectionsRef.current.filter(Boolean);
-      
+
       // Distância exata que o container vai andar para o lado
       const getScrollDistance = () => horizontalWrapper.scrollWidth - window.innerWidth;
 
@@ -61,8 +62,9 @@ export default function ProcessExperience() {
         x: 0,
       });
 
-      // 🔥 ANIMAÇÃO PRINCIPAL DO SCROLL HORIZONTAL CORRIGIDA
-      const horizontalScroll = gsap.to(horizontalWrapper, {
+      
+      // 🔥 ANIMAÇÃO PRINCIPAL DO SCROLL HORIZONTAL CORRIGIDA (Sem a variável não usada)
+      gsap.to(horizontalWrapper, {
         x: () => -getScrollDistance(),
         ease: "none",
         scrollTrigger: {
@@ -70,10 +72,9 @@ export default function ProcessExperience() {
           trigger: mainContainer,
           scrub: 1,
           start: "top top",
-          // Define dinamicamente o fim baseado na largura real das seções
-          end: () => `+=${getScrollDistance()}`, 
-          pin: true,           
-          pinSpacing: true,    // Deixa o GSAP empurrar o resto da página para baixo perfeitamente
+          end: () => `+=${getScrollDistance()}`,
+          pin: true,
+          pinSpacing: true,
           invalidateOnRefresh: true,
           snap: {
             snapTo: 1 / (sections.length - 1),
@@ -123,7 +124,7 @@ export default function ProcessExperience() {
   return (
     <>
       {/* Technical Progress Indicator */}
-      <div className="fixed top-0 left-0 w-full h-[1px] bg-white/5 z-50">
+      <div className="fixed top-0 left-0 w-full h-px bg-white/5 z-50">
         <div ref={progressBarRef} className="w-full h-full bg-white origin-left scale-x-0 shadow-[0_0_15px_rgba(255,255,255,0.5)]" />
       </div>
 
@@ -135,7 +136,7 @@ export default function ProcessExperience() {
 
       {/* REMOVIDO: A altura em VH engessada que quebrava o fim do scroll */}
       <main ref={mainContainerRef} className="relative w-full bg-black">
-        
+
         {/* CORREÇÃO: Removido a classe 'sticky top-0' que brigava com o GSAP */}
         <div ref={stickyStageRef} className="h-screen w-full overflow-hidden bg-black border-y border-white/5 relative">
 
@@ -152,7 +153,7 @@ export default function ProcessExperience() {
             {/* Section 0: Hero */}
             <section
               ref={(el) => { if (el) sectionsRef.current[0] = el; }}
-              className="w-screen h-full flex flex-col items-center justify-center text-white px-6 flex-shrink-0 relative"
+              className="w-screen h-full flex flex-col items-center justify-center text-white px-6 shrink-0 relative"
             >
               <motion.span
                 initial={{ opacity: 0 }}
@@ -164,7 +165,7 @@ export default function ProcessExperience() {
 
               <h1 className="text-5xl md:text-8xl font-black text-center max-w-5xl leading-[0.9] tracking-tighter uppercase">
                 <span className="text-zinc-700">Engineering</span> <br />
-                <span className="bg-gradient-to-b from-white to-zinc-500 bg-clip-text text-transparent">Digital Excellence</span>
+                <span className="bg-linear-to-b from-white to-zinc-500 bg-clip-text text-transparent">Digital Excellence</span>
               </h1>
 
               <p className="mt-8 font-mono text-[10px] text-zinc-600 max-w-md text-center leading-relaxed">
@@ -211,9 +212,9 @@ export default function ProcessExperience() {
             {/* Final Section: Conversion */}
             <section
               ref={(el) => { if (el) sectionsRef.current[5] = el; }}
-              className="w-screen h-full flex flex-col items-center justify-center text-white px-6 flex-shrink-0 relative"
+              className="w-screen h-full flex flex-col items-center justify-center text-white px-6 shrink-0 relative"
             >
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-white/5 rounded-full blur-[120px] pointer-events-none" />
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-125 h-125 bg-white/5 rounded-full blur-[120px] pointer-events-none" />
 
               <h2 className="text-4xl md:text-7xl font-bold tracking-tighter uppercase mb-12 text-center">
                 Ready to scale <br /> your vision?
@@ -245,14 +246,14 @@ const ProcessStep = forwardRef<HTMLElement, ProcessStepProps>(({ step, tag, titl
   return (
     <section
       ref={ref}
-      className="w-screen h-full flex items-center justify-center flex-shrink-0 px-8 md:px-24 border-l border-white/5 relative group overflow-hidden"
+      className="w-screen h-full flex items-center justify-center shrink-0 px-8 md:px-24 border-l border-white/5 relative group overflow-hidden"
     >
       <div className="max-w-5xl w-full grid grid-cols-1 md:grid-cols-[100px_1fr] gap-12 items-start relative z-10">
         <div className="hidden md:flex flex-col gap-4">
           <span className="font-mono text-[10px] text-white/20 rotate-90 origin-left translate-x-4 whitespace-nowrap tracking-[0.5em]">
             REF_DATA_{step}
           </span>
-          <div className="w-[1px] h-32 bg-gradient-to-b from-white/20 to-transparent ml-2" />
+          <div className="w-px h-32 bg-linear-to-b from-white/20 to-transparent ml-2" />
         </div>
 
         <div className="flex flex-col">
@@ -272,7 +273,7 @@ const ProcessStep = forwardRef<HTMLElement, ProcessStepProps>(({ step, tag, titl
 
           <div className="mt-12 flex items-center gap-6 opacity-30 group-hover:opacity-100 transition-opacity duration-700">
             <div className="w-2 h-2 rounded-full bg-white animate-pulse" />
-            <div className="h-[1px] w-24 bg-white/20" />
+            <div className="h-px w-24 bg-white/20" />
             <span className="font-mono text-[9px] tracking-widest uppercase">System_Running</span>
           </div>
         </div>

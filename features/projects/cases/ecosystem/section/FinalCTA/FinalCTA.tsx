@@ -178,12 +178,10 @@ export default function FinalCTA() {
         </p>
 
         <div className="final-cta__actions">
-          <a href="#contact" className="final-cta__button final-cta__button--primary">
+          <a href="/contact_page" className="final-cta__button final-cta__button--primary">
             Start a Project
           </a>
-          <a href="#contact" className="final-cta__button final-cta__button--secondary">
-            Let&apos;s Talk
-          </a>
+          
         </div>
 
         <div className="final-cta__status">

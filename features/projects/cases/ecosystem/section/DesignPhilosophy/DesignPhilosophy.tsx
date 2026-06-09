@@ -60,7 +60,7 @@ export default function DesignPhilosophy() {
 
     section.addEventListener("mousemove", handleMouseMove);
     return () => section.removeEventListener("mousemove", handleMouseMove);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    
   }, []);
 
   // GSAP Animations

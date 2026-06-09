@@ -1,19 +1,22 @@
-// app/contexts/MagneticContext.tsx
 "use client";
-import React, { createContext, useState, useContext, ReactNode } from 'react';
+import React, { createContext, useContext, ReactNode } from 'react';
+import { useMotionValue, MotionValue } from 'framer-motion';
 
 interface MagneticContextType {
-    magneticOffset: { x: number; y: number };
-    setMagneticOffset: (offset: { x: number; y: number }) => void;
+    // Trocamos o estado bruto por MotionValues estáveis
+    magneticX: MotionValue<number>;
+    magneticY: MotionValue<number>;
 }
 
 const MagneticContext = createContext<MagneticContextType | undefined>(undefined);
 
 export const MagneticProvider = ({ children }: { children: ReactNode }) => {
-    const [magneticOffset, setMagneticOffset] = useState({ x: 0, y: 0 });
+    // MotionValues NÃO disparam re-renderizações no componente quando mudam de valor!
+    const magneticX = useMotionValue(0);
+    const magneticY = useMotionValue(0);
 
     return (
-        <MagneticContext.Provider value={{ magneticOffset, setMagneticOffset }}>
+        <MagneticContext.Provider value={{ magneticX, magneticY }}>
             {children}
         </MagneticContext.Provider>
     );

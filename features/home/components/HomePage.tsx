@@ -1,27 +1,40 @@
-import About from "./About";
-import Contact from "./Contact";
+import dynamic from 'next/dynamic';
 import Hero from "./Hero";
-import Stack from "./Stack";
-import Terminal from "./Terminal";
+import DeferredHomeEffects from "./DeferredHomeEffects";
+import DeferredSection from "./DeferredSection";
 import Projects from "@/features/projects/components/Projects";
-import Cursor from "@/shared/effects/Cursor";
-import Loader from "@/shared/effects/Loader";
-import ScrollReveal from "@/shared/effects/ScrollReveal";
+import TerminalWrapper from "./TerminalWrapper"; // 🚀 Importa o novo wrapper aqui
+
+// Seções que podem ser pré-renderizadas no servidor (HTML estático inicial)
+const About = dynamic(() => import("./About"), { ssr: true });
+const Stack = dynamic(() => import("./Stack"), { ssr: true });
+const Contact = dynamic(() => import("./Contact"), { ssr: true });
 
 export default function HomePage() {
   return (
-    <main className="relative min-h-screen overflow-x-hidden">
-      <Loader />
-      <ScrollReveal />
-
+    <main className="relative min-h-screen overflow-x-hidden bg-[#030712]">
+      {/* Dobra Crítica - Renderização instantânea */}
       <Hero />
       <Projects />
-      <About />
-      <Stack />
-      <Terminal />
-      <Contact />
 
-      <Cursor />
+      {/* Seções secundárias */}
+      <DeferredSection minHeight="900px">
+        <About />
+      </DeferredSection>
+      <DeferredSection minHeight="520px">
+        <Stack />
+      </DeferredSection>
+      
+      {/* 🛠️ O TerminalWrapper resolve o erro de SSR mantendo a performance */}
+      <DeferredSection minHeight="720px">
+        <TerminalWrapper />
+      </DeferredSection>
+      
+      <DeferredSection minHeight="760px">
+        <Contact />
+      </DeferredSection>
+
+      <DeferredHomeEffects />
     </main>
   );
 }

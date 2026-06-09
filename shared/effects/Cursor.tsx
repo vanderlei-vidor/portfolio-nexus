@@ -1,63 +1,49 @@
-// components/Cursor.tsx
 "use client";
+
 import { useEffect, useState } from "react";
-import { motion, useSpring, useMotionValue } from "framer-motion";
+import { motion, useSpring, useTransform } from "framer-motion";
 import { useMagnetic } from "@/shared/effects/magnetic/MagneticContext";
+import { useMouse } from "@/shared/context/MouseContext"; // 🚀 Consome o novo contexto
 
 export default function Cursor() {
-    const { magneticOffset } = useMagnetic(); // Consome o offset magnético
-    const [isMobile, setIsMobile] = useState(true); // Inicializa como true para evitar flash no mobile
+  const { mouseX, mouseY } = useMouse();
+  const { magneticX, magneticY } = useMagnetic();
+  const [isMobile, setIsMobile] = useState(true);
 
-    const cursorX = useMotionValue(0);
-    const cursorY = useMotionValue(0);
+  const springConfig = { damping: 25, stiffness: 150, mass: 0.1 };
 
-    // Configuração de mola para física natural, agora influenciada pelo magneticOffset
-    const springConfig = { damping: 25, stiffness: 150, mass: 0.1 }; // Ajustado massa para mais responsividade
-    const springX = useSpring(cursorX, springConfig);
-    const springY = useSpring(cursorY, springConfig);
+  // 🔥 Mapeamento reativo puro: junta o mouse global com o offset magnético instantaneamente
+  const rawX = useTransform([mouseX, magneticX], ([x, mx]) => (x as number) - 12 + (mx as number));
+  const rawY = useTransform([mouseY, magneticY], ([y, my]) => (y as number) - 12 + (my as number));
 
-    useEffect(() => {
-        // 🚀 Detecta se o dispositivo possui suporte a touch ou tela menor que 768px (Mobile/Tablet)
-        const checkDevice = () => {
-            const hasTouch = window.matchMedia("(pointer: coarse)").matches ||
-                ("ontouchstart" in window) ||
-                (navigator.maxTouchPoints > 0);
-            const isSmallScreen = window.innerWidth < 768;
+  const springX = useSpring(rawX, springConfig);
+  const springY = useSpring(rawY, springConfig);
 
-            setIsMobile(hasTouch || isSmallScreen);
-        };
+  useEffect(() => {
+    const checkDevice = () => {
+      const hasTouch = window.matchMedia("(pointer: coarse)").matches ||
+        ("ontouchstart" in window) ||
+        navigator.maxTouchPoints > 0;
+      const isSmallScreen = window.innerWidth < 768;
 
-        // Executa a checagem inicial
-        checkDevice();
-        window.addEventListener("resize", checkDevice);
+      setIsMobile(hasTouch || isSmallScreen);
+    };
 
-        const moveCursor = (e: MouseEvent) => {
-            // Aplica o offset magnético à posição do cursor
-            cursorX.set(e.clientX - 12 + magneticOffset.x);
-            cursorY.set(e.clientY - 12 + magneticOffset.y);
-        };
+    checkDevice();
+    window.addEventListener("resize", checkDevice, { passive: true });
 
-        // Só adiciona o listener de mouse se NÃO for dispositivo móvel
-        if (!isMobile) {
-            window.addEventListener("mousemove", moveCursor);
-        }
+    return () => window.removeEventListener("resize", checkDevice);
+  }, []);
 
-        return () => {
-            window.removeEventListener("resize", checkDevice);
-            window.removeEventListener("mousemove", moveCursor);
-        };
-    }, [cursorX, cursorY, magneticOffset, isMobile]);
+  if (isMobile) return null;
 
-    // 🔥 Se for Mobile/Touch, mata o componente aqui para sumir com a bolinha branca do canto da tela
-    if (isMobile) return null;
-
-    return (
-        <motion.div
-            className="fixed top-0 left-0 w-6 h-6 bg-white rounded-full pointer-events-none mix-blend-difference z-[9999]"
-            style={{ x: springX, y: springY }}
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            exit={{ scale: 0 }}
-        />
-    );
+  return (
+    <motion.div
+      className="fixed top-0 left-0 w-6 h-6 bg-white rounded-full pointer-events-none mix-blend-difference z-9999"
+      style={{ x: springX, y: springY }}
+      initial={{ scale: 0 }}
+      animate={{ scale: 1 }}
+      exit={{ scale: 0 }}
+    />
+  );
 }

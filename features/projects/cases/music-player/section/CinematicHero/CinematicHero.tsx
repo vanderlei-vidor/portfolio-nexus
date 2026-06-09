@@ -2,8 +2,8 @@ export default function CinematicHero() {
   return (
     <section className="relative flex min-h-screen items-center justify-center overflow-hidden bg-[#030303] px-4 sm:px-6">
 
-      {/* Ambient Background */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(59,130,246,0.18),transparent_40%)]" />
+      {/* Ambient Background - ⚡ Atualizado para usar a classe nativa do Tailwind v4 */}
+      <div className="absolute inset-0 bg-radial from-blue-500/18 via-transparent to-transparent to-40% [radial-gradient-position:top]" />
 
       <div 
         className="absolute inset-0 opacity-[0.03] bg-cover bg-center" 
@@ -22,8 +22,14 @@ export default function CinematicHero() {
           </span>
         </div>
 
-        {/* 🔥 HEADLINE CORRIGIDA: Responsividade pura na tipografia e no tracking */}
-        <h1 className="max-w-5xl text-4xl sm:text-5xl md:text-8xl lg:text-[10rem] font-bold tracking-[-0.04em] sm:tracking-[-0.06em] md:tracking-[-0.08em] text-white leading-[0.95] sm:leading-[0.9]">
+        {/* 🔥 HEADLINE AAA: Tipografia fluida matemática com clamp() e quebras seguras */}
+        <h1 
+          className="max-w-5xl font-bold text-white leading-[0.95] md:leading-[0.9] tracking-tighter wrap-break-word"
+          style={{
+            fontSize: "clamp(2.25rem, 8vw + 0.5rem, 9.5rem)" 
+            // 💡 Explicação: Mínimo de 36px em telas minúsculas, escala dinamicamente com a largura da tela (8vw) e trava no teto de 152px em telas gigantes!
+          }}
+        >
           Engineered
           <br />
           for immersive
@@ -39,7 +45,8 @@ export default function CinematicHero() {
 
         {/* Scroll Indicator */}
         <div className="mt-16 sm:mt-20 flex flex-col items-center gap-3">
-          <div className="h-16 w-[1px] bg-gradient-to-b from-white/40 to-transparent" />
+          {/* ⚡ Atualizado de bg-linear-to-b para a consistência global do Tailwind v4 */}
+          <div className="h-16 w-px bg-linear-to-b from-white/40 to-transparent" />
 
           <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-zinc-600">
             Scroll

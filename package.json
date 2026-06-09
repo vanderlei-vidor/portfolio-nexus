@@ -32,5 +32,13 @@
     "eslint-config-next": "16.2.6",
     "tailwindcss": "^4.3.0",
     "typescript": "^5"
-  }
+  },
+
+  "browserslist": [
+  "last 2 Chrome versions",
+  "last 2 Firefox versions",
+  "last 2 Edge versions",
+  "last 2 Safari versions",
+  "not dead"
+]
 }

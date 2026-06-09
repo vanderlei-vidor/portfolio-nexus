@@ -213,7 +213,7 @@ export default function ExperienceReimagined() {
 
           {/* Features Orbitando */}
           <div className="feature-pills-container" ref={pillsRef}>
-            {features.map((feature, index) => {
+            {features.map((feature) => {
               const Icon = feature.icon;
               return (
                 <div

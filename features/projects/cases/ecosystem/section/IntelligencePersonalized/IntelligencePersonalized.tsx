@@ -35,14 +35,14 @@ export default function IntelligencePersonalized() {
     if (!section || !system || !svg) return;
 
     const ctx = gsap.context(() => {
-      // ====== 1. REVELAÇÃO DA REDE CONFORME O SCROLL (IA DESPERTANDO) ======
       const nodes = system.querySelectorAll(".neural-node, .insight-pill, .neural-core");
       const lines = svg.querySelectorAll<SVGGeometryElement>(".neural-line");
       const pulses = svg.querySelectorAll<SVGGeometryElement>(".neural-pulse");
 
-      // Estado inicial limpo
       gsap.set([nodes, lines, pulses], { opacity: 0 });
-      gsap.set(lines, { strokeDashoffset: (_index, target: SVGGeometryElement) => target.getTotalLength() });
+      
+      // ⚡ SEGURANÇA MOBILE: Se o SVG for display:none, o fallback garante que o GSAP não quebre
+      gsap.set(lines, { strokeDashoffset: (_index, target: SVGGeometryElement) => target.getTotalLength() || 1000 });
 
       const awakeTimeline = gsap.timeline({
         scrollTrigger: {
@@ -53,9 +53,7 @@ export default function IntelligencePersonalized() {
         },
       });
 
-      // Acende o núcleo central de IA primeiro
       awakeTimeline.to(".neural-core", { opacity: 1, scale: 1, duration: 0.8, ease: "back.out(1.5)" })
-        // Estende os caminhos sinápticos para fora
         .to(lines, {
           opacity: 0.3,
           strokeDashoffset: 0,
@@ -63,21 +61,17 @@ export default function IntelligencePersonalized() {
           ease: "power2.inOut",
           stagger: 0.05
         }, "-=0.4")
-        // Acende os neurônios periféricos
         .to(".neural-node", { opacity: 1, y: 0, scale: 1, stagger: 0.08, duration: 0.6, ease: "power3.out" }, "-=0.8")
         .to(".insight-pill", { opacity: 1, scale: 1, stagger: 0.06, duration: 0.5 }, "-=0.4")
-        // Ativa os pulsos elétricos contínuos pós-despertar
         .to(pulses, {
           opacity: 0.8,
           duration: 0.3,
           onComplete: () => startSynapticPulses(pulses)
         }, "-=0.2");
 
-
-      // ====== 2. FUNÇÃO DE PULSOS NEURAIS LOOPING ======
       function startSynapticPulses(pulseElements: NodeListOf<SVGGeometryElement>) {
         pulseElements.forEach((pulse) => {
-          const length = pulse.getTotalLength();
+          const length = pulse.getTotalLength() || 1000;
           gsap.set(pulse, { strokeDasharray: `${length / 4} ${length}` });
           
           gsap.fromTo(pulse,
@@ -93,12 +87,10 @@ export default function IntelligencePersonalized() {
         });
       }
 
-      // ====== 3. INTERAÇÃO DO ORB SEGUINDO O MOUSE LEVEMENTE ======
       const handleMouseMove = (e: MouseEvent) => {
         const { clientX, clientY } = e;
         const rect = section.getBoundingClientRect();
         
-        // Coordenadas relativas à seção com amortecimento físico pelo GSAP
         gsap.to(orbRef.current, {
           x: clientX - rect.left,
           y: clientY - rect.top,
@@ -117,7 +109,6 @@ export default function IntelligencePersonalized() {
 
   return (
     <section className="intelligence" ref={sectionRef}>
-      {/* Background e Orb de Interação */}
       <div className="intelligence__background" />
       <div className="intelligence__mouse-orb" ref={orbRef} />
 
@@ -135,10 +126,8 @@ export default function IntelligencePersonalized() {
           identify weaknesses and guide growth.
         </p>
 
-        {/* Sistema Neural Conectado */}
         <div className="neural-system" ref={systemRef}>
           
-          {/* Malha de Conexão SVG Estreinada */}
           <svg className="neural-network-svg" ref={svgRef} viewBox="0 0 1000 800" preserveAspectRatio="none">
             <defs>
               <linearGradient id="neuralGrad" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -152,15 +141,12 @@ export default function IntelligencePersonalized() {
               </linearGradient>
             </defs>
 
-            {/* Linhas Estruturais das Sinapses (Mapeadas de acordo com as posições CSS) */}
-            {/* Conexões do Core para os Nodes Principais */}
             <path className="neural-line" d="M 500 400 L 500 80" stroke="url(#neuralGrad)" strokeWidth="1.5" fill="none" />
             <path className="neural-line" d="M 500 400 L 850 240" stroke="url(#neuralGrad)" strokeWidth="1.5" fill="none" />
             <path className="neural-line" d="M 500 400 L 850 560" stroke="url(#neuralGrad)" strokeWidth="1.5" fill="none" />
             <path className="neural-line" d="M 500 400 L 500 720" stroke="url(#neuralGrad)" strokeWidth="1.5" fill="none" />
             <path className="neural-line" d="M 500 400 L 150 400" stroke="url(#neuralGrad)" strokeWidth="1.5" fill="none" />
 
-            {/* Conexões Secundárias dos Insights para fechar a teia neural */}
             <path className="neural-line" d="M 500 80 L 220 180" stroke="url(#neuralGrad)" strokeWidth="1" fill="none" />
             <path className="neural-line" d="M 500 80 L 780 180" stroke="url(#neuralGrad)" strokeWidth="1" fill="none" />
             <path className="neural-line" d="M 150 400 L 220 180" stroke="url(#neuralGrad)" strokeWidth="1" fill="none" />
@@ -170,7 +156,6 @@ export default function IntelligencePersonalized() {
             <path className="neural-line" d="M 500 720 L 220 620" stroke="url(#neuralGrad)" strokeWidth="1" fill="none" />
             <path className="neural-line" d="M 500 720 L 780 620" stroke="url(#neuralGrad)" strokeWidth="1" fill="none" />
 
-            {/* Camada de Pulsos Elétricos sobrepostos */}
             <path className="neural-pulse" d="M 500 400 L 500 80" stroke="url(#pulseGrad)" strokeWidth="2.5" fill="none" />
             <path className="neural-pulse" d="M 500 400 L 850 240" stroke="url(#pulseGrad)" strokeWidth="2.5" fill="none" />
             <path className="neural-pulse" d="M 500 400 L 850 560" stroke="url(#pulseGrad)" strokeWidth="2.5" fill="none" />
@@ -178,7 +163,6 @@ export default function IntelligencePersonalized() {
             <path className="neural-pulse" d="M 500 400 L 150 400" stroke="url(#pulseGrad)" strokeWidth="2.5" fill="none" />
           </svg>
 
-          {/* Núcleo de Processamento (Core) */}
           <div className="neural-core">
             <div className="neural-core__glow" />
             <div className="neural-core__particles">
@@ -189,7 +173,6 @@ export default function IntelligencePersonalized() {
             <span>AI</span>
           </div>
 
-          {/* Nodes Principais */}
           {skills.map((skill, index) => (
             <div key={skill} className={`neural-node neural-node--${index + 1}`}>
               <span className="node-radar" />
@@ -197,7 +180,6 @@ export default function IntelligencePersonalized() {
             </div>
           ))}
 
-          {/* Nós de Insights Secundários */}
           {insights.map((item, index) => (
             <div key={item} className={`insight-pill insight-pill--${index + 1}`}>
               {item}

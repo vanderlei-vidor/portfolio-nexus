@@ -16,7 +16,7 @@ export const projectsRegistry = {
     cardDescription: "Offline audio experience",
     description:
       "Explore o case Music Player: uma experiencia offline de audio com interface imersiva, motion refinado e foco em performance.",
-    imageUrl: "/projects/music-player/textures/music-player.webp",
+    imageUrl: "/projects/music-player/textures/tela_card.webp",
     loadComponent: async () => (await import("./cases/music-player")).default,
   },
   "saas-data-control": {
@@ -43,7 +43,7 @@ export const projectsRegistry = {
     cardDescription: "Premium portfolio ecosystem",
     description:
       "Explore o case Portfolio Nexus: uma experiencia digital com base escalavel, narrativa visual e acabamento premium.",
-    imageUrl: "/projects/ecosystem/textures/portfolio-nexus.webp",
+    imageUrl: "/projects/ecosystem/textures/site_card.webp",
     loadComponent: async () => (await import("./cases/ecosystem")).default,
   },
 } satisfies Record<string, ProjectRegistryEntry>;

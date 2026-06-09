@@ -3,7 +3,7 @@
     min-height: 100vh;
     padding: 10rem 2rem;
     overflow: hidden;
-    background: #030712; /* Ajuste para o fundo escuro destacar o neon */
+    background: #030712; 
 }
 
 .evolution-container {
@@ -21,7 +21,7 @@
 
 .evolution-title {
     color: white;
-    font-size: clamp(3rem, 7vw, 6rem);
+    font-size: clamp(2.2rem, 7vw, 6rem); /* Ajustado o mínimo para telas menores */
     line-height: .95;
     margin-bottom: 2rem;
 }
@@ -51,13 +51,13 @@
     background: rgba(255, 255, 255, .05);
 }
 
-/* 🔥 A linha de energia neon controlada pelo GSAP */
+/* Linha de energia neon controlada pelo GSAP */
 .timeline-progress {
     position: absolute;
     top: 0;
     left: 50%;
     width: 2px;
-    height: 0%; /* Começa em zero e o GSAP aumenta */
+    height: 0%; 
     transform: translateX(-50%);
     background: linear-gradient(to bottom, #3b82f6, #60a5fa, #93c5fd);
     box-shadow: 0 0 12px #3b82f6, 0 0 25px rgba(96, 165, 250, 0.5);
@@ -79,7 +79,7 @@
     padding-left: 5rem;
 }
 
-/* Os pontos iniciam opacos e o GSAP acende eles */
+/* Pontos que acendem */
 .timeline-dot {
     position: absolute;
     top: 2rem;
@@ -97,15 +97,10 @@
     transition: box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
-.timeline-left .timeline-dot {
-    right: -35px;
-}
+.timeline-left .timeline-dot { right: -35px; }
+.timeline-right .timeline-dot { left: -35px; }
 
-.timeline-right .timeline-dot {
-    left: -35px;
-}
-
-/* Os cards iniciam transparentes para o GSAP fazer a entrada fluida */
+/* Cards */
 .timeline-card {
     padding: 2rem;
     border-radius: 28px;
@@ -117,7 +112,7 @@
 }
 
 .timeline-card:hover {
-    transform: translateY(-8px) !important; /* O !important garante que o hover funcione mesmo após a animação do GSAP injetar inline styles */
+    transform: translateY(-8px) !important; 
     border-color: rgba(96, 165, 250, .4);
     box-shadow: 0 20px 60px rgba(96, 165, 250, .12);
 }
@@ -146,7 +141,6 @@
     text-align: center;
 }
 
-/* Orb Final modificado para aceitar o "Glow" extra do GSAP */
 .evolution-orb {
     position: relative;
     width: 220px;
@@ -158,7 +152,6 @@
     justify-content: center;
     background: radial-gradient(circle, rgba(96, 165, 250, 0.15), transparent 70%);
     border: 1px solid rgba(255, 255, 255, .08);
-    /* Mantém o pulsar leve em idle, mas o tamanho mestre é controlado via scroll */
     animation: evolutionPulse 4s ease-in-out infinite;
     will-change: transform, box-shadow;
 }
@@ -187,10 +180,80 @@
 }
 
 @keyframes evolutionPulse {
-    0%, 100% {
-        transform: scale(1);
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.03); }
+}
+
+/* ==========================================================================
+   🔥 RESPONSIVIDADE ULTRA-PROFISSIONAL (MOBILE BREAKPOINT)
+   ========================================================================== */
+@media (max-width: 768px) {
+    .evolution {
+        padding: 6rem 1.25rem;
     }
-    50% {
-        transform: scale(1.03);
+
+    .evolution-description {
+        font-size: 1rem;
+        line-height: 1.7;
+        margin-bottom: 4rem;
+    }
+
+    /* Move a linha estrutural e o progresso para o canto esquerdo (24px da borda) */
+    .timeline-line, 
+    .timeline-progress {
+        left: 24px;
+        transform: none;
+    }
+
+    /* Libera os itens para ocupar 100% da largura da tela */
+    .timeline-item {
+        width: 100% !important;
+        margin-left: 0 !important;
+        margin-bottom: 4rem;
+    }
+
+    /* Padroniza o espaçamento interno para afastar os cards da linha da esquerda */
+    .timeline-left, 
+    .timeline-right {
+        padding-left: 4rem !important;
+        padding-right: 0 !important;
+    }
+
+    /* Fixa todas as esferas/dots perfeitamente em cima da linha da esquerda */
+    .timeline-dot {
+        top: 1rem;
+        width: 50px;
+        height: 50px;
+        font-size: 1.2rem;
+        left: 0 !important;
+        right: auto !important;
+    }
+
+    .timeline-card {
+        padding: 1.5rem;
+        border-radius: 20px;
+    }
+
+    .timeline-card h3 {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .timeline-card p {
+        font-size: 0.9rem;
+        line-height: 1.6;
+    }
+
+    .evolution-final {
+        margin-top: 6rem;
+    }
+
+    .evolution-orb {
+        width: 160px;
+        height: 160px;
+    }
+
+    .evolution-orb span {
+        font-size: 1.2rem;
     }
 }
