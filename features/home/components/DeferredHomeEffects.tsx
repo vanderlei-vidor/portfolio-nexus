@@ -3,9 +3,8 @@
 import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
 
-const ScrollReveal = dynamic(() => import("@/shared/effects/ScrollReveal"), {
-  ssr: false,
-});
+
+
 const Cursor = dynamic(() => import("@/shared/effects/Cursor"), {
   ssr: false,
 });
@@ -36,7 +35,7 @@ export default function DeferredHomeEffects() {
 
   return (
     <>
-      <ScrollReveal />
+      
       <Cursor />
     </>
   );

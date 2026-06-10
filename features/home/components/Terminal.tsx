@@ -186,7 +186,7 @@ const Terminal = memo(function Terminal() {
             <div className="w-2.5 h-2.5 rounded-full bg-zinc-800" />
           </div>
           <span className="text-[10px] font-mono text-zinc-500 tracking-widest uppercase">
-            vvidor — main_shell
+            main_shell
           </span>
           <div className="w-10" aria-hidden="true" />
         </div>

@@ -16,7 +16,7 @@ export const projectsRegistry = {
     cardDescription: "Offline audio experience",
     description:
       "Explore o case Music Player: uma experiencia offline de audio com interface imersiva, motion refinado e foco em performance.",
-    imageUrl: "/projects/music-player/textures/tela_card.webp",
+    imageUrl: "/projects/music-player/textures/card_home.webp",
     loadComponent: async () => (await import("./cases/music-player")).default,
   },
   "saas-data-control": {

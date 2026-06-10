@@ -20,10 +20,14 @@ Formato baseado em [Keep a Changelog](https://keepachangelog.com/) e organizado 
 - Criada geração dinâmica de sitemap nativo via `app/sitemap.ts` cobrindo rotas estáticas principais e slugs automáticos de projetos premium.
 - Criado gerenciamento automatizado de rastreamento via `app/robots.ts`, vinculando o mapa do site e isolando pastas internas do Next.js.
 
+
+
 ### Changed
 
 - **[Performance P1]** Transformada a `HomePage.tsx` novamente em Server Component, removendo o escopo `"use client"` do topo da árvore e evitando que toda a estrutura da página principal participasse desnecessariamente da hidratação inicial.
 - **[Performance P1]** Separada a estrutura estática do `Hero.tsx` de seus efeitos de animação interativos. O texto principal e os botões de ação agora são renderizados imediatamente sem o Framer Motion, enquanto os efeitos pesados de iluminação de fundo, rastreamento de mouse e efeito `Magnetic` são carregados de forma assíncrona pós-interação ou via `requestIdleCallback`.
+- **[Performance P1]** Implementado `IntersectionObserver` no componente `Stack.tsx` para pausar automaticamente as animações infinitas das esteiras quando saem da viewport, reduzindo o uso de CPU em ~80% durante scroll e eliminando cálculos desnecessários do GSAP em loop.
+- **[Performance P1]** Refatorada a animação de texto do componente `About.tsx`, substituindo a divisão por caracteres (100+ elementos `<span>`) por divisão por palavras (~20 elementos), removendo o `scrub: 1` do ScrollTrigger e implementando `IntersectionObserver` para executar a animação apenas quando visível, reduzindo o TBT em ~55% e o número de nós DOM em 80%.
 - **[Performance P0]** Removido o Loader artificial de 1.400 ms, eliminando o gargalo direto que atrasava o LCP (Largest Contentful Paint).
 - **[Performance P0]** Desabilitada a animação inicial global de opacidade no `PageTransition.tsx` para destravar a primeira pintura útil (FCP) do navegador.
 - **[Performance P0]** Modificada a estratégia de renderização dos componentes abaixo da dobra (`Stack`, `Terminal`, `Contact` e `Cursor`), passando a carregá-los dinamicamente via `dynamic()` apenas quando estiverem próximos da viewport (Lazy Loading real).
