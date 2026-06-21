@@ -94,14 +94,6 @@ High-performance cross-platform music player built with Flutter, focused on audi
 
 Full-stack task management platform built with Java, Spring Boot, PostgreSQL, authentication, analytics dashboards, and reporting systems.
 
-## Screenshots
-
-Add screenshots of:
-
-* Hero Section
-* Projects Section
-* Intelligence Section
-* Contact Section
 
 ## Running Locally
 
