@@ -1,5 +1,27 @@
-# Portfolio Nexus
 
+<div align="center">
+  <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=900&size=35&duration=4000&pause=1000&color=gradient&center=true&width=800&lines=🚀+Bem+vindo+ao+meu+projeto;💻+Construído+com+Next.js+%2B+TypeScript;⚡+Performance+%2B+Design+Moderno" alt="Typing SVG" />
+</div>
+
+<br />
+
+<div align="center">
+  <h1>🎬 <strong> Portfolio Nexus </strong></h1>
+  <p><em>Uma aplicação moderna e performática construída com as melhores tecnologias do mercado</em></p>
+</div>
+
+<br />
+
+<div align="center">
+  <img src="https://img.shields.io/badge/Next.js-15-black?style=for-the-badge&logo=next.js&logoColor=white" />
+  <img src="https://img.shields.io/badge/TypeScript-5.0-blue?style=for-the-badge&logo=typescript&logoColor=white" />
+  <img src="https://img.shields.io/badge/Tailwind-CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" />
+  <img src="https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react&logoColor=black" />
+  <img src="https://img.shields.io/badge/Status-Em_Desenvolvimento-yellow?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/Licença-MIT-green?style=for-the-badge" />
+</div>
+
+<br />
 > Uma experiência de portfólio imersiva, construída para transformar apresentação, narrativa e identidade em uma única interface cinematográfica.
 
 ## Sinopse
@@ -95,6 +117,7 @@ npm install
 ### Desenvolvimento
 
 ```bash
+npm install
 npm run dev
 ```
 
