@@ -22,7 +22,7 @@
 </div>
 
 <br />
-> Uma experiência de portfólio imersiva, construída para transformar apresentação, narrativa e identidade em uma única interface cinematográfica.
+
 
 ## Sinopse
 
