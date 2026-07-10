@@ -59,7 +59,7 @@ export function DashboardAnalytics() {
 
             {/* --- IMPLEMENTAÇÃO COM NEXT/IMAGE PARA LAZY LOADING --- */}
             <Image
-              src="/projects/saas-data-control/textures/hero-dashboard.webp"
+              src="/projects/saas-data-control/textures/reports-month-light-tela-inferior.webp"
               alt="Task Manager Analytics Dashboard"
 
               // Mantemos a mesma proporção widescreen do Hero (1200x750)

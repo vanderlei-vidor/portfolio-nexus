@@ -117,14 +117,14 @@ export function CentralizedSolution() {
 
               {/* --- IMPLEMENTAÇÃO DO NEXT/IMAGE TURBINADO --- */}
               <Image
-                src="/projects/saas-data-control/textures/hero-dashboard.webp"
+                src="/projects/saas-data-control/textures/reports-quarter-light.webp"
                 alt="Centralized Operations Solution Dashboard"
-                
+
                 // Mantendo a proporção estável de 1200x750 para zerar o Layout Shift (CLS)
                 width={1200}
                 height={750}
-                
-                // Sem a tag 'priority' aqui. Lazy load automático ativado!
+
+              // Sem a tag 'priority' aqui. Lazy load automático ativado!
               />
             </div>
 

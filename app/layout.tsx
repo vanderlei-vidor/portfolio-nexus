@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     default: "Portfolio Nexus | Premium Digital Experiences",
     template: "%s | Portfolio Nexus",
   },
-  description: "Software developer and digital content creator crafting high-performance multi-platform applications, immersive audio experiences, and premium web systems.",
+  description: "Software Engineer building cross-platform applications, AI-powered products, and modern digital experiences with a focus on performance, scalability, and user-centered design.",
   keywords: ["Software Developer", "Flutter", "Next.js", "Tailwind CSS", "Audio Engineering", "Premium Portfolio", "Web Development"],
   robots: {
     index: true,

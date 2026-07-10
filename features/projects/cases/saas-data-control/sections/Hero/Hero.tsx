@@ -42,7 +42,7 @@ export function Hero() {
 
               {/* --- IMPLEMENTAÇÃO DO NEXT/IMAGE TURBINADO --- */}
               <Image
-                src="/projects/saas-data-control/textures/hero-dashboard.webp"
+                src="/projects/saas-data-control/textures/dashboard-light-tela.webp"
                 alt="Task Manager Dashboard"
 
                 // Dimensões ideais para um mockup de dashboard/SaaS (proporção widescreen)
