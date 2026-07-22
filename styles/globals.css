@@ -49,5 +49,14 @@ button {
   appearance: none;
 }
 
-/* ⚡ SOLUÇÃO DO HOVER: Como o controle é via Framer Motion, 
-   podemos apenas remover o bloco vazio para limpar o aviso do terminal */
+/* ⚡ ACESSIBILIDADE (a11y): Respeita a preferência do sistema operacional por movimento reduzido */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

@@ -24,6 +24,7 @@ export default function ProjectCard({ title, desc, slug, imageUrl }: ProjectCard
             src={imageUrl}
             alt={title}
             fill
+            quality={75}
             // ✅ CORREÇÃO EXTRAORDINÁRIA: Resolvendo os avisos de performance e habilitando SRCSET dinâmico!
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             className="object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700"

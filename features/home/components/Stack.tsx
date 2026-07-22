@@ -12,6 +12,7 @@ import {
   SiPython, SiOpenai, SiGreensock
 } from "react-icons/si";
 import type { IconType } from "react-icons";
+import { useReducedMotion } from "@/shared/hooks/useReducedMotion";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -46,6 +47,7 @@ export default function Stack() {
   const marquee1Ref = useRef<HTMLDivElement>(null);
   const marquee2Ref = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
+  const shouldReduceMotion = useReducedMotion();
   
   // ✅ OTIMIZAÇÃO 1: Refs para as timelines (permite pausar/retomar)
   const tl1Ref = useRef<gsap.core.Tween | null>(null);
@@ -58,9 +60,9 @@ export default function Stack() {
         const isIntersecting = entry.isIntersecting;
         setIsVisible(isIntersecting);
 
-        // ✅ OTIMIZAÇÃO 3: Pausa/retoma as animações baseado na visibilidade
+        // ✅ OTIMIZAÇÃO 3: Pausa/retoma as animações baseado na visibilidade e a11y
         if (tl1Ref.current && tl2Ref.current) {
-          if (isIntersecting) {
+          if (isIntersecting && !shouldReduceMotion) {
             tl1Ref.current.play();
             tl2Ref.current.play();
           } else {
@@ -80,7 +82,7 @@ export default function Stack() {
     }
 
     return () => observer.disconnect();
-  }, []);
+  }, [shouldReduceMotion]);
 
   useEffect(() => {
     if (!marquee1Ref.current || !marquee2Ref.current || !isVisible) return;
@@ -158,7 +160,7 @@ export default function Stack() {
     }, sectionRef);
 
     return () => ctx.revert();
-  }, [isVisible]); // ✅ Re-executa quando a visibilidade muda
+  }, [isVisible, shouldReduceMotion]); // ✅ Re-executa quando a visibilidade ou a11y mudam
 
   return (
     <section 

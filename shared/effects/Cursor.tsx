@@ -4,10 +4,12 @@ import { useEffect, useState } from "react";
 import { motion, useSpring, useTransform } from "framer-motion";
 import { useMagnetic } from "@/shared/effects/magnetic/MagneticContext";
 import { useMouse } from "@/shared/context/MouseContext"; // 🚀 Consome o novo contexto
+import { useReducedMotion } from "@/shared/hooks/useReducedMotion";
 
 export default function Cursor() {
   const { mouseX, mouseY } = useMouse();
   const { magneticX, magneticY } = useMagnetic();
+  const shouldReduceMotion = useReducedMotion();
   const [isMobile, setIsMobile] = useState(true);
 
   const springConfig = { damping: 25, stiffness: 150, mass: 0.1 };
@@ -35,7 +37,7 @@ export default function Cursor() {
     return () => window.removeEventListener("resize", checkDevice);
   }, []);
 
-  if (isMobile) return null;
+  if (isMobile || shouldReduceMotion) return null;
 
   return (
     <motion.div

@@ -19,6 +19,7 @@ Formato baseado em [Keep a Changelog](https://keepachangelog.com/) e organizado 
 - Adicionados tokens globais de tema em `styles/globals.css` para cor, tipografia fluida e espaçamentos fluidos.
 - Criada geração dinâmica de sitemap nativo via `app/sitemap.ts` cobrindo rotas estáticas principais e slugs automáticos de projetos premium.
 - Criado gerenciamento automatizado de rastreamento via `app/robots.ts`, vinculando o mapa do site e isolando pastas internas do Next.js.
+- Criado documento estratégico de produto e engenharia `ROADMAP.md`, definindo a matriz de maturidade, pendências de curto prazo (v1.0), qualidade/testes (v1.5) e visão AAA com IA/RAG e interatividade 3D (v2.0).
 
 
 

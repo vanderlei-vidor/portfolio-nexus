@@ -5,11 +5,13 @@ import { useCallback, useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { usePathname } from "next/navigation";
+import { useReducedMotion } from "@/shared/hooks/useReducedMotion";
 
 export default function SmoothScroll({ children }: { children: React.ReactNode }) {
     const lenisRef = useRef<LenisRef>(null);
     const refreshFrameRef = useRef<number | null>(null);
     const pathname = usePathname();
+    const shouldReduceMotion = useReducedMotion();
 
     const refreshScrollMeasurements = useCallback(() => {
         if (refreshFrameRef.current !== null) {
@@ -118,9 +120,8 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
             ref={lenisRef}
             autoRaf={false}
             options={{
-                // ✅ OTIMIZAÇÃO: Deixamos apenas o lerp para controlar a suavidade de forma limpa
-                lerp: 0.07,
-                smoothWheel: true,
+                lerp: shouldReduceMotion ? 1 : 0.07,
+                smoothWheel: !shouldReduceMotion,
                 syncTouch: false,
             }}
         >
