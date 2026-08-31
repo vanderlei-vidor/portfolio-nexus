@@ -5,6 +5,7 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import "./FinalCTA.css";
+import { useTranslation } from "@/shared/i18n/useTranslation";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -12,6 +13,7 @@ export default function FinalCTA() {
   const containerRef = useRef<HTMLDivElement>(null);
   const orbRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const { t } = useTranslation();
 
   // 1. Efeito do Orb reagindo ao mouse de forma suave
   useEffect(() => {
@@ -178,8 +180,8 @@ export default function FinalCTA() {
         </p>
 
         <div className="final-cta__actions">
-          <a href="/contact_page" className="final-cta__button final-cta__button--primary">
-            Start a Project
+          <a href="/contact" className="final-cta__button final-cta__button--primary">
+            {t("contact.startProject")}
           </a>
           
         </div>

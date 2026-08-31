@@ -31,13 +31,22 @@ export const metadata: Metadata = {
   },
   description: "Software Engineer building cross-platform applications, AI-powered products, and modern digital experiences with a focus on performance, scalability, and user-centered design.",
   keywords: ["Software Developer", "Flutter", "Next.js", "Tailwind CSS", "Audio Engineering", "Premium Portfolio", "Web Development"],
+  alternates: {
+    canonical: baseUrl,
+    languages: {
+      en: baseUrl,
+      "pt-BR": baseUrl,
+      es: baseUrl,
+    },
+  },
   robots: {
     index: true,
     follow: true,
   },
   openGraph: {
     type: "website",
-    locale: "pt_BR",
+    locale: "en_US",
+    alternateLocale: ["pt_BR", "es_ES"],
     url: baseUrl,
     title: "Portfolio Nexus | Premium Digital Experiences",
     description: "Exploração de cases de alta performance, design imersivo and arquitetura de software refinada.",
@@ -59,6 +68,9 @@ export const metadata: Metadata = {
   },
 };
 
+import { LanguageProvider } from "@/shared/i18n/LanguageContext";
+import LanguageSwitcher from "@/shared/ui/LanguageSwitcher";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -66,7 +78,8 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="pt-BR"
+      lang="en"
+      suppressHydrationWarning
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-black text-white" suppressHydrationWarning>
@@ -74,21 +87,28 @@ export default function RootLayout({
         {/* Adiciona a textura de granulação sobre todo o site */}
         <Grain />
 
-        {/* Envolve a árvore com o MouseProvider junto com o MagneticProvider */}
-        <MouseProvider>
-          <MagneticProvider>
-            <SmoothScroll>
-              <PageTransition>
-                <Cursor /> 
-                
-                {children}
+        {/* Envolve a árvore com LanguageProvider, MouseProvider e MagneticProvider */}
+        <LanguageProvider>
+          <MouseProvider>
+            <MagneticProvider>
+              <SmoothScroll>
+                <PageTransition>
+                  <Cursor /> 
 
-                {/* 📊 Real User Monitoring ativo! Medindo performance de dispositivos reais */}
-                <SpeedInsights />
-              </PageTransition>
-            </SmoothScroll>
-          </MagneticProvider>
-        </MouseProvider>
+                  {/* Header fixo discreto com Seletor de Idioma */}
+                  <div className="fixed right-3 top-3 z-50 sm:right-6 sm:top-6">
+                    <LanguageSwitcher />
+                  </div>
+                  
+                  {children}
+
+                  {/* 📊 Real User Monitoring ativo! Medindo performance de dispositivos reais */}
+                  <SpeedInsights />
+                </PageTransition>
+              </SmoothScroll>
+            </MagneticProvider>
+          </MouseProvider>
+        </LanguageProvider>
 
       </body>
     </html>

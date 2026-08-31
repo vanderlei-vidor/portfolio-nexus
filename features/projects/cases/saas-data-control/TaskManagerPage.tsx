@@ -10,10 +10,12 @@ import { CorporateFeatures } from "./sections/CorporateFeatures/CorporateFeature
 import { TechStack } from "./sections/TechStack/TechStack";
 
 import FinalShowcasee from "./sections/FinalShowcase/FinalShowcasee";
+import ProjectCaseChrome from "@/features/projects/components/ProjectCaseChrome";
 
 export function TaskManagerPage() {
   return (
-    <main className="task-manager-page">
+    <ProjectCaseChrome slug="saas-data-control" title="SaaS Data Control">
+      <div className="task-manager-page">
 
       <Hero />
 
@@ -33,6 +35,7 @@ export function TaskManagerPage() {
 
      
 
-    </main>
+      </div>
+    </ProjectCaseChrome>
   );
 }

@@ -7,9 +7,13 @@ export function formatProjectTitle(slug: string) {
 }
 
 export function getProjectImageUrl(slug: string) {
-  return `/textures/${slug}.jpg`;
+  if (slug === "portfolio-nexus") {
+    return "/projects/ecosystem/textures/site_card.webp";
+  }
+
+  return `/projects/${slug}/textures/card_home.webp`;
 }
 
 export function getProjectDescription(formattedTitle: string) {
-  return `Explore o case de sucesso do projeto ${formattedTitle} no meu portfolio. Uma experiencia digital de alta qualidade e performance.`;
+  return `Explore the ${formattedTitle} case study in my portfolio: a high-quality digital experience focused on performance and craft.`;
 }

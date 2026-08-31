@@ -3,6 +3,7 @@
 import ProjectCard from "./ProjectCard";
 import { motion } from "framer-motion";
 import { projectsList } from "@/features/projects/registry";
+import { useTranslation } from "@/shared/i18n/useTranslation";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -15,6 +16,8 @@ const containerVariants = {
 };
 
 export default function Projects() {
+  const { t } = useTranslation();
+
   return (
     <section id="selected-projects" className="py-24 px-6 max-w-6xl mx-auto">
       <motion.h2
@@ -23,7 +26,7 @@ export default function Projects() {
         transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         className="text-4xl font-bold mb-16 tracking-tight"
       >
-        Selected Projects
+        {t("projects.title")}
       </motion.h2>
 
       <motion.div
@@ -37,9 +40,10 @@ export default function Projects() {
           <ProjectCard
             key={project.slug}
             title={project.title}
-            desc={project.cardDescription}
+            desc={t(`projects.items.${project.slug}.cardDescription`)}
             slug={project.slug}
             imageUrl={project.imageUrl}
+            ctaLabel={t("projects.exploreCase")}
           />
         ))}
       </motion.div>

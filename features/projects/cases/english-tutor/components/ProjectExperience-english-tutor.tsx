@@ -5,10 +5,12 @@ import { AdaptiveIntelligenceSection } from "../sections/AdaptiveIntelligenceSec
 import { TechnicalArchitectureSection } from "../sections/TechnicalArchitectureSection";
 import { ImpactResultsSection } from "../sections/ImpactResultsSection";
 import { ProjectVisionSection } from "../sections/ProjectVisionSection";
+import ProjectCaseChrome from "@/features/projects/components/ProjectCaseChrome";
 
 export default function ProjectExperience() {
     return (
-        <main className="relative overflow-hidden bg-[#020308] text-white">
+        <ProjectCaseChrome slug="english-tutor" title="English Tutor">
+        <div className="relative overflow-hidden bg-[#020308] text-white">
             <HeroSection />
 
             <ImmersiveExperienceSection />
@@ -18,6 +20,7 @@ export default function ProjectExperience() {
             <TechnicalArchitectureSection />
             <ImpactResultsSection/>
             <ProjectVisionSection />
-        </main>
+        </div>
+        </ProjectCaseChrome>
     );
 }

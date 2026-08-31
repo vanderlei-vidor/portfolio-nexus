@@ -1,0 +1,179 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "process": "Proceso",
+    "projects": "Proyectos",
+    "contact": "Contacto"
+  },
+  "language": {
+    "label": "Idioma",
+    "changeTo": "Cambiar idioma a",
+    "current": "Idioma actual"
+  },
+  "hero": {
+    "badge": "DISPONIBLE PARA NUEVOS PROYECTOS Y COLABORACIONES",
+    "eyebrow": "Sección principal",
+    "titleLine1": "CREANDO",
+    "titleLine2": "EL FUTURO.",
+    "tagline": "Fluido. Elegante. Cinemático.",
+    "subtitle": "Construyendo experiencias digitales de clase mundial, aplicaciones web de alto rendimiento y sistemas de software inteligentes.",
+    "startProject": "Iniciar un Proyecto",
+    "exploreWork": "Explorar Trabajos",
+    "viewProcess": "Ver Proceso"
+  },
+  "about": {
+    "badge": "SOBRE MI",
+    "title": "Construyo interfaces que convierten, rinden y escalan. Enfocado en crear experiencias digitales premium con rendimiento y diseño en mente.",
+    "p1": "Especializado en arquitectura full-stack moderna, interfaces de alta frecuencia e integración de inteligencia artificial.",
+    "p2": "Cada línea de código se escribe con precisión, escala y deleite del usuario en mente.",
+    "author": "Autor"
+  },
+  "projects": {
+    "title": "Proyectos Seleccionados",
+    "exploreCase": "Explorar Caso de Estudio",
+    "caseStudy": "Caso de Estudio",
+    "skipToContent": "Saltar al contenido del proyecto",
+    "backToProjects": "Volver a Proyectos",
+    "backToHome": "Volver al Inicio",
+    "scroll": "Desplazar",
+    "loading": "Cargando",
+    "readyToExplore": "Listo para explorar",
+    "watchDemo": "Ver Demo",
+    "watchShowcase": "Ver Showcase",
+    "source": "Código",
+    "closeDemo": "Cerrar demo",
+    "previousSlide": "Slide anterior",
+    "nextSlide": "Siguiente slide",
+    "pauseSlideshow": "Pausar presentación",
+    "playSlideshow": "Reproducir presentación",
+    "goToSlide": "Ir al slide",
+    "items": {
+      "music-player": {
+        "cardDescription": "Experiencia de audio sin conexión",
+        "description": "Explora el caso Music Player: una experiencia de audio offline con interfaz inmersiva, movimiento refinado y foco en rendimiento."
+      },
+      "saas-data-control": {
+        "cardDescription": "Plataforma nativa de datos",
+        "description": "Explora el caso SaaS Data Control: una experiencia SaaS orientada a datos, control y claridad operativa."
+      },
+      "english-tutor": {
+        "cardDescription": "Interfaz de aprendizaje con IA",
+        "description": "Explora el caso English Tutor: un sistema moderno de aprendizaje con jerarquía visual fuerte e interacciones fluidas."
+      },
+      "portfolio-nexus": {
+        "cardDescription": "Ecosistema portfolio premium",
+        "description": "Explora el caso Portfolio Nexus: una experiencia digital con base escalable, narrativa visual y acabado premium."
+      }
+    }
+  },
+  "stack": {
+    "title": "CAPACIDADES Y STACK",
+    "subtitle": "Stack seleccionado para aplicaciones modernas en producción.",
+    "experienceLayer": "Tecnologías frontend e interfaz",
+    "coreLayer": "Tecnologías backend e infraestructura"
+  },
+  "terminal": {
+    "label": "Terminal interactivo",
+    "badge": "Acceso al Terminal Kernel",
+    "output": "Salida del terminal",
+    "input": "Entrada de comandos del terminal",
+    "placeholder": "Escribe un comando...",
+    "initial1": "CONEXIÓN SEGURA ESTABLECIDA...",
+    "initial2": "INICIANDO PORTFOLIO_OS V2.0.4...",
+    "initial3": "Bienvenido, visitante. Escribe 'help' para comenzar.",
+    "projectsTitle": "SISTEMAS DESPLEGADOS:",
+    "aboutTitle": "PERFIL DEL SISTEMA: Lead Frontend Engineer",
+    "capabilities": "CAPACIDADES PRINCIPALES:",
+    "status": "Estado: listo para despliegues de alto impacto.",
+    "contactTitle": "CANALES DE COMUNICACIÓN:",
+    "helpTitle": "COMANDOS DISPONIBLES:",
+    "unknown": "ERROR: comando desconocido",
+    "unknownHelp": "Escribe 'help' para obtener ayuda."
+  },
+  "process": {
+    "progressPhase": "Fase",
+    "progressTotal": "Total",
+    "badge": "Production_Protocol // v1.0",
+    "titleMuted": "Ingeniería",
+    "titleStrong": "Excelencia Digital",
+    "intro": "Un enfoque sistemático para construir aplicaciones de alto rendimiento mediante arquitectura rigurosa y ejecución precisa.",
+    "steps": {
+      "strategy": {
+        "tag": "SYSTEM_DESIGN",
+        "title": "Arquitectura y Alcance",
+        "description": "Antes de escribir una sola línea de código, diseño la solución. Ingeniería de requisitos, mapeo de escalabilidad y estudios de viabilidad técnica aseguran una base sólida."
+      },
+      "design": {
+        "tag": "INTERFACE_ENGINEERING",
+        "title": "UX Centrada en Personas",
+        "description": "Diseño interfaces de alta fidelidad donde la accesibilidad se encuentra con el movimiento. Aplico heurísticas de Nielsen para que el recorrido del usuario sea tan lógico como el backend."
+      },
+      "engineering": {
+        "tag": "CORE_DEVELOPMENT",
+        "title": "Implementación Full-Stack",
+        "description": "Uso Next.js para excelencia server-side. Código limpio, type-safety con TypeScript y renderizado de baja latencia impulsado por motores de movimiento matemático."
+      },
+      "quality": {
+        "tag": "QA_DEPLOYMENT",
+        "title": "Optimización y Vitals",
+        "description": "Pruebas rigurosas para Core Web Vitals. Optimización para Lighthouse, entrega con edge caching y un pipeline CI/CD fluido para 99.9% de confiabilidad."
+      }
+    },
+    "systemRunning": "Sistema_Activo",
+    "finalTitleLine1": "¿Listo para escalar",
+    "finalTitleLine2": "tu visión?",
+    "finalCta": "Iniciar Colaboración"
+  },
+  "contact": {
+    "badge": "ENTRAR EN CONTACTO",
+    "title": "Construyamos algo",
+    "titleGradient": "excepcional.",
+    "subtitle": "Disponible para nuevos proyectos y colaboraciones estratégicas. Creemos algo memorable juntos.",
+    "startProject": "Iniciar un Proyecto",
+    "emailMe": "Enviar Email",
+    "generatorTitle": "Generador de Mensaje Directo",
+    "generatorSubtitle": "Cero demora - abre directo en tu app de email",
+    "nameLabel": "Tu Nombre",
+    "namePlaceholder": "ej: Sarah Connor",
+    "subjectLabel": "Asunto",
+    "subjectPlaceholder": "ej: Nuevo Proyecto de Aplicación Web",
+    "messageLabel": "Mensaje",
+    "messagePlaceholder": "Cuéntame un poco sobre tu idea, plazos u objetivos...",
+    "openEmailClient": "Abrir Cliente de Email",
+    "copyMessage": "Copiar Mensaje",
+    "copied": "¡Copiado!",
+    "copyEmail": "Copiar dirección de email",
+    "copyWebmail": "Copiar texto preformateado para webmail",
+    "emailDirectly": "Email Directo",
+    "professionalNetwork": "Red Profesional",
+    "sourceCode": "Código Fuente y Trabajo",
+    "linkedinProfile": "Perfil de LinkedIn",
+    "githubProfile": "Perfil de GitHub",
+    "backToHome": "Volver al inicio",
+    "pageTitle": "Ponte en contacto.",
+    "pageSubtitle": "Disponible para nuevos proyectos, liderazgo de ingeniería y colaboraciones estratégicas.",
+    "defaultSubject": "Contacto desde Portfolio Nexus",
+    "defaultVisitor": "Visitante",
+    "defaultGreeting": "Hola, Vanderlei!",
+    "defaultBody": "Me gustaría conversar sobre un proyecto u oportunidad.",
+    "defaultSignoff": "Saludos,",
+    "defaultCopyMessage": "Me gustaría entrar en contacto para nuevas oportunidades.",
+    "allRightsReserved": "Todos los derechos reservados"
+  },
+  "notFound": {
+    "badge": "404 - PÁGINA NO ENCONTRADA",
+    "title": "Perdido en órbita.",
+    "description": "La página o señal que buscas fue movida, renombrada o no existe en este universo.",
+    "returnHome": "Volver a Nexus Home"
+  },
+  "error": {
+    "badge": "EXCEPCIÓN DE RUNTIME INTERCEPTADA",
+    "title": "Algo salió mal.",
+    "description": "Ocurrió un error inesperado al renderizar esta vista. Puedes intentar recuperarla o volver a la interfaz principal.",
+    "tryAgain": "Intentar de Nuevo",
+    "backHome": "Volver al Inicio",
+    "globalTitle": "Fallo del Sistema",
+    "globalDescription": "Ocurrió un error crítico en el layout raíz de la aplicación.",
+    "reload": "Recargar Aplicación"
+  }
+}

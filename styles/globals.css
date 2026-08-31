@@ -27,6 +27,7 @@ body {
   background: #0B0B0B;
   color: #EDEDED;
   font-family: system-ui, sans-serif;
+  color-scheme: dark;
 }
 
 *,
@@ -47,6 +48,11 @@ body {
 button {
   -webkit-appearance: none;
   appearance: none;
+}
+
+:where(a, button, input, textarea, select):focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 3px;
 }
 
 /* ⚡ ACESSIBILIDADE (a11y): Respeita a preferência do sistema operacional por movimento reduzido */

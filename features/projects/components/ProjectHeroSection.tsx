@@ -6,6 +6,8 @@ import { useEffect } from "react";
 import { gsap } from "gsap";
 import Image from "next/image";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useTranslation } from "@/shared/i18n/useTranslation";
+import { getProjectImageUrl } from "@/features/projects/lib/project-format";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -15,6 +17,8 @@ interface ProjectHeroSectionProps {
 }
 
 export default function ProjectHeroSection({ slug, formattedTitle }: ProjectHeroSectionProps) {
+    const { t } = useTranslation();
+
     useEffect(() => {
         const ctx = gsap.context(() => {
             gsap.to(".hero-background", {
@@ -42,7 +46,7 @@ export default function ProjectHeroSection({ slug, formattedTitle }: ProjectHero
                 className="absolute inset-0 z-0 grayscale hover:grayscale-0 transition-all duration-1000 hero-background"
             >
                 <Image
-                    src={`/textures/${slug}.jpg`}
+                    src={getProjectImageUrl(slug)}
                     alt={formattedTitle}
                     fill
                     priority
@@ -61,7 +65,7 @@ export default function ProjectHeroSection({ slug, formattedTitle }: ProjectHero
                     transition={{ delay: 0.5 }}
                     className="text-xs font-mono text-accent uppercase tracking-[0.3em] block mb-4"
                 >
-                    Case Study // {slug}
+                    {t("projects.caseStudy")} {"//"} {slug}
                 </motion.span>
 
                 <motion.h1

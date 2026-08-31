@@ -4,6 +4,7 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { Play, Pause, ChevronLeft, ChevronRight } from "lucide-react";
+import { useTranslation } from "@/shared/i18n/useTranslation";
 
 const musicPlayerSlides = [
   {
@@ -82,6 +83,7 @@ export default function FinalShowcase() {
   const [isDemoOpen, setIsDemoOpen] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true);
+  const { t } = useTranslation();
 
   const touchStartX = useRef<number | null>(null);
   const touchEndX = useRef<number | null>(null);
@@ -245,7 +247,7 @@ export default function FinalShowcase() {
               onClick={() => router.push("/contact")}
               className="group relative w-full sm:w-auto px-10 py-4 sm:px-12 sm:py-5 bg-white text-black rounded-full font-bold text-xs sm:text-sm overflow-hidden transition-all duration-500 hover:scale-105 active:scale-95 shadow-[0_0_40px_rgba(255,255,255,0.1)]"
             >
-              <span className="relative z-10">Start a Project</span>
+              <span className="relative z-10">{t("contact.startProject")}</span>
               <div className="absolute inset-0 bg-linear-to-r from-transparent via-black/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
             </button>
 
@@ -257,17 +259,17 @@ export default function FinalShowcase() {
                   setIsDemoOpen(true);
                 }}
                 className="flex-1 sm:flex-none px-6 py-4 sm:px-8 text-[10px] sm:text-xs font-mono uppercase tracking-widest text-zinc-400 hover:text-white border border-white/5 hover:border-white/20 rounded-full transition-all duration-500 bg-white/2 backdrop-blur-md"
-                aria-label="Open demo slideshow"
+                aria-label={t("projects.watchDemo")}
               >
-                Watch Demo
+                {t("projects.watchDemo")}
               </button>
 
               <button
                 onClick={() => window.open("https://github.com/vanderlei-vidor", "_blank")}
                 className="px-4 py-4 text-[10px] sm:text-xs font-mono uppercase tracking-widest text-zinc-500 hover:text-zinc-200 transition-all duration-500"
-                aria-label="View source code on GitHub"
+                aria-label={t("projects.source")}
               >
-                &lt;Source /&gt;
+                &lt;{t("projects.source")} /&gt;
               </button>
             </div>
           </div>
@@ -275,9 +277,9 @@ export default function FinalShowcase() {
           <button
             onClick={() => router.push("/")}
             className="mt-12 sm:mt-16 text-zinc-700 hover:text-zinc-400 text-[10px] sm:text-xs font-mono transition-colors tracking-tighter"
-            aria-label="Back to home page"
+            aria-label={t("projects.backToHome")}
           >
-            [ Back to Home ]
+            [ {t("projects.backToHome")} ]
           </button>
         </div>
       </div>
@@ -289,7 +291,7 @@ export default function FinalShowcase() {
           onClick={() => setIsDemoOpen(false)}
           role="dialog"
           aria-modal="true"
-          aria-label="Demo slideshow"
+          aria-label={t("projects.watchDemo")}
         >
           <div
             className="relative w-full max-w-6xl flex flex-col md:block md:aspect-video rounded-2xl md:rounded-3xl overflow-hidden border border-white/10 bg-zinc-950 shadow-[0_0_100px_rgba(0,0,0,1)]"
@@ -319,7 +321,7 @@ export default function FinalShowcase() {
               <button
                 onClick={() => setIsDemoOpen(false)}
                 className="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-white/50 hover:text-white hover:bg-white/10 transition-all font-mono text-[9px] sm:text-[10px]"
-                aria-label="Close demo"
+                aria-label={t("projects.closeDemo")}
               >
                 ESC
               </button>
@@ -356,7 +358,7 @@ export default function FinalShowcase() {
                 <button
                   onClick={prevSlide}
                   className="p-1 text-zinc-400 hover:text-white transition-colors"
-                  aria-label="Previous slide"
+                  aria-label={t("projects.previousSlide")}
                 >
                   <ChevronLeft size={16} />
                 </button>
@@ -364,7 +366,7 @@ export default function FinalShowcase() {
                 <button
                   onClick={() => setIsPlaying(!isPlaying)}
                   className="p-2 rounded-full bg-white text-black hover:scale-105 active:scale-95 transition-all"
-                  aria-label={isPlaying ? "Pause slideshow" : "Play slideshow"}
+                  aria-label={isPlaying ? t("projects.pauseSlideshow") : t("projects.playSlideshow")}
                 >
                   {isPlaying ? <Pause size={12} fill="black" /> : <Play size={12} fill="black" />}
                 </button>
@@ -372,7 +374,7 @@ export default function FinalShowcase() {
                 <button
                   onClick={nextSlide}
                   className="p-1 text-zinc-400 hover:text-white transition-colors"
-                  aria-label="Next slide"
+                  aria-label={t("projects.nextSlide")}
                 >
                   <ChevronRight size={16} />
                 </button>
@@ -387,7 +389,7 @@ export default function FinalShowcase() {
                       onClick={() => setCurrentSlide(index)}
                       className={`h-1 sm:h-1.5 rounded-full transition-all duration-500 ${index === currentSlide ? "w-3 sm:w-4 bg-blue-500" : "w-1 sm:w-1.5 bg-zinc-600"
                         }`}
-                      aria-label={`Go to slide ${index + 1}`}
+                      aria-label={`${t("projects.goToSlide")} ${index + 1}`}
                     />
                   ))}
                 </div>

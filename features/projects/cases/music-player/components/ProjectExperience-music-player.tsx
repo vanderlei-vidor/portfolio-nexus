@@ -6,10 +6,11 @@ import PerformanceSection from "../section/PerformanceSection/PerformanceSection
 import ArchitectureShowcase from "../section/ArchitectureShowcase/ArchitectureShowcase";
 import DesignSystemSection from "../section/DesignSystemSection/DesignSystemSection";
 import FinalShowcase from "../section/FinalShowcase/FinalShowcase";
+import ProjectCaseChrome from "@/features/projects/components/ProjectCaseChrome";
 
 export default function ProjectExperience() {
   return (
-    <main className="relative overflow-hidden bg-[#030303] text-white">
+    <ProjectCaseChrome slug="music-player" title="Music Player">
       <CinematicHero />
 
       <DeviceReveal />
@@ -25,6 +26,6 @@ export default function ProjectExperience() {
       <DesignSystemSection />
 
       <FinalShowcase />
-    </main>
+    </ProjectCaseChrome>
   );
 }

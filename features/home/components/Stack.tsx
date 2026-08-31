@@ -13,6 +13,7 @@ import {
 } from "react-icons/si";
 import type { IconType } from "react-icons";
 import { useReducedMotion } from "@/shared/hooks/useReducedMotion";
+import { useTranslation } from "@/shared/i18n/useTranslation";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -48,6 +49,7 @@ export default function Stack() {
   const marquee2Ref = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
   const shouldReduceMotion = useReducedMotion();
+  const { t } = useTranslation();
   
   // ✅ OTIMIZAÇÃO 1: Refs para as timelines (permite pausar/retomar)
   const tl1Ref = useRef<gsap.core.Tween | null>(null);
@@ -166,11 +168,11 @@ export default function Stack() {
     <section 
       ref={sectionRef}
       className="py-32 overflow-hidden border-y border-white/5 bg-black/10 relative"
-      aria-label="Technology stack"
+      aria-label={t("stack.title")}
     >
       <div className="mb-20 text-center">
         <span className="font-mono text-[10px] text-zinc-600 uppercase tracking-[0.6em] block mb-4">
-          Capabilities & Stack
+          {t("stack.title")}
         </span>
         <div className="h-px w-8 bg-zinc-800 mx-auto" />
       </div>
@@ -185,7 +187,7 @@ export default function Stack() {
           <div 
             ref={marquee1Ref} 
             className="flex whitespace-nowrap will-change-transform"
-            aria-label="Frontend and UI technologies"
+            aria-label={t("stack.experienceLayer")}
           >
             {[...experienceTechs, ...experienceTechs, ...experienceTechs].map((tech, i) => (
               <MarqueeItem key={`exp-${i}`} tech={tech} />
@@ -198,7 +200,7 @@ export default function Stack() {
           <div 
             ref={marquee2Ref} 
             className="flex whitespace-nowrap will-change-transform"
-            aria-label="Backend and infrastructure technologies"
+            aria-label={t("stack.coreLayer")}
           >
             {[...coreTechs, ...coreTechs, ...coreTechs].map((tech, i) => (
               <MarqueeItem key={`core-${i}`} tech={tech} />

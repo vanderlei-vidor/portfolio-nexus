@@ -9,11 +9,12 @@ interface ProjectCardProps {
   desc: string;
   slug: string;
   imageUrl: string;
+  ctaLabel: string;
 }
 
-export default function ProjectCard({ title, desc, slug, imageUrl }: ProjectCardProps) {
+export default function ProjectCard({ title, desc, slug, imageUrl, ctaLabel }: ProjectCardProps) {
   return (
-    <Link href={`/projects/${slug}`}>
+    <Link href={`/projects/${slug}`} aria-label={`${ctaLabel}: ${title}`}>
       <motion.div
         whileHover={{ y: -5, scale: 1.01 }} // Movimento vertical sutil em vez de escala agressiva
         transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
@@ -39,7 +40,7 @@ export default function ProjectCard({ title, desc, slug, imageUrl }: ProjectCard
           {/* Um único indicador limpo e elegante */}
           <div className="mt-6 flex items-center gap-2">
             <span className="text-xs uppercase tracking-[0.2em] font-mono text-zinc-400 group-hover:text-white transition-colors duration-300">
-              Explore Case Study
+              {ctaLabel}
             </span>
             <span className="text-zinc-500 group-hover:text-white group-hover:translate-x-1 transition-all duration-300">
               →

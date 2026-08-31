@@ -1,0 +1,179 @@
+{
+  "nav": {
+    "home": "Início",
+    "process": "Processo",
+    "projects": "Projetos",
+    "contact": "Contato"
+  },
+  "language": {
+    "label": "Idioma",
+    "changeTo": "Alterar idioma para",
+    "current": "Idioma atual"
+  },
+  "hero": {
+    "badge": "DISPONÍVEL PARA NOVOS PROJETOS E PARCERIAS",
+    "eyebrow": "Seção principal",
+    "titleLine1": "CRIANDO",
+    "titleLine2": "O FUTURO.",
+    "tagline": "Fluido. Elegante. Cinemático.",
+    "subtitle": "Construindo experiências digitais de classe mundial, aplicações web de alta performance e sistemas de software inteligentes.",
+    "startProject": "Iniciar um Projeto",
+    "exploreWork": "Explorar Projetos",
+    "viewProcess": "Ver Processo"
+  },
+  "about": {
+    "badge": "SOBRE",
+    "title": "Construo interfaces que convertem, performam e escalam. Com foco em criar experiências digitais premium com performance e design em mente.",
+    "p1": "Especialista em arquitetura full-stack moderna, interfaces de alta frequência e integração de inteligência artificial.",
+    "p2": "Cada linha de código é escrita com precisão, escala e foco no encanto do usuário.",
+    "author": "Autor"
+  },
+  "projects": {
+    "title": "Projetos Selecionados",
+    "exploreCase": "Explorar Estudo de Caso",
+    "caseStudy": "Estudo de Caso",
+    "skipToContent": "Pular para o conteúdo do projeto",
+    "backToProjects": "Voltar aos Projetos",
+    "backToHome": "Voltar ao Início",
+    "scroll": "Rolar",
+    "loading": "Carregando",
+    "readyToExplore": "Pronto para explorar",
+    "watchDemo": "Ver Demo",
+    "watchShowcase": "Ver Showcase",
+    "source": "Código",
+    "closeDemo": "Fechar demo",
+    "previousSlide": "Slide anterior",
+    "nextSlide": "Próximo slide",
+    "pauseSlideshow": "Pausar apresentação",
+    "playSlideshow": "Reproduzir apresentação",
+    "goToSlide": "Ir para o slide",
+    "items": {
+      "music-player": {
+        "cardDescription": "Experiência de áudio offline",
+        "description": "Explore o case Music Player: uma experiência offline de áudio com interface imersiva, motion refinado e foco em performance."
+      },
+      "saas-data-control": {
+        "cardDescription": "Plataforma nativa de dados",
+        "description": "Explore o case SaaS Data Control: uma experiência SaaS orientada a dados, controle e clareza operacional."
+      },
+      "english-tutor": {
+        "cardDescription": "Interface de aprendizado com IA",
+        "description": "Explore o case English Tutor: um sistema moderno de aprendizado com hierarquia visual forte e interações fluidas."
+      },
+      "portfolio-nexus": {
+        "cardDescription": "Ecossistema de portfolio premium",
+        "description": "Explore o case Portfolio Nexus: uma experiência digital com base escalável, narrativa visual e acabamento premium."
+      }
+    }
+  },
+  "stack": {
+    "title": "CAPACIDADES & STACK",
+    "subtitle": "Stack selecionada para aplicações modernas em produção.",
+    "experienceLayer": "Tecnologias frontend e de interface",
+    "coreLayer": "Tecnologias backend e infraestrutura"
+  },
+  "terminal": {
+    "label": "Terminal interativo",
+    "badge": "Acesso ao Terminal Kernel",
+    "output": "Saída do terminal",
+    "input": "Entrada de comandos do terminal",
+    "placeholder": "Digite um comando...",
+    "initial1": "CONEXÃO SEGURA ESTABELECIDA...",
+    "initial2": "INICIANDO PORTFOLIO_OS V2.0.4...",
+    "initial3": "Bem-vindo, visitante. Digite 'help' para começar.",
+    "projectsTitle": "SISTEMAS PUBLICADOS:",
+    "aboutTitle": "PERFIL DO SISTEMA: Lead Frontend Engineer",
+    "capabilities": "CAPACIDADES PRINCIPAIS:",
+    "status": "Status: pronto para deploys de alto impacto.",
+    "contactTitle": "CANAIS DE COMUNICAÇÃO:",
+    "helpTitle": "COMANDOS DISPONÍVEIS:",
+    "unknown": "ERRO: comando desconhecido",
+    "unknownHelp": "Digite 'help' para obter ajuda."
+  },
+  "process": {
+    "progressPhase": "Fase",
+    "progressTotal": "Total",
+    "badge": "Production_Protocol // v1.0",
+    "titleMuted": "Engenharia",
+    "titleStrong": "Excelência Digital",
+    "intro": "Uma abordagem sistemática para construir aplicações de alta performance por meio de arquitetura rigorosa e execução precisa.",
+    "steps": {
+      "strategy": {
+        "tag": "SYSTEM_DESIGN",
+        "title": "Arquitetura & Escopo",
+        "description": "Antes de escrever uma única linha de código, eu desenho a solução. Engenharia de requisitos, mapeamento de escalabilidade e estudos de viabilidade técnica garantem uma base robusta."
+      },
+      "design": {
+        "tag": "INTERFACE_ENGINEERING",
+        "title": "UX Centrada em Pessoas",
+        "description": "Criação de interfaces de alta fidelidade onde acessibilidade encontra movimento. Aplico heurísticas de Nielsen para que a jornada do usuário seja tão lógica quanto o backend."
+      },
+      "engineering": {
+        "tag": "CORE_DEVELOPMENT",
+        "title": "Implementação Full-Stack",
+        "description": "Uso Next.js para excelência server-side. Código limpo, type-safety com TypeScript e renderização de baixa latência guiada por motores de movimento matemático."
+      },
+      "quality": {
+        "tag": "QA_DEPLOYMENT",
+        "title": "Otimização & Vitals",
+        "description": "Testes rigorosos para Core Web Vitals. Otimização para Lighthouse, entrega com edge caching e pipeline CI/CD fluido para 99.9% de confiabilidade."
+      }
+    },
+    "systemRunning": "Sistema_Ativo",
+    "finalTitleLine1": "Pronto para escalar",
+    "finalTitleLine2": "sua visão?",
+    "finalCta": "Iniciar Parceria"
+  },
+  "contact": {
+    "badge": "ENTRE EM CONTATO",
+    "title": "Vamos construir algo",
+    "titleGradient": "excepcional.",
+    "subtitle": "Disponível para novos projetos e colaborações estratégicas. Vamos criar algo memorável juntos.",
+    "startProject": "Iniciar um Projeto",
+    "emailMe": "Enviar Email",
+    "generatorTitle": "Gerador de Mensagem Direta",
+    "generatorSubtitle": "Zero demora - abre direto no seu app de email",
+    "nameLabel": "Seu Nome",
+    "namePlaceholder": "ex: Sarah Connor",
+    "subjectLabel": "Assunto",
+    "subjectPlaceholder": "ex: Novo Projeto de Aplicação Web",
+    "messageLabel": "Mensagem",
+    "messagePlaceholder": "Conte um pouco sobre sua ideia, prazos ou objetivos...",
+    "openEmailClient": "Abrir Cliente de Email",
+    "copyMessage": "Copiar Mensagem",
+    "copied": "Copiado!",
+    "copyEmail": "Copiar endereço de email",
+    "copyWebmail": "Copiar texto pré-formatado para webmail",
+    "emailDirectly": "Email Direto",
+    "professionalNetwork": "Rede Profissional",
+    "sourceCode": "Código Fonte & Projetos",
+    "linkedinProfile": "Perfil do LinkedIn",
+    "githubProfile": "Perfil do GitHub",
+    "backToHome": "Voltar ao início",
+    "pageTitle": "Entre em contato.",
+    "pageSubtitle": "Disponível para novos projetos, liderança de engenharia e colaborações estratégicas.",
+    "defaultSubject": "Contato do Portfolio Nexus",
+    "defaultVisitor": "Visitante",
+    "defaultGreeting": "Olá, Vanderlei!",
+    "defaultBody": "Gostaria de conversar sobre um projeto ou oportunidade.",
+    "defaultSignoff": "Atenciosamente,",
+    "defaultCopyMessage": "Gostaria de entrar em contato para novas oportunidades.",
+    "allRightsReserved": "Todos os direitos reservados"
+  },
+  "notFound": {
+    "badge": "404 - PÁGINA NÃO ENCONTRADA",
+    "title": "Perdido na órbita.",
+    "description": "A página ou sinal que você está procurando foi movido, renomeado ou não existe neste universo.",
+    "returnHome": "Voltar para o Nexus Home"
+  },
+  "error": {
+    "badge": "EXCEÇÃO DE RUNTIME INTERCEPTADA",
+    "title": "Algo deu errado.",
+    "description": "Ocorreu um erro inesperado ao renderizar esta visualização. Você pode tentar recuperar ou voltar à interface principal.",
+    "tryAgain": "Tentar Novamente",
+    "backHome": "Voltar ao Início",
+    "globalTitle": "Falha do Sistema",
+    "globalDescription": "Ocorreu um erro crítico no layout raiz da aplicação.",
+    "reload": "Recarregar Aplicação"
+  }
+}

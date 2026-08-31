@@ -4,6 +4,7 @@ import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { motion, useMotionValue, useTransform } from "framer-motion";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useTranslation } from "@/shared/i18n/useTranslation";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -30,6 +31,7 @@ export default function DeviceReveal() {
   const deviceRef = useRef<HTMLDivElement>(null);
   const [isBooting, setIsBooting] = useState(false);
   const [bootProgress, setBootProgress] = useState(0);
+  const { t } = useTranslation();
 
   const isMounted = useIsMounted();
 
@@ -263,7 +265,7 @@ export default function DeviceReveal() {
                     <motion.span
                       className="boot-text font-mono text-[8px] text-zinc-600 tracking-widest"
                     >
-                      {isBooting ? `Loading... ${bootProgress}%` : "Ready to explore"}
+                      {isBooting ? `${t("projects.loading")}... ${bootProgress}%` : t("projects.readyToExplore")}
                     </motion.span>
                   </div>
                 </div>

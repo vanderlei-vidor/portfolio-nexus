@@ -3,8 +3,11 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
+import { useTranslation } from "@/shared/i18n/useTranslation";
 
 export default function Contact() {
+  const { t } = useTranslation();
+
   return (
     <section className="relative py-40 px-6 overflow-hidden">
       {/* Background glows */}
@@ -20,7 +23,7 @@ export default function Contact() {
           className="mb-8"
         >
           <span className="font-mono text-xs text-zinc-400 uppercase tracking-[0.3em]">
-            Get In Touch
+            {t("contact.badge")}
           </span>
         </motion.div>
 
@@ -31,11 +34,11 @@ export default function Contact() {
           viewport={{ once: true }}
           className="text-5xl md:text-7xl lg:text-8xl font-bold mb-12 tracking-tighter text-white leading-[0.9]"
         >
-          Let&apos;s build something
+          {t("contact.title")}
           <br />
           {/* ⚡ CORREÇÃO TAILWIND V4: de bg-gradient-to-r para bg-linear-to-r */}
           <span className="bg-linear-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
-            exceptional.
+            {t("contact.titleGradient")}
           </span>
         </motion.h2>
 
@@ -47,8 +50,7 @@ export default function Contact() {
           viewport={{ once: true }}
           className="text-xl text-zinc-300 mb-16 max-w-2xl mx-auto font-light"
         >
-          Available for new projects and strategic collaborations.
-          Let&apos;s create something memorable together.
+          {t("contact.subtitle")}
         </motion.p>
 
         <motion.div
@@ -62,7 +64,7 @@ export default function Contact() {
             href="/contact"
             className="group relative inline-flex items-center gap-3 px-10 py-5 bg-white text-black font-bold rounded-full hover:bg-blue-500 hover:text-white transition-all duration-500 transform hover:scale-105 shadow-[0_0_40px_rgba(255,255,255,0.15)] hover:shadow-[0_0_60px_rgba(59,130,246,0.4)]"
           >
-            <span>Start a Project</span>
+            <span>{t("contact.startProject")}</span>
             <ArrowUpRight className="w-5 h-5 group-hover:rotate-45 transition-transform duration-300" />
           </Link>
 
@@ -70,7 +72,7 @@ export default function Contact() {
             href="mailto:vanderleividor1@gmail.com"
             className="inline-flex items-center gap-3 px-10 py-5 border border-white/20 rounded-full font-bold text-white hover:border-white/50 hover:bg-white/5 transition-all duration-300 backdrop-blur-sm"
           >
-            <span>Email Me</span>
+            <span>{t("contact.emailMe")}</span>
           </a>
         </motion.div>
 

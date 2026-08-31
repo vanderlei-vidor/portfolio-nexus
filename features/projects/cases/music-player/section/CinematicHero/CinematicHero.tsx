@@ -1,4 +1,10 @@
+"use client";
+
+import { useTranslation } from "@/shared/i18n/useTranslation";
+
 export default function CinematicHero() {
+  const { t } = useTranslation();
+
   return (
     <section className="relative flex min-h-screen items-center justify-center overflow-hidden bg-[#030303] px-4 sm:px-6">
 
@@ -18,7 +24,7 @@ export default function CinematicHero() {
         {/* Badge */}
         <div className="mb-8 rounded-full border border-white/10 bg-white/5 px-4 py-2 backdrop-blur-md">
           <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-zinc-400">
-            Case Study // Music Player
+            {t("projects.caseStudy")} {"//"} Music Player
           </span>
         </div>
 
@@ -49,7 +55,7 @@ export default function CinematicHero() {
           <div className="h-16 w-px bg-linear-to-b from-white/40 to-transparent" />
 
           <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-zinc-600">
-            Scroll
+            {t("projects.scroll")}
           </span>
         </div>
 

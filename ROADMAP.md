@@ -28,7 +28,7 @@ Transformar o **Portfolio Nexus** de um portfólio de alta performance visual em
 > **Foco:** Transformar a aplicação em um sistema tolerante a falhas com testes automatizados e métricas reais de usuário.
 
 ### 🧪 Suíte de Testes & CI/CD
-- [ ] **Testes Unitários & Componentes:** Configurar **Vitest** e **React Testing Library** para validar renderização de componentes críticos e utilitários.
+- [x] **Testes Unitários & Componentes:** Configurados **Vitest**, **React Testing Library** e **jsdom** com suítes ativas para `useReducedMotion` e `DirectContactForm` (comando `npm run test`).
 - [ ] **Testes End-to-End (E2E):** Implementar testes críticos com **Playwright** cobrindo a jornada de navegação principal, troca de rotas e envio do formulário de contato.
 - [ ] **Pipeline de CI/CD:** Github Actions para validação automatizada de `eslint`, `tsc --noEmit`, `vitest` e `playwright` em todo Pull Request.
 
@@ -37,7 +37,7 @@ Transformar o **Portfolio Nexus** de um portfólio de alta performance visual em
 - [ ] **Product Analytics & Heatmaps:** Configuração do **PostHog** para análise de retenção, tempo de permanência em cada case e mapa de calor do cursor.
 
 ### 🌍 Internacionalização (i18n)
-- [ ] **Suporte Multi-idioma:** Implementar `next-intl` com suporte dinâmico a Português (pt-BR) e Inglês (en-US), incluindo chaveamento automático baseado no navegador.
+- [x] **Suporte Multi-idioma:** Dicionários de tradução nativos em `messages/en.json` e `messages/pt.json`, contexto reativo `LanguageContext`, hook `useTranslation` e Seletor de Idioma Glassmorphism (`LanguageSwitcher`).
 
 ---
 

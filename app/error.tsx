@@ -2,7 +2,8 @@
 
 import { useEffect } from "react";
 import Link from "next/link";
-import { AlertTriangle, RefreshCw, ArrowLeft } from "lucide-react";
+import { AlertTriangle, ArrowLeft, RefreshCw } from "lucide-react";
+import { useTranslation } from "@/shared/i18n/useTranslation";
 
 export default function Error({
   error,
@@ -11,51 +12,50 @@ export default function Error({
   error: Error & { digest?: string };
   reset: () => void;
 }) {
+  const { t } = useTranslation();
+
   useEffect(() => {
-    // Log exception silently or send to telemetries
     console.error("Uncaught Route Error:", error);
   }, [error]);
 
   return (
-    <main className="relative min-h-screen bg-[#030303] text-white flex flex-col items-center justify-center px-6 overflow-hidden">
-      {/* Background Glows */}
-      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-160 h-160 bg-red-500/10 blur-[180px] pointer-events-none -z-10" />
-
-      {/* Grid Pattern Background */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff03_1px,transparent_1px),linear-gradient(to_bottom,#ffffff03_1px,transparent_1px)] bg-[size:60px_60px] pointer-events-none" />
+    <main className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-[#030303] px-6 text-white">
+      <div className="pointer-events-none absolute left-1/2 top-1/2 -z-10 h-160 w-160 -translate-x-1/2 -translate-y-1/2 bg-red-500/10 blur-[180px]" />
+      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,#ffffff03_1px,transparent_1px),linear-gradient(to_bottom,#ffffff03_1px,transparent_1px)] bg-[size:60px_60px]" />
 
       <div className="relative z-10 max-w-lg text-center">
-        <div className="inline-flex items-center justify-center p-4 rounded-2xl bg-red-500/10 border border-red-500/20 mb-8 backdrop-blur-md">
-          <AlertTriangle className="w-10 h-10 text-red-400" />
+        <div className="mb-8 inline-flex items-center justify-center rounded-2xl border border-red-500/20 bg-red-500/10 p-4 backdrop-blur-md">
+          <AlertTriangle className="h-10 w-10 text-red-400" aria-hidden="true" />
         </div>
 
-        <p className="font-mono text-xs text-red-400 uppercase tracking-[0.3em] mb-3">
-          Runtime Exception Intercepted
+        <p className="mb-3 font-mono text-xs uppercase tracking-[0.3em] text-red-400">
+          {t("error.badge")}
         </p>
 
-        <h1 className="text-4xl sm:text-5xl font-bold tracking-tighter mb-4 text-white">
-          Something went wrong.
+        <h1 className="mb-4 text-4xl font-bold tracking-tighter text-white sm:text-5xl">
+          {t("error.title")}
         </h1>
 
-        <p className="text-zinc-400 text-base font-light mb-10 max-w-md mx-auto leading-relaxed">
-          An unexpected error occurred while rendering this view. You can try recovering or return to the main interface.
+        <p className="mx-auto mb-10 max-w-md text-base font-light leading-relaxed text-zinc-400">
+          {t("error.description")}
         </p>
 
-        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+        <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
           <button
+            type="button"
             onClick={() => reset()}
-            className="inline-flex items-center gap-2 px-8 py-4 bg-white text-black font-semibold rounded-full hover:bg-red-500 hover:text-white transition-all duration-300 transform hover:scale-105"
+            className="inline-flex items-center gap-2 rounded-full bg-white px-8 py-4 font-semibold text-black transition-all duration-300 hover:scale-105 hover:bg-red-500 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
           >
-            <RefreshCw className="w-4 h-4" />
-            <span>Try Again</span>
+            <RefreshCw className="h-4 w-4" aria-hidden="true" />
+            <span>{t("error.tryAgain")}</span>
           </button>
 
           <Link
             href="/"
-            className="inline-flex items-center gap-2 px-8 py-4 border border-white/20 rounded-full font-semibold text-white hover:border-white/50 hover:bg-white/5 transition-all duration-300 backdrop-blur-sm"
+            className="inline-flex items-center gap-2 rounded-full border border-white/20 px-8 py-4 font-semibold text-white backdrop-blur-sm transition-all duration-300 hover:border-white/50 hover:bg-white/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
           >
-            <ArrowLeft className="w-4 h-4" />
-            <span>Back to Home</span>
+            <ArrowLeft className="h-4 w-4" aria-hidden="true" />
+            <span>{t("error.backHome")}</span>
           </Link>
         </div>
       </div>

@@ -15,7 +15,7 @@ export const projectsRegistry = {
     title: "Music Player",
     cardDescription: "Offline audio experience",
     description:
-      "Explore o case Music Player: uma experiencia offline de audio com interface imersiva, motion refinado e foco em performance.",
+      "Explore the Music Player case study: an offline audio experience with an immersive interface, refined motion, and a strong performance focus.",
     imageUrl: "/projects/music-player/textures/card_home.webp",
     loadComponent: async () => (await import("./cases/music-player")).default,
   },
@@ -24,7 +24,7 @@ export const projectsRegistry = {
     title: "SaaS Data Control",
     cardDescription: "Native data platform",
     description:
-      "Explore o case SaaS Data Control: uma experiencia SaaS orientada a dados, controle e clareza operacional.",
+      "Explore the SaaS Data Control case study: a data-driven SaaS experience built around control and operational clarity.",
     imageUrl: "/projects/saas-data-control/textures/hero-dashboard.webp",
     loadComponent: async () => (await import("./cases/saas-data-control")).default,
   },
@@ -33,7 +33,7 @@ export const projectsRegistry = {
     title: "English Tutor",
     cardDescription: "AI learning interface",
     description:
-      "Explore o case English Tutor: um sistema moderno de aprendizado com hierarquia visual forte e interacoes fluidas.",
+      "Explore the English Tutor case study: a modern learning system with strong visual hierarchy and fluid interactions.",
     imageUrl: "/projects/english-tutor/textures/english-tutor-screen.webp",
     loadComponent: async () => (await import("./cases/english-tutor")).default,
   },
@@ -42,7 +42,7 @@ export const projectsRegistry = {
     title: "Portfolio Nexus",
     cardDescription: "Premium portfolio ecosystem",
     description:
-      "Explore o case Portfolio Nexus: uma experiencia digital com base escalavel, narrativa visual e acabamento premium.",
+      "Explore the Portfolio Nexus case study: a digital experience with a scalable foundation, visual narrative, and premium finish.",
     imageUrl: "/projects/ecosystem/textures/site_card.webp",
     loadComponent: async () => (await import("./cases/ecosystem")).default,
   },

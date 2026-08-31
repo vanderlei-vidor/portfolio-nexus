@@ -1,0 +1,179 @@
+{
+  "nav": {
+    "home": "Home",
+    "process": "Process",
+    "projects": "Projects",
+    "contact": "Contact"
+  },
+  "language": {
+    "label": "Language",
+    "changeTo": "Change language to",
+    "current": "Current language"
+  },
+  "hero": {
+    "badge": "AVAILABLE FOR NEW PROJECTS & COLLABORATIONS",
+    "eyebrow": "Hero section",
+    "titleLine1": "CRAFTING",
+    "titleLine2": "THE FUTURE.",
+    "tagline": "Smooth. Elegant. Cinematic.",
+    "subtitle": "Building world-class digital experiences, high-performance web applications & intelligent software systems.",
+    "startProject": "Start a Project",
+    "exploreWork": "Explore Work",
+    "viewProcess": "View the Process"
+  },
+  "about": {
+    "badge": "ABOUT",
+    "title": "I build interfaces that convert, perform and scale. Focused on creating premium digital experiences with performance and design in mind.",
+    "p1": "Specializing in modern full-stack architecture, high-frequency user interfaces, and artificial intelligence integration.",
+    "p2": "Every line of code is written with precision, scale, and user delight in mind.",
+    "author": "Author"
+  },
+  "projects": {
+    "title": "Selected Projects",
+    "exploreCase": "Explore Case Study",
+    "caseStudy": "Case Study",
+    "skipToContent": "Skip to project content",
+    "backToProjects": "Back to Projects",
+    "backToHome": "Back to Home",
+    "scroll": "Scroll",
+    "loading": "Loading",
+    "readyToExplore": "Ready to explore",
+    "watchDemo": "Watch Demo",
+    "watchShowcase": "Watch Showcase",
+    "source": "Source",
+    "closeDemo": "Close demo",
+    "previousSlide": "Previous slide",
+    "nextSlide": "Next slide",
+    "pauseSlideshow": "Pause slideshow",
+    "playSlideshow": "Play slideshow",
+    "goToSlide": "Go to slide",
+    "items": {
+      "music-player": {
+        "cardDescription": "Offline audio experience",
+        "description": "Explore the Music Player case study: an offline audio experience with an immersive interface, refined motion, and a strong performance focus."
+      },
+      "saas-data-control": {
+        "cardDescription": "Native data platform",
+        "description": "Explore the SaaS Data Control case study: a data-driven SaaS experience built around control and operational clarity."
+      },
+      "english-tutor": {
+        "cardDescription": "AI learning interface",
+        "description": "Explore the English Tutor case study: a modern learning system with strong visual hierarchy and fluid interactions."
+      },
+      "portfolio-nexus": {
+        "cardDescription": "Premium portfolio ecosystem",
+        "description": "Explore the Portfolio Nexus case study: a digital experience with a scalable foundation, visual narrative, and premium finish."
+      }
+    }
+  },
+  "stack": {
+    "title": "CAPABILITIES & STACK",
+    "subtitle": "Curated stack powering modern production applications.",
+    "experienceLayer": "Frontend and UI technologies",
+    "coreLayer": "Backend and infrastructure technologies"
+  },
+  "terminal": {
+    "label": "Interactive terminal",
+    "badge": "Kernel Terminal Access",
+    "output": "Terminal output",
+    "input": "Terminal command input",
+    "placeholder": "Type a command...",
+    "initial1": "SECURE CONNECTION ESTABLISHED...",
+    "initial2": "INITIALIZING PORTFOLIO_OS V2.0.4...",
+    "initial3": "Welcome, guest. Type 'help' to begin.",
+    "projectsTitle": "DEPLOYED SYSTEMS:",
+    "aboutTitle": "SYSTEM PROFILE: Lead Frontend Engineer",
+    "capabilities": "CORE CAPABILITIES:",
+    "status": "Status: Ready for high-impact deployment.",
+    "contactTitle": "COMMS CHANNELS:",
+    "helpTitle": "AVAILABLE COMMANDS:",
+    "unknown": "ERROR: Unknown command",
+    "unknownHelp": "Type 'help' for assistance."
+  },
+  "process": {
+    "progressPhase": "Phase",
+    "progressTotal": "Total",
+    "badge": "Production_Protocol // v1.0",
+    "titleMuted": "Engineering",
+    "titleStrong": "Digital Excellence",
+    "intro": "A systematic approach to building high-performance applications through rigorous architecture and precise execution.",
+    "steps": {
+      "strategy": {
+        "tag": "SYSTEM_DESIGN",
+        "title": "Architecture & Scoping",
+        "description": "Before a single line of code is written, I architect the solution. Requirements engineering, scalability mapping, and technical feasibility studies ensure a robust foundation."
+      },
+      "design": {
+        "tag": "INTERFACE_ENGINEERING",
+        "title": "Human-Centric UX",
+        "description": "Crafting high-fidelity interfaces where accessibility meets motion. Applying Nielsen's heuristics ensures the user journey is as logical as the backend."
+      },
+      "engineering": {
+        "tag": "CORE_DEVELOPMENT",
+        "title": "Full-Stack Implementation",
+        "description": "Leveraging Next.js for server-side excellence. Clean code, type-safety with TypeScript, and low-latency rendering driven by mathematical motion engines."
+      },
+      "quality": {
+        "tag": "QA_DEPLOYMENT",
+        "title": "Optimization & Vitals",
+        "description": "Rigorous testing for Core Web Vitals. Optimizing for Lighthouse scores, edge-caching delivery, and a seamless CI/CD pipeline for 99.9% reliability."
+      }
+    },
+    "systemRunning": "System_Running",
+    "finalTitleLine1": "Ready to scale",
+    "finalTitleLine2": "your vision?",
+    "finalCta": "Initialize Partnership"
+  },
+  "contact": {
+    "badge": "GET IN TOUCH",
+    "title": "Let's build something",
+    "titleGradient": "exceptional.",
+    "subtitle": "Available for new projects and strategic collaborations. Let's create something memorable together.",
+    "startProject": "Start a Project",
+    "emailMe": "Email Me",
+    "generatorTitle": "Direct Message Generator",
+    "generatorSubtitle": "Zero delay - opens directly in your mail app",
+    "nameLabel": "Your Name",
+    "namePlaceholder": "e.g. Sarah Connor",
+    "subjectLabel": "Subject",
+    "subjectPlaceholder": "e.g. New Web Application Project",
+    "messageLabel": "Message",
+    "messagePlaceholder": "Tell me a bit about your idea, timeline or goals...",
+    "openEmailClient": "Open Email Client",
+    "copyMessage": "Copy Message",
+    "copied": "Copied!",
+    "copyEmail": "Copy email address",
+    "copyWebmail": "Copy pre-formatted text for webmail",
+    "emailDirectly": "Email Directly",
+    "professionalNetwork": "Professional Network",
+    "sourceCode": "Source Code & Work",
+    "linkedinProfile": "LinkedIn Profile",
+    "githubProfile": "GitHub Profile",
+    "backToHome": "Back to home",
+    "pageTitle": "Get in touch.",
+    "pageSubtitle": "Available for new projects, engineering leadership & strategic collaborations.",
+    "defaultSubject": "Contact from Portfolio Nexus",
+    "defaultVisitor": "Visitor",
+    "defaultGreeting": "Hello, Vanderlei!",
+    "defaultBody": "I would like to talk about a project or opportunity.",
+    "defaultSignoff": "Best,",
+    "defaultCopyMessage": "I would like to get in touch about new opportunities.",
+    "allRightsReserved": "All rights reserved"
+  },
+  "notFound": {
+    "badge": "404 - PAGE NOT FOUND",
+    "title": "Lost in orbit.",
+    "description": "The page or signal you are looking for has been moved, renamed, or does not exist in this universe.",
+    "returnHome": "Return to Nexus Home"
+  },
+  "error": {
+    "badge": "RUNTIME EXCEPTION INTERCEPTED",
+    "title": "Something went wrong.",
+    "description": "An unexpected error occurred while rendering this view. You can try recovering or return to the main interface.",
+    "tryAgain": "Try Again",
+    "backHome": "Back to Home",
+    "globalTitle": "System Malfunction",
+    "globalDescription": "A critical error occurred in the application root layout.",
+    "reload": "Reload Application"
+  }
+}

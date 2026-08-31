@@ -13,9 +13,11 @@ import DesignPhilosophy from "./section/DesignPhilosophy/DesignPhilosophy";
 import Numbers from "./section/Numbers/Numbers";
 import FutureVision from "./section/FutureVision/FutureVision";
 import FinalCTA from "./section/FinalCTA/FinalCTA";
+import ProjectCaseChrome from "@/features/projects/components/ProjectCaseChrome";
 
 export default function EcosystemSection() {
   return (
+    <ProjectCaseChrome slug="portfolio-nexus" title="Portfolio Nexus">
     <section className="ecosystem" data-cinematic-case="portfolio-nexus">
       <EcosystemCinematicDirector />
 
@@ -43,5 +45,6 @@ export default function EcosystemSection() {
 
       <FinalCTA />
     </section>
+    </ProjectCaseChrome>
   );
 }

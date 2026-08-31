@@ -4,6 +4,7 @@
 import { useRef, useEffect, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useTranslation } from "@/shared/i18n/useTranslation";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -11,6 +12,7 @@ export default function About() {
   const sectionRef = useRef<HTMLElement>(null);
   const textRef = useRef<HTMLHeadingElement>(null);
   const [isVisible, setIsVisible] = useState(false);
+  const { t } = useTranslation();
 
   // ✅ OTIMIZAÇÃO 1: IntersectionObserver para detectar visibilidade
   useEffect(() => {
@@ -64,9 +66,9 @@ export default function About() {
     }, sectionRef);
 
     return () => ctx.revert();
-  }, [isVisible]);
+  }, [isVisible, t]);
 
-  const text = "I build interfaces that convert, perform and scale. Focused on creating premium digital experiences with performance and design in mind.";
+  const text = t("about.title");
 
   // ✅ OTIMIZAÇÃO 5: Divide por PALAVRAS em vez de caracteres (100+ → ~20 elementos)
   const words = text.split(" ");
@@ -75,7 +77,7 @@ export default function About() {
     <section 
       ref={sectionRef}
       className="py-40 px-6 max-w-5xl mx-auto relative"
-      aria-label="About section"
+      aria-label={t("about.badge")}
     >
       {/* Glow de fundo - otimizado com will-change */}
       <div 
@@ -84,7 +86,7 @@ export default function About() {
       />
       
       <div className="mb-16">
-        <span className="font-mono text-xs text-zinc-500 uppercase tracking-[0.3em]">About</span>
+        <span className="font-mono text-xs text-zinc-500 uppercase tracking-[0.3em]">{t("about.badge")}</span>
       </div>
 
       <h2 
@@ -104,7 +106,7 @@ export default function About() {
       <div className="mt-20 flex items-center gap-4">
         <div className="h-px w-20 bg-linear-to-r from-transparent to-white/20" />
         <span className="font-mono text-xs text-zinc-600 uppercase tracking-widest">
-          Author
+          {t("about.author")}
         </span>
       </div>
     </section>

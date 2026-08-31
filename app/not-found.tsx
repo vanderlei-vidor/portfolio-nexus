@@ -1,39 +1,41 @@
+"use client";
+
 import Link from "next/link";
 import { ArrowLeft, Compass } from "lucide-react";
+import { useTranslation } from "@/shared/i18n/useTranslation";
 
 export default function NotFound() {
-  return (
-    <main className="relative min-h-screen bg-[#030303] text-white flex flex-col items-center justify-center px-6 overflow-hidden">
-      {/* Background Glows */}
-      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-160 h-160 bg-blue-500/10 blur-[180px] pointer-events-none -z-10" />
-      <div className="absolute left-1/3 top-1/3 w-96 h-96 bg-purple-500/10 blur-[150px] pointer-events-none -z-10" />
+  const { t } = useTranslation();
 
-      {/* Grid Pattern Background */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff03_1px,transparent_1px),linear-gradient(to_bottom,#ffffff03_1px,transparent_1px)] bg-[size:60px_60px] pointer-events-none" />
+  return (
+    <main className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-[#030303] px-6 text-white">
+      <div className="pointer-events-none absolute left-1/2 top-1/2 -z-10 h-160 w-160 -translate-x-1/2 -translate-y-1/2 bg-blue-500/10 blur-[180px]" />
+      <div className="pointer-events-none absolute left-1/3 top-1/3 -z-10 h-96 w-96 bg-purple-500/10 blur-[150px]" />
+      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,#ffffff03_1px,transparent_1px),linear-gradient(to_bottom,#ffffff03_1px,transparent_1px)] bg-[size:60px_60px]" />
 
       <div className="relative z-10 max-w-lg text-center">
-        <div className="inline-flex items-center justify-center p-4 rounded-2xl bg-white/3 border border-white/10 mb-8 backdrop-blur-md shadow-2xl">
-          <Compass className="w-10 h-10 text-blue-400 animate-pulse" />
+        <div className="mb-8 inline-flex items-center justify-center rounded-2xl border border-white/10 bg-white/3 p-4 shadow-2xl backdrop-blur-md">
+          <Compass className="h-10 w-10 animate-pulse text-blue-400" aria-hidden="true" />
         </div>
 
-        <p className="font-mono text-xs text-blue-400 uppercase tracking-[0.3em] mb-3">
-          404 — Page Not Found
+        <p className="mb-3 font-mono text-xs uppercase tracking-[0.3em] text-blue-400">
+          {t("notFound.badge")}
         </p>
 
-        <h1 className="text-4xl sm:text-6xl font-bold tracking-tighter mb-4 text-white">
-          Lost in orbit.
+        <h1 className="mb-4 text-4xl font-bold tracking-tighter text-white sm:text-6xl">
+          {t("notFound.title")}
         </h1>
 
-        <p className="text-zinc-400 text-base font-light mb-10 max-w-md mx-auto leading-relaxed">
-          The page or signal you are looking for has been moved, renamed, or does not exist in this universe.
+        <p className="mx-auto mb-10 max-w-md text-base font-light leading-relaxed text-zinc-400">
+          {t("notFound.description")}
         </p>
 
         <Link
           href="/"
-          className="inline-flex items-center gap-3 px-8 py-4 bg-white text-black font-semibold rounded-full hover:bg-blue-500 hover:text-white transition-all duration-300 transform hover:scale-105 shadow-[0_0_30px_rgba(255,255,255,0.1)] hover:shadow-[0_0_50px_rgba(59,130,246,0.4)]"
+          className="inline-flex items-center gap-3 rounded-full bg-white px-8 py-4 font-semibold text-black shadow-[0_0_30px_rgba(255,255,255,0.1)] transition-all duration-300 hover:scale-105 hover:bg-blue-500 hover:text-white hover:shadow-[0_0_50px_rgba(59,130,246,0.4)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
         >
-          <ArrowLeft className="w-4 h-4" />
-          <span>Return to Nexus Home</span>
+          <ArrowLeft className="h-4 w-4" aria-hidden="true" />
+          <span>{t("notFound.returnHome")}</span>
         </Link>
       </div>
     </main>

@@ -8,6 +8,7 @@ import { FutureVisionOrb } from "../../components/FutureVisionOrb/FutureVisionOr
 
 import styles from "./ProjectVisionSection.module.css";
 import { useRouter } from "next/navigation";
+import { useTranslation } from "@/shared/i18n/useTranslation";
 
 // Dados estruturados dos slides do English Tutor AI
 const demoSlides = [
@@ -33,6 +34,7 @@ export function ProjectVisionSection() {
   const [isDemoOpen, setIsDemoOpen] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true);
+  const { t } = useTranslation();
 
   const SLIDE_DURATION = 4000; // Tempo de cada slide (4 segundos)
   const timerRef = useRef<NodeJS.Timeout | null>(null);
@@ -113,7 +115,7 @@ export function ProjectVisionSection() {
             onClick={() => router.push("/contact")} // 3. Troca o mailto pela rota interna
             className="group relative px-12 py-5 bg-white text-black rounded-full font-bold text-sm overflow-hidden transition-all duration-500 hover:scale-105 active:scale-95 shadow-[0_0_40px_rgba(255,255,255,0.1)]"
           >
-            <span className="relative z-10">Start a Project</span>
+            <span className="relative z-10">{t("contact.startProject")}</span>
             <div className="absolute inset-0 bg-linear-to-r from-transparent via-black/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
           </button>
 
@@ -128,7 +130,7 @@ export function ProjectVisionSection() {
             }}
             className="rounded-full border border-white/10 bg-white/5 px-8 py-4 text-sm font-medium text-white backdrop-blur-md transition-all duration-500 hover:bg-white/10 hover:border-white/20 hover:scale-105 active:scale-95"
           >
-            Watch Showcase
+            {t("projects.watchShowcase")}
           </button>
 
           {/* Botão Secundário: Repositório do Código */}
@@ -136,7 +138,7 @@ export function ProjectVisionSection() {
             onClick={() => window.open("https://github.com/vanderlei-vidor", "_blank")}
             className="px-6 py-4 text-sm font-mono text-zinc-500 hover:text-white transition-colors"
           >
-            &lt;Source /&gt;
+            &lt;{t("projects.source")} /&gt;
           </button>
         </div>
       </div>
@@ -145,7 +147,7 @@ export function ProjectVisionSection() {
         onClick={() => window.location.href = "/"}
         className="mt-16 text-zinc-700 hover:text-zinc-400 text-xs font-mono transition-colors tracking-tighter"
       >
-        [ Back to Home ]
+        [ {t("projects.backToHome")} ]
       </button>
 
       {/* --- MODAL INTERATIVO ESTILIZADO AAA (FUSÃO CONCLUÍDA) --- */}
@@ -153,6 +155,9 @@ export function ProjectVisionSection() {
         <div
           className="fixed inset-0 z-100 flex items-center justify-center bg-black/95 backdrop-blur-2xl p-4 md:p-10 animate-in fade-in duration-500"
           onClick={() => setIsDemoOpen(false)} // Fecha o modal clicando no backdrop escuro
+          role="dialog"
+          aria-modal="true"
+          aria-label={t("projects.watchShowcase")}
         >
           <div
             className="relative w-full max-w-5xl aspect-video rounded-2xl overflow-hidden border border-white/10 shadow-[0_0_80px_rgba(0,0,0,0.8)] bg-zinc-950 flex flex-col justify-between"
@@ -179,6 +184,7 @@ export function ProjectVisionSection() {
               <button
                 onClick={() => setIsDemoOpen(false)}
                 className="px-4 py-1.5 rounded-full bg-white/5 text-zinc-400 text-[10px] font-mono border border-white/5 hover:bg-white hover:text-black transition-all"
+                aria-label={t("projects.closeDemo")}
               >
                 EXIT (ESC)
               </button>
@@ -216,7 +222,8 @@ export function ProjectVisionSection() {
                 <button
                   onClick={prevSlide}
                   className="p-1 text-zinc-400 hover:text-white transition-colors"
-                  title="Previous Slide"
+                  title={t("projects.previousSlide")}
+                  aria-label={t("projects.previousSlide")}
                 >
                   <ChevronLeft size={18} />
                 </button>
@@ -224,7 +231,8 @@ export function ProjectVisionSection() {
                 <button
                   onClick={() => setIsPlaying(!isPlaying)}
                   className="p-2 rounded-full bg-white text-black hover:scale-105 active:scale-95 transition-all"
-                  title={isPlaying ? "Pause Autoplay" : "Play Autoplay"}
+                  title={isPlaying ? t("projects.pauseSlideshow") : t("projects.playSlideshow")}
+                  aria-label={isPlaying ? t("projects.pauseSlideshow") : t("projects.playSlideshow")}
                 >
                   {isPlaying ? <Pause size={14} fill="black" /> : <Play size={14} fill="black" />}
                 </button>
@@ -232,7 +240,8 @@ export function ProjectVisionSection() {
                 <button
                   onClick={nextSlide}
                   className="p-1 text-zinc-400 hover:text-white transition-colors"
-                  title="Next Slide"
+                  title={t("projects.nextSlide")}
+                  aria-label={t("projects.nextSlide")}
                 >
                   <ChevronRight size={18} />
                 </button>
@@ -247,6 +256,7 @@ export function ProjectVisionSection() {
                       onClick={() => setCurrentSlide(index)}
                       className={`h-1.5 rounded-full transition-all duration-500 ${index === currentSlide ? "w-4 bg-violet-500" : "w-1.5 bg-zinc-600 hover:bg-zinc-400"
                         }`}
+                      aria-label={`${t("projects.goToSlide")} ${index + 1}`}
                     />
                   ))}
                 </div>

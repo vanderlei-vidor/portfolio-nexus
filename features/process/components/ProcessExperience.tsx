@@ -6,6 +6,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useLenis } from "lenis/react";
 import Link from "next/link";
+import { useTranslation } from "@/shared/i18n/useTranslation";
 
 
 gsap.registerPlugin(ScrollTrigger);
@@ -21,6 +22,7 @@ const sectionColors = [
 
 export default function ProcessExperience() {
   const lenis = useLenis();
+  const { t } = useTranslation();
   const mainContainerRef = useRef<HTMLDivElement>(null);
   const stickyStageRef = useRef<HTMLDivElement>(null);
   const horizontalWrapperRef = useRef<HTMLDivElement>(null);
@@ -129,9 +131,9 @@ export default function ProcessExperience() {
       </div>
 
       <div className="fixed top-8 right-8 z-50 font-mono text-[10px] text-white/30 tracking-[0.3em] uppercase">
-        <span className="text-white">Phase_{String(currentSection + 1).padStart(2, '0')}</span>
+        <span className="text-white">{t("process.progressPhase")}_{String(currentSection + 1).padStart(2, '0')}</span>
         <span className="mx-2">::</span>
-        <span>Total_{String(totalSections).padStart(2, '0')}</span>
+        <span>{t("process.progressTotal")}_{String(totalSections).padStart(2, '0')}</span>
       </div>
 
       {/* REMOVIDO: A altura em VH engessada que quebrava o fim do scroll */}
@@ -160,16 +162,16 @@ export default function ProcessExperience() {
                 animate={{ opacity: 1 }}
                 className="font-mono text-[10px] uppercase tracking-[0.6em] text-zinc-500 mb-8"
               >
-                Production_Protocol // v1.0
+                {t("process.badge")}
               </motion.span>
 
               <h1 className="text-5xl md:text-8xl font-black text-center max-w-5xl leading-[0.9] tracking-tighter uppercase">
-                <span className="text-zinc-700">Engineering</span> <br />
-                <span className="bg-linear-to-b from-white to-zinc-500 bg-clip-text text-transparent">Digital Excellence</span>
+                <span className="text-zinc-700">{t("process.titleMuted")}</span> <br />
+                <span className="bg-linear-to-b from-white to-zinc-500 bg-clip-text text-transparent">{t("process.titleStrong")}</span>
               </h1>
 
               <p className="mt-8 font-mono text-[10px] text-zinc-600 max-w-md text-center leading-relaxed">
-                A systematic approach to building high-performance applications through rigorous architecture and precise execution.
+                {t("process.intro")}
               </p>
             </section>
 
@@ -177,36 +179,40 @@ export default function ProcessExperience() {
             <ProcessStep
               ref={(el) => { if (el) sectionsRef.current[1] = el; }}
               step="01"
-              tag="SYSTEM_DESIGN"
-              title="Architecture & Scoping"
-              description="Before a single line of code is written, I architect the solution. Requirements engineering, scalability mapping, and technical feasibility studies to ensure a robust foundation."
+              tag={t("process.steps.strategy.tag")}
+              title={t("process.steps.strategy.title")}
+              description={t("process.steps.strategy.description")}
+              statusLabel={t("process.systemRunning")}
             />
 
             {/* Step 02: Design */}
             <ProcessStep
               ref={(el) => { if (el) sectionsRef.current[2] = el; }}
               step="02"
-              tag="INTERFACE_ENGINEERING"
-              title="Human-Centric UX"
-              description="Crafting high-fidelity interfaces where accessibility meets motion. Applying Nielsen's heuristics to ensure the user journey is as logical as the backend."
+              tag={t("process.steps.design.tag")}
+              title={t("process.steps.design.title")}
+              description={t("process.steps.design.description")}
+              statusLabel={t("process.systemRunning")}
             />
 
             {/* Step 03: Engineering */}
             <ProcessStep
               ref={(el) => { if (el) sectionsRef.current[3] = el; }}
               step="03"
-              tag="CORE_DEVELOPMENT"
-              title="Full-Stack Implementation"
-              description="Leveraging Next.js 15 for server-side excellence. Clean code, type-safety with TypeScript, and low-latency rendering driven by mathematical motion engines."
+              tag={t("process.steps.engineering.tag")}
+              title={t("process.steps.engineering.title")}
+              description={t("process.steps.engineering.description")}
+              statusLabel={t("process.systemRunning")}
             />
 
             {/* Step 04: Quality */}
             <ProcessStep
               ref={(el) => { if (el) sectionsRef.current[4] = el; }}
               step="04"
-              tag="QA_DEPLOYMENT"
-              title="Optimization & Vitals"
-              description="Rigorous testing for Core Web Vitals. Optimizing for Lighthouse scores, edge-caching delivery, and ensuring a seamless CI/CD pipeline for 99.9% reliability."
+              tag={t("process.steps.quality.tag")}
+              title={t("process.steps.quality.title")}
+              description={t("process.steps.quality.description")}
+              statusLabel={t("process.systemRunning")}
             />
 
             {/* Final Section: Conversion */}
@@ -217,14 +223,14 @@ export default function ProcessExperience() {
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-125 h-125 bg-white/5 rounded-full blur-[120px] pointer-events-none" />
 
               <h2 className="text-4xl md:text-7xl font-bold tracking-tighter uppercase mb-12 text-center">
-                Ready to scale <br /> your vision?
+                {t("process.finalTitleLine1")} <br /> {t("process.finalTitleLine2")}
               </h2>
 
               <Link
                 href="/contact"
                 className="group relative px-12 py-5 bg-white text-black font-bold rounded-full overflow-hidden transition-all hover:scale-105 active:scale-95 shadow-2xl"
               >
-                <span className="relative z-10 text-sm uppercase tracking-widest">Initialize Partnership</span>
+                <span className="relative z-10 text-sm uppercase tracking-widest">{t("process.finalCta")}</span>
               </Link>
             </section>
 
@@ -240,9 +246,10 @@ interface ProcessStepProps {
   tag: string;
   title: string;
   description: string;
+  statusLabel: string;
 }
 
-const ProcessStep = forwardRef<HTMLElement, ProcessStepProps>(({ step, tag, title, description }, ref) => {
+const ProcessStep = forwardRef<HTMLElement, ProcessStepProps>(({ step, tag, title, description, statusLabel }, ref) => {
   return (
     <section
       ref={ref}
@@ -274,7 +281,7 @@ const ProcessStep = forwardRef<HTMLElement, ProcessStepProps>(({ step, tag, titl
           <div className="mt-12 flex items-center gap-6 opacity-30 group-hover:opacity-100 transition-opacity duration-700">
             <div className="w-2 h-2 rounded-full bg-white animate-pulse" />
             <div className="h-px w-24 bg-white/20" />
-            <span className="font-mono text-[9px] tracking-widest uppercase">System_Running</span>
+            <span className="font-mono text-[9px] tracking-widest uppercase">{statusLabel}</span>
           </div>
         </div>
       </div>
