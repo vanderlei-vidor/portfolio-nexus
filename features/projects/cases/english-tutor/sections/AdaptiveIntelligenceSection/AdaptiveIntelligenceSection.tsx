@@ -1,78 +1,69 @@
 "use client";
 
+import { useLanguage } from "@/shared/i18n/LanguageContext";
+import { englishTutorContent } from "../../content";
 import styles from "./AdaptiveIntelligenceSection.module.css";
 
 export function AdaptiveIntelligenceSection() {
-    return (
-        <section className={styles.section}>
-            <div className={styles.header}>
-                <span className={styles.eyebrow}>ADAPTIVE INTELLIGENCE</span>
-                <h2 className={styles.title}>
-                    Every Lesson
-                    <br />
-                    Adapts To You.
-                </h2>
-                <p className={styles.subtitle}>
-                    The AI continuously analyzes performance, identifies weaknesses and creates a
-                    personalized learning journey in real time.
-                </p>
+  const { locale } = useLanguage();
+  const content = englishTutorContent[locale].adaptive;
+
+  return (
+    <section className={styles.section} aria-labelledby="english-tutor-adaptive-title">
+      <div className={styles.header}>
+        <span className={styles.eyebrow}>{content.eyebrow}</span>
+        <h2 id="english-tutor-adaptive-title" className={styles.title}>
+          {content.titleLine1}
+          <br />
+          {content.titleLine2}
+        </h2>
+        <p className={styles.subtitle}>{content.subtitle}</p>
+      </div>
+
+      <div className={styles.flowContainer}>
+        <div className={styles.userNode}>{content.user}</div>
+
+        <div className={styles.inputGrid}>
+          {content.metrics.map((metric, index) => (
+            <div key={metric.label} className={styles.metricCard}>
+              <p>{metric.label}</p>
+              <span className={index === 2 ? styles.weakness : undefined}>{metric.value}</span>
             </div>
+          ))}
+        </div>
 
-            <div className={styles.flowContainer}>
-                {/* BLOCO 1: ENTRADA DE DADOS */}
-                <div className={styles.userNode}>YOU</div>
+        <div className={styles.connectionLine} aria-hidden="true" />
 
-                <div className={styles.inputGrid}>
-                    <div className={styles.metricCard}>
-                        <p>Pronunciation</p>
-                        <span>72%</span>
-                    </div>
-                    <div className={styles.metricCard}>
-                        <p>Vocabulary</p>
-                        <span>A2</span>
-                    </div>
-                    <div className={styles.metricCard}>
-                        <p>Grammar</p>
-                        <span className={styles.weakness}>Weakness</span>
-                    </div>
-                </div>
+        <div className={styles.engineNode}>
+          <div className={styles.engineHalo} aria-hidden="true" />
+          <div className={styles.engineRing} aria-hidden="true" />
+          <div className={styles.engineOrb} aria-hidden="true">
+            <div className={styles.engineOrbCore} />
+          </div>
 
-                {/* Conexão entrando no motor */}
-                <div className={styles.connectionLine} />
+          <div className={styles.dataFlow} aria-hidden="true">
+            <span className={styles.flow1} />
+            <span className={styles.flow2} />
+            <span className={styles.flow3} />
+          </div>
+        </div>
 
-                {/* BLOCO 2: O MOTOR DE IA CENTRAL */}
-                <div className={styles.engineNode}>
-                    <div className={styles.engineHalo} />
-                    <div className={styles.engineRing} />
-                    <div className={styles.engineOrb}>
-                        <div className={styles.engineOrbCore} />
-                    </div>
+        <span className={styles.engineLabel}>{content.engine}</span>
 
-                    {/* Partículas de dados fluindo verticalmente através do motor */}
-                    <div className={styles.dataFlow}>
-                        <span className={styles.flow1}></span>
-                        <span className={styles.flow2}></span>
-                        <span className={styles.flow3}></span>
-                    </div>
+        <div className={styles.connectionLine} aria-hidden="true" />
 
-                </div>
-
-                <span className={styles.engineLabel}>AI ENGINE</span>
-
-                {/* Conexão saindo do motor */}
-                <div className={styles.connectionLine} />
-
-                {/* BLOCO 3: SAÍDA PERSONALIZADA */}
-                <div className={styles.outputGrid}>
-                    <div className={styles.outputCard}>Lessons</div>
-                    <div className={styles.outputCard}>Feedback</div>
-                    <div className={styles.outputCard}>Challenges</div>
-                </div>
-
-                <div className={styles.finalNode}>Personalized Growth</div>
+        <div className={styles.outputGrid}>
+          {content.outputs.map((output) => (
+            <div key={output} className={styles.outputCard}>
+              {output}
             </div>
-        </section>
-    );
+          ))}
+        </div>
+
+        <div className={styles.finalNode}>{content.finalNode}</div>
+      </div>
+    </section>
+  );
 }
 
 export default AdaptiveIntelligenceSection;

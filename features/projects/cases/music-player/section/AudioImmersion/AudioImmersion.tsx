@@ -1,7 +1,9 @@
 "use client";
 
 import './AudioImmersion.css';
-import { useEffect, useState } from "react";
+import { useEffect, useRef } from "react";
+import { useLanguage } from "@/shared/i18n/LanguageContext";
+import { musicPlayerContent } from "../../content";
 
 const pseudoRandom = (index: number, salt: number) => {
   const value = Math.sin(index * 999 + salt * 777) * 10000;
@@ -24,17 +26,38 @@ const waveBars = Array.from({ length: 40 }).map((_, index) => ({
 }));
 
 export default function AudioImmersion() {
-  const [mousePosition, setMousePosition] = useState({ x: 0.5, y: 0.5 });
+  const lightingRef = useRef<HTMLDivElement>(null);
+  const frameRef = useRef<number | null>(null);
+  const { locale } = useLanguage();
+  const content = musicPlayerContent[locale].audio;
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({
-        x: e.clientX / window.innerWidth,
-        y: e.clientY / window.innerHeight,
+      if (frameRef.current !== null) return;
+
+      frameRef.current = requestAnimationFrame(() => {
+        const x = (e.clientX / window.innerWidth) * 100;
+        const y = (e.clientY / window.innerHeight) * 100;
+
+        if (lightingRef.current) {
+          lightingRef.current.style.background = `
+            radial-gradient(circle at ${x}% ${y}%,
+            rgba(59,130,246,0.15) 0%,
+            transparent 40%),
+            radial-gradient(circle at ${x}% ${y}%,
+            rgba(168,85,247,0.08) 0%,
+            transparent 60%)
+          `;
+        }
+
+        frameRef.current = null;
       });
     };
     window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+      if (frameRef.current !== null) cancelAnimationFrame(frameRef.current);
+    };
   }, []);
 
   return (
@@ -46,13 +69,14 @@ export default function AudioImmersion() {
 
       {/* REACTIVE LIGHTING */}
       <div
+        ref={lightingRef}
         className="pointer-events-none absolute inset-0 transition-all duration-500 ease-out"
         style={{
           background: `
-            radial-gradient(circle at ${mousePosition.x * 100}% ${mousePosition.y * 100}%, 
+            radial-gradient(circle at 50% 50%, 
             rgba(59,130,246,0.15) 0%, 
             transparent 40%),
-            radial-gradient(circle at ${mousePosition.x * 100}% ${mousePosition.y * 100}%, 
+            radial-gradient(circle at 50% 50%, 
             rgba(168,85,247,0.08) 0%, 
             transparent 60%)
           `
@@ -80,17 +104,16 @@ export default function AudioImmersion() {
       <div className="relative z-20 mx-auto flex max-w-6xl flex-col items-center text-center">
         <div className="mb-8 rounded-full border border-white/10 bg-white/5 px-4 py-2 backdrop-blur-md">
           <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-violet-300">
-            Audio Immersion
+            {content.badge}
           </span>
         </div>
 
         <h2 className="max-w-5xl text-6xl font-bold leading-[0.9] tracking-[-0.08em] text-white md:text-8xl lg:text-[10rem]">
-          Feel every<br />frequency.
+          {content.titleLine1}<br />{content.titleLine2}
         </h2>
 
         <p className="mt-8 max-w-2xl text-sm leading-relaxed text-zinc-500 md:text-base">
-          A cinematic audio engine crafted to transform offline listening into
-          an immersive sensory experience with reactive visuals.
+          {content.description}
         </p>
 
         {/* WAVE VISUALIZER */}

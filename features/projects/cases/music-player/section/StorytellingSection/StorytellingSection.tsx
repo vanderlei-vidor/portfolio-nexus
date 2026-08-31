@@ -5,12 +5,16 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
 import { offlinePlayerSteps } from "../../data";
+import { useLanguage } from "@/shared/i18n/LanguageContext";
+import { musicPlayerContent } from "../../content";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function StorytellingSection() {
   const sectionRef = useRef<HTMLElement | null>(null);
   const [active, setActive] = useState(0);
+  const { locale } = useLanguage();
+  const content = musicPlayerContent[locale].story;
 
   useEffect(() => {
     if (!sectionRef.current) return;
@@ -98,6 +102,7 @@ export default function StorytellingSection() {
         <div className="story-text-wrapper relative h-72 sm:h-80 lg:h-112.5 lg:col-span-5 flex items-center">
           {offlinePlayerSteps.map((step, index) => {
             const Icon = step.icon;
+            const stepContent = content.steps[index];
             const isActive = active === index;
 
             return (
@@ -117,20 +122,20 @@ export default function StorytellingSection() {
                   </div>
                   <div className="flex flex-col">
                     <span className="font-mono text-[9px] uppercase tracking-[0.3em] text-zinc-500">
-                      Chapter {step.chapter}
+                      {content.chapter} {step.chapter}
                     </span>
                     <span className="font-mono text-[10px] uppercase tracking-[0.2em]" style={{ color: step.color }}>
-                      {step.tag}
+                      {stepContent.tag}
                     </span>
                   </div>
                 </div>
 
                 <h2 className="max-w-xl text-3xl font-bold leading-[0.95] tracking-tighter text-white sm:text-5xl lg:text-7xl">
-                  {step.title}
+                  {stepContent.title}
                 </h2>
 
                 <p className="mt-4 max-w-md text-xs leading-relaxed text-zinc-400 sm:text-sm md:text-base">
-                  {step.desc}
+                  {stepContent.desc}
                 </p>
               </div>
             );
@@ -153,6 +158,7 @@ export default function StorytellingSection() {
         <div className="story-device-wrapper relative flex items-center justify-center lg:col-span-7 w-full h-[35vh] sm:h-[45vh] lg:h-auto">
           {offlinePlayerSteps.map((step, index) => {
             const isActive = active === index;
+            const stepContent = content.steps[index];
 
             return (
               <div
@@ -175,7 +181,7 @@ export default function StorytellingSection() {
 
                     <Image
                       src={step.img}
-                      alt={step.title}
+                      alt={stepContent.title}
                       width={320}
                       height={690}
                       priority={index === 0}

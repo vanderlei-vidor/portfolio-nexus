@@ -1,112 +1,57 @@
 "use client";
 
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { Play, Pause, ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, Pause, Play } from "lucide-react";
+import { useLanguage } from "@/shared/i18n/LanguageContext";
 import { useTranslation } from "@/shared/i18n/useTranslation";
+import { musicPlayerContent } from "../../content";
 
-const musicPlayerSlides = [
-  {
-    src: "/projects/music-player/textures/tela_temas.webp",
-    title: "Adaptive Aesthetic Engine",
-    description: "Real-time look-and-feel switching utilizing a deeply decoupled token architecture for fluid runtime style mutations.",
-  },
-  {
-    src: "/projects/music-player/textures/tela_inicial.webp",
-    title: "High-Fidelity Discovery Hub",
-    description: "The core dashboard engineered for low-latency indexing, instant local asset ingestion, and structured data layout rendering.",
-  },
-  {
-    src: "/projects/music-player/textures/tela_name.webp",
-    title: "Custom Accent Manifestation",
-    description: "Demonstrating encapsulated component architecture where complex color spaces transition seamlessly without triggering expensive repaints.",
-  },
-  {
-    src: "/projects/music-player/textures/tela_menu_lateral.webp",
-    title: "Ergonomic Spatial Navigation",
-    description: "A hardware-accelerated sidebar overlay designed with fine-tuned layout transitions to preserve the user's spatial focus.",
-  },
-  {
-    src: "/projects/music-player/textures/tela_player.webp",
-    title: "Choreographed Playback Core",
-    description: "The primary playback engine interface, mapping high-frequency audio spectrum updates to immersive visual micro-interactions.",
-  },
-  {
-    src: "/projects/music-player/textures/tela_sleep_timer.webp",
-    title: "Temporal Thread Termination",
-    description: "Intelligent background lifecycle scheduling that fades audio output smoothly using precise, low-overhead system timer hooks.",
-  },
-  {
-    src: "/projects/music-player/textures/tela_playlist.webp",
-    title: "Reactive Collection Matrix",
-    description: "Highly optimized list rendering featuring rapid metadata caching, virtualized scrolling, and fluid collection transitions.",
-  },
-  {
-    src: "/projects/music-player/textures/tela_inicial_playlist_personalizada.webp",
-    title: "Algorithmic Curation Layer",
-    description: "A personalized gateway that evaluates user playback metrics to dynamically generate reactive collections with local-first availability.",
-  },
-  {
-    src: "/projects/music-player/textures/tela_gapless.webp",
-    title: "Zero-Latency Gapless Pipeline",
-    description: "Under-the-hood audio scheduling that pre-buffers sequential tracks to achieve sample-accurate, zero-gap audio transitions.",
-  },
-  {
-    src: "/projects/music-player/textures/tela_equalizador.webp",
-    title: "Hardware-Accelerated DSP Matrix",
-    description: "A multi-band parametric equalizer manipulating audio frequency nodes via low-level Digital Signal Processing threads.",
-  },
-  {
-    src: "/projects/music-player/textures/tela_criar_nova_playlist.webp",
-    title: "In-Memory State Mutation",
-    description: "Transactional local database insertion providing immediate, optimistic rendering updates when generating custom audio schemas.",
-  },
-  {
-    src: "/projects/music-player/textures/tela_inicial_tema_orange.webp",
-    title: "Unified Audio Ecosystem",
-    description: "The complete production-grade architectural overview, harmonizing local asset ingestion with clean, cinematic interface movements.",
-  },
-  {
-    src: "/projects/music-player/textures/menu_velocidades.webp",
-    title: "Variable Playback Rate Controller",
-    description: "Micro-stepped speed modulation optimized for real-time audio time-stretching without distorting natural pitch frequencies.",
-  },
-  {
-    src: "/projects/music-player/textures/menu_lateral_player.webp",
-    title: "Contextual Audio Overlays",
-    description: "Deeply embedded slide-out interactions allowing advanced audio routing and spatial playback controls within the active player layer.",
-  }
+const slideImages = [
+  "/projects/music-player/textures/tela_temas.webp",
+  "/projects/music-player/textures/tela_inicial.webp",
+  "/projects/music-player/textures/tela_name.webp",
+  "/projects/music-player/textures/tela_menu_lateral.webp",
+  "/projects/music-player/textures/tela_player.webp",
+  "/projects/music-player/textures/tela_sleep_timer.webp",
+  "/projects/music-player/textures/tela_playlist.webp",
+  "/projects/music-player/textures/tela_inicial_playlist_personalizada.webp",
+  "/projects/music-player/textures/tela_gapless.webp",
+  "/projects/music-player/textures/tela_equalizador.webp",
+  "/projects/music-player/textures/tela_criar_nova_playlist.webp",
+  "/projects/music-player/textures/tela_inicial_tema_orange.webp",
+  "/projects/music-player/textures/menu_velocidades.webp",
+  "/projects/music-player/textures/menu_lateral_player.webp",
 ];
+
+const slideDuration = 4000;
 
 export default function FinalShowcase() {
   const [isDemoOpen, setIsDemoOpen] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true);
+  const { locale } = useLanguage();
   const { t } = useTranslation();
+  const content = musicPlayerContent[locale].final;
+  const slides = content.slides;
 
   const touchStartX = useRef<number | null>(null);
   const touchEndX = useRef<number | null>(null);
-
-  const SLIDE_DURATION = 4000;
   const timerRef = useRef<NodeJS.Timeout | null>(null);
   const router = useRouter();
 
-  // ✅ CORREÇÃO: Declarando os handlers com useCallback no topo do componente
   const nextSlide = useCallback(() => {
-    setCurrentSlide((prev) => (prev === musicPlayerSlides.length - 1 ? 0 : prev + 1));
+    setCurrentSlide((previousSlide) => (previousSlide === slideImages.length - 1 ? 0 : previousSlide + 1));
   }, []);
 
   const prevSlide = useCallback(() => {
-    setCurrentSlide((prev) => (prev === 0 ? musicPlayerSlides.length - 1 : prev - 1));
+    setCurrentSlide((previousSlide) => (previousSlide === 0 ? slideImages.length - 1 : previousSlide - 1));
   }, []);
 
-  // ✅ CORREÇÃO: Timer robusto com a dependência correta de nextSlide
   useEffect(() => {
     if (isDemoOpen && isPlaying) {
-      timerRef.current = setInterval(() => {
-        nextSlide();
-      }, SLIDE_DURATION);
+      timerRef.current = setInterval(nextSlide, slideDuration);
     }
 
     return () => {
@@ -117,12 +62,11 @@ export default function FinalShowcase() {
     };
   }, [isDemoOpen, isPlaying, nextSlide]);
 
-  // ✅ CORREÇÃO: Keyboard navigation agora enxerga as funções e inclui as dependências corretas
   useEffect(() => {
     if (!isDemoOpen) return;
 
-    const handleKeyDown = (e: KeyboardEvent) => {
-      switch (e.key) {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      switch (event.key) {
         case "Escape":
           setIsDemoOpen(false);
           break;
@@ -133,8 +77,8 @@ export default function FinalShowcase() {
           nextSlide();
           break;
         case " ":
-          e.preventDefault();
-          setIsPlaying((prev) => !prev);
+          event.preventDefault();
+          setIsPlaying((previousValue) => !previousValue);
           break;
       }
     };
@@ -143,25 +87,20 @@ export default function FinalShowcase() {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [isDemoOpen, prevSlide, nextSlide]);
 
-  // Focus trap básico para controle de overflow do body
   useEffect(() => {
-    if (isDemoOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "unset";
-    }
+    document.body.style.overflow = isDemoOpen ? "hidden" : "unset";
+
     return () => {
       document.body.style.overflow = "unset";
     };
   }, [isDemoOpen]);
 
-  // Swipe handlers
-  const handleTouchStart = (e: React.TouchEvent) => {
-    touchStartX.current = e.touches[0].clientX;
+  const handleTouchStart = (event: React.TouchEvent) => {
+    touchStartX.current = event.touches[0].clientX;
   };
 
-  const handleTouchMove = (e: React.TouchEvent) => {
-    touchEndX.current = e.touches[0].clientX;
+  const handleTouchMove = (event: React.TouchEvent) => {
+    touchEndX.current = event.touches[0].clientX;
   };
 
   const handleTouchEnd = () => {
@@ -182,91 +121,84 @@ export default function FinalShowcase() {
     touchEndX.current = null;
   };
 
+  const activeSlide = slides[currentSlide];
+
   return (
-    <section id="final-showcase" className="relative flex min-h-screen items-center justify-center overflow-hidden bg-black px-4 sm:px-6 py-24 sm:py-40">
+    <section id="final-showcase" className="relative flex min-h-screen items-center justify-center overflow-hidden bg-black px-4 py-24 sm:px-6 sm:py-40">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.10),transparent_60%)]" aria-hidden="true" />
+      <div className="pointer-events-none absolute inset-0 opacity-[0.03] mix-blend-soft-light" style={{ backgroundImage: "url('/textures/noise-webp.webp')" }} aria-hidden="true" />
+      <div className="absolute left-1/2 top-1/2 h-150 w-150 -translate-x-1/2 -translate-y-1/2 rounded-full bg-violet-500/10 blur-[150px] sm:h-225 sm:w-225 sm:blur-[220px]" aria-hidden="true" />
 
-      {/* ATMOSPHERIC BACKGROUND */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.10),transparent_60%)]" />
-
-      {/* FILM GRAIN */}
-      <div className="pointer-events-none absolute inset-0 opacity-[0.03] mix-blend-soft-light" style={{ backgroundImage: "url('/textures/noise-webp.webp')" }} />
-
-      {/* AMBIENT GLOW */}
-      <div className="absolute left-1/2 top-1/2 h-150 w-150 sm:h-225 sm:w-225 -translate-x-1/2 -translate-y-1/2 rounded-full bg-violet-500/10 blur-[150px] sm:blur-[220px]" />
-
-      {/* MAIN LAYOUT CONTENT */}
-      <div className="relative z-10 mx-auto flex max-w-7xl flex-col items-center text-center w-full">
-
-        {/* DEVICE MOCKUP */}
+      <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-col items-center text-center">
         <div className="relative mb-12 sm:mb-24">
-          <div className="absolute inset-0 -z-10 rounded-full bg-violet-500/20 blur-[120px] sm:blur-[180px]" />
-          <div className="relative w-65 sm:w-[320px] animate-[float_6s_ease-in-out_infinite]">
-            <div className="overflow-hidden rounded-[2.5rem] sm:rounded-[3rem] border border-white/10 bg-zinc-950 p-0.5 shadow-[0_40px_120px_rgba(0,0,0,0.9)]">
+          <div className="absolute inset-0 -z-10 rounded-full bg-violet-500/20 blur-[120px] sm:blur-[180px]" aria-hidden="true" />
+          <div className="relative w-65 animate-[float_6s_ease-in-out_infinite] sm:w-[320px]">
+            <div className="overflow-hidden rounded-[2.5rem] border border-white/10 bg-zinc-950 p-0.5 shadow-[0_40px_120px_rgba(0,0,0,0.9)] sm:rounded-[3rem]">
               <Image
                 src="/projects/music-player/textures/tela_player.webp"
-                alt="Music Player Architecture Showcase"
+                alt="Music Player"
                 width={400}
                 height={850}
-                className="block w-full h-auto rounded-[2.3rem] sm:rounded-[2.8rem]"
+                className="block h-auto w-full rounded-[2.3rem] sm:rounded-[2.8rem]"
                 priority
                 sizes="(max-width: 640px) 260px, 320px"
               />
-              <div className="absolute inset-0 rounded-[2.3rem] sm:rounded-[2.8rem] bg-linear-to-tr from-white/0 via-white/5 to-white/0" />
+              <div className="absolute inset-0 rounded-[2.3rem] bg-linear-to-tr from-white/0 via-white/5 to-white/0 sm:rounded-[2.8rem]" aria-hidden="true" />
             </div>
           </div>
         </div>
 
-        {/* FINAL MESSAGE */}
         <div className="flex flex-col items-center px-2">
-          <span className="mb-4 sm:mb-6 font-mono text-[9px] sm:text-[10px] uppercase tracking-[0.3em] text-zinc-500">
-            Final Showcase // Production Grade
+          <span className="mb-4 font-mono text-[9px] uppercase tracking-[0.3em] text-zinc-500 sm:mb-6 sm:text-[10px]">
+            {content.badge}
           </span>
 
-          <h2 className="max-w-5xl text-4xl font-bold leading-[0.95] tracking-[-0.06em] text-white sm:text-6xl md:text-8xl lg:text-[9rem]">
-            Built for
+          <h2 className="max-w-5xl text-[clamp(3rem,12vw,9rem)] font-bold leading-[0.95] tracking-[-0.06em] text-white">
+            {content.titleLine1}
             <br />
-            people who
+            {content.titleLine2}
             <br />
-            truly listen.
+            {content.titleLine3}
           </h2>
 
-          <p className="mt-6 sm:mt-10 max-w-2xl text-xs sm:text-sm md:text-base leading-relaxed text-zinc-500 font-light">
-            A cinematic local-first music experience engineered with immersive
-            motion, scalable architecture and high-fidelity performance.
+          <p className="mt-6 max-w-2xl text-xs font-light leading-relaxed text-zinc-400 sm:mt-10 sm:text-sm md:text-base">
+            {content.description}
           </p>
         </div>
 
-        {/* CTA SECTION */}
-        <div className="mt-16 sm:mt-32 flex flex-col items-center w-full">
-          <p className="font-mono text-[9px] sm:text-[10px] text-zinc-600 uppercase tracking-[0.4em] mb-6 sm:mb-8">
-            Technical Access & Inquiry
+        <div className="mt-16 flex w-full flex-col items-center sm:mt-32">
+          <p className="mb-6 font-mono text-[9px] uppercase tracking-[0.4em] text-zinc-600 sm:mb-8 sm:text-[10px]">
+            {content.inquiry}
           </p>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 w-full max-w-md sm:max-w-none">
+          <div className="flex w-full max-w-md flex-col items-center justify-center gap-4 sm:max-w-none sm:flex-row sm:gap-6">
             <button
+              type="button"
               onClick={() => router.push("/contact")}
-              className="group relative w-full sm:w-auto px-10 py-4 sm:px-12 sm:py-5 bg-white text-black rounded-full font-bold text-xs sm:text-sm overflow-hidden transition-all duration-500 hover:scale-105 active:scale-95 shadow-[0_0_40px_rgba(255,255,255,0.1)]"
+              className="group relative w-full overflow-hidden rounded-full bg-white px-10 py-4 text-xs font-bold text-black shadow-[0_0_40px_rgba(255,255,255,0.1)] transition-all duration-500 hover:scale-105 active:scale-95 sm:w-auto sm:px-12 sm:py-5 sm:text-sm"
             >
               <span className="relative z-10">{t("contact.startProject")}</span>
-              <div className="absolute inset-0 bg-linear-to-r from-transparent via-black/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+              <div className="absolute inset-0 -translate-x-full bg-linear-to-r from-transparent via-black/5 to-transparent transition-transform duration-1000 group-hover:translate-x-full" aria-hidden="true" />
             </button>
 
-            <div className="flex items-center justify-center gap-4 w-full sm:w-auto">
+            <div className="flex w-full items-center justify-center gap-4 sm:w-auto">
               <button
+                type="button"
                 onClick={() => {
                   setCurrentSlide(0);
                   setIsPlaying(true);
                   setIsDemoOpen(true);
                 }}
-                className="flex-1 sm:flex-none px-6 py-4 sm:px-8 text-[10px] sm:text-xs font-mono uppercase tracking-widest text-zinc-400 hover:text-white border border-white/5 hover:border-white/20 rounded-full transition-all duration-500 bg-white/2 backdrop-blur-md"
+                className="flex-1 rounded-full border border-white/5 bg-white/2 px-6 py-4 font-mono text-[10px] uppercase tracking-widest text-zinc-400 backdrop-blur-md transition-all duration-500 hover:border-white/20 hover:text-white sm:flex-none sm:px-8 sm:text-xs"
                 aria-label={t("projects.watchDemo")}
               >
                 {t("projects.watchDemo")}
               </button>
 
               <button
+                type="button"
                 onClick={() => window.open("https://github.com/vanderlei-vidor", "_blank")}
-                className="px-4 py-4 text-[10px] sm:text-xs font-mono uppercase tracking-widest text-zinc-500 hover:text-zinc-200 transition-all duration-500"
+                className="px-4 py-4 font-mono text-[10px] uppercase tracking-widest text-zinc-500 transition-all duration-500 hover:text-zinc-200 sm:text-xs"
                 aria-label={t("projects.source")}
               >
                 &lt;{t("projects.source")} /&gt;
@@ -275,8 +207,9 @@ export default function FinalShowcase() {
           </div>
 
           <button
+            type="button"
             onClick={() => router.push("/")}
-            className="mt-12 sm:mt-16 text-zinc-700 hover:text-zinc-400 text-[10px] sm:text-xs font-mono transition-colors tracking-tighter"
+            className="mt-12 font-mono text-[10px] tracking-tighter text-zinc-700 transition-colors hover:text-zinc-400 sm:mt-16 sm:text-xs"
             aria-label={t("projects.backToHome")}
           >
             [ {t("projects.backToHome")} ]
@@ -284,123 +217,103 @@ export default function FinalShowcase() {
         </div>
       </div>
 
-      {/* MODAL INTERATIVO */}
       {isDemoOpen && (
         <div
-          className="fixed inset-0 z-100 flex items-center justify-center bg-black/95 backdrop-blur-4xl p-3 sm:p-6 md:p-12 animate-in fade-in duration-500"
+          className="fixed inset-0 z-100 flex items-center justify-center bg-black/95 p-3 backdrop-blur-4xl animate-in fade-in duration-500 sm:p-6 md:p-12"
           onClick={() => setIsDemoOpen(false)}
           role="dialog"
           aria-modal="true"
-          aria-label={t("projects.watchDemo")}
+          aria-label={content.modalLabel}
         >
           <div
-            className="relative w-full max-w-6xl flex flex-col md:block md:aspect-video rounded-2xl md:rounded-3xl overflow-hidden border border-white/10 bg-zinc-950 shadow-[0_0_100px_rgba(0,0,0,1)]"
-            onClick={(e) => e.stopPropagation()}
+            className="relative flex w-full max-w-6xl flex-col overflow-hidden rounded-2xl border border-white/10 bg-zinc-950 shadow-[0_0_100px_rgba(0,0,0,1)] md:block md:aspect-video md:rounded-3xl"
+            onClick={(event) => event.stopPropagation()}
             onTouchStart={handleTouchStart}
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
           >
-
-            {/* LINHA DE PROGRESSO SUPERIOR */}
             {isPlaying && (
               <div
                 key={currentSlide}
-                className="absolute top-0 left-0 h-0.5 bg-linear-to-r from-blue-500 to-indigo-500 z-50 origin-left"
-                style={{
-                  animation: `progressLinear ${SLIDE_DURATION}ms linear forwards`,
-                }}
+                className="absolute left-0 top-0 z-50 h-0.5 origin-left bg-linear-to-r from-blue-500 to-indigo-500"
+                style={{ animation: `progressLinear ${slideDuration}ms linear forwards` }}
+                aria-hidden="true"
               />
             )}
 
-            {/* HEADER METADATA */}
-            <div className="absolute top-0 left-0 w-full p-3 sm:p-4 flex justify-between items-center bg-linear-to-b from-black/90 to-transparent z-50">
-              <span className="font-mono text-[8px] sm:text-[9px] text-white/40 tracking-[0.3em] sm:tracking-[0.4em] uppercase flex items-center gap-1.5">
-                <span className={`h-1 w-1 sm:h-1.5 sm:w-1.5 rounded-full ${isPlaying ? 'bg-blue-500 animate-pulse' : 'bg-amber-500'}`} />
-                Telemetry // Stage_0{currentSlide + 1}
+            <div className="absolute left-0 top-0 z-50 flex w-full items-center justify-between bg-linear-to-b from-black/90 to-transparent p-3 sm:p-4">
+              <span className="flex items-center gap-1.5 font-mono text-[8px] uppercase tracking-[0.3em] text-white/40 sm:text-[9px] sm:tracking-[0.4em]">
+                <span className={`h-1 w-1 rounded-full sm:h-1.5 sm:w-1.5 ${isPlaying ? "bg-blue-500 animate-pulse" : "bg-amber-500"}`} aria-hidden="true" />
+                Telemetry {"//"} Stage_0{currentSlide + 1}
               </span>
               <button
+                type="button"
                 onClick={() => setIsDemoOpen(false)}
-                className="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-white/50 hover:text-white hover:bg-white/10 transition-all font-mono text-[9px] sm:text-[10px]"
+                className="rounded-full border border-white/10 bg-white/5 px-3 py-1 font-mono text-[9px] text-white/50 transition-all hover:bg-white/10 hover:text-white sm:text-[10px]"
                 aria-label={t("projects.closeDemo")}
               >
                 ESC
               </button>
             </div>
 
-            {/* Container da imagem */}
-            <div className="relative w-full aspect-video md:absolute md:inset-0 md:h-full md:w-full flex items-center justify-center bg-black">
+            <div className="relative flex aspect-video w-full items-center justify-center bg-black md:absolute md:inset-0 md:h-full">
               <Image
-                src={musicPlayerSlides[currentSlide].src}
-                alt={musicPlayerSlides[currentSlide].title}
+                src={slideImages[currentSlide]}
+                alt={activeSlide.title}
                 fill
                 priority={currentSlide === 0}
                 className="object-contain animate-in fade-in zoom-in-95 duration-500"
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
               />
-              <div className="hidden md:block absolute inset-0 bg-linear-to-t from-black via-transparent to-black/20 pointer-events-none" />
+              <div className="absolute inset-0 hidden bg-linear-to-t from-black via-transparent to-black/20 pointer-events-none md:block" aria-hidden="true" />
             </div>
 
-            {/* FOOTER DO MODAL */}
-            <div className="relative md:absolute md:bottom-0 md:left-0 w-full p-4 sm:p-6 md:p-8 bg-zinc-950 md:bg-linear-to-t md:from-black md:via-black/95 md:to-transparent z-40 flex flex-col md:flex-row md:items-end justify-between gap-4 md:gap-6 border-t border-white/5 md:border-none">
-
-              {/* TEXTO EXPLICATIVO */}
+            <div className="relative z-40 flex w-full flex-col justify-between gap-4 border-t border-white/5 bg-zinc-950 p-4 md:absolute md:bottom-0 md:left-0 md:flex-row md:items-end md:border-none md:bg-linear-to-t md:from-black md:via-black/95 md:to-transparent md:p-8">
               <div className="max-w-2xl text-left">
-                <h3 className="text-base sm:text-lg md:text-2xl font-bold tracking-tight text-white animate-in slide-in-from-bottom-2 duration-500">
-                  {musicPlayerSlides[currentSlide].title}
+                <h3 className="text-base font-bold tracking-tight text-white animate-in slide-in-from-bottom-2 duration-500 sm:text-lg md:text-2xl">
+                  {activeSlide.title}
                 </h3>
-                <p className="mt-1 sm:mt-2 text-[11px] sm:text-xs md:text-sm text-zinc-400 font-light leading-relaxed line-clamp-3 md:line-clamp-none animate-in slide-in-from-bottom-3 duration-500">
-                  {musicPlayerSlides[currentSlide].description}
+                <p className="mt-1 line-clamp-3 text-[11px] font-light leading-relaxed text-zinc-400 animate-in slide-in-from-bottom-3 duration-500 sm:mt-2 sm:text-xs md:line-clamp-none md:text-sm">
+                  {activeSlide.description}
                 </p>
               </div>
 
-              {/* DOCK DOS CONTROLES */}
-              <div className="flex items-center justify-center gap-4 bg-white/2 sm:bg-white/3 border border-white/5 backdrop-blur-md px-4 py-2 sm:py-2.5 rounded-full self-stretch sm:self-center md:self-end">
-                <button
-                  onClick={prevSlide}
-                  className="p-1 text-zinc-400 hover:text-white transition-colors"
-                  aria-label={t("projects.previousSlide")}
-                >
-                  <ChevronLeft size={16} />
+              <div className="flex items-center justify-center gap-4 self-stretch rounded-full border border-white/5 bg-white/2 px-4 py-2 backdrop-blur-md sm:self-center sm:bg-white/3 sm:py-2.5 md:self-end">
+                <button type="button" onClick={prevSlide} className="p-1 text-zinc-400 transition-colors hover:text-white" aria-label={t("projects.previousSlide")}>
+                  <ChevronLeft size={16} aria-hidden="true" />
                 </button>
 
                 <button
+                  type="button"
                   onClick={() => setIsPlaying(!isPlaying)}
-                  className="p-2 rounded-full bg-white text-black hover:scale-105 active:scale-95 transition-all"
+                  className="rounded-full bg-white p-2 text-black transition-all hover:scale-105 active:scale-95"
                   aria-label={isPlaying ? t("projects.pauseSlideshow") : t("projects.playSlideshow")}
                 >
-                  {isPlaying ? <Pause size={12} fill="black" /> : <Play size={12} fill="black" />}
+                  {isPlaying ? <Pause size={12} fill="black" aria-hidden="true" /> : <Play size={12} fill="black" aria-hidden="true" />}
                 </button>
 
-                <button
-                  onClick={nextSlide}
-                  className="p-1 text-zinc-400 hover:text-white transition-colors"
-                  aria-label={t("projects.nextSlide")}
-                >
-                  <ChevronRight size={16} />
+                <button type="button" onClick={nextSlide} className="p-1 text-zinc-400 transition-colors hover:text-white" aria-label={t("projects.nextSlide")}>
+                  <ChevronRight size={16} aria-hidden="true" />
                 </button>
 
-                <div className="h-4 w-px bg-white/10 mx-0.5" />
+                <div className="mx-0.5 h-4 w-px bg-white/10" aria-hidden="true" />
 
-                {/* Bullets */}
                 <div className="flex gap-1">
-                  {musicPlayerSlides.map((_, index) => (
+                  {slideImages.map((_, index) => (
                     <button
                       key={index}
+                      type="button"
                       onClick={() => setCurrentSlide(index)}
-                      className={`h-1 sm:h-1.5 rounded-full transition-all duration-500 ${index === currentSlide ? "w-3 sm:w-4 bg-blue-500" : "w-1 sm:w-1.5 bg-zinc-600"
-                        }`}
+                      className={`h-1 rounded-full transition-all duration-500 sm:h-1.5 ${index === currentSlide ? "w-3 bg-blue-500 sm:w-4" : "w-1 bg-zinc-600 sm:w-1.5"}`}
                       aria-label={`${t("projects.goToSlide")} ${index + 1}`}
                     />
                   ))}
                 </div>
               </div>
-
             </div>
-
           </div>
         </div>
       )}
-
     </section>
   );
 }

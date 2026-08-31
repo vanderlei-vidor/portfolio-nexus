@@ -5,6 +5,8 @@ import { motion, useMotionValue, useTransform } from "framer-motion";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useTranslation } from "@/shared/i18n/useTranslation";
+import { useLanguage } from "@/shared/i18n/LanguageContext";
+import { musicPlayerContent } from "../../content";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -32,6 +34,8 @@ export default function DeviceReveal() {
   const [isBooting, setIsBooting] = useState(false);
   const [bootProgress, setBootProgress] = useState(0);
   const { t } = useTranslation();
+  const { locale } = useLanguage();
+  const content = musicPlayerContent[locale].device;
 
   const isMounted = useIsMounted();
 
@@ -132,19 +136,19 @@ export default function DeviceReveal() {
           viewport={{ once: true }}
         >
           <span className="mb-6 font-mono text-[10px] uppercase tracking-[0.3em] text-blue-400">
-            Product Experience
+            {content.badge}
           </span>
 
           <h2 className="max-w-xl text-5xl font-bold tracking-[-0.06em] text-white md:text-7xl leading-[0.95]">
-            Built to feel
+            {content.titleLine1}
             <br />
             <span className="bg-linear-to-r from-blue-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent">
-              alive.
+              {content.titleAccent}
             </span>
           </h2>
 
           <p className="mt-8 max-w-md text-sm leading-relaxed text-zinc-500 md:text-base">
-            Designed as a premium music ecosystem focused on music from devices, with immersive interactions, fluid rendering, and cinematic interface movements.
+            {content.description}
           </p>
         </motion.div>
 
@@ -244,7 +248,7 @@ export default function DeviceReveal() {
                     <motion.span
                       className="boot-text font-mono text-[10px] text-zinc-500 tracking-[0.2em] uppercase"
                     >
-                      {isBooting ? "Initializing" : "Ecosystem_Standby"}
+                      {isBooting ? content.initializing : content.standby}
                     </motion.span>
 
                     {isBooting && (

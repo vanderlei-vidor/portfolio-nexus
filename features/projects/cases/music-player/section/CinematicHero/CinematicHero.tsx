@@ -1,9 +1,13 @@
 "use client";
 
 import { useTranslation } from "@/shared/i18n/useTranslation";
+import { useLanguage } from "@/shared/i18n/LanguageContext";
+import { musicPlayerContent } from "../../content";
 
 export default function CinematicHero() {
   const { t } = useTranslation();
+  const { locale } = useLanguage();
+  const content = musicPlayerContent[locale].hero;
 
   return (
     <section className="relative flex min-h-screen items-center justify-center overflow-hidden bg-[#030303] px-4 sm:px-6">
@@ -24,7 +28,7 @@ export default function CinematicHero() {
         {/* Badge */}
         <div className="mb-8 rounded-full border border-white/10 bg-white/5 px-4 py-2 backdrop-blur-md">
           <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-zinc-400">
-            {t("projects.caseStudy")} {"//"} Music Player
+            {content.badge}
           </span>
         </div>
 
@@ -36,17 +40,16 @@ export default function CinematicHero() {
             // 💡 Explicação: Mínimo de 36px em telas minúsculas, escala dinamicamente com a largura da tela (8vw) e trava no teto de 152px em telas gigantes!
           }}
         >
-          Engineered
+          {content.titleLine1}
           <br />
-          for immersive
+          {content.titleLine2}
           <br />
-          listening.
+          {content.titleLine3}
         </h1>
 
         {/* Description */}
         <p className="mt-8 max-w-xl text-xs sm:text-sm md:text-base font-light leading-relaxed text-zinc-500">
-          A premium local-first music experience crafted with cinematic motion,
-          high-performance rendering and immersive interface design.
+          {content.description}
         </p>
 
         {/* Scroll Indicator */}

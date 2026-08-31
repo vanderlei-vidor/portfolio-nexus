@@ -1,65 +1,60 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { useLanguage } from "@/shared/i18n/LanguageContext";
+import { englishTutorContent } from "../../content";
 import { initGamificationAnimation } from "./GamificationSection.animation";
 import styles from "./GamificationSection.module.css";
 
 export function GamificationSection() {
-    const sectionRef = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const { locale } = useLanguage();
+  const content = englishTutorContent[locale].gamification;
 
-    useEffect(() => {
-        const cleanup = initGamificationAnimation(sectionRef.current);
-        return () => cleanup?.();
-    }, []);
+  useEffect(() => {
+    const cleanup = initGamificationAnimation(sectionRef.current);
+    return () => cleanup?.();
+  }, []);
 
-    return (
-        <section
-            ref={sectionRef}
-            className={`${styles.section} gamification-section`}
-        >
-            {/* Linha de energia decorativa no topo da seção */}
-            <div className={styles.connectionTop} />
+  return (
+    <section ref={sectionRef} className={`${styles.section} gamification-section`}>
+      <div className={styles.connectionTop} aria-hidden="true" />
 
-            <div className={styles.content}>
-                <span className={styles.eyebrow}>GAMIFICATION ENGINE</span>
+      <div className={styles.content}>
+        <span className={styles.eyebrow}>{content.eyebrow}</span>
 
-                <h2 className={styles.title}>
-                    Every Conversation
-                    <br />
-                    Moves You Forward
-                </h2>
+        <h2 className={styles.title}>
+          {content.titleLine1}
+          <br />
+          {content.titleLine2}
+        </h2>
 
-                <p className={styles.subtitle}>
-                    Learning becomes measurable through XP, leagues, streaks and achievements.
-                </p>
+        <p className={styles.subtitle}>{content.subtitle}</p>
 
-                <div className={styles.xpArea}>
-                    {/* 🔥 INJETADO: O anel decorativo rodando em volta do painel de XP */}
-                    <div className={styles.engineRing} />
+        <div className={styles.xpArea}>
+          <div className={styles.engineRing} aria-hidden="true" />
 
-                    <span className={`${styles.xpValue} xp-counter`}>0 XP</span>
+          <span className={`${styles.xpValue} xp-counter`}>{content.xp}</span>
 
-                    <div className={styles.leagueBadge}>
-                        🔥 Bronze League
-                    </div>
+          <div className={styles.leagueBadge}>{content.league}</div>
 
-                    <div className={styles.progressTrack}>
-                        <div className={`${styles.progressFill} progress-fill`} />
-                    </div>
+          <div className={styles.progressTrack}>
+            <div className={`${styles.progressFill} progress-fill`} />
+          </div>
 
-                    <div className={styles.statsGrid}>
-                        <div className={styles.statCard}>🔥 17 Day Streak</div>
-                        <div className={styles.statCard}>🎯 96% Pronunciation</div>
-                        <div className={styles.statCard}>📚 250 Words Learned</div>
-                        <div className={styles.statCard}>🏆 Top 3 Rank</div>
-                    </div>
-                </div>
-            </div>
+          <div className={styles.statsGrid}>
+            {content.stats.map((stat) => (
+              <div key={stat} className={styles.statCard}>
+                {stat}
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
 
-            {/* Linha de energia decorativa na base da seção */}
-            <div className={styles.connectionBottom} />
-        </section>
-    );
+      <div className={styles.connectionBottom} aria-hidden="true" />
+    </section>
+  );
 }
 
 export default GamificationSection;

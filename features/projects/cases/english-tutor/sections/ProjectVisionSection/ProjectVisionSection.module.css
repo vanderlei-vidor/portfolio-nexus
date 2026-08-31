@@ -39,6 +39,8 @@
     clamp(3.5rem, 8vw, 7rem);
 
   line-height: .95;
+
+  overflow-wrap: anywhere;
 }
 .subtitle {
   margin-top: 24px;
@@ -90,9 +92,17 @@
     1px solid rgba(255,255,255,.06);
 }
 .icon {
-  display: block;
+  display: inline-flex;
 
-  font-size: 2rem;
+  align-items: center;
+
+  justify-content: center;
+
+  width: 3rem;
+
+  height: 3rem;
+
+  color: #38bdf8;
 
   margin-bottom: 20px;
 }
@@ -139,5 +149,59 @@
   }
   to {
     transform: scaleX(1);
+  }
+}
+
+@media (max-width: 920px) {
+  .pillars {
+    grid-template-columns: 1fr;
+    max-width: 680px;
+    gap: 18px;
+  }
+}
+
+@media (max-width: 640px) {
+  .section {
+    min-height: auto;
+    padding: 112px 18px 140px;
+  }
+
+  .header {
+    margin-bottom: 56px;
+  }
+
+  .eyebrow {
+    display: inline-block;
+    max-width: 22rem;
+    line-height: 1.6;
+  }
+
+  .title {
+    font-size: clamp(2.55rem, 13vw, 4.25rem);
+    line-height: 1;
+  }
+
+  .subtitle {
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+
+  .orbWrapper {
+    margin: 48px 0 80px;
+    transform: scale(.72);
+  }
+
+  .pillars {
+    margin-bottom: 96px;
+  }
+
+  .pillar {
+    border-radius: 20px;
+    padding: 28px 22px;
+  }
+
+  .finalQuote span {
+    display: block;
+    overflow-wrap: anywhere;
   }
 }

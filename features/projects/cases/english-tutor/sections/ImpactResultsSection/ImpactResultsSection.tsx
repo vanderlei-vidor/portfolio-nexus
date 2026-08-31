@@ -1,18 +1,28 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useLanguage } from "@/shared/i18n/LanguageContext";
+import { englishTutorContent } from "../../content";
 import styles from "./ImpactResultsSection.module.css";
 
-// Garante o registro do plugin fora do componente
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
 
+const localeMap = {
+  en: "en-US",
+  pt: "pt-BR",
+  es: "es-ES",
+} as const;
+
 export function ImpactResultsSection() {
   const xpRef = useRef<HTMLSpanElement>(null);
-  const sectionRef = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef<HTMLElement>(null);
+  const { locale } = useLanguage();
+  const content = englishTutorContent[locale].impact;
+  const numberFormatter = useMemo(() => new Intl.NumberFormat(localeMap[locale]), [locale]);
 
   useEffect(() => {
     const xpElement = xpRef.current;
@@ -22,7 +32,6 @@ export function ImpactResultsSection() {
 
     const xp = { value: 0 };
 
-    // Cria a animação do contador atrelada ao ScrollTrigger
     const ctx = gsap.context(() => {
       gsap.to(xp, {
         value: 5308,
@@ -31,63 +40,43 @@ export function ImpactResultsSection() {
         scrollTrigger: {
           trigger: sectionElement,
           start: "top 75%",
-          toggleActions: "play none none none", // Roda apenas uma vez ao entrar
+          toggleActions: "play none none none",
         },
         onUpdate: () => {
-          if (xpElement) {
-            xpElement.textContent = Math.floor(xp.value).toLocaleString("en-US"); // Formata bonito ex: 5,308
-          }
+          xpElement.textContent = numberFormatter.format(Math.floor(xp.value));
         },
       });
-    });
+    }, sectionElement);
 
-    // Limpeza automática ao desmontar o componente (Evita estouro de memória)
     return () => ctx.revert();
-  }, []);
+  }, [numberFormatter]);
 
   return (
-    <section ref={sectionRef} className={`${styles.section} impact-section`}>
-      
+    <section ref={sectionRef} className={`${styles.section} impact-section`} aria-labelledby="english-tutor-impact-title">
       <div className={styles.header}>
-        <span className={styles.eyebrow}>IMPACT & RESULTS</span>
-        <h2 className={styles.title}>
-          Learning That
+        <span className={styles.eyebrow}>{content.eyebrow}</span>
+        <h2 id="english-tutor-impact-title" className={styles.title}>
+          {content.titleLine1}
           <br />
-          Creates Results.
+          {content.titleLine2}
         </h2>
       </div>
 
-      <div className={styles.metricsWall}>
-        
-        {/* CARD PRINCIPAL COM ANIMACAO GSAP (Contador) */}
+      <div className={styles.metricsWall} aria-label={content.eyebrow}>
         <div className={styles.metricPrimary}>
-          <span ref={xpRef} className="xp-impact">0</span>
-          <p>XP Earned</p>
+          <span ref={xpRef} className="xp-impact">
+            {content.metrics[0].value}
+          </span>
+          <p>{content.metrics[0].label}</p>
         </div>
 
-        {/* METRICAS SECUNDARIAS EM CSS */}
-        <div className={styles.metric}>
-          <span>96%</span>
-          <p>Pronunciation Accuracy</p>
-        </div>
-
-        <div className={styles.metric}>
-          <span>250+</span>
-          <p>Words Learned</p>
-        </div>
-
-        <div className={styles.metric}>
-          <span>17</span>
-          <p>Day Streak</p>
-        </div>
-
-        <div className={styles.metric}>
-          <span>89%</span>
-          <p>Retention Rate</p>
-        </div>
-
+        {content.metrics.slice(1).map((metric) => (
+          <div key={metric.label} className={styles.metric}>
+            <span>{metric.value}</span>
+            <p>{metric.label}</p>
+          </div>
+        ))}
       </div>
-
     </section>
   );
 }

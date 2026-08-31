@@ -81,13 +81,15 @@
 
     margin: 0;
 
-    font-size: clamp(4rem, 8vw, 7rem);
+    font-size: clamp(3rem, 8vw, 7rem);
 
     line-height: .9;
 
     font-weight: 800;
 
     color: white;
+
+    overflow-wrap: anywhere;
 }
 
 .subtitle {
@@ -236,4 +238,38 @@
   will-change:
     transform,
     opacity;
+}
+
+@media (max-width: 640px) {
+    .hero {
+        min-height: 100svh;
+        padding-inline: 1.25rem;
+    }
+
+    .orbContainer {
+        margin-bottom: 2rem;
+    }
+
+    .eyebrow,
+    .scrollIndicator {
+        max-width: min(100%, 22rem);
+        letter-spacing: .22em;
+        line-height: 1.7;
+    }
+
+    .title {
+        font-size: clamp(2.6rem, 14vw, 4.25rem);
+        line-height: .96;
+    }
+
+    .subtitle {
+        font-size: 1rem;
+        line-height: 1.7;
+    }
+
+    .mouseLight {
+        width: 320px;
+        height: 320px;
+        filter: blur(64px);
+    }
 }

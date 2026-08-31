@@ -29,6 +29,7 @@
   line-height: 1.05;
   font-weight: 800;
   color: #ffffff;
+  overflow-wrap: anywhere;
 }
 
 /* O CONTAINER DA PAREDE DE MÉTRICAS */
@@ -113,6 +114,7 @@
 .metric p {
   margin-top: 8px;
   font-size: 14px;
+  line-height: 1.5;
   color: rgba(255, 255, 255, 0.6);
 }
 
@@ -159,6 +161,37 @@
 
 /* RESPONSIVIDADE CELULAR */
 @media (max-width: 650px) {
-  .metricsWall { grid-template-columns: 1fr; }
-  .metricPrimary { grid-column: span 1; }
+  .section {
+    min-height: auto;
+    padding: 96px 18px;
+  }
+
+  .header {
+    margin-bottom: 56px;
+  }
+
+  .eyebrow {
+    display: inline-block;
+    max-width: 22rem;
+    line-height: 1.6;
+  }
+
+  .title {
+    font-size: clamp(2.2rem, 12vw, 3.5rem);
+  }
+
+  .metricsWall {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .metricPrimary,
+  .metric {
+    padding: 32px 22px;
+    border-radius: 18px;
+  }
+
+  .metricPrimary {
+    grid-column: span 1;
+  }
 }
