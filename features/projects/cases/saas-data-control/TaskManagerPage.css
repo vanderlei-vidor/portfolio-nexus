@@ -75,6 +75,7 @@
   line-height: 1.1;
   color: var(--tm-title);
   letter-spacing: -0.02em;
+  overflow-wrap: anywhere;
 }
 
 .section-description {
@@ -98,4 +99,24 @@
 @keyframes float {
   0%, 100% { transform: translateY(0) rotateX(2deg) rotateY(-4deg); }
   50% { transform: translateY(-12px) rotateX(2deg) rotateY(-4deg); }
+}
+
+@media (max-width: 640px) {
+  :root {
+    --tm-section-spacing: 88px;
+  }
+
+  .container {
+    padding: 0 20px;
+  }
+
+  .section-title {
+    font-size: clamp(2rem, 10vw, 2.6rem);
+    line-height: 1.12;
+  }
+
+  .section-description {
+    font-size: 1rem;
+    line-height: 1.7;
+  }
 }

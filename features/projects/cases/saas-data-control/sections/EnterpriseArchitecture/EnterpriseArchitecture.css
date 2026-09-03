@@ -32,6 +32,7 @@
 
 .architecture-badge {
   width: fit-content;
+  max-width: 100%;
   display: inline-flex;
   align-items: center;
   gap: 10px;
@@ -44,11 +45,12 @@
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+  line-height: 1.4;
 }
 
 .badge-icon {
-  font-size: 0.875rem;
   animation: spin 8s linear infinite;
+  flex-shrink: 0;
 }
 
 @keyframes spin {
@@ -205,12 +207,14 @@
   color: var(--tm-title);
   letter-spacing: -0.01em;
   margin: 0;
+  overflow-wrap: anywhere;
 }
 
 .node-desc {
   font-size: 0.8125rem;
   color: var(--tm-text-muted);
   font-family: 'SF Mono', 'Monaco', monospace;
+  line-height: 1.4;
 }
 
 /* ===== CONNECTOR ANIMADO ===== */
@@ -432,6 +436,7 @@
 
   .architecture-node {
     padding: 18px 20px;
+    align-items: flex-start;
   }
 
   .node-icon {

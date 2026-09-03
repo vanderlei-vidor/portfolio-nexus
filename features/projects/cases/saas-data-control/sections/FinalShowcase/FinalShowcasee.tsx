@@ -2,13 +2,19 @@
 
 import Link from "next/link";
 import { ArrowRight, Cpu, HardDrive, Terminal } from "lucide-react";
+import { useLanguage } from "@/shared/i18n/LanguageContext";
 import { useTranslation } from "@/shared/i18n/useTranslation";
+import { saasDataControlContent } from "../../content";
+
+const consoleMetricIcons = [Cpu, HardDrive, Terminal] as const;
 
 export function FinalShowcase() {
+  const { locale } = useLanguage();
   const { t } = useTranslation();
+  const content = saasDataControlContent[locale].final;
 
   return (
-    <section className="relative overflow-hidden bg-[#060913] py-35">
+    <section className="relative overflow-hidden bg-[#060913] py-35" aria-labelledby="saas-data-control-final-title">
       <div
         className="pointer-events-none absolute -bottom-50 left-1/2 z-0 h-150 w-150 -translate-x-1/2 bg-[radial-gradient(circle,rgba(37,99,235,0.15),transparent_70%)]"
         aria-hidden="true"
@@ -19,26 +25,29 @@ export function FinalShowcase() {
           <div className="mb-14 flex flex-col items-center gap-5 text-center">
             <span className="inline-flex items-center gap-2 rounded-full border border-blue-600/20 bg-blue-600/10 px-4 py-2 text-xs font-bold uppercase tracking-wider text-[#60a5fa]">
               <span className="h-1.5 w-1.5 rounded-full bg-[#3b82f6] shadow-[0_0_12px_#3b82f6]" aria-hidden="true" />
-              Production Ready
+              {content.badge}
             </span>
 
-            <h2 className="max-w-175 text-[clamp(2rem,3.5vw,2.75rem)] font-extrabold leading-[1.1] tracking-tight text-white">
-              Ready to Scale in the{" "}
+            <h2 id="saas-data-control-final-title" className="max-w-175 text-[clamp(2rem,3.5vw,2.75rem)] font-extrabold leading-[1.1] tracking-tight text-white">
+              {content.title}{" "}
               <span className="bg-linear-to-br from-[#3b82f6] to-[#a78bfa] bg-clip-text text-transparent">
-                Enterprise
+                {content.titleAccent}
               </span>{" "}
-              Landscape
+              {content.titleSuffix}
             </h2>
 
-            <p className="max-w-145 text-lg leading-[1.7] text-[#94a3b8]">
-              saas_data_control consolidates clean architecture, robust Java performance, and a flawless user experience under high corporate demands.
-            </p>
+            <p className="max-w-145 text-lg leading-[1.7] text-[#94a3b8]">{content.description}</p>
           </div>
 
           <div className="mb-14 grid grid-cols-1 gap-6 md:grid-cols-3">
-            <ConsoleMetric icon={Cpu} value="< 45ms" label="Response Time (API)" />
-            <ConsoleMetric icon={HardDrive} value="100% ACID" label="Relational Persistence" />
-            <ConsoleMetric icon={Terminal} value="Zero Leak" label="Memory Management" />
+            {content.metrics.map((metric, index) => (
+              <ConsoleMetric
+                key={metric.label}
+                icon={consoleMetricIcons[index]}
+                value={metric.value}
+                label={metric.label}
+              />
+            ))}
           </div>
 
           <div className="flex flex-col gap-8">
@@ -75,7 +84,7 @@ interface ConsoleMetricProps {
 
 function ConsoleMetric({ icon: Icon, value, label }: ConsoleMetricProps) {
   return (
-    <div className="group flex items-center gap-5 rounded-2xl border border-white/3 bg-[#1e293b]/30 p-6 transition-all duration-300 ease-in-out hover:-translate-y-0.5 hover:border-blue-600/30 hover:bg-[#1e293b]/50">
+    <article className="group flex items-center gap-5 rounded-2xl border border-white/3 bg-[#1e293b]/30 p-6 transition-all duration-300 ease-in-out hover:-translate-y-0.5 hover:border-blue-600/30 hover:bg-[#1e293b]/50">
       <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-white/8 bg-white/3 text-[#94a3b8] transition-all duration-300 ease-in-out group-hover:border-[#2563eb] group-hover:bg-[#2563eb] group-hover:text-white" aria-hidden="true">
         <Icon size={20} />
       </div>
@@ -83,7 +92,7 @@ function ConsoleMetric({ icon: Icon, value, label }: ConsoleMetricProps) {
         <span className="font-mono text-xl font-bold tracking-tight text-white">{value}</span>
         <span className="text-[0.8125rem] text-[#64748b]">{label}</span>
       </div>
-    </div>
+    </article>
   );
 }
 

@@ -1,85 +1,52 @@
-import Image from "next/image"; // 1. IMPORTANDO O NEXT/IMAGE DE ALTA PERFORMANCE
+"use client";
+
+import Image from "next/image";
+import { ArrowRight, BarChart3, Check, CheckSquare, FileDown, Layers, TrendingUp } from "lucide-react";
+import { useLanguage } from "@/shared/i18n/LanguageContext";
+import { saasDataControlContent } from "../../content";
 import "./CentralizedSolution.css";
 
-import {
-  CheckSquare,
-  BarChart3,
-  FileDown,
-  TrendingUp,
-  Layers,
-} from "lucide-react";
-
-const solutions = [
-  {
-    icon: CheckSquare,
-    label: "Task Management",
-    description: "Centralized control over all operational tasks",
-  },
-  {
-    icon: BarChart3,
-    label: "Real-Time Dashboard",
-    description: "Live monitoring of KPIs and team performance",
-  },
-  {
-    icon: FileDown,
-    label: "Exportable Reports",
-    description: "One-click generation of professional reports",
-  },
-  {
-    icon: TrendingUp,
-    label: "Productivity Tracking",
-    description: "Data-driven insights on operational efficiency",
-  },
-  {
-    icon: Layers,
-    label: "Centralized Information",
-    description: "Single source of truth for the entire team",
-  },
-];
+const solutionIcons = [CheckSquare, BarChart3, FileDown, TrendingUp, Layers] as const;
 
 export function CentralizedSolution() {
+  const { locale } = useLanguage();
+  const content = saasDataControlContent[locale].solution;
+
   return (
-    <section className="centralized-solution">
-      {/* Mesh gradient esmeralda sutil (vibe "solução/resolução") */}
-      <div className="solution-bg" />
+    <section className="centralized-solution" aria-labelledby="saas-data-control-solution-title">
+      <div className="solution-bg" aria-hidden="true" />
 
       <div className="container">
         <div className="solution-content">
-          {/* TEXTO */}
           <div className="solution-text">
             <span className="solution-badge">
-              <span className="badge-solution-icon">✓</span>
-              The Solution
+              <span className="badge-solution-icon" aria-hidden="true">
+                <Check size={12} />
+              </span>
+              {content.badge}
             </span>
 
-            <h2 className="section-title">
-              A{" "}
-              <span className="title-accent-emerald">
-                Centralized
-              </span>
+            <h2 id="saas-data-control-solution-title" className="section-title">
+              {content.titleLine1} <span className="title-accent-emerald">{content.titleAccent1}</span>
               <br />
-              Platform for
+              {content.titleLine2}
               <br />
-              <span className="title-accent">Operations</span>
+              <span className="title-accent">{content.titleAccent2}</span>
             </h2>
 
-            <p className="section-description">
-              A single enterprise platform designed to organize
-              workflows, monitor progress and restore full
-              operational visibility across your organization.
-            </p>
+            <p className="section-description">{content.description}</p>
 
-            {/* LISTA DE FEATURES */}
             <div className="solution-list">
-              {solutions.map((item, index) => {
-                const Icon = item.icon;
+              {content.items.map((item, index) => {
+                const Icon = solutionIcons[index];
+
                 return (
-                  <div
+                  <article
                     key={item.label}
                     className="solution-item"
                     style={{ animationDelay: `${0.3 + index * 0.08}s` }}
                   >
-                    <div className="solution-item-check">
+                    <div className="solution-item-check" aria-hidden="true">
                       <Icon className="solution-item-icon" />
                     </div>
 
@@ -88,66 +55,50 @@ export function CentralizedSolution() {
                       <span>{item.description}</span>
                     </div>
 
-                    <div className="solution-item-arrow">
-                      →
+                    <div className="solution-item-arrow" aria-hidden="true">
+                      <ArrowRight size={18} />
                     </div>
-                  </div>
+                  </article>
                 );
               })}
             </div>
           </div>
 
-          {/* IMAGEM COM TRATAMENTO PREMIUM */}
           <div className="solution-image-wrapper">
-            <div className="solution-image-glow" />
-            <div className="solution-image-decoration" />
+            <div className="solution-image-glow" aria-hidden="true" />
+            <div className="solution-image-decoration" aria-hidden="true" />
 
             <div className="solution-image">
               <div className="preview-header">
-                <div className="preview-dots">
+                <div className="preview-dots" aria-hidden="true">
                   <span />
                   <span />
                   <span />
                 </div>
-                <span className="preview-title">
-                  solution.dashboard.app
-                </span>
-                <div className="preview-placeholder" />
+                <span className="preview-title">{content.previewTitle}</span>
+                <div className="preview-placeholder" aria-hidden="true" />
               </div>
 
-              {/* --- IMPLEMENTAÇÃO DO NEXT/IMAGE TURBINADO --- */}
               <Image
                 src="/projects/saas-data-control/textures/reports-quarter-light.webp"
-                alt="Centralized Operations Solution Dashboard"
-
-                // Mantendo a proporção estável de 1200x750 para zerar o Layout Shift (CLS)
+                alt={content.imageAlt}
                 width={1200}
                 height={750}
-
-              // Sem a tag 'priority' aqui. Lazy load automático ativado!
+                sizes="(max-width: 968px) 100vw, 54vw"
               />
             </div>
 
-            {/* Floating stat card (detalhe cinematográfico) */}
-            <div className="floating-stat floating-stat-1">
-              <span className="floating-stat-label">
-                Operational Efficiency
-              </span>
-              <span className="floating-stat-value">
-                +87%
-                <span className="floating-stat-trend">↑</span>
-              </span>
-            </div>
-
-            <div className="floating-stat floating-stat-2">
-              <span className="floating-stat-label">
-                Tasks Completed
-              </span>
-              <span className="floating-stat-value">
-                1,247
-                <span className="floating-stat-trend">↑</span>
-              </span>
-            </div>
+            {content.stats.map((stat, index) => (
+              <div key={stat.label} className={`floating-stat floating-stat-${index + 1}`}>
+                <span className="floating-stat-label">{stat.label}</span>
+                <span className="floating-stat-value">
+                  {stat.value}
+                  <span className="floating-stat-trend" aria-hidden="true">
+                    <ArrowRight size={12} />
+                  </span>
+                </span>
+              </div>
+            ))}
           </div>
         </div>
       </div>

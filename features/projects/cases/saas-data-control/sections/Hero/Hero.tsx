@@ -1,35 +1,37 @@
-import Image from "next/image"; // 1. Importando o componente de alta performance
+"use client";
+
+import Image from "next/image";
+import { useLanguage } from "@/shared/i18n/LanguageContext";
+import { saasDataControlContent } from "../../content";
 import "./Hero.css";
 
 export function Hero() {
+  const { locale } = useLanguage();
+  const content = saasDataControlContent[locale].hero;
+
   return (
-    <section className="task-manager-hero">
-      {/* Glow cinematográfico no fundo */}
-      <div className="hero-glow hero-glow-1" />
-      <div className="hero-glow hero-glow-2" />
+    <section className="task-manager-hero" aria-labelledby="saas-data-control-hero-title">
+      <div className="hero-glow hero-glow-1" aria-hidden="true" />
+      <div className="hero-glow hero-glow-2" aria-hidden="true" />
 
       <div className="container">
         <div className="hero-container">
           <div className="hero-content">
             <span className="hero-badge">
-              <span className="hero-badge-dot" />
-              Enterprise Productivity Platform
+              <span className="hero-badge-dot" aria-hidden="true" />
+              {content.badge}
             </span>
 
-            <h1 className="hero-title">
-              Task Manager
-              <span className="hero-title-accent"> Pro</span>
+            <h1 id="saas-data-control-hero-title" className="hero-title">
+              {content.title}
+              <span className="hero-title-accent"> {content.titleAccent}</span>
             </h1>
 
-            <p className="hero-description">
-              Corporate platform developed for
-              task management, productivity
-              and operational monitoring at enterprise scale.
-            </p>
+            <p className="hero-description">{content.description}</p>
 
-            <div className="hero-stack">
-              {["Java 17", "Spring Boot 3", "PostgreSQL"].map((tech, i) => (
-                <span key={tech} style={{ animationDelay: `${0.8 + i * 0.1}s` }}>
+            <div className="hero-stack" aria-label="Technology stack">
+              {content.stack.map((tech, index) => (
+                <span key={tech} style={{ animationDelay: `${0.8 + index * 0.1}s` }}>
                   {tech}
                 </span>
               ))}
@@ -37,26 +39,17 @@ export function Hero() {
           </div>
 
           <div className="hero-image-wrapper">
-            <div className="hero-image-glow" />
+            <div className="hero-image-glow" aria-hidden="true" />
             <div className="hero-image">
-
-              {/* --- IMPLEMENTAÇÃO DO NEXT/IMAGE TURBINADO --- */}
               <Image
                 src="/projects/saas-data-control/textures/dashboard-light-tela.webp"
-                alt="Task Manager Dashboard"
-
-                // Dimensões ideais para um mockup de dashboard/SaaS (proporção widescreen)
+                alt={content.imageAlt}
                 width={1200}
                 height={750}
-
-                // CRUCIAL: Diz ao Next.js para pré-carregar essa imagem imediatamente no HTML,
-                // destruindo qualquer delay de carregamento e melhorando o LCP ao máximo!
+                sizes="(max-width: 968px) 100vw, 58vw"
                 priority
-
-                // Mantém a compatibilidade com as classes do seu Hero.css
                 className="hero-dashboard-img"
               />
-
             </div>
           </div>
         </div>
