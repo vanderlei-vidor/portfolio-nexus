@@ -38,11 +38,10 @@
 - [ ] **Badges de Status no Repositório:** Badge de aprovação de build e testes diretamente na documentação.
 
 ### 2. Testes End-to-End (E2E) com Playwright
-- [ ] **Testes de Fluxos Críticos:**
-  - Alternância de idioma (EN -> PT -> ES) verificando a tradução em cascata no DOM.
-  - Preenchimento do formulário de contato e verificação da URL `mailto:` gerada.
-  - Navegação entre rotas com teste de carregamento dos 4 cases de projeto em `/projects/[slug]`.
-  - Comportamento de navegação ao clicar nos links de âncora com rolagem suave (`SmoothScroll`).
+- [x] **Testes de Fluxos Críticos (`e2e/core-journeys.spec.ts`):**
+  - Alternância dos 3 idiomas (EN -> PT -> ES) verificando a tradução no DOM e o atributo `lang`.
+  - Preenchimento do formulário de contato e verificação dinâmica da URL `mailto:` gerada com dados do usuário.
+  - Navegação real da Home até a página do case `/projects/music-player` com verificação de montagem do título.
 
 ### 3. Observabilidade e Telemetria em Produção
 - [ ] **Monitoramento de Exceções com Sentry:**

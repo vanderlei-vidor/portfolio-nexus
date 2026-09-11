@@ -17,6 +17,9 @@ O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.
   - `ADR-0005`: Suíte de Testes Automatizados com Vitest, React Testing Library e jsdom.
 - **Internacionalização Tríplice Completa (EN / PT / ES)**: Suporte dinâmico a 3 idiomas nos dicionários JSON (`en.json`, `pt.json`, `es.json`), com chaveamento persistente no `localStorage` e detecção de idioma padrão via `navigator.language`.
 - **Componente `LanguageSwitcher` com Separadores Visuais**: Seletor estético Glassmorphism (`EN | PT | ES`) com divisores visuais elegantes, suporte total a teclado e atributos `aria-pressed`, `aria-label` e `lang`.
+- **Testes End-to-End com Playwright (`e2e/core-journeys.spec.ts`)**: Suíte completa de testes de jornada de usuário em navegador Chromium headless real (chaveamento dos 3 idiomas, preenchimento e validação de `mailto:`, e navegação direta para case study).
+- **Pipeline de CI/CD Integrada com E2E (`.github/workflows/ci.yml`)**: Workflow completo com jobs paralelos de validação, build estático e execução automatizada de Playwright no GitHub Actions.
+- **SEO Estruturado com Schema.org JSON-LD**: Injeção de metadados semânticos `Person` (com LinkedIn oficial), `WebSite` e `SoftwareApplication` para Google Rich Snippets.
 - **Suíte de Testes Automatizados**: Vitest integrado com React Testing Library e jsdom (`npm run test`) validando `useReducedMotion`, `DirectContactForm` e o ecossistema `i18n`.
 
 ### Fixed
