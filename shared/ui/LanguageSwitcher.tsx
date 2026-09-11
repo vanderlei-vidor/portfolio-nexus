@@ -19,7 +19,7 @@ export default function LanguageSwitcher() {
         <Globe size={15} strokeWidth={1.8} />
       </div>
 
-      {supportedLocales.map((supportedLocale) => {
+      {supportedLocales.map((supportedLocale, index) => {
         const label = localeLabels[supportedLocale];
         const isActive = locale === supportedLocale;
         const accessibleLabel = isActive
@@ -27,21 +27,26 @@ export default function LanguageSwitcher() {
           : `${t("language.changeTo")} ${label.nativeName}`;
 
         return (
-          <button
-            key={supportedLocale}
-            type="button"
-            onClick={() => setLocale(supportedLocale)}
-            className={`min-h-9 min-w-10 rounded-full px-3 font-bold transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white ${
-              isActive
-                ? "bg-white text-black shadow-[0_0_18px_rgba(255,255,255,0.28)]"
-                : "text-zinc-300 hover:bg-white/10 hover:text-white"
-            }`}
-            aria-label={accessibleLabel}
-            aria-pressed={isActive}
-            lang={label.htmlLang}
-          >
-            {label.short}
-          </button>
+          <div key={supportedLocale} className="flex items-center">
+            {/* Separador entre os botões */}
+            {index > 0 && (
+              <span className="h-4 w-px bg-white/10 mx-0.5" aria-hidden="true" />
+            )}
+            <button
+              type="button"
+              onClick={() => setLocale(supportedLocale)}
+              className={`min-h-9 min-w-10 rounded-full px-3 font-bold transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white ${
+                isActive
+                  ? "bg-white text-black shadow-[0_0_18px_rgba(255,255,255,0.28)]"
+                  : "text-zinc-300 hover:bg-white/10 hover:text-white"
+              }`}
+              aria-label={accessibleLabel}
+              aria-pressed={isActive}
+              lang={label.htmlLang}
+            >
+              {label.short}
+            </button>
+          </div>
         );
       })}
     </div>

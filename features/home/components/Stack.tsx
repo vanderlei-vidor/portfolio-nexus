@@ -51,18 +51,18 @@ export default function Stack() {
   const shouldReduceMotion = useReducedMotion();
   const { t } = useTranslation();
   
-  // ✅ OTIMIZAÇÃO 1: Refs para as timelines (permite pausar/retomar)
+  // ✅ Refs para as timelines (permite pausar/retomar)
   const tl1Ref = useRef<gsap.core.Tween | null>(null);
   const tl2Ref = useRef<gsap.core.Tween | null>(null);
 
-  // ✅ OTIMIZAÇÃO 2: IntersectionObserver para detectar visibilidade
+  // ✅ IntersectionObserver para detectar visibilidade
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         const isIntersecting = entry.isIntersecting;
         setIsVisible(isIntersecting);
 
-        // ✅ OTIMIZAÇÃO 3: Pausa/retoma as animações baseado na visibilidade e a11y
+        // Pausa/retoma as animações baseado na visibilidade e a11y
         if (tl1Ref.current && tl2Ref.current) {
           if (isIntersecting && !shouldReduceMotion) {
             tl1Ref.current.play();
@@ -74,8 +74,8 @@ export default function Stack() {
         }
       },
       { 
-        threshold: 0.1, // Ativa quando 10% da seção está visível
-        rootMargin: "100px" // Ativa um pouco antes de entrar na viewport
+        threshold: 0.1,
+        rootMargin: "100px"
       }
     );
 
@@ -90,10 +90,9 @@ export default function Stack() {
     if (!marquee1Ref.current || !marquee2Ref.current || !isVisible) return;
 
     const ctx = gsap.context(() => {
-      // ✅ OTIMIZAÇÃO 4: Delay inicial para não competir com LCP
       const startDelay = 0.5;
 
-      // Linha 1 vai para a ESQUERDA
+      // Linha 1 vai para a ESQUERDA — 2 cópias: xPercent -50 = 1 cópia completa = loop perfeito
       tl1Ref.current = gsap.to(marquee1Ref.current, {
         xPercent: -50,
         duration: 55,
@@ -112,13 +111,7 @@ export default function Stack() {
         delay: startDelay,
       });
 
-      // ✅ OTIMIZAÇÃO 5: Pausa inicial até a seção ficar visível
-      if (!isVisible) {
-        tl1Ref.current.pause();
-        tl2Ref.current.pause();
-      }
-
-      // ✅ OTIMIZAÇÃO 6: ScrollTrigger otimizado (só ativa quando visível)
+      // ScrollTrigger para velocidade dinâmica conforme o scroll
       const scrollTrigger = ScrollTrigger.create({
         trigger: sectionRef.current,
         start: "top 80%",
@@ -153,7 +146,7 @@ export default function Stack() {
         },
       });
 
-      // ✅ OTIMIZAÇÃO 7: Cleanup completo
+      // Cleanup completo
       return () => {
         scrollTrigger.kill();
         if (tl1Ref.current) tl1Ref.current.kill();
@@ -162,7 +155,7 @@ export default function Stack() {
     }, sectionRef);
 
     return () => ctx.revert();
-  }, [isVisible, shouldReduceMotion]); // ✅ Re-executa quando a visibilidade ou a11y mudam
+  }, [isVisible, shouldReduceMotion]);
 
   return (
     <section 
@@ -182,27 +175,27 @@ export default function Stack() {
         <div className="absolute left-0 top-0 bottom-0 w-48 bg-linear-to-r from-black via-black/90 to-transparent z-10 pointer-events-none" aria-hidden="true" />
         <div className="absolute right-0 top-0 bottom-0 w-48 bg-linear-to-l from-black via-black/90 to-transparent z-10 pointer-events-none" aria-hidden="true" />
 
-        {/* ESTEIRA 01: EXPERIENCE LAYER */}
+        {/* ESTEIRA 01: EXPERIENCE LAYER — 2 cópias para loop xPercent -50 */}
         <div className="overflow-hidden w-full">
           <div 
             ref={marquee1Ref} 
             className="flex whitespace-nowrap will-change-transform"
             aria-label={t("stack.experienceLayer")}
           >
-            {[...experienceTechs, ...experienceTechs, ...experienceTechs].map((tech, i) => (
+            {[...experienceTechs, ...experienceTechs].map((tech, i) => (
               <MarqueeItem key={`exp-${i}`} tech={tech} />
             ))}
           </div>
         </div>
 
-        {/* ESTEIRA 02: INTELLIGENCE LAYER */}
+        {/* ESTEIRA 02: INTELLIGENCE LAYER — 2 cópias para loop xPercent -50 */}
         <div className="overflow-hidden w-full">
           <div 
             ref={marquee2Ref} 
             className="flex whitespace-nowrap will-change-transform"
             aria-label={t("stack.coreLayer")}
           >
-            {[...coreTechs, ...coreTechs, ...coreTechs].map((tech, i) => (
+            {[...coreTechs, ...coreTechs].map((tech, i) => (
               <MarqueeItem key={`core-${i}`} tech={tech} />
             ))}
           </div>

@@ -70,8 +70,8 @@ export default function About() {
 
   const text = t("about.title");
 
-  // ✅ OTIMIZAÇÃO 5: Divide por PALAVRAS em vez de caracteres (100+ → ~20 elementos)
-  const words = text.split(" ");
+  // OTIMIZACAO 5: divide por palavras preservando espacos reais no fluxo do texto.
+  const textParts = text.split(/(\s+)/);
 
   return (
     <section 
@@ -91,15 +91,17 @@ export default function About() {
 
       <h2 
         ref={textRef}
-        className="text-4xl md:text-6xl lg:text-7xl font-medium leading-tight tracking-tight text-white"
+        className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-medium leading-[1.12] md:leading-tight tracking-tight text-white text-wrap [overflow-wrap:anywhere]"
       >
-        {words.map((word, i) => (
-          <span key={i} className="inline-block mr-[0.25em]">
-            <span className="word inline-block opacity-10">
-              {word}
+        {textParts.map((part, i) => {
+          if (/^\s+$/.test(part)) return part;
+
+          return (
+            <span key={`${part}-${i}`} className="word inline-block opacity-10">
+              {part}
             </span>
-          </span>
-        ))}
+          );
+        })}
       </h2>
 
       {/* Linha decorativa */}
