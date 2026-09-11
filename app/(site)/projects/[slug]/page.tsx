@@ -22,6 +22,8 @@ export function generateStaticParams() {
   }));
 }
 
+import JsonLd from "@/shared/seo/JsonLd";
+
 export default async function ProjectPage({ params }: ProjectPageProps) {
   const { slug } = await params;
   const canonicalSlug = getCanonicalProjectSlug(slug);
@@ -32,12 +34,43 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 
   const project = getProjectBySlug(slug);
 
+  const title = project?.title ?? formatProjectTitle(slug);
+  const description = project?.description ?? getProjectDescription(title);
+  const imageUrl = project?.imageUrl ?? getProjectImageUrl(slug);
+  const baseUrl = "https://portfolio-nexus-six.vercel.app";
+
+  const projectJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: title,
+    description: description,
+    image: imageUrl.startsWith("http") ? imageUrl : `${baseUrl}${imageUrl}`,
+    url: `${baseUrl}/projects/${slug}`,
+    applicationCategory: "WebApplication",
+    operatingSystem: "Web, iOS, Android",
+    author: {
+      "@type": "Person",
+      name: "Vanderlei Vidor",
+      url: "https://linkedin.com/in/vanderlei-vidor-979593410",
+    },
+  };
+
   if (project) {
     const ProjectComponent = await project.loadComponent();
-    return <ProjectComponent />;
+    return (
+      <>
+        <JsonLd data={projectJsonLd} />
+        <ProjectComponent />
+      </>
+    );
   }
 
-  return <ProjectDetailPage slug={slug} />;
+  return (
+    <>
+      <JsonLd data={projectJsonLd} />
+      <ProjectDetailPage slug={slug} />
+    </>
+  );
 }
 
 // 🚀 METADATOS DINÂMICOS INTEGRADOS AO LAYOUT GLOBAL

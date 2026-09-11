@@ -70,18 +70,26 @@ export const metadata: Metadata = {
 
 import { LanguageProvider } from "@/shared/i18n/LanguageContext";
 import LanguageSwitcher from "@/shared/ui/LanguageSwitcher";
+import JsonLd, { getPersonJsonLd, getWebSiteJsonLd } from "@/shared/seo/JsonLd";
 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const personJsonLd = getPersonJsonLd(baseUrl);
+  const webSiteJsonLd = getWebSiteJsonLd(baseUrl);
+
   return (
     <html
       lang="en"
       suppressHydrationWarning
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
+      <head>
+        <JsonLd data={personJsonLd} />
+        <JsonLd data={webSiteJsonLd} />
+      </head>
       <body className="min-h-full flex flex-col bg-black text-white" suppressHydrationWarning>
 
         {/* Adiciona a textura de granulação sobre todo o site */}
