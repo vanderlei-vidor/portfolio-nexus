@@ -1,28 +1,28 @@
-import { ClipboardList, CheckCircle, Clock, AlertTriangle } from "lucide-react";
+import { AlertTriangle, CheckCircle, ClipboardList, Clock } from "lucide-react";
 
 export const metrics = [
   {
-    value: "127",
-    label: "Total Tasks",
+    value: "Scope",
+    label: "Task Ownership",
     icon: ClipboardList,
-    trend: { value: "12%", positive: true }
+    trend: { value: "User", positive: true },
   },
   {
-    value: "94",
-    label: "Completed",
+    value: "Flow",
+    label: "Status Tracking",
     icon: CheckCircle,
-    trend: { value: "8%", positive: true }
+    trend: { value: "Live", positive: true },
   },
   {
-    value: "23",
-    label: "In Progress",
+    value: "Risk",
+    label: "Access Boundaries",
     icon: Clock,
-    trend: { value: "3%", positive: false }
+    trend: { value: "Scoped", positive: true },
   },
   {
-    value: "10",
-    label: "Overdue",
+    value: "Docs",
+    label: "Reports",
     icon: AlertTriangle,
-    trend: { value: "5%", positive: false }
-  }
+    trend: { value: "Export", positive: true },
+  },
 ];

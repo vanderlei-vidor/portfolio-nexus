@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useEffect, useMemo, useRef } from "react";
 import { gsap } from "gsap";
@@ -53,7 +53,7 @@ export default function Numbers() {
     <section className="numbers" ref={sectionRef} aria-labelledby="portfolio-nexus-numbers-title">
       <div className="numbers__background" aria-hidden="true" />
       <div className="numbers__ambient-glow" aria-hidden="true" />
-      <div className="numbers__giant-overlay" aria-hidden="true"><div className="bg-giant-num num-1">01</div><div className="bg-giant-num num-2">150</div><div className="bg-giant-num num-3">30</div></div>
+      <div className="numbers__giant-overlay" aria-hidden="true"><div className="bg-giant-num num-1">04</div><div className="bg-giant-num num-2">14</div><div className="bg-giant-num num-3">03</div></div>
 
       <div className="numbers__container">
         <span className="numbers__label">{content.label}</span>

@@ -1,4 +1,4 @@
-﻿# Portfolio Nexus — Production-Grade Roadmap
+# Portfolio Nexus — Production-Grade Roadmap
 
 > **Objetivo interno:** elevar o Portfolio Nexus a um padrão de execução comparável a produtos digitais de alto nível, com foco em engenharia, clareza narrativa, acessibilidade, performance e confiabilidade técnica.
 >
@@ -269,18 +269,22 @@ Ecossistema de estudos de caso com arquitetura modular, conteúdo multilíngue, 
 
 - [x] Reescrever `cardDescription` e `description` em PT/EN/ES.
 - [ ] Migrar todos os cases para o formato:
+  - [x] Portfolio Nexus
+  - [x] Music Player
+  - [x] SaaS Data Control
+  - [x] English Tutor
   - Problema
   - Decisão de engenharia
   - Solução
   - Evidência
   - Resultado
 - [x] Remover claims absolutos ou não verificáveis.
-- [ ] Criar documentação padrão para novos cases.
-- [ ] Documentar convenções do `projectsRegistry`.
+- [x] Criar documentação padrão para novos cases.
+- [x] Documentar convenções do `projectsRegistry`.
 
 ### Critérios de aceite
 
-- [ ] Todo claim técnico importante está classificado como `Verified`, `Observed`, `Designed` ou `Target`.
+- [x] Todo claim técnico importante está classificado como `Verified`, `Observed`, `Designed` ou `Target`.
 - [x] Nenhum número aparece como resultado sem fonte verificável.
 - [x] Conteúdo PT/EN/ES possui equivalência semântica.
 - [x] Não existem placeholders genéricos em produção.
@@ -619,7 +623,7 @@ Este plano reflete o estado real após as correções de arquitetura, narrativa,
 | Sprint | Estado | Leitura prática |
 |---|---|---|
 | Sprint 1 — Higiene técnica | Fechado | Arquitetura, metadata, registry, fallback, foco, seleção, interações e lifecycle foram revisados e validados. |
-| Sprint 2 — Conteúdo técnico | Em fechamento | Descrições e claims públicos foram moderados. Falta transformar cada case no formato oficial completo e documentar convenções. |
+| Sprint 2 — Conteúdo técnico | Fechado | Os quatro cases visíveis foram migrados para a estrutura narrativa oficial, com claims moderados e documentação de apoio. |
 | Sprint 2.5 — Engineering Evidence | Pronto para iniciar | A narrativa já está mais segura. Agora começa a camada de provas: evidências, decisões, testes, diagramas e claims aprovados. |
 | Sprint 3 — Microinterações | Parcialmente iniciado | Hover agressivo e reduced motion já foram tratados em pontos críticos. Falta consolidar padrões de botões/links e leitura longa. |
 | Sprint 4 — Performance/homologação | Parcialmente iniciado | English Tutor já recebeu defer/lazy loading e medição inicial. Falta profiling formal e Lighthouse em build de produção. |
@@ -631,7 +635,7 @@ Este plano reflete o estado real após as correções de arquitetura, narrativa,
    - Revisar lifecycle dos principais efeitos GSAP, timers, listeners e RAFs.
    - Garantir que todo efeito iniciado tenha cleanup explícito.
 
-2. **Fechar Sprint 2**
+2. **Sprint 2 fechada**
    - Ajustar cada case para seguir claramente: Problema, Decisão de engenharia, Solução, Evidência e Resultado.
    - Criar `docs/CASE_STUDY.md` como template oficial.
    - Criar `docs/PROJECT_ORGANIZATION.md` documentando o `projectsRegistry`, slugs, i18n e estrutura de cases.
@@ -652,9 +656,9 @@ Este plano reflete o estado real após as correções de arquitetura, narrativa,
 Antes de iniciar documentação profunda de evidências, o projeto deve ter:
 
 - [x] Sprint 1 sem pendências críticas de arquitetura, foco ou lifecycle.
-- [ ] Sprint 2 com todos os cases seguindo a estrutura narrativa oficial.
+- [x] Sprint 2 com todos os cases seguindo a estrutura narrativa oficial.
 - [ ] Pipeline local passando: `npm run lint`, `npx tsc --noEmit`, `npm run test`, `npm run build`, `npm run test:e2e`.
-- [ ] Lista inicial de claims aprovada por projeto.
+- [x] Lista inicial de claims aprovada por projeto.
 
 ### Primeira tarefa recomendada agora
 
