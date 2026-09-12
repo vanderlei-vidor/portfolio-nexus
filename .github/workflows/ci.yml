@@ -73,6 +73,7 @@ jobs:
       - name: Build Static Site
         env:
           GITHUB_PAGES: ${{ github.event_name == 'push' && 'true' || 'false' }}
+          NEXT_PUBLIC_BASE_PATH: /${{ github.event.repository.name }}
         run: npm run build
 
       - name: Preserve Next.js assets on GitHub Pages
@@ -117,6 +118,7 @@ jobs:
       - name: Run Playwright E2E Tests
         env:
           E2E_STATIC_EXPORT: "true"
+          NEXT_PUBLIC_BASE_PATH: /${{ github.event.repository.name }}
         run: npm run test:e2e
 
   deploy:

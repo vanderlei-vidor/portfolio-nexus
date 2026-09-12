@@ -1,5 +1,8 @@
 ﻿import { expect, test } from "@playwright/test";
 
+const basePath = (process.env.NEXT_PUBLIC_BASE_PATH ?? "").replace(/\/$/, "");
+const withBasePath = (path: string) => `${basePath}${path.startsWith("/") ? path : `/${path}`}` || "/";
+
 test.describe("Portfolio Nexus - E2E Core Journeys", () => {
   test.beforeEach(async ({ page }) => {
     await page.setViewportSize({ width: 1280, height: 800 });
@@ -7,7 +10,7 @@ test.describe("Portfolio Nexus - E2E Core Journeys", () => {
   });
 
   test("switches between EN, PT and ES content", async ({ page }) => {
-    await page.goto("/", { waitUntil: "domcontentloaded" });
+    await page.goto(withBasePath("/"), { waitUntil: "domcontentloaded" });
 
     const languageSwitcher = page.locator('div[role="group"]');
     await expect(languageSwitcher).toBeVisible();
@@ -26,7 +29,7 @@ test.describe("Portfolio Nexus - E2E Core Journeys", () => {
   });
 
   test("updates the contact mailto link from form fields", async ({ page }) => {
-    await page.goto("/contact", { waitUntil: "domcontentloaded" });
+    await page.goto(withBasePath("/contact"), { waitUntil: "domcontentloaded" });
 
     await page.locator('input[type="text"]').first().fill("Recrutador Tech");
     await page.locator('input[type="text"]').nth(1).fill("Oportunidade Engenheiro Senior");
@@ -44,14 +47,15 @@ test.describe("Portfolio Nexus - E2E Core Journeys", () => {
   });
 
   test("navigates from home to the Music Player case study", async ({ page }) => {
-    await page.goto("/", { waitUntil: "domcontentloaded" });
+    await page.goto(withBasePath("/"), { waitUntil: "domcontentloaded" });
 
-    const musicPlayerCard = page.locator('a[href="/projects/music-player"]');
+    const musicPlayerHref = withBasePath("/projects/music-player/");
+    const musicPlayerCard = page.locator(`a[href="${musicPlayerHref}"]`);
     await expect(musicPlayerCard).toBeVisible();
 
     await musicPlayerCard.click();
 
-    await expect(page).toHaveURL(/\/projects\/music-player/);
+    await expect(page).toHaveURL(/\/projects\/music-player\/?$/);
     await expect(page.getByRole("heading", { name: "Music Player" })).toBeVisible();
   });
 });
