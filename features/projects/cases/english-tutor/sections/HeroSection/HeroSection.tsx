@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import { useLanguage } from "@/shared/i18n/LanguageContext";
+import { useReducedMotion } from "@/shared/hooks/useReducedMotion";
 import { EnergyOrb } from "../../components/EnergyOrb";
 import { englishTutorContent } from "../../content";
 import { initHeroAnimation } from "./HeroSection.animation";
@@ -13,6 +14,7 @@ export function HeroSection() {
   const contentRef = useRef<HTMLDivElement>(null);
   const frameRef = useRef<number | null>(null);
   const { locale } = useLanguage();
+  const shouldReduceMotion = useReducedMotion();
   const content = englishTutorContent[locale].hero;
 
   useEffect(() => {
@@ -24,7 +26,7 @@ export function HeroSection() {
   }, []);
 
   const handleMouseMove = (event: React.MouseEvent<HTMLElement>) => {
-    if (frameRef.current !== null) return;
+    if (shouldReduceMotion || frameRef.current !== null) return;
 
     const rect = event.currentTarget.getBoundingClientRect();
     const pointerX = event.clientX;

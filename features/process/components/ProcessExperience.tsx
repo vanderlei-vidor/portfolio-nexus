@@ -182,6 +182,8 @@ export default function ProcessExperience() {
               tag={t("process.steps.strategy.tag")}
               title={t("process.steps.strategy.title")}
               description={t("process.steps.strategy.description")}
+              outputLabel={t("process.outputLabel")}
+              output={t("process.steps.strategy.output")}
               statusLabel={t("process.systemRunning")}
             />
 
@@ -192,6 +194,8 @@ export default function ProcessExperience() {
               tag={t("process.steps.design.tag")}
               title={t("process.steps.design.title")}
               description={t("process.steps.design.description")}
+              outputLabel={t("process.outputLabel")}
+              output={t("process.steps.design.output")}
               statusLabel={t("process.systemRunning")}
             />
 
@@ -202,6 +206,8 @@ export default function ProcessExperience() {
               tag={t("process.steps.engineering.tag")}
               title={t("process.steps.engineering.title")}
               description={t("process.steps.engineering.description")}
+              outputLabel={t("process.outputLabel")}
+              output={t("process.steps.engineering.output")}
               statusLabel={t("process.systemRunning")}
             />
 
@@ -212,6 +218,8 @@ export default function ProcessExperience() {
               tag={t("process.steps.quality.tag")}
               title={t("process.steps.quality.title")}
               description={t("process.steps.quality.description")}
+              outputLabel={t("process.outputLabel")}
+              output={t("process.steps.quality.output")}
               statusLabel={t("process.systemRunning")}
             />
 
@@ -246,10 +254,12 @@ interface ProcessStepProps {
   tag: string;
   title: string;
   description: string;
+  outputLabel: string;
+  output: string;
   statusLabel: string;
 }
 
-const ProcessStep = forwardRef<HTMLElement, ProcessStepProps>(({ step, tag, title, description, statusLabel }, ref) => {
+const ProcessStep = forwardRef<HTMLElement, ProcessStepProps>(({ step, tag, title, description, outputLabel, output, statusLabel }, ref) => {
   return (
     <section
       ref={ref}
@@ -277,6 +287,15 @@ const ProcessStep = forwardRef<HTMLElement, ProcessStepProps>(({ step, tag, titl
           <p className="text-lg md:text-xl text-zinc-400 font-light leading-relaxed max-w-2xl">
             {description}
           </p>
+
+          <div className="mt-8 max-w-2xl border-l border-white/15 pl-5">
+            <span className="font-mono text-[9px] uppercase tracking-[0.35em] text-white/35">
+              {outputLabel}
+            </span>
+            <p className="mt-3 text-sm leading-relaxed text-zinc-300 md:text-base">
+              {output}
+            </p>
+          </div>
 
           <div className="mt-12 flex items-center gap-6 opacity-30 group-hover:opacity-100 transition-opacity duration-700">
             <div className="w-2 h-2 rounded-full bg-white animate-pulse" />

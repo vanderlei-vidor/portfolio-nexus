@@ -1,17 +1,17 @@
-@import "tailwindcss";
+﻿@import "tailwindcss";
 
-/* O validador do VS Code pode chiar no @theme, mas pro Tailwind v4 está perfeito */
+/* Tailwind v4 design tokens. */
 @theme {
-  /* Cores */
+  /* Colors */
   --color-accent-rgb: 124, 58, 237;
 
-  /* Tipografia Fluida (Gerará classes como text-hero, text-fluid-md...) */
+  /* Fluid typography */
   --text-hero: clamp(3.5rem, 11vw, 8.5rem);
   --text-fluid-p: clamp(1.1rem, 2vw, 1.45rem);
   --text-fluid-xs: clamp(0.75rem, 1vw, 0.85rem);
   --text-fluid-btn: clamp(0.85rem, 1vw, 1rem);
 
-  /* Espaçamentos Fluidos (Gerará classes para padding, margin e gap) */
+  /* Fluid spacing */
   --spacing-fluid-layout: clamp(1.5rem, 6vw, 7.5rem);
   --spacing-fluid-gap-sm: clamp(1.5rem, 4vw, 3rem);
   --spacing-fluid-gap-md: clamp(2.5rem, 6vw, 5.5rem);
@@ -19,13 +19,13 @@
   --spacing-fluid-btn-y: clamp(0.95rem, 2vw, 1.25rem);
 }
 
-/* Estilos Globais do App */
+/* App globals */
 html,
 body {
   overflow-x: hidden;
   width: 100%;
-  background: #0B0B0B;
-  color: #EDEDED;
+  background: #0b0b0b;
+  color: #ededed;
   font-family: system-ui, sans-serif;
   color-scheme: dark;
 }
@@ -50,12 +50,22 @@ button {
   appearance: none;
 }
 
-:where(a, button, input, textarea, select):focus-visible {
-  outline: 2px solid #ffffff;
-  outline-offset: 3px;
+:where(a, button, input, textarea, select, summary, [tabindex]):focus {
+  outline: none;
 }
 
-/* ⚡ ACESSIBILIDADE (a11y): Respeita a preferência do sistema operacional por movimento reduzido */
+:where(a, button, input, textarea, select, summary, [tabindex]):focus-visible {
+  outline: 2px solid #93c5fd;
+  outline-offset: 4px;
+  box-shadow: 0 0 0 6px rgba(37, 99, 235, 0.22);
+}
+
+::selection {
+  background: #bfdbfe;
+  color: #020617;
+}
+
+/* Accessibility: respect reduced motion at the system level. */
 @media (prefers-reduced-motion: reduce) {
   *,
   ::before,

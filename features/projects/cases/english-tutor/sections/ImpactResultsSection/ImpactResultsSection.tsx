@@ -17,6 +17,11 @@ const localeMap = {
   es: "es-ES",
 } as const;
 
+function parseMetricValue(value: string) {
+  const numericValue = Number(value.replace(/[^0-9]/g, ""));
+  return Number.isFinite(numericValue) && numericValue > 0 ? numericValue : null;
+}
+
 export function ImpactResultsSection() {
   const xpRef = useRef<HTMLSpanElement>(null);
   const sectionRef = useRef<HTMLElement>(null);
@@ -27,14 +32,15 @@ export function ImpactResultsSection() {
   useEffect(() => {
     const xpElement = xpRef.current;
     const sectionElement = sectionRef.current;
+    const targetValue = parseMetricValue(content.metrics[0].value);
 
-    if (!xpElement || !sectionElement) return;
+    if (!xpElement || !sectionElement || targetValue === null) return;
 
     const xp = { value: 0 };
 
     const ctx = gsap.context(() => {
       gsap.to(xp, {
-        value: 5308,
+        value: targetValue,
         duration: 2.5,
         ease: "power4.out",
         scrollTrigger: {
@@ -49,7 +55,7 @@ export function ImpactResultsSection() {
     }, sectionElement);
 
     return () => ctx.revert();
-  }, [numberFormatter]);
+  }, [content.metrics, numberFormatter]);
 
   return (
     <section ref={sectionRef} className={`${styles.section} impact-section`} aria-labelledby="english-tutor-impact-title">

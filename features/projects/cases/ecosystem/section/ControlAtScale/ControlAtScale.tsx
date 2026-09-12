@@ -17,9 +17,9 @@ const streamColumns = Array.from({ length: 15 }, (_, column) => ({
 
 const cardIcons = [Activity, Cpu, Shield] as const;
 const cardSeeds = [
-  { base: 14.2, variance: 2.5 },
-  { base: 98.7, variance: 1.2 },
-  { base: 99.9, variance: 0.1 },
+  { base: 14, variance: 0 },
+  { base: 4, variance: 0 },
+  { base: 3, variance: 0 },
 ] as const;
 
 const generateSparklineData = (points: number = 20, seed: number = 1) => Array.from({ length: points }, (_, index) => ({

@@ -11,25 +11,25 @@
     "current": "Idioma atual"
   },
   "hero": {
-    "badge": "DISPONÍVEL PARA NOVOS PROJETOS E PARCERIAS",
+    "badge": "DISPONÍVEL PARA PRODUTOS DIGITAIS, PORTFÓLIOS E SISTEMAS WEB",
     "eyebrow": "Seção principal",
-    "titleLine1": "CRIANDO",
-    "titleLine2": "O FUTURO.",
-    "tagline": "Fluido. Elegante. Cinemático.",
-    "subtitle": "Construindo experiências digitais de classe mundial, aplicações web de alta performance e sistemas de software inteligentes.",
+    "titleLine1": "CONSTRUINDO",
+    "titleLine2": "COM CLAREZA.",
+    "tagline": "Produto. Engenharia. Experiência.",
+    "subtitle": "Transformo problemas reais em produtos digitais bem estruturados, combinando engenharia de software, interfaces cuidadosas e decisões pensadas para desempenho, manutenção e evolução.",
     "startProject": "Iniciar um Projeto",
-    "exploreWork": "Explorar Projetos",
+    "exploreWork": "Explorar Cases",
     "viewProcess": "Ver Processo"
   },
   "about": {
     "badge": "SOBRE",
-    "title": "Construo interfaces que convertem, performam e escalam. Com foco em criar experiências digitais premium com performance e design em mente.",
-    "p1": "Especialista em arquitetura full-stack moderna, interfaces de alta frequência e integração de inteligência artificial.",
-    "p2": "Cada linha de código é escrita com precisão, escala e foco no encanto do usuário.",
+    "title": "Eu projeto e desenvolvo produtos digitais unindo narrativa, interface e engenharia. Transformo problemas complexos em experiências claras, confiáveis e preparadas para evoluir.",
+    "p1": "Atuo entre frontend moderno, arquitetura de aplicações, produtos mobile, sistemas com IA e plataformas orientadas a dados.",
+    "p2": "Meu foco é criar software que seja bonito de usar, simples de entender e sustentável para evoluir.",
     "author": "Vanderlei Vidor"
   },
   "projects": {
-    "title": "Projetos Selecionados",
+    "title": "Cases Selecionados",
     "exploreCase": "Explorar Estudo de Caso",
     "caseStudy": "Estudo de Caso",
     "skipToContent": "Pular para o conteúdo do projeto",
@@ -49,20 +49,20 @@
     "goToSlide": "Ir para o slide",
     "items": {
       "music-player": {
-        "cardDescription": "Experiência de áudio offline",
-        "description": "Explore o case Music Player: uma experiência offline de áudio com interface imersiva, motion refinado e foco em performance."
+        "cardDescription": "Player local-first para bibliotecas pessoais, playback resiliente e uma experiência de escuta polida.",
+        "description": "Explore o case Music Player: um player Flutter local-first focado em biblioteca própria, fila resiliente, controles nativos e disciplina de release."
       },
       "saas-data-control": {
-        "cardDescription": "Plataforma nativa de dados",
-        "description": "Explore o case SaaS Data Control: uma experiência SaaS orientada a dados, controle e clareza operacional."
+        "cardDescription": "Plataforma de tarefas em Java/Spring com sessões seguras, dados por usuário e relatórios.",
+        "description": "Explore o case SaaS Data Control: uma plataforma de produtividade construída em torno de autenticação, acesso contextual a dados e clareza operacional."
       },
       "english-tutor": {
-        "cardDescription": "Interface de aprendizado com IA",
-        "description": "Explore o case English Tutor: um sistema moderno de aprendizado com hierarquia visual forte e interações fluidas."
+        "cardDescription": "Tutor de idiomas com Teacher Brain, LLM local e progressão guiada por regras pedagógicas.",
+        "description": "Explore o case English Tutor: uma experiência Flutter/FastAPI onde a camada pedagógica decide antes do modelo gerar a resposta."
       },
       "portfolio-nexus": {
-        "cardDescription": "Ecossistema de portfolio premium",
-        "description": "Explore o case Portfolio Nexus: uma experiência digital com base escalável, narrativa visual e acabamento premium."
+        "cardDescription": "Ecossistema de estudos de caso com Next.js, i18n, SSG e narrativa técnica modular.",
+        "description": "Explore o case Portfolio Nexus: o próprio portfólio como sistema de apresentação, conteúdo localizado e rotas estáticas para projetos reais."
       }
     }
   },
@@ -93,53 +93,58 @@
   "process": {
     "progressPhase": "Fase",
     "progressTotal": "Total",
-    "badge": "Production_Protocol // v1.0",
-    "titleMuted": "Engenharia",
-    "titleStrong": "Excelência Digital",
-    "intro": "Uma abordagem sistemática para construir aplicações de alta performance por meio de arquitetura rigorosa e execução precisa.",
+    "badge": "Delivery_Framework // Portfolio Nexus",
+    "titleMuted": "Processo",
+    "titleStrong": "Com Intenção",
+    "intro": "Um fluxo de trabalho pensado para transformar uma ideia em produto: contexto claro, decisão técnica consciente, interface cuidada e entrega validada.",
     "steps": {
       "strategy": {
-        "tag": "SYSTEM_DESIGN",
-        "title": "Arquitetura & Escopo",
-        "description": "Antes de escrever uma única linha de código, eu desenho a solução. Engenharia de requisitos, mapeamento de escalabilidade e estudos de viabilidade técnica garantem uma base robusta."
+        "tag": "DISCOVERY",
+        "title": "Contexto Antes Do Código",
+        "description": "O trabalho começa entendendo objetivo, público, restrições e risco. Antes da interface ou da arquitetura, defino o problema certo para que cada decisão tenha direção.",
+        "output": "Briefing, escopo inicial e prioridades de produto"
       },
       "design": {
-        "tag": "INTERFACE_ENGINEERING",
-        "title": "UX Centrada em Pessoas",
-        "description": "Criação de interfaces de alta fidelidade onde acessibilidade encontra movimento. Aplico heurísticas de Nielsen para que a jornada do usuário seja tão lógica quanto o backend."
+        "tag": "PRODUCT_DESIGN",
+        "title": "Experiência Que Explica",
+        "description": "A interface é desenhada para orientar, não apenas impressionar. Hierarquia, ritmo visual, responsividade e acessibilidade ajudam o visitante a entender o valor sem esforço.",
+        "output": "Fluxo de telas, narrativa visual e componentes base"
       },
       "engineering": {
-        "tag": "CORE_DEVELOPMENT",
-        "title": "Implementação Full-Stack",
-        "description": "Uso Next.js para excelência server-side. Código limpo, type-safety com TypeScript e renderização de baixa latência guiada por motores de movimento matemático."
+        "tag": "ENGINEERING",
+        "title": "Arquitetura Sustentável",
+        "description": "A implementação privilegia módulos claros, tipagem, conteúdo estruturado, rotas previsíveis e componentes que possam evoluir sem virar acoplamento escondido.",
+        "output": "Base técnica modular, integrada e pronta para evolução"
       },
       "quality": {
-        "tag": "QA_DEPLOYMENT",
-        "title": "Otimização & Vitals",
-        "description": "Testes rigorosos para Core Web Vitals. Otimização para Lighthouse, entrega com edge caching e pipeline CI/CD fluido para 99.9% de confiabilidade."
+        "tag": "QUALITY_PASS",
+        "title": "Refino Antes Da Entrega",
+        "description": "A entrega passa por revisão de build, lint, tipagem, navegação, responsividade, textos públicos e detalhes de interação para reduzir fricção no uso real.",
+        "output": "Build validado, experiência revisada e próximos passos claros"
       }
     },
-    "systemRunning": "Sistema_Ativo",
-    "finalTitleLine1": "Pronto para escalar",
-    "finalTitleLine2": "sua visão?",
-    "finalCta": "Iniciar Parceria"
+    "systemRunning": "Fase_Ativa",
+    "outputLabel": "Entrega",
+    "finalTitleLine1": "Vamos transformar",
+    "finalTitleLine2": "ideia em produto?",
+    "finalCta": "Conversar Sobre Projeto"
   },
   "contact": {
-    "badge": "ENTRE EM CONTATO",
-    "title": "Vamos construir algo",
-    "titleGradient": "excepcional.",
-    "subtitle": "Disponível para novos projetos e colaborações estratégicas. Vamos criar algo memorável juntos.",
-    "startProject": "Iniciar um Projeto",
+    "badge": "CONTATO",
+    "title": "Vamos transformar uma ideia",
+    "titleGradient": "em produto.",
+    "subtitle": "Se existe um produto, portfólio, sistema web ou aplicativo para estruturar com mais clareza, podemos começar por uma conversa objetiva.",
+    "startProject": "Conversar Sobre Projeto",
     "emailMe": "Enviar Email",
-    "generatorTitle": "Gerador de Mensagem Direta",
-    "generatorSubtitle": "Zero demora - abre direto no seu app de email",
+    "generatorTitle": "Brief Inicial",
+    "generatorSubtitle": "Monte uma mensagem clara e abra direto no seu app de email",
     "nameLabel": "Seu Nome",
-    "namePlaceholder": "ex: Sarah Connor",
+    "namePlaceholder": "ex: Ana Pereira",
     "subjectLabel": "Assunto",
-    "subjectPlaceholder": "ex: Novo Projeto de Aplicação Web",
+    "subjectPlaceholder": "ex: Novo produto digital",
     "messageLabel": "Mensagem",
-    "messagePlaceholder": "Conte um pouco sobre sua ideia, prazos ou objetivos...",
-    "openEmailClient": "Abrir Cliente de Email",
+    "messagePlaceholder": "Conte o contexto, objetivo, prazo ou tipo de colaboração...",
+    "openEmailClient": "Abrir Rascunho de Email",
     "copyMessage": "Copiar Mensagem",
     "copied": "Copiado!",
     "copyEmail": "Copiar endereço de email",
@@ -150,14 +155,19 @@
     "linkedinProfile": "Perfil do LinkedIn",
     "githubProfile": "Perfil do GitHub",
     "backToHome": "Voltar ao início",
-    "pageTitle": "Entre em contato.",
-    "pageSubtitle": "Disponível para novos projetos, liderança de engenharia e colaborações estratégicas.",
-    "defaultSubject": "Contato do Portfolio Nexus",
+    "pageTitle": "Vamos conversar.",
+    "pageSubtitle": "Trabalho melhor quando a conversa começa com contexto: o problema, o público, o estágio atual e o tipo de resultado esperado.",
+    "briefTitle": "O que ajuda no primeiro contato",
+    "briefSubtitle": "Não precisa estar tudo fechado. Um bom ponto de partida já permite entender escopo, prioridade e próximos passos.",
+    "briefItemOne": "Objetivo do produto, sistema ou oportunidade",
+    "briefItemTwo": "Contexto atual: ideia, protótipo, código existente ou necessidade de evolução",
+    "briefItemThree": "Prazo desejado, stack envolvida ou principal restrição técnica",
+    "defaultSubject": "Contato sobre projeto",
     "defaultVisitor": "Visitante",
     "defaultGreeting": "Olá, Vanderlei!",
-    "defaultBody": "Gostaria de conversar sobre um projeto ou oportunidade.",
+    "defaultBody": "Gostaria de conversar sobre um projeto, produto ou oportunidade.",
     "defaultSignoff": "Atenciosamente,",
-    "defaultCopyMessage": "Gostaria de entrar em contato para novas oportunidades.",
+    "defaultCopyMessage": "Gostaria de conversar sobre um projeto, produto ou oportunidade.",
     "allRightsReserved": "Todos os direitos reservados"
   },
   "notFound": {

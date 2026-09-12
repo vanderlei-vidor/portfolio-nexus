@@ -6,7 +6,7 @@ import { useLenis } from "lenis/react";
 import dynamic from "next/dynamic";
 import { useTranslation } from "@/shared/i18n/useTranslation";
 
-// 🚀 Carrega os efeitos interativos apenas no cliente e sob demanda
+// ðŸš€ Carrega os efeitos interativos apenas no cliente e sob demanda
 const HeroInteractiveLayer = dynamic(() => import("./HeroInteractiveLayer"), {
   ssr: false,
 });
@@ -17,7 +17,7 @@ const Hero = memo(function Hero() {
   const { t } = useTranslation();
 
   useEffect(() => {
-    // Adia a ativação dos trackers pesados usando requestIdleCallback
+    // Adia a ativaÃ§Ã£o dos trackers pesados usando requestIdleCallback
     if ("requestIdleCallback" in window) {
       const idleId = requestIdleCallback(() => setShouldActivateEffects(true));
       return () => cancelIdleCallback(idleId);
@@ -40,7 +40,7 @@ const Hero = memo(function Hero() {
       aria-label="Hero section"
       aria-labelledby="home-hero-title"
     >
-      {/* 🏎️ Injeção de estilo inline para rodar animações nativas instantâneas (Mesma curva do Framer Motion) */}
+      {/* Inline styles keep the hero animation immediate and consistent. */}
       <style>{`
         @keyframes heroFadeInUp {
           from { opacity: 0; transform: translateY(12px); }
@@ -51,25 +51,30 @@ const Hero = memo(function Hero() {
         }
       `}</style>
 
-      {/* Camada pesada ativada via IDLE para não travar a renderização inicial */}
+      {/* Camada pesada ativada via IDLE para nÃ£o travar a renderizaÃ§Ã£o inicial */}
       {shouldActivateEffects && <HeroInteractiveLayer />}
 
-      {/* Conteúdo estrutural puro HTML/CSS */}
+      {/* ConteÃºdo estrutural puro HTML/CSS */}
       <p className="animate-hero-text uppercase tracking-[0.4em] text-zinc-500 font-medium mb-[clamp(1.5rem,3vw,3rem)] text-[clamp(0.65rem,1vw,0.8rem)]" style={{ animationDelay: "0.1s", opacity: 0 }}>
         {t("hero.badge")}
       </p>
 
-      <h1 id="home-hero-title" className="font-black leading-[0.82] tracking-[-0.06em] text-white text-[clamp(3rem,11vw,8rem)] max-w-[10ch]">
+      <h1 id="home-hero-title" className="max-w-[12ch] text-[2.5rem] font-black leading-[0.86] tracking-normal text-white sm:text-6xl md:text-8xl lg:text-[8rem]">
         {t("hero.titleLine1")}
         <br />
         {t("hero.titleLine2")}
       </h1>
 
-      <p className="mt-fluid-gap-sm opacity-40 font-light leading-relaxed max-w-[40ch] text-[clamp(1rem,2vw,1.4rem)] animate-hero-text" style={{ animationDelay: "0.2s", opacity: 0 }}>
-        {t("hero.tagline")}
-      </p>
+      <div className="mt-fluid-gap-sm max-w-[48ch] animate-hero-text" style={{ animationDelay: "0.2s", opacity: 0 }}>
+        <p className="font-light leading-relaxed text-zinc-300 text-[clamp(1rem,2vw,1.4rem)]">
+          {t("hero.tagline")}
+        </p>
+        <p className="mt-4 text-sm leading-relaxed text-zinc-500 md:text-base">
+          {t("hero.subtitle")}
+        </p>
+      </div>
 
-      {/* CTAs com interações nativas CSS via transform (Zero processamento JS no hover) */}
+      {/* CTAs com interaÃ§Ãµes nativas CSS via transform (Zero processamento JS no hover) */}
       <div className="mt-[clamp(2rem,6vw,5rem)] flex flex-col sm:flex-row items-center gap-[clamp(1rem,2vw,2rem)] w-full sm:w-auto animate-hero-text" style={{ animationDelay: "0.3s", opacity: 0 }}>
         <button
           onClick={scrollToProjects}

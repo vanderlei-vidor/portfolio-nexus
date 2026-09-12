@@ -2,12 +2,15 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "@/styles/globals.css";
 import { MagneticProvider } from "@/shared/effects/magnetic/MagneticContext";
-import { MouseProvider } from "@/shared/context/MouseContext"; 
-import Cursor from "@/shared/effects/Cursor"; 
+import { MouseProvider } from "@/shared/context/MouseContext";
+import Cursor from "@/shared/effects/Cursor";
 import Grain from "@/shared/effects/Grain";
 import PageTransition from "@/shared/effects/PageTransition";
 import SmoothScroll from "@/shared/effects/SmoothScroll";
-import { SpeedInsights } from "@vercel/speed-insights/next"; 
+import { SpeedInsights } from "@vercel/speed-insights/next";
+import { LanguageProvider } from "@/shared/i18n/LanguageContext";
+import LanguageSwitcher from "@/shared/ui/LanguageSwitcher";
+import JsonLd, { getPersonJsonLd, getWebSiteJsonLd } from "@/shared/seo/JsonLd";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -19,18 +22,26 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-// 🌐 SEU LINK OFICIAL DA VERCEL CONFIGURADO!
-const baseUrl = "https://portfolio-nexus-six.vercel.app"; 
+const baseUrl = "https://portfolio-nexus-six.vercel.app";
+const siteDescription =
+  "Portfolio by Vanderlei Vidor, presenting digital products, case studies and engineering stories across web, mobile, AI and data-driven systems.";
 
 export const metadata: Metadata = {
-  // 🎯 O Next.js usa essa base para resolver caminhos de sitemap e imagens do OG de forma absoluta
-  metadataBase: new URL(baseUrl), 
+  metadataBase: new URL(baseUrl),
   title: {
-    default: "Portfolio Nexus | Premium Digital Experiences",
+    default: "Portfolio Nexus | Product, Engineering & Case Studies",
     template: "%s | Portfolio Nexus",
   },
-  description: "Software Engineer building cross-platform applications, AI-powered products, and modern digital experiences with a focus on performance, scalability, and user-centered design.",
-  keywords: ["Software Developer", "Flutter", "Next.js", "Tailwind CSS", "Audio Engineering", "Premium Portfolio", "Web Development"],
+  description: siteDescription,
+  keywords: [
+    "Software Developer",
+    "Next.js",
+    "Flutter",
+    "Spring Boot",
+    "AI Tutor",
+    "Case Studies",
+    "Web Development",
+  ],
   alternates: {
     canonical: baseUrl,
     languages: {
@@ -48,8 +59,8 @@ export const metadata: Metadata = {
     locale: "en_US",
     alternateLocale: ["pt_BR", "es_ES"],
     url: baseUrl,
-    title: "Portfolio Nexus | Premium Digital Experiences",
-    description: "Exploração de cases de alta performance, design imersivo and arquitetura de software refinada.",
+    title: "Portfolio Nexus | Product, Engineering & Case Studies",
+    description: siteDescription,
     siteName: "Portfolio Nexus",
     images: [
       {
@@ -62,15 +73,11 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Portfolio Nexus | Premium Digital Experiences",
-    description: "Exploração de cases de alta performance e design imersivo.",
+    title: "Portfolio Nexus | Product, Engineering & Case Studies",
+    description: siteDescription,
     images: ["/og-image.jpg"],
   },
 };
-
-import { LanguageProvider } from "@/shared/i18n/LanguageContext";
-import LanguageSwitcher from "@/shared/ui/LanguageSwitcher";
-import JsonLd, { getPersonJsonLd, getWebSiteJsonLd } from "@/shared/seo/JsonLd";
 
 export default function RootLayout({
   children,
@@ -91,33 +98,23 @@ export default function RootLayout({
         <JsonLd data={webSiteJsonLd} />
       </head>
       <body className="min-h-full flex flex-col bg-black text-white" suppressHydrationWarning>
-
-        {/* Adiciona a textura de granulação sobre todo o site */}
         <Grain />
-
-        {/* Envolve a árvore com LanguageProvider, MouseProvider e MagneticProvider */}
         <LanguageProvider>
           <MouseProvider>
             <MagneticProvider>
               <SmoothScroll>
                 <PageTransition>
-                  <Cursor /> 
-
-                  {/* Header fixo discreto com Seletor de Idioma */}
+                  <Cursor />
                   <div className="fixed right-3 top-3 z-50 sm:right-6 sm:top-6">
                     <LanguageSwitcher />
                   </div>
-                  
                   {children}
-
-                  {/* 📊 Real User Monitoring ativo! Medindo performance de dispositivos reais */}
                   <SpeedInsights />
                 </PageTransition>
               </SmoothScroll>
             </MagneticProvider>
           </MouseProvider>
         </LanguageProvider>
-
       </body>
     </html>
   );

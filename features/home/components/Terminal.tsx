@@ -14,6 +14,7 @@ const Terminal = memo(function Terminal() {
   const inputRef = useRef<HTMLInputElement>(null);
   const sectionRef = useRef<HTMLElement>(null);
   const animationRef = useRef<gsap.core.Tween | null>(null);
+  const scrollFrameRef = useRef<number | null>(null);
 
   useEffect(() => {
     setOutput([
@@ -67,11 +68,21 @@ const Terminal = memo(function Terminal() {
   useEffect(() => {
     if (!outputRef.current) return;
 
-    requestAnimationFrame(() => {
+    if (scrollFrameRef.current !== null) cancelAnimationFrame(scrollFrameRef.current);
+
+    scrollFrameRef.current = requestAnimationFrame(() => {
+      scrollFrameRef.current = null;
       if (outputRef.current) {
         outputRef.current.scrollTop = outputRef.current.scrollHeight;
       }
     });
+
+    return () => {
+      if (scrollFrameRef.current !== null) {
+        cancelAnimationFrame(scrollFrameRef.current);
+        scrollFrameRef.current = null;
+      }
+    };
   }, [output]);
 
   const handleCommand = useCallback((cmd: string) => {

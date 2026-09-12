@@ -1,20 +1,18 @@
-// components/Contact.tsx - VERSÃO AAA COMPATÍVEL COM TAILWIND V4
-"use client";
+﻿"use client";
+
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Mail } from "lucide-react";
 import { useTranslation } from "@/shared/i18n/useTranslation";
 
 export default function Contact() {
   const { t } = useTranslation();
 
   return (
-    <section className="relative py-40 px-6 overflow-hidden">
-      {/* Background glows */}
-      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-200 h-200 bg-blue-500/15 blur-[200px] -z-10" />
-      <div className="absolute left-1/4 top-1/3 w-100 h-100 bg-purple-500/10 blur-[150px] -z-10" />
+    <section className="relative overflow-hidden border-t border-white/10 px-6 py-32">
+      <div className="absolute inset-0 -z-10 bg-[linear-gradient(to_right,#ffffff04_1px,transparent_1px),linear-gradient(to_bottom,#ffffff03_1px,transparent_1px)] bg-size-[56px_56px]" />
 
-      <div className="max-w-5xl mx-auto text-center">
+      <div className="mx-auto max-w-5xl text-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -22,7 +20,7 @@ export default function Contact() {
           viewport={{ once: true }}
           className="mb-8"
         >
-          <span className="font-mono text-xs text-zinc-400 uppercase tracking-[0.3em]">
+          <span className="font-mono text-xs uppercase tracking-[0.3em] text-zinc-400">
             {t("contact.badge")}
           </span>
         </motion.div>
@@ -32,23 +30,21 @@ export default function Contact() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.2 }}
           viewport={{ once: true }}
-          className="text-5xl md:text-7xl lg:text-8xl font-bold mb-12 tracking-tighter text-white leading-[0.9]"
+          className="mb-10 text-5xl font-bold leading-[0.95] tracking-normal text-white md:text-7xl lg:text-8xl"
         >
           {t("contact.title")}
           <br />
-          {/* ⚡ CORREÇÃO TAILWIND V4: de bg-gradient-to-r para bg-linear-to-r */}
-          <span className="bg-linear-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+          <span className="bg-linear-to-r from-blue-300 via-violet-300 to-pink-300 bg-clip-text text-transparent">
             {t("contact.titleGradient")}
           </span>
         </motion.h2>
 
         <motion.p
           initial={{ opacity: 0, y: 15 }}
-          /* ⚡ AJUSTE FRAMER MOTION: Trocado de whileInView para animate para fixar a opacidade 0.85 */
-          whileInView={{ opacity: 0.85, y: 0 }}
+          whileInView={{ opacity: 0.9, y: 0 }}
           transition={{ duration: 1, delay: 0.4 }}
           viewport={{ once: true }}
-          className="text-xl text-zinc-300 mb-16 max-w-2xl mx-auto font-light"
+          className="mx-auto mb-14 max-w-2xl text-lg font-light leading-relaxed text-zinc-300 md:text-xl"
         >
           {t("contact.subtitle")}
         </motion.p>
@@ -58,47 +54,22 @@ export default function Contact() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.6 }}
           viewport={{ once: true }}
-          className="flex flex-col sm:flex-row gap-6 justify-center items-center"
+          className="flex flex-col items-center justify-center gap-4 sm:flex-row"
         >
           <Link
             href="/contact"
-            className="group relative inline-flex items-center gap-3 px-10 py-5 bg-white text-black font-bold rounded-full hover:bg-blue-500 hover:text-white transition-all duration-500 transform hover:scale-105 shadow-[0_0_40px_rgba(255,255,255,0.15)] hover:shadow-[0_0_60px_rgba(59,130,246,0.4)]"
+            className="group inline-flex w-full items-center justify-center gap-3 rounded-lg bg-white px-8 py-4 font-bold text-black shadow-[0_0_35px_rgba(255,255,255,0.12)] transition-colors duration-300 hover:bg-blue-400 sm:w-auto"
           >
             <span>{t("contact.startProject")}</span>
-            <ArrowUpRight className="w-5 h-5 group-hover:rotate-45 transition-transform duration-300" />
+            <ArrowUpRight className="h-5 w-5 transition-transform duration-300 group-hover:rotate-45" aria-hidden="true" />
           </Link>
 
           <a
             href="mailto:vanderleividor1@gmail.com"
-            className="inline-flex items-center gap-3 px-10 py-5 border border-white/20 rounded-full font-bold text-white hover:border-white/50 hover:bg-white/5 transition-all duration-300 backdrop-blur-sm"
+            className="inline-flex w-full items-center justify-center gap-3 rounded-lg border border-white/20 px-8 py-4 font-bold text-white transition-colors duration-300 hover:border-white/50 hover:bg-white/5 sm:w-auto"
           >
+            <Mail className="h-5 w-5" aria-hidden="true" />
             <span>{t("contact.emailMe")}</span>
-          </a>
-        </motion.div>
-
-        {/* Social links */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 0.8 }}
-          viewport={{ once: true }}
-          className="mt-20 flex justify-center gap-8"
-        >
-          <a
-            href="https://github.com/vanderlei-vidor"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-zinc-400 hover:text-white transition-colors text-sm font-mono uppercase tracking-widest border-b border-transparent hover:border-white/30 pb-1"
-          >
-            GitHub
-          </a>
-          <a
-            href="https://linkedin.com/in/vanderlei-vidor-979593410"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-zinc-400 hover:text-white transition-colors text-sm font-mono uppercase tracking-widest border-b border-transparent hover:border-white/30 pb-1"
-          >
-            LinkedIn
           </a>
         </motion.div>
       </div>

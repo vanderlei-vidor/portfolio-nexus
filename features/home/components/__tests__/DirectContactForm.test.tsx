@@ -1,5 +1,5 @@
-import { render, screen, fireEvent } from "@testing-library/react";
-import { describe, it, expect, vi } from "vitest";
+﻿import { fireEvent, render, screen } from "@testing-library/react";
+import { describe, expect, it, vi } from "vitest";
 import DirectContactForm from "../DirectContactForm";
 import { LanguageProvider } from "@/shared/i18n/LanguageContext";
 
@@ -8,21 +8,21 @@ const renderWithProvider = (ui: React.ReactElement) => {
 };
 
 describe("DirectContactForm Component", () => {
-  it("renders input fields and submit buttons correctly with active locale", () => {
+  it("renders input fields and action buttons correctly with active locale", () => {
     renderWithProvider(<DirectContactForm />);
 
-    expect(screen.getByPlaceholderText(/(Sarah Connor)/i)).toBeInTheDocument();
-    expect(screen.getByPlaceholderText(/(Projeto|Project)/i)).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: /(Open Email Client|Abrir no Cliente de E-mail)/i })).toBeInTheDocument();
+    expect(screen.getByPlaceholderText(/(Ana Pereira)/i)).toBeInTheDocument();
+    expect(screen.getByPlaceholderText(/(produto|product)/i)).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /(Open Email Draft|Abrir Rascunho de Email)/i })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: /(Copy Message|Copiar Mensagem)/i })).toBeInTheDocument();
   });
 
   it("updates mailto link href dynamically as user types name, subject and message", () => {
     renderWithProvider(<DirectContactForm />);
 
-    const nameInput = screen.getByPlaceholderText(/(Sarah Connor)/i);
-    const subjectInput = screen.getByPlaceholderText(/(Projeto|Project)/i);
-    const mailtoButton = screen.getByRole("link", { name: /(Open Email Client|Abrir no Cliente de E-mail)/i });
+    const nameInput = screen.getByPlaceholderText(/(Ana Pereira)/i);
+    const subjectInput = screen.getByPlaceholderText(/(produto|product)/i);
+    const mailtoButton = screen.getByRole("link", { name: /(Open Email Draft|Abrir Rascunho de Email)/i });
 
     fireEvent.change(nameInput, { target: { value: "Alex Developer" } });
     fireEvent.change(subjectInput, { target: { value: "Project Opportunity" } });

@@ -1,15 +1,22 @@
-// app/process/page.tsx
 import type { Metadata } from "next";
-import ProcessExperience from "@/features/process/components/ProcessExperience"; // Certifique-se de apontar o caminho correto para onde salvou o componente acima!
+import ProcessExperience from "@/features/process/components/ProcessExperience";
 
-// ✅ OS METADATOS VIVEM NO SERVER SIDE PERFEITAMENTE
+const description =
+  "A clear delivery process for turning product ideas into polished digital experiences through discovery, design, engineering and quality review.";
+
 export const metadata: Metadata = {
-  title: "Our Process",
-  description: "Conheça o fluxo de engenharia e design de alta performance por trás de cada aplicação desenvolvida.",
+  title: "Process",
+  description,
   openGraph: {
-    title: "Our Process | Portfolio Nexus",
-    description: "Conheça o fluxo de engenharia e design de alta performance por trás de cada aplicação desenvolvida.",
-  }
+    title: "Process | Portfolio Nexus",
+    description,
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Process | Portfolio Nexus",
+    description,
+  },
 };
 
 export default function ProcessPage() {

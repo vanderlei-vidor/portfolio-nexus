@@ -6,6 +6,7 @@ import { Brain, ChevronLeft, ChevronRight, Globe2, Pause, Play, Zap } from "luci
 import { useRouter } from "next/navigation";
 import { useLanguage } from "@/shared/i18n/LanguageContext";
 import { useTranslation } from "@/shared/i18n/useTranslation";
+import { useReducedMotion } from "@/shared/hooks/useReducedMotion";
 import { FutureVisionOrb } from "../../components/FutureVisionOrb/FutureVisionOrb";
 import { englishTutorContent } from "../../content";
 import styles from "./ProjectVisionSection.module.css";
@@ -25,7 +26,9 @@ function getPillarIcon(icon: "brain" | "zap" | "globe") {
 export function ProjectVisionSection() {
   const [isDemoOpen, setIsDemoOpen] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [isPlaying, setIsPlaying] = useState(true);
+  const shouldReduceMotion = useReducedMotion();
+  const [wantsAutoplay, setWantsAutoplay] = useState(true);
+  const isPlaying = wantsAutoplay && !shouldReduceMotion;
   const { locale } = useLanguage();
   const { t } = useTranslation();
   const router = useRouter();
@@ -45,7 +48,7 @@ export function ProjectVisionSection() {
 
   const openDemo = () => {
     setCurrentSlide(0);
-    setIsPlaying(true);
+    setWantsAutoplay(true);
     setIsDemoOpen(true);
   };
 
@@ -53,13 +56,14 @@ export function ProjectVisionSection() {
     setIsDemoOpen(false);
   }, []);
 
+
   useEffect(() => {
-    if (!isDemoOpen || !isPlaying) return;
+    if (shouldReduceMotion || !isDemoOpen || !isPlaying) return;
 
     const timer = window.setInterval(nextSlide, slideDuration);
 
     return () => window.clearInterval(timer);
-  }, [isDemoOpen, isPlaying, nextSlide]);
+  }, [isDemoOpen, isPlaying, nextSlide, shouldReduceMotion]);
 
   useEffect(() => {
     if (!isDemoOpen) return;
@@ -81,7 +85,7 @@ export function ProjectVisionSection() {
       if (event.key === "ArrowLeft") prevSlide();
       if (event.key === " ") {
         event.preventDefault();
-        setIsPlaying((current) => !current);
+        setWantsAutoplay((current) => !current);
       }
     };
 
@@ -227,7 +231,7 @@ export function ProjectVisionSection() {
 
                 <button
                   type="button"
-                  onClick={() => setIsPlaying((current) => !current)}
+                  onClick={() => setWantsAutoplay((current) => !current)}
                   className="rounded-full bg-white p-2 text-black transition-all hover:scale-105 active:scale-95"
                   title={isPlaying ? t("projects.pauseSlideshow") : t("projects.playSlideshow")}
                   aria-label={isPlaying ? t("projects.pauseSlideshow") : t("projects.playSlideshow")}

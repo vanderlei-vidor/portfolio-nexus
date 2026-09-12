@@ -1,4 +1,3 @@
-// components/ProjectCard.tsx
 "use client";
 import { motion } from "framer-motion";
 import Link from "next/link";
@@ -16,7 +15,7 @@ export default function ProjectCard({ title, desc, slug, imageUrl, ctaLabel }: P
   return (
     <Link href={`/projects/${slug}`} aria-label={`${ctaLabel}: ${title}`}>
       <motion.div
-        whileHover={{ y: -5, scale: 1.01 }} // Movimento vertical sutil em vez de escala agressiva
+        whileHover={{ y: -4, scale: 1.005 }}
         transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
         className="relative rounded-2xl overflow-hidden border border-white/[0.05] bg-zinc-900/20 backdrop-blur-xl hover:border-white/20 transition-colors duration-500 group"
       >
@@ -26,9 +25,8 @@ export default function ProjectCard({ title, desc, slug, imageUrl, ctaLabel }: P
             alt={title}
             fill
             quality={75}
-            // ✅ CORREÇÃO EXTRAORDINÁRIA: Resolvendo os avisos de performance e habilitando SRCSET dinâmico!
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            className="object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700"
+            className="object-cover grayscale transition-all duration-500 group-hover:scale-105 group-hover:grayscale-0"
           />
           <div className="absolute inset-0 bg-linear-to-t from-zinc-900 via-transparent to-transparent opacity-60" />
         </div>
@@ -37,13 +35,12 @@ export default function ProjectCard({ title, desc, slug, imageUrl, ctaLabel }: P
           <h3 className="text-2xl font-bold tracking-tight">{title}</h3>
           <p className="opacity-50 text-sm mt-3 leading-relaxed">{desc}</p>
 
-          {/* Um único indicador limpo e elegante */}
           <div className="mt-6 flex items-center gap-2">
             <span className="text-xs uppercase tracking-[0.2em] font-mono text-zinc-400 group-hover:text-white transition-colors duration-300">
               {ctaLabel}
             </span>
             <span className="text-zinc-500 group-hover:text-white group-hover:translate-x-1 transition-all duration-300">
-              →
+              â†’
             </span>
           </div>
         </div>

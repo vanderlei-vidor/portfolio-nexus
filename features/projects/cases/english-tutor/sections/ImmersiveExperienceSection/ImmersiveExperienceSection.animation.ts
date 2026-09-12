@@ -1,9 +1,21 @@
-import gsap from "gsap";
+﻿import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
+function prefersReducedMotion() {
+  return typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+}
+
 export function initImmersiveAnimation() {
+  if (prefersReducedMotion()) {
+    gsap.set([".immersive-orb", ".immersive-device", ".immersive-eyebrow", ".immersive-title", ".immersive-description"], {
+      clearProps: "transform",
+      opacity: 1,
+    });
+    return;
+  }
+
   const tl = gsap.timeline({
     scrollTrigger: {
       trigger: ".immersive-content",
@@ -13,68 +25,9 @@ export function initImmersiveAnimation() {
     },
   });
 
-  tl.fromTo(
-    ".immersive-orb",
-    {
-      scale: 0.7,
-      opacity: 0,
-    },
-    {
-      scale: 1,
-      opacity: 1,
-    },
-    0
-  );
-
-  tl.fromTo(
-    ".immersive-device",
-    {
-      y: 120,
-      opacity: 0,
-    },
-    {
-      y: 0,
-      opacity: 1,
-    },
-    0
-  );
-
-  tl.fromTo(
-    ".immersive-eyebrow",
-    {
-      y: 20,
-      opacity: 0,
-    },
-    {
-      y: 0,
-      opacity: 1,
-    },
-    0.2
-  );
-
-  tl.fromTo(
-    ".immersive-title",
-    {
-      y: 50,
-      opacity: 0,
-    },
-    {
-      y: 0,
-      opacity: 1,
-    },
-    0.3
-  );
-
-  tl.fromTo(
-    ".immersive-description",
-    {
-      y: 30,
-      opacity: 0,
-    },
-    {
-      y: 0,
-      opacity: 1,
-    },
-    0.5
-  );
+  tl.fromTo(".immersive-orb", { scale: 0.7, opacity: 0 }, { scale: 1, opacity: 1 }, 0);
+  tl.fromTo(".immersive-device", { y: 120, opacity: 0 }, { y: 0, opacity: 1 }, 0);
+  tl.fromTo(".immersive-eyebrow", { y: 20, opacity: 0 }, { y: 0, opacity: 1 }, 0.2);
+  tl.fromTo(".immersive-title", { y: 50, opacity: 0 }, { y: 0, opacity: 1 }, 0.3);
+  tl.fromTo(".immersive-description", { y: 30, opacity: 0 }, { y: 0, opacity: 1 }, 0.5);
 }

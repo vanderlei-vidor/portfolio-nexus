@@ -1,4 +1,4 @@
-// components/Stack.tsx - VERSÃO MULTI-LANE AAA OTIMIZADA
+// components/Stack.tsx - Multi-lane optimized stack
 
 "use client";
 
@@ -17,9 +17,9 @@ import { useTranslation } from "@/shared/i18n/useTranslation";
 
 gsap.registerPlugin(ScrollTrigger);
 
-// Esteira 1: Focada em Interface, Performance Visual e Client-Side
+// Track 1: interface, visual performance, and client-side work
 const experienceTechs = [
-  { name: "Next.js 15", icon: SiNextdotjs },
+  { name: "Next.js 16", icon: SiNextdotjs },
   { name: "TypeScript", icon: SiTypescript },
   { name: "Flutter", icon: SiFlutter },
   { name: "Dart", icon: SiDart },
@@ -28,7 +28,7 @@ const experienceTechs = [
   { name: "Tailwind CSS", icon: SiTailwindcss },
 ];
 
-// Esteira 2: Focada em Inteligência, Infraestrutura e Ecossistemas
+// Track 2: intelligence, infrastructure, and ecosystems
 const coreTechs = [
   { name: "Python / AI Core", icon: SiPython },
   { name: "LLM & Open Source AI", icon: SiOpenai },
@@ -51,18 +51,18 @@ export default function Stack() {
   const shouldReduceMotion = useReducedMotion();
   const { t } = useTranslation();
   
-  // ✅ Refs para as timelines (permite pausar/retomar)
+  // Timeline refs for pause/resume control
   const tl1Ref = useRef<gsap.core.Tween | null>(null);
   const tl2Ref = useRef<gsap.core.Tween | null>(null);
 
-  // ✅ IntersectionObserver para detectar visibilidade
+  // IntersectionObserver keeps marquee motion tied to visibility
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         const isIntersecting = entry.isIntersecting;
         setIsVisible(isIntersecting);
 
-        // Pausa/retoma as animações baseado na visibilidade e a11y
+        // Pause/resume animations based on visibility and a11y preferences
         if (tl1Ref.current && tl2Ref.current) {
           if (isIntersecting && !shouldReduceMotion) {
             tl1Ref.current.play();
@@ -92,7 +92,7 @@ export default function Stack() {
     const ctx = gsap.context(() => {
       const startDelay = 0.5;
 
-      // Linha 1 vai para a ESQUERDA — 2 cópias: xPercent -50 = 1 cópia completa = loop perfeito
+      // Track 1 moves left; two copies make xPercent -50 a seamless loop
       tl1Ref.current = gsap.to(marquee1Ref.current, {
         xPercent: -50,
         duration: 55,
@@ -101,7 +101,7 @@ export default function Stack() {
         delay: startDelay,
       });
 
-      // Linha 2 vai para a DIREITA
+      // Track 2 moves right
       gsap.set(marquee2Ref.current, { xPercent: -50 });
       tl2Ref.current = gsap.to(marquee2Ref.current, {
         xPercent: 0,
@@ -111,7 +111,7 @@ export default function Stack() {
         delay: startDelay,
       });
 
-      // ScrollTrigger para velocidade dinâmica conforme o scroll
+      // ScrollTrigger adjusts marquee speed from scroll velocity
       const scrollTrigger = ScrollTrigger.create({
         trigger: sectionRef.current,
         start: "top 80%",
@@ -146,7 +146,7 @@ export default function Stack() {
         },
       });
 
-      // Cleanup completo
+      // Cleanup
       return () => {
         scrollTrigger.kill();
         if (tl1Ref.current) tl1Ref.current.kill();
@@ -171,11 +171,11 @@ export default function Stack() {
       </div>
 
       <div className="relative flex flex-col gap-8 md:gap-12">
-        {/* Máscaras cinematográficas nas bordas */}
+        {/* Edge masks */}
         <div className="absolute left-0 top-0 bottom-0 w-48 bg-linear-to-r from-black via-black/90 to-transparent z-10 pointer-events-none" aria-hidden="true" />
         <div className="absolute right-0 top-0 bottom-0 w-48 bg-linear-to-l from-black via-black/90 to-transparent z-10 pointer-events-none" aria-hidden="true" />
 
-        {/* ESTEIRA 01: EXPERIENCE LAYER — 2 cópias para loop xPercent -50 */}
+        {/* Track 01: experience layer */}
         <div className="overflow-hidden w-full">
           <div 
             ref={marquee1Ref} 
@@ -188,7 +188,7 @@ export default function Stack() {
           </div>
         </div>
 
-        {/* ESTEIRA 02: INTELLIGENCE LAYER — 2 cópias para loop xPercent -50 */}
+        {/* Track 02: intelligence layer */}
         <div className="overflow-hidden w-full">
           <div 
             ref={marquee2Ref} 
@@ -205,14 +205,14 @@ export default function Stack() {
   );
 }
 
-// Subcomponente item isolado para manter o código limpo
+// Small isolated item component keeps the marquee readable
 const MarqueeItem = ({ tech }: { tech: StackTech }) => {
   const Icon = tech.icon;
   return (
     <div className="flex items-center gap-5 px-12 md:px-16 group cursor-default">
       {Icon && (
         <Icon 
-          className="w-6 h-6 text-zinc-700 group-hover:text-blue-500 transition-all duration-500 transform group-hover:scale-110"
+          className="w-6 h-6 text-zinc-700 group-hover:text-blue-500 transition-all duration-500 transform group-hover:scale-105"
           aria-hidden="true"
         />
       )}

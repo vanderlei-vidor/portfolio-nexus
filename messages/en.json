@@ -11,25 +11,25 @@
     "current": "Current language"
   },
   "hero": {
-    "badge": "AVAILABLE FOR NEW PROJECTS & COLLABORATIONS",
+    "badge": "AVAILABLE FOR DIGITAL PRODUCTS, PORTFOLIOS AND WEB SYSTEMS",
     "eyebrow": "Hero section",
-    "titleLine1": "CRAFTING",
-    "titleLine2": "THE FUTURE.",
-    "tagline": "Smooth. Elegant. Cinematic.",
-    "subtitle": "Building world-class digital experiences, high-performance web applications & intelligent software systems.",
+    "titleLine1": "BUILDING",
+    "titleLine2": "WITH CLARITY.",
+    "tagline": "Product. Engineering. Experience.",
+    "subtitle": "I turn real-world problems into well-structured digital products, combining software engineering, thoughtful interfaces, and decisions designed for performance, maintainability, and growth.",
     "startProject": "Start a Project",
-    "exploreWork": "Explore Work",
-    "viewProcess": "View the Process"
+    "exploreWork": "Explore Cases",
+    "viewProcess": "View Process"
   },
   "about": {
     "badge": "ABOUT",
-    "title": "I build interfaces that convert, perform and scale. Focused on creating premium digital experiences with performance and design in mind.",
-    "p1": "Specializing in modern full-stack architecture, high-frequency user interfaces, and artificial intelligence integration.",
-    "p2": "Every line of code is written with precision, scale, and user delight in mind.",
+    "title": "I design and build digital products by bringing narrative, interface, and engineering together. Transforming complex problems into experiences that are clear, reliable, and built to evolve.",
+    "p1": "I work across modern frontend, application architecture, mobile products, AI-powered systems and data-oriented platforms.",
+    "p2": "My focus is software that feels polished to use, easy to understand and sustainable to evolve.",
     "author": "Vanderlei Vidor"
   },
   "projects": {
-    "title": "Selected Projects",
+    "title": "Selected Case Studies",
     "exploreCase": "Explore Case Study",
     "caseStudy": "Case Study",
     "skipToContent": "Skip to project content",
@@ -49,20 +49,20 @@
     "goToSlide": "Go to slide",
     "items": {
       "music-player": {
-        "cardDescription": "Offline audio experience",
-        "description": "Explore the Music Player case study: an offline audio experience with an immersive interface, refined motion, and a strong performance focus."
+        "cardDescription": "Local-first player for personal libraries, resilient playback and a polished listening experience.",
+        "description": "Explore the Music Player case study: a local-first Flutter player focused on owned libraries, resilient queue state, native controls and release discipline."
       },
       "saas-data-control": {
-        "cardDescription": "Native data platform",
-        "description": "Explore the SaaS Data Control case study: a data-driven SaaS experience built around control and operational clarity."
+        "cardDescription": "Java/Spring task platform with secure sessions, user-scoped data and reports.",
+        "description": "Explore the SaaS Data Control case study: a productivity platform built around authentication, contextual data access and operational clarity."
       },
       "english-tutor": {
-        "cardDescription": "AI learning interface",
-        "description": "Explore the English Tutor case study: a modern learning system with strong visual hierarchy and fluid interactions."
+        "cardDescription": "Language tutor with a Teacher Brain, local LLM and pedagogy-led progression.",
+        "description": "Explore the English Tutor case study: a Flutter/FastAPI experience where the pedagogical layer decides before the model writes the response."
       },
       "portfolio-nexus": {
-        "cardDescription": "Premium portfolio ecosystem",
-        "description": "Explore the Portfolio Nexus case study: a digital experience with a scalable foundation, visual narrative, and premium finish."
+        "cardDescription": "Case-study ecosystem with Next.js, i18n, SSG and modular engineering narrative.",
+        "description": "Explore the Portfolio Nexus case study: the portfolio itself as a presentation system with localized content and static routes for real projects."
       }
     }
   },
@@ -93,53 +93,58 @@
   "process": {
     "progressPhase": "Phase",
     "progressTotal": "Total",
-    "badge": "Production_Protocol // v1.0",
-    "titleMuted": "Engineering",
-    "titleStrong": "Digital Excellence",
-    "intro": "A systematic approach to building high-performance applications through rigorous architecture and precise execution.",
+    "badge": "Delivery_Framework // Portfolio Nexus",
+    "titleMuted": "Process",
+    "titleStrong": "With Intent",
+    "intro": "A working method for turning an idea into a product: clear context, thoughtful technical decisions, crafted interface work and validated delivery.",
     "steps": {
       "strategy": {
-        "tag": "SYSTEM_DESIGN",
-        "title": "Architecture & Scoping",
-        "description": "Before a single line of code is written, I architect the solution. Requirements engineering, scalability mapping, and technical feasibility studies ensure a robust foundation."
+        "tag": "DISCOVERY",
+        "title": "Context Before Code",
+        "description": "The work starts by understanding goals, audience, constraints and risk. Before interface or architecture, I define the right problem so every decision has direction.",
+        "output": "Brief, initial scope and product priorities"
       },
       "design": {
-        "tag": "INTERFACE_ENGINEERING",
-        "title": "Human-Centric UX",
-        "description": "Crafting high-fidelity interfaces where accessibility meets motion. Applying Nielsen's heuristics ensures the user journey is as logical as the backend."
+        "tag": "PRODUCT_DESIGN",
+        "title": "Experience That Explains",
+        "description": "The interface is designed to guide, not only impress. Hierarchy, visual rhythm, responsiveness and accessibility help visitors understand value without friction.",
+        "output": "Screen flow, visual narrative and base components"
       },
       "engineering": {
-        "tag": "CORE_DEVELOPMENT",
-        "title": "Full-Stack Implementation",
-        "description": "Leveraging Next.js for server-side excellence. Clean code, type-safety with TypeScript, and low-latency rendering driven by mathematical motion engines."
+        "tag": "ENGINEERING",
+        "title": "Sustainable Architecture",
+        "description": "Implementation favors clear modules, type safety, structured content, predictable routes and components that can evolve without hidden coupling.",
+        "output": "Modular technical base, integrated and ready to evolve"
       },
       "quality": {
-        "tag": "QA_DEPLOYMENT",
-        "title": "Optimization & Vitals",
-        "description": "Rigorous testing for Core Web Vitals. Optimizing for Lighthouse scores, edge-caching delivery, and a seamless CI/CD pipeline for 99.9% reliability."
+        "tag": "QUALITY_PASS",
+        "title": "Refinement Before Release",
+        "description": "Delivery goes through build, lint, type checking, navigation, responsiveness, public copy and interaction review to reduce friction in real use.",
+        "output": "Validated build, reviewed experience and clear next steps"
       }
     },
-    "systemRunning": "System_Running",
-    "finalTitleLine1": "Ready to scale",
-    "finalTitleLine2": "your vision?",
-    "finalCta": "Initialize Partnership"
+    "systemRunning": "Phase_Active",
+    "outputLabel": "Output",
+    "finalTitleLine1": "Ready to turn",
+    "finalTitleLine2": "ideas into product?",
+    "finalCta": "Discuss a Project"
   },
   "contact": {
-    "badge": "GET IN TOUCH",
-    "title": "Let's build something",
-    "titleGradient": "exceptional.",
-    "subtitle": "Available for new projects and strategic collaborations. Let's create something memorable together.",
-    "startProject": "Start a Project",
-    "emailMe": "Email Me",
-    "generatorTitle": "Direct Message Generator",
-    "generatorSubtitle": "Zero delay - opens directly in your mail app",
+    "badge": "CONTACT",
+    "title": "Let's turn an idea",
+    "titleGradient": "into product.",
+    "subtitle": "If there is a product, portfolio, web system or app that needs more structure and clarity, we can start with a focused conversation.",
+    "startProject": "Discuss a Project",
+    "emailMe": "Send Email",
+    "generatorTitle": "Project Brief Starter",
+    "generatorSubtitle": "Shape a clear message and open it directly in your mail app",
     "nameLabel": "Your Name",
-    "namePlaceholder": "e.g. Sarah Connor",
+    "namePlaceholder": "e.g. Ana Pereira",
     "subjectLabel": "Subject",
-    "subjectPlaceholder": "e.g. New Web Application Project",
+    "subjectPlaceholder": "e.g. New digital product",
     "messageLabel": "Message",
-    "messagePlaceholder": "Tell me a bit about your idea, timeline or goals...",
-    "openEmailClient": "Open Email Client",
+    "messagePlaceholder": "Share the context, goal, timeline or collaboration type...",
+    "openEmailClient": "Open Email Draft",
     "copyMessage": "Copy Message",
     "copied": "Copied!",
     "copyEmail": "Copy email address",
@@ -150,14 +155,19 @@
     "linkedinProfile": "LinkedIn Profile",
     "githubProfile": "GitHub Profile",
     "backToHome": "Back to home",
-    "pageTitle": "Get in touch.",
-    "pageSubtitle": "Available for new projects, engineering leadership & strategic collaborations.",
-    "defaultSubject": "Contact from Portfolio Nexus",
+    "pageTitle": "Let's talk.",
+    "pageSubtitle": "The best conversations start with context: the problem, the audience, the current stage and the kind of outcome you are looking for.",
+    "briefTitle": "What helps in the first message",
+    "briefSubtitle": "It does not need to be final. A clear starting point is enough to understand scope, priority and next steps.",
+    "briefItemOne": "Goal of the product, system or opportunity",
+    "briefItemTwo": "Current context: idea, prototype, existing code or evolution need",
+    "briefItemThree": "Desired timeline, involved stack or main technical constraint",
+    "defaultSubject": "Project conversation",
     "defaultVisitor": "Visitor",
     "defaultGreeting": "Hello, Vanderlei!",
-    "defaultBody": "I would like to talk about a project or opportunity.",
+    "defaultBody": "I would like to talk about a project, product or opportunity.",
     "defaultSignoff": "Best,",
-    "defaultCopyMessage": "I would like to get in touch about new opportunities.",
+    "defaultCopyMessage": "I would like to talk about a project, product or opportunity.",
     "allRightsReserved": "All rights reserved"
   },
   "notFound": {
