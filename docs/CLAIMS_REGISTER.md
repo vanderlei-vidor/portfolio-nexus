@@ -37,11 +37,11 @@ Estados permitidos:
 | Claim | Estado | Evidência atual | Uso público recomendado |
 |---|---|---|---|
 | Stack Java, Spring Boot, PostgreSQL, Vite, SASS, Docker e Testcontainers | Designed | README fornecido como base e roadmap | Pode aparecer como stack se refletir o repositório do projeto. |
-| Isolamento de dados por usuário/tenant no backend | Designed | Roadmap cita estratégia como `findByIdAndUsuarioId` | Pode aparecer como decisão arquitetural. |
-| Mitigação de IDOR por autorização contextual | Designed | Roadmap técnico | Usar como mitigação projetada até haver teste negativo anexado. |
-| Refresh token rotation e expurgo de tokens expirados | Designed | Roadmap técnico | Pode aparecer como mecanismo implementado se confirmado no repositório do projeto. |
-| 104 testes automatizados | Target | Pendente de CI/evidência atualizada do projeto | Não publicar número sem prova. |
-| 100% de cobertura dos serviços críticos | Target | Pendente de relatório de cobertura | Não publicar. |
+| Isolamento de dados por usuário/tenant no backend | Designed / Target | `docs/evidence/saas-data-control/data-isolation.md` define estratégia e testes pendentes | Pode aparecer como decisão arquitetural, não como prova completa. |
+| Mitigação de IDOR por autorização contextual | Target | `docs/evidence/saas-data-control/security-tests.md` exige testes negativos | Usar como mitigação projetada até haver teste negativo anexado. |
+| Refresh token rotation e expurgo de tokens expirados | Designed / Target | `docs/evidence/saas-data-control/security-tests.md` e `ci-evidence.md` pedem confirmação | Pode aparecer como mecanismo desenhado se confirmado no repositório do projeto. |
+| 104 testes automatizados | Target | `docs/evidence/saas-data-control/ci-evidence.md` mantém relatório pendente | Não publicar número sem prova. |
+| 100% de cobertura dos serviços críticos | Target | `docs/evidence/saas-data-control/ci-evidence.md` exige relatório de cobertura | Não publicar. |
 
 ## English Tutor
 

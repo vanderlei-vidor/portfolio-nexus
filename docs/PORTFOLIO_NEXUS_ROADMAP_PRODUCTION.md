@@ -272,6 +272,7 @@ Ecossistema de estudos de caso com arquitetura modular, conteúdo multilíngue, 
   - [x] Portfolio Nexus
   - [x] Music Player
   - [x] SaaS Data Control
+  - [x] SaaS Data Control
   - [x] English Tutor
   - Problema
   - Decisão de engenharia
@@ -300,10 +301,13 @@ Ecossistema de estudos de caso com arquitetura modular, conteúdo multilíngue, 
 - [ ] `docs/evidence/<project>/README.md`
   - [x] Portfolio Nexus
   - [x] Music Player
+  - [x] SaaS Data Control
 - [ ] Evidências de testes.
   - [x] Portfolio Nexus: lint, TypeScript, Vitest e E2E registrados.
   - [x] Music Player: matriz de lifecycle criada como plano de teste.
   - [ ] Music Player: anexar execução real dos testes de lifecycle.
+  - [x] SaaS Data Control: matriz de segurança e CI criada como plano de evidência.
+  - [ ] SaaS Data Control: anexar testes negativos, cobertura e logs de CI.
 - [ ] Evidências de performance quando houver claim de performance.
   - [x] Portfolio Nexus: Lighthouse local registrado.
   - [ ] Portfolio Nexus: corrigir LCP e repetir Lighthouse para meta de Performance.
@@ -314,6 +318,7 @@ Ecossistema de estudos de caso com arquitetura modular, conteúdo multilíngue, 
 - [ ] Lista de claims aprovados para publicação.
   - [x] Portfolio Nexus
   - [x] Music Player
+  - [x] SaaS Data Control
 
 ### Estrutura sugerida
 
@@ -328,7 +333,9 @@ docs/
     ├── saas-data-control/
     │   ├── README.md
     │   ├── security-tests.md
-    │   └── ci-evidence.md
+    │   ├── data-isolation.md
+    │   ├── ci-evidence.md
+    │   └── claims.md
     ├── english-tutor/
     │   ├── README.md
     │   ├── teacher-brain-tests.md
@@ -648,7 +655,7 @@ Este plano reflete o estado real após as correções de arquitetura, narrativa,
 |---|---|---|
 | Sprint 1 — Higiene técnica | Fechado | Arquitetura, metadata, registry, fallback, foco, seleção, interações e lifecycle foram revisados e validados. |
 | Sprint 2 — Conteúdo técnico | Fechado | Os quatro cases visíveis foram migrados para a estrutura narrativa oficial, com claims moderados e documentação de apoio. |
-| Sprint 2.5 — Engineering Evidence | Iniciado | Portfolio Nexus já tem evidências locais e Lighthouse registrado; Music Player já tem plano de performance, lifecycle e claims sem prometer resultados não medidos. |
+| Sprint 2.5 — Engineering Evidence | Iniciado | Portfolio Nexus tem evidências locais e Lighthouse; Music Player tem performance/lifecycle/claims; SaaS Data Control tem segurança, isolamento, CI e claims como plano de prova sem números não verificados. |
 | Sprint 3 — Microinterações | Parcialmente iniciado | Hover agressivo e reduced motion já foram tratados em pontos críticos. Falta consolidar padrões de botões/links e leitura longa. |
 | Sprint 4 — Performance/homologação | Parcialmente iniciado | English Tutor já recebeu defer/lazy loading e medição inicial. Lighthouse local foi registrado; falta profiling formal e correção do LCP. |
 
@@ -669,6 +676,8 @@ Este plano reflete o estado real após as correções de arquitetura, narrativa,
    - Criar a estrutura `docs/evidence/` para os quatro projetos.
    - Para cada projeto, registrar: resumo técnico, evidências disponíveis, evidências pendentes, decisões, trade-offs e claims permitidos.
    - Music Player já iniciou essa camada com performance/lifecycle pendentes e claims condicionais.
+   - SaaS Data Control já iniciou segurança, isolamento de dados, CI e claims pendentes de logs/testes reais.
+   - SaaS Data Control já iniciou segurança, isolamento de dados, CI e claims pendentes de logs/testes reais.
    - Começar pelo Portfolio Nexus, porque já existem evidências locais: build, lint, TypeScript, testes unitários, E2E, SSG e medição do English Tutor.
 
 4. **Retomar Sprint 3/4 com base em evidência**
