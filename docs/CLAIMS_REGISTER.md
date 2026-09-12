@@ -28,9 +28,9 @@ Estados permitidos:
 | Projeto descrito como player local-first | Designed | Conteúdo do case e README fornecido como base | Pode aparecer como orientação arquitetural. |
 | Foco em alta fidelidade e controle do pipeline de áudio | Designed | Conteúdo do case e roadmap | Usar linguagem de arquitetura/foco, não garantia absoluta. |
 | Reprodução gapless | Designed | Roadmap indica dependência do pipeline/plataforma | Publicar como suporte preparado ou capacidade condicionada. |
-| Integração com DAC/dispositivos externos | Designed | Roadmap pede verificação específica | Não publicar como garantia sem evidência de teste. |
-| Bit-perfect garantido | Target | Evidência pendente | Não publicar como resultado. |
-| Cold start ou FPS específicos | Target | Benchmark/profiling pendente | Não publicar números. |
+| Integração com DAC/dispositivos externos | Target | Roadmap e `docs/evidence/music-player/performance.md` pedem verificação específica | Não publicar como garantia sem evidência de teste. |
+| Bit-perfect garantido | Target | `docs/evidence/music-player/claims.md` mantém como evidência pendente | Não publicar como resultado. |
+| Cold start ou FPS específicos | Target | `docs/evidence/music-player/performance.md` define a evidência pendente | Não publicar números. |
 
 ## SaaS Data Control
 
