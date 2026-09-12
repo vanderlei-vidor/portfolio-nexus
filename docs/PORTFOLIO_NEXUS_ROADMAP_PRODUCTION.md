@@ -298,11 +298,15 @@ Ecossistema de estudos de caso com arquitetura modular, conteúdo multilíngue, 
 ### Criar para cada projeto
 
 - [ ] `docs/evidence/<project>/README.md`
+  - [x] Portfolio Nexus
 - [ ] Evidências de testes.
+  - [x] Portfolio Nexus: lint, TypeScript, Vitest e E2E registrados.
 - [ ] Evidências de performance quando houver claim de performance.
+  - [ ] Portfolio Nexus: Lighthouse ainda pendente.
 - [ ] Diagrama arquitetural simples.
 - [ ] Lista de decisões e trade-offs.
 - [ ] Lista de claims aprovados para publicação.
+  - [x] Portfolio Nexus
 
 ### Estrutura sugerida
 
@@ -624,7 +628,7 @@ Este plano reflete o estado real após as correções de arquitetura, narrativa,
 |---|---|---|
 | Sprint 1 — Higiene técnica | Fechado | Arquitetura, metadata, registry, fallback, foco, seleção, interações e lifecycle foram revisados e validados. |
 | Sprint 2 — Conteúdo técnico | Fechado | Os quatro cases visíveis foram migrados para a estrutura narrativa oficial, com claims moderados e documentação de apoio. |
-| Sprint 2.5 — Engineering Evidence | Pronto para iniciar | A narrativa já está mais segura. Agora começa a camada de provas: evidências, decisões, testes, diagramas e claims aprovados. |
+| Sprint 2.5 — Engineering Evidence | Iniciado | A camada `docs/evidence/portfolio-nexus/` foi criada com validação, static export, acessibilidade, claims e Lighthouse pendente. |
 | Sprint 3 — Microinterações | Parcialmente iniciado | Hover agressivo e reduced motion já foram tratados em pontos críticos. Falta consolidar padrões de botões/links e leitura longa. |
 | Sprint 4 — Performance/homologação | Parcialmente iniciado | English Tutor já recebeu defer/lazy loading e medição inicial. Falta profiling formal e Lighthouse em build de produção. |
 

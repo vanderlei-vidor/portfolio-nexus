@@ -1,7 +1,8 @@
 import { defineConfig, devices } from "@playwright/test";
 
 const e2ePort = process.env.E2E_PORT ?? "3000";
-const baseURL = `http://127.0.0.1:${e2ePort}`;
+const basePath = (process.env.NEXT_PUBLIC_BASE_PATH ?? "").replace(/\/$/, "");
+const baseURL = `http://127.0.0.1:${e2ePort}${basePath}`;
 const useStaticExport = process.env.E2E_STATIC_EXPORT === "true";
 
 export default defineConfig({
