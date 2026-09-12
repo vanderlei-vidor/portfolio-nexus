@@ -1,6 +1,6 @@
 import { createReadStream, existsSync, statSync } from "node:fs";
 import { createServer } from "node:http";
-import { extname, join, normalize, resolve } from "node:path";
+import { extname, resolve } from "node:path";
 
 const root = resolve(process.argv[2] ?? "out");
 const port = Number(process.argv[3] ?? process.env.PORT ?? 3000);
