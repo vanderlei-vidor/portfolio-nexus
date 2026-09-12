@@ -4,6 +4,7 @@ import { extname, join, normalize, resolve } from "node:path";
 
 const root = resolve(process.argv[2] ?? "out");
 const port = Number(process.argv[3] ?? process.env.PORT ?? 3000);
+const basePath = (process.env.NEXT_PUBLIC_BASE_PATH ?? "").replace(/\/$/, "") || "";
 
 const contentTypes = {
   ".css": "text/css; charset=utf-8",
@@ -23,10 +24,21 @@ const contentTypes = {
 
 function resolveFile(urlPath) {
   const pathname = decodeURIComponent(new URL(urlPath, "http://localhost").pathname);
-  const candidates = [pathname, `${pathname}.html`, join(pathname, "index.html")];
+  const strippedPathname = basePath && pathname.startsWith(basePath)
+    ? pathname.slice(basePath.length) || "/"
+    : pathname;
+  const normalizedPathname = strippedPathname === "" ? "/" : strippedPathname;
+  const cleanRelativePath = normalizedPathname === "/"
+    ? "index.html"
+    : normalizedPathname.replace(/^\/+|\/+$/g, "");
+  const candidates = [
+    cleanRelativePath,
+    cleanRelativePath.endsWith(".html") ? cleanRelativePath : `${cleanRelativePath}.html`,
+    cleanRelativePath.endsWith("/index.html") ? cleanRelativePath : `${cleanRelativePath}/index.html`,
+  ].filter(Boolean);
 
   for (const candidate of candidates) {
-    const file = resolve(root, `.${normalize(candidate)}`);
+    const file = resolve(root, candidate);
     if (file.startsWith(root) && existsSync(file) && statSync(file).isFile()) {
       return file;
     }
