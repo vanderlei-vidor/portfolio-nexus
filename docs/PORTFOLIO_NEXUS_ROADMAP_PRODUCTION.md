@@ -393,8 +393,8 @@ Não usar animação como decoração indiscriminada.
 
 ### Case studies
 
-- [ ] Adicionar progress bar discreta para leitura longa.
-- [ ] Garantir que a barra não afete acessibilidade ou CLS.
+- [x] Adicionar progress bar discreta para leitura longa no fluxo `/process`.
+- [x] Garantir que a barra não afete acessibilidade ou CLS: indicador textual saiu do topo direito e virou pill discreto sem interação.
 
 ### Hero
 
@@ -405,8 +405,8 @@ Não usar animação como decoração indiscriminada.
 ### Critérios de aceite
 
 - [ ] Nenhuma animação é necessária para compreender o conteúdo.
-- [ ] `prefers-reduced-motion` desativa ou simplifica motion não essencial.
-- [ ] Nenhum efeito gera layout shift perceptível.
+- [x] `prefers-reduced-motion` desativa ou simplifica motion não essencial nos padrões globais e no fluxo `/process`.
+- [x] Nenhum efeito novo depende de layout: microinterações usam `transform`/`opacity` e o horizontal scroll removeu snap.
 - [ ] Interações permanecem responsivas em hardware intermediário.
 
 ---
@@ -666,7 +666,7 @@ Este plano reflete o estado real após as correções de arquitetura, narrativa,
 | Sprint 1 — Higiene técnica | Fechado | Arquitetura, metadata, registry, fallback, foco, seleção, interações e lifecycle foram revisados e validados. |
 | Sprint 2 — Conteúdo técnico | Fechado | Os quatro cases visíveis foram migrados para a estrutura narrativa oficial, com claims moderados e documentação de apoio. |
 | Sprint 2.5 — Engineering Evidence | Iniciado | Portfolio Nexus tem evidências locais e Lighthouse; Music Player, SaaS Data Control e English Tutor já têm pastas de evidência com claims moderados e pendências rastreáveis. |
-| Sprint 3 — Microinterações | Parcialmente iniciado | Sistema global `premium-button`/`premium-card` iniciado e aplicado em cards de projetos, contato e navegação dos cases. Falta expandir para botões internos dos cases e leitura longa. |
+| Sprint 3 — Microinterações | Parcialmente iniciado | Sistema global de interação aplicado nos pontos principais; `/process` ganhou indicador discreto, scroll horizontal sem snap e microanimações leves. Falta expandir para botões internos dos cases. |
 | Sprint 4 — Performance/homologação | Parcialmente iniciado | English Tutor já recebeu defer/lazy loading e medição inicial. Lighthouse local foi registrado; falta profiling formal e correção do LCP. |
 
 ### Próxima sequência recomendada
