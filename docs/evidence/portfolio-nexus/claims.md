@@ -11,7 +11,10 @@ Este arquivo detalha os claims públicos permitidos para o case Portfolio Nexus.
 | Publicação preparada para GitHub Pages | Verified | `next.config.ts`, `.github/workflows/ci.yml`, `scripts/serve-static.mjs` | Pode aparecer como CI/CD estático. |
 | E2E cobre fluxos públicos centrais | Verified | `e2e/core-journeys.spec.ts` | Pode aparecer como cobertura de smoke E2E. |
 | Motion respeita reduced motion em pontos críticos | Verified / Partial | `useReducedMotion`, CSS global, PageTransition, English Tutor | Usar linguagem moderada. |
-| Lighthouse >= 95 | Target | Pendente | Não publicar como resultado. |
+| Lighthouse Accessibility >= 95 | Verified | `lighthouse-home.report.json`, execução local em 2026-09-12 | Pode aparecer como evidência local, com data e ambiente. |
+| Lighthouse Best Practices >= 95 | Verified | `lighthouse-home.report.json`, execução local em 2026-09-12 | Pode aparecer como evidência local, com data e ambiente. |
+| Lighthouse SEO >= 95 | Verified | `lighthouse-home.report.json`, execução local em 2026-09-12 | Pode aparecer como evidência local, com data e ambiente. |
+| Lighthouse Performance >= 90 | Target | Performance 75 na execução local em 2026-09-12 | Não publicar como resultado. |
 
 ## Linguagem Recomendada
 
@@ -20,11 +23,13 @@ Usar:
 - "portfolio multilíngue com geração estática";
 - "case system orientado por registry";
 - "pipeline com lint, type-check, testes, build e E2E";
-- "motion com suporte a reduced motion em efeitos revisados".
+- "motion com suporte a reduced motion em efeitos revisados";
+- "Lighthouse local registrou Accessibility 96, Best Practices 96 e SEO 100 em 2026-09-12".
 
 Evitar:
 
 - "100% acessível";
 - "performance AAA comprovada";
+- "Lighthouse Performance >= 90";
 - "zero layout shift";
 - "cobertura completa".

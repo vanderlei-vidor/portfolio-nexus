@@ -12,7 +12,7 @@ A intenção não é transformar documentação em marketing. A intenção é ma
 | Static export e GitHub Pages | `static-export.md` | Verified |
 | Acessibilidade e motion | `accessibility.md` | Verified / Partial |
 | Claims aprovados | `claims.md` | Active |
-| Lighthouse | `lighthouse.md` | Pending |
+| Lighthouse | `lighthouse.md` | Measured / Performance follow-up |
 
 ## Claims Públicos Permitidos
 
@@ -26,12 +26,13 @@ A intenção não é transformar documentação em marketing. A intenção é ma
 
 ## Claims Ainda Não Permitidos
 
-- Lighthouse >= 95 como resultado alcançado.
-- Performance mobile AAA sem relatório reproduzível.
+- Lighthouse Performance >= 90 como resultado alcançado.
+- Performance mobile AAA sem correção do LCP e nova execução reproduzível.
 - Acessibilidade perfeita ou 100% garantida.
 - Ausência total de layout shift sem auditoria formal.
 
 ## Última Referência de Fechamento
 
 - Sprint 2 commit: `2c6232a docs: close sprint 2 case narratives`
-- Próxima camada: Sprint 2.5, evidências por projeto.
+- Sprint 2.5 base commit: `f290649 docs: add portfolio nexus evidence`
+- Lighthouse local: 2026-09-12, Performance 75, Accessibility 96, Best Practices 96, SEO 100.

@@ -302,7 +302,8 @@ Ecossistema de estudos de caso com arquitetura modular, conteúdo multilíngue, 
 - [ ] Evidências de testes.
   - [x] Portfolio Nexus: lint, TypeScript, Vitest e E2E registrados.
 - [ ] Evidências de performance quando houver claim de performance.
-  - [ ] Portfolio Nexus: Lighthouse ainda pendente.
+  - [x] Portfolio Nexus: Lighthouse local registrado.
+  - [ ] Portfolio Nexus: corrigir LCP e repetir Lighthouse para meta de Performance.
 - [ ] Diagrama arquitetural simples.
 - [ ] Lista de decisões e trade-offs.
 - [ ] Lista de claims aprovados para publicação.
@@ -443,6 +444,18 @@ Meta inicial:
 - Accessibility: >= 95
 - Best Practices: >= 95
 - SEO: >= 95
+
+Execução registrada em 2026-09-12 para `http://127.0.0.1:3022/portfolio-aaa/`:
+
+- Performance: 75
+- Accessibility: 96
+- Best Practices: 96
+- SEO: 100
+- LCP: 8.6 s
+- CLS: 0.008
+- TBT: 50 ms
+
+Leitura: Accessibility, Best Practices e SEO já atingiram a meta inicial nesta medição local. Performance ainda não atingiu a meta por causa do LCP e deve ser tratada como follow-up técnico, não como claim público.
 
 Meta aspiracional:
 
@@ -598,7 +611,7 @@ Uma alteração só é considerada pronta quando:
 - [ ] Sem layout shifts perceptíveis introduzidos por motion.
 - [ ] Imagens otimizadas.
 - [ ] Efeitos caros auditados.
-- [ ] Lighthouse executado em build de produção.
+- [x] Lighthouse executado em build de produção.
 
 ### Qualidade
 
@@ -628,9 +641,9 @@ Este plano reflete o estado real após as correções de arquitetura, narrativa,
 |---|---|---|
 | Sprint 1 — Higiene técnica | Fechado | Arquitetura, metadata, registry, fallback, foco, seleção, interações e lifecycle foram revisados e validados. |
 | Sprint 2 — Conteúdo técnico | Fechado | Os quatro cases visíveis foram migrados para a estrutura narrativa oficial, com claims moderados e documentação de apoio. |
-| Sprint 2.5 — Engineering Evidence | Iniciado | A camada `docs/evidence/portfolio-nexus/` foi criada com validação, static export, acessibilidade, claims e Lighthouse pendente. |
+| Sprint 2.5 — Engineering Evidence | Iniciado | A camada `docs/evidence/portfolio-nexus/` foi criada com validação, static export, acessibilidade, claims e Lighthouse local registrado. |
 | Sprint 3 — Microinterações | Parcialmente iniciado | Hover agressivo e reduced motion já foram tratados em pontos críticos. Falta consolidar padrões de botões/links e leitura longa. |
-| Sprint 4 — Performance/homologação | Parcialmente iniciado | English Tutor já recebeu defer/lazy loading e medição inicial. Falta profiling formal e Lighthouse em build de produção. |
+| Sprint 4 — Performance/homologação | Parcialmente iniciado | English Tutor já recebeu defer/lazy loading e medição inicial. Lighthouse local foi registrado; falta profiling formal e correção do LCP. |
 
 ### Próxima sequência recomendada
 
@@ -652,7 +665,7 @@ Este plano reflete o estado real após as correções de arquitetura, narrativa,
 
 4. **Retomar Sprint 3/4 com base em evidência**
    - Fazer profiling formal do English Tutor com Playwright trace ou Chrome DevTools.
-   - Rodar Lighthouse em build de produção.
+   - Usar o Lighthouse já registrado como baseline e corrigir LCP antes de publicar claim de performance.
    - Ajustar animações restantes somente onde houver custo perceptível ou risco de acessibilidade.
 
 ### Critério para avançar para evidências

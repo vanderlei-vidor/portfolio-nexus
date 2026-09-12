@@ -43,5 +43,5 @@ Evidências no código:
 ## Limites
 
 - Ainda falta auditoria completa por teclado em todas as páginas longas.
-- Ainda falta Lighthouse Accessibility anexado como evidência formal.
+- Lighthouse Accessibility foi anexado como evidência local em 2026-09-12 com score 96.
 - Ainda falta revisar todos os efeitos GSAP restantes com a mesma profundidade aplicada ao English Tutor.

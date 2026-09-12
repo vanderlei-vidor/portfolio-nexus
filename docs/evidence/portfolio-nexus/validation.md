@@ -52,6 +52,6 @@ Fluxos E2E atuais:
 
 ## Limites
 
-- Lighthouse ainda não foi anexado como evidência formal.
+- Lighthouse foi anexado como evidência formal local em 2026-09-12; Performance ficou abaixo da meta e virou follow-up.
 - E2E cobre fluxos críticos iniciais, mas ainda não cobre todos os cases individualmente.
 - Performance do English Tutor possui medição inicial registrada no roadmap, mas ainda precisa de trace/profiling formal.
