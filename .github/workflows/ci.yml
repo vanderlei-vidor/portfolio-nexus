@@ -70,22 +70,32 @@ jobs:
       - name: Install Dependencies
         run: npm ci
 
+      - name: Setup GitHub Pages
+        if: github.event_name == 'push'
+        uses: actions/configure-pages@v5
+
       - name: Build Static Site
         env:
-          GITHUB_PAGES: ${{ github.event_name == 'push' && 'true' || 'false' }}
+          GITHUB_PAGES: "true"
           NEXT_PUBLIC_BASE_PATH: /${{ github.event.repository.name }}
         run: npm run build
 
       - name: Preserve Next.js assets on GitHub Pages
         run: touch out/.nojekyll
 
-      - name: Upload Static Export
+      - name: Upload Static Export for E2E
         uses: actions/upload-artifact@v4
         with:
           name: static-export
           path: out
           if-no-files-found: error
           retention-days: 7
+
+      - name: Upload GitHub Pages Artifact
+        if: github.event_name == 'push'
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: out
 
   e2e:
     name: End-to-End Tests (Static Export)
@@ -132,22 +142,6 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
-      - name: Download Static Export
-        uses: actions/download-artifact@v4
-        with:
-          name: static-export
-          path: out
-
-      - name: Setup GitHub Pages
-        uses: actions/configure-pages@v5
-        with:
-          enablement: true
-
-      - name: Upload Pages Artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: out
-
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
