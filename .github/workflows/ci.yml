@@ -23,12 +23,12 @@ jobs:
 
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
-          node-version: 20
+          node-version: 24
           cache: "npm"
 
       - name: Install Dependencies
@@ -51,16 +51,16 @@ jobs:
 
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
-          node-version: 20
+          node-version: 24
           cache: "npm"
 
       - name: Restore Next.js Cache
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: ${{ github.workspace }}/.next/cache
           key: ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
@@ -69,10 +69,6 @@ jobs:
 
       - name: Install Dependencies
         run: npm ci
-
-      - name: Setup GitHub Pages
-        if: github.event_name == 'push'
-        uses: actions/configure-pages@v5
 
       - name: Build Static Site
         env:
@@ -84,7 +80,7 @@ jobs:
         run: touch out/.nojekyll
 
       - name: Upload Static Export for E2E
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: static-export
           path: out
@@ -93,7 +89,7 @@ jobs:
 
       - name: Upload GitHub Pages Artifact
         if: github.event_name == 'push'
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v5
         with:
           path: out
 
@@ -105,19 +101,19 @@ jobs:
 
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
-          node-version: 20
+          node-version: 24
           cache: "npm"
 
       - name: Install Dependencies
         run: npm ci
 
       - name: Download Static Export
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v7
         with:
           name: static-export
           path: out
@@ -144,4 +140,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
