@@ -48,11 +48,11 @@ Estados permitidos:
 | Claim | Estado | Evidência atual | Uso público recomendado |
 |---|---|---|---|
 | Arquitetura separa decisão pedagógica da geração textual | Designed | Conteúdo do case e roadmap | Pode aparecer como decisão de engenharia. |
-| Teacher Brain determinístico guia regras/progressão antes do LLM | Designed | Conteúdo do case e roadmap | Pode aparecer como arquitetura. |
-| Uso local de LLM quando configurado dessa forma | Designed | Roadmap cita LM Studio/Qwen local | Usar linguagem condicional. |
+| Teacher Brain determinístico guia regras/progressão antes do LLM | Designed / Target | `docs/evidence/english-tutor/teacher-brain-tests.md` define testes pendentes | Pode aparecer como arquitetura, não como prova validada. |
+| Uso local de LLM quando configurado dessa forma | Designed / Conditional | `docs/evidence/english-tutor/privacy-model.md` exige confirmação do runtime | Usar linguagem condicional. |
 | Reduz dependência do LLM para decisões pedagógicas | Designed | Arquitetura descrita no roadmap | Pode aparecer como mitigação arquitetural. |
-| Zero alucinações gramaticais | Target | Pendente de testes pedagógicos | Não publicar. |
-| Privacidade absoluta | Target | Pendente de matriz real de fluxo de dados | Não publicar. |
+| Zero alucinações gramaticais | Target | `docs/evidence/english-tutor/teacher-brain-tests.md` mantém testes pedagógicos pendentes | Não publicar. |
+| Privacidade absoluta | Target | `docs/evidence/english-tutor/privacy-model.md` mantém matriz real de fluxo de dados pendente | Não publicar. |
 
 ## Regras de Redação Pública
 

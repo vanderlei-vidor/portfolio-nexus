@@ -272,7 +272,9 @@ Ecossistema de estudos de caso com arquitetura modular, conteúdo multilíngue, 
   - [x] Portfolio Nexus
   - [x] Music Player
   - [x] SaaS Data Control
+  - [x] English Tutor
   - [x] SaaS Data Control
+  - [x] English Tutor
   - [x] English Tutor
   - Problema
   - Decisão de engenharia
@@ -302,23 +304,29 @@ Ecossistema de estudos de caso com arquitetura modular, conteúdo multilíngue, 
   - [x] Portfolio Nexus
   - [x] Music Player
   - [x] SaaS Data Control
+  - [x] English Tutor
 - [ ] Evidências de testes.
   - [x] Portfolio Nexus: lint, TypeScript, Vitest e E2E registrados.
   - [x] Music Player: matriz de lifecycle criada como plano de teste.
   - [ ] Music Player: anexar execução real dos testes de lifecycle.
   - [x] SaaS Data Control: matriz de segurança e CI criada como plano de evidência.
   - [ ] SaaS Data Control: anexar testes negativos, cobertura e logs de CI.
+  - [x] English Tutor: matriz Teacher Brain, privacidade e performance do case criada.
+  - [ ] English Tutor: anexar testes pedagógicos, matriz de idiomas e fluxo real de dados.
 - [ ] Evidências de performance quando houver claim de performance.
   - [x] Portfolio Nexus: Lighthouse local registrado.
   - [ ] Portfolio Nexus: corrigir LCP e repetir Lighthouse para meta de Performance.
   - [x] Music Player: plano de performance criado sem benchmark publicado.
   - [ ] Music Player: anexar profiling/cold start quando o projeto original estiver disponível.
+  - [x] English Tutor: performance percebida do case registrada como evidência do portfolio.
+  - [ ] English Tutor: anexar profiling formal da rota e evidência do app original.
 - [ ] Diagrama arquitetural simples.
 - [ ] Lista de decisões e trade-offs.
 - [ ] Lista de claims aprovados para publicação.
   - [x] Portfolio Nexus
   - [x] Music Player
   - [x] SaaS Data Control
+  - [x] English Tutor
 
 ### Estrutura sugerida
 
@@ -339,7 +347,9 @@ docs/
     ├── english-tutor/
     │   ├── README.md
     │   ├── teacher-brain-tests.md
-    │   └── privacy-model.md
+    │   ├── privacy-model.md
+    │   ├── performance.md
+    │   └── claims.md
     └── portfolio-nexus/
         ├── README.md
         ├── lighthouse.md
@@ -655,7 +665,7 @@ Este plano reflete o estado real após as correções de arquitetura, narrativa,
 |---|---|---|
 | Sprint 1 — Higiene técnica | Fechado | Arquitetura, metadata, registry, fallback, foco, seleção, interações e lifecycle foram revisados e validados. |
 | Sprint 2 — Conteúdo técnico | Fechado | Os quatro cases visíveis foram migrados para a estrutura narrativa oficial, com claims moderados e documentação de apoio. |
-| Sprint 2.5 — Engineering Evidence | Iniciado | Portfolio Nexus tem evidências locais e Lighthouse; Music Player tem performance/lifecycle/claims; SaaS Data Control tem segurança, isolamento, CI e claims como plano de prova sem números não verificados. |
+| Sprint 2.5 — Engineering Evidence | Iniciado | Portfolio Nexus tem evidências locais e Lighthouse; Music Player, SaaS Data Control e English Tutor já têm pastas de evidência com claims moderados e pendências rastreáveis. |
 | Sprint 3 — Microinterações | Parcialmente iniciado | Hover agressivo e reduced motion já foram tratados em pontos críticos. Falta consolidar padrões de botões/links e leitura longa. |
 | Sprint 4 — Performance/homologação | Parcialmente iniciado | English Tutor já recebeu defer/lazy loading e medição inicial. Lighthouse local foi registrado; falta profiling formal e correção do LCP. |
 
@@ -677,7 +687,9 @@ Este plano reflete o estado real após as correções de arquitetura, narrativa,
    - Para cada projeto, registrar: resumo técnico, evidências disponíveis, evidências pendentes, decisões, trade-offs e claims permitidos.
    - Music Player já iniciou essa camada com performance/lifecycle pendentes e claims condicionais.
    - SaaS Data Control já iniciou segurança, isolamento de dados, CI e claims pendentes de logs/testes reais.
+   - English Tutor já iniciou Teacher Brain, privacy model, performance do case e claims pendentes de testes/fluxo de dados.
    - SaaS Data Control já iniciou segurança, isolamento de dados, CI e claims pendentes de logs/testes reais.
+   - English Tutor já iniciou Teacher Brain, privacy model, performance do case e claims pendentes de testes/fluxo de dados.
    - Começar pelo Portfolio Nexus, porque já existem evidências locais: build, lint, TypeScript, testes unitários, E2E, SSG e medição do English Tutor.
 
 4. **Retomar Sprint 3/4 com base em evidência**
