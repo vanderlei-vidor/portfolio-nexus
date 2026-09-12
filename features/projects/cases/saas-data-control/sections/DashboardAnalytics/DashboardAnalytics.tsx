@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { AlertTriangle, CheckCircle, ClipboardList, Clock } from "lucide-react";
+import { withBasePath } from "@/shared/lib/public-path";
 import { useLanguage } from "@/shared/i18n/LanguageContext";
 import { saasDataControlContent } from "../../content";
 import { MetricCard } from "./MetricCard";
@@ -58,7 +59,7 @@ export function DashboardAnalytics() {
             </div>
 
             <Image
-              src="/projects/saas-data-control/textures/reports-month-light-tela-inferior.webp"
+              src={withBasePath("/projects/saas-data-control/textures/reports-month-light-tela-inferior.webp")}
               alt={content.imageAlt}
               width={800}
               height={400}

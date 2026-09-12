@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { withBasePath } from "@/shared/lib/public-path";
 import { useLanguage } from "@/shared/i18n/LanguageContext";
 import { saasDataControlContent } from "../../content";
 import "./Hero.css";
@@ -42,7 +43,7 @@ export function Hero() {
             <div className="hero-image-glow" aria-hidden="true" />
             <div className="hero-image">
               <Image
-                src="/projects/saas-data-control/textures/dashboard-light-tela.webp"
+                src={withBasePath("/projects/saas-data-control/textures/dashboard-light-tela.webp")}
                 alt={content.imageAlt}
                 width={1200}
                 height={750}

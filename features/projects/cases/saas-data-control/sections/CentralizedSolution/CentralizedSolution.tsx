@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { ArrowRight, BarChart3, Check, CheckSquare, FileDown, Layers, TrendingUp } from "lucide-react";
+import { withBasePath } from "@/shared/lib/public-path";
 import { useLanguage } from "@/shared/i18n/LanguageContext";
 import { saasDataControlContent } from "../../content";
 import "./CentralizedSolution.css";
@@ -80,7 +81,7 @@ export function CentralizedSolution() {
               </div>
 
               <Image
-                src="/projects/saas-data-control/textures/reports-quarter-light.webp"
+                src={withBasePath("/projects/saas-data-control/textures/reports-quarter-light.webp")}
                 alt={content.imageAlt}
                 width={1200}
                 height={750}

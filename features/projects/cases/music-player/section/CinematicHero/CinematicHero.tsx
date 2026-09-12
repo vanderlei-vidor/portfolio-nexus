@@ -1,5 +1,6 @@
 "use client";
 
+import { withBasePath } from "@/shared/lib/public-path";
 import { useTranslation } from "@/shared/i18n/useTranslation";
 import { useLanguage } from "@/shared/i18n/LanguageContext";
 import { musicPlayerContent } from "../../content";
@@ -15,11 +16,11 @@ export default function CinematicHero() {
       {/* Ambient Background - ⚡ Atualizado para usar a classe nativa do Tailwind v4 */}
       <div className="absolute inset-0 bg-radial from-blue-500/18 via-transparent to-transparent to-40% [radial-gradient-position:top]" />
 
-      <div 
-        className="absolute inset-0 opacity-[0.03] bg-cover bg-center" 
+      <div
+        className="absolute inset-0 opacity-[0.03] bg-cover bg-center"
         style={{
-          backgroundImage: "url('/textures/noise-webp.webp')"
-        }} 
+          backgroundImage: `url("${withBasePath("/textures/noise-webp.webp")}")`
+        }}
       />
 
       {/* Content */}
@@ -33,10 +34,10 @@ export default function CinematicHero() {
         </div>
 
         {/* 🔥 HEADLINE AAA: Tipografia fluida matemática com clamp() e quebras seguras */}
-        <h1 
+        <h1
           className="max-w-5xl font-bold text-white leading-[0.95] md:leading-[0.9] tracking-tighter wrap-break-word"
           style={{
-            fontSize: "clamp(2.25rem, 8vw + 0.5rem, 9.5rem)" 
+            fontSize: "clamp(2.25rem, 8vw + 0.5rem, 9.5rem)"
             // 💡 Explicação: Mínimo de 36px em telas minúsculas, escala dinamicamente com a largura da tela (8vw) e trava no teto de 152px em telas gigantes!
           }}
         >

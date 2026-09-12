@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
+import { withBasePath } from "@/shared/lib/public-path";
 import { offlinePlayerSteps } from "../../data";
 import { useLanguage } from "@/shared/i18n/LanguageContext";
 import { musicPlayerContent } from "../../content";
@@ -75,7 +76,7 @@ export default function StorytellingSection() {
     <section ref={sectionRef} className="relative min-h-screen bg-[#030303] overflow-hidden flex items-center py-12 lg:py-0">
 
       {/* FILM GRAIN */}
-      <div className="pointer-events-none absolute inset-0 opacity-[0.025] mix-blend-soft-light z-50" style={{ backgroundImage: "url('/textures/noise-webp.webp')" }} />
+      <div className="pointer-events-none absolute inset-0 opacity-[0.025] mix-blend-soft-light z-50" style={{ backgroundImage: `url("${withBasePath("/textures/noise-webp.webp")}")` }} />
 
       {/* PARALLAX BACKGROUND LAYERS */}
       <div className="parallax-bg absolute inset-0 will-change-transform">
@@ -153,7 +154,7 @@ export default function StorytellingSection() {
           </div>
         </div>
 
-       {/* // RIGHT SIDE: DEVICE PREVIEW*/}
+        {/* // RIGHT SIDE: DEVICE PREVIEW*/}
         {/* // ⚡ AJUSTE PREMIUM DE TAMANHO: w-full e controle absoluto de altura para evitar cortes*/}
         <div className="story-device-wrapper relative flex items-center justify-center lg:col-span-7 w-full h-[35vh] sm:h-[45vh] lg:h-auto">
           {offlinePlayerSteps.map((step, index) => {

@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import { withBasePath } from "@/shared/lib/public-path";
 import { useRouter } from "next/navigation";
 import { ChevronLeft, ChevronRight, Pause, Play } from "lucide-react";
 import { useLanguage } from "@/shared/i18n/LanguageContext";
@@ -9,20 +10,20 @@ import { useTranslation } from "@/shared/i18n/useTranslation";
 import { musicPlayerContent } from "../../content";
 
 const slideImages = [
-  "/projects/music-player/textures/tela_temas.webp",
-  "/projects/music-player/textures/tela_inicial.webp",
-  "/projects/music-player/textures/tela_name.webp",
-  "/projects/music-player/textures/tela_menu_lateral.webp",
-  "/projects/music-player/textures/tela_player.webp",
-  "/projects/music-player/textures/tela_sleep_timer.webp",
-  "/projects/music-player/textures/tela_playlist.webp",
-  "/projects/music-player/textures/tela_inicial_playlist_personalizada.webp",
-  "/projects/music-player/textures/tela_gapless.webp",
-  "/projects/music-player/textures/tela_equalizador.webp",
-  "/projects/music-player/textures/tela_criar_nova_playlist.webp",
-  "/projects/music-player/textures/tela_inicial_tema_orange.webp",
-  "/projects/music-player/textures/menu_velocidades.webp",
-  "/projects/music-player/textures/menu_lateral_player.webp",
+  withBasePath("/projects/music-player/textures/tela_temas.webp"),
+  withBasePath("/projects/music-player/textures/tela_inicial.webp"),
+  withBasePath("/projects/music-player/textures/tela_name.webp"),
+  withBasePath("/projects/music-player/textures/tela_menu_lateral.webp"),
+  withBasePath("/projects/music-player/textures/tela_player.webp"),
+  withBasePath("/projects/music-player/textures/tela_sleep_timer.webp"),
+  withBasePath("/projects/music-player/textures/tela_playlist.webp"),
+  withBasePath("/projects/music-player/textures/tela_inicial_playlist_personalizada.webp"),
+  withBasePath("/projects/music-player/textures/tela_gapless.webp"),
+  withBasePath("/projects/music-player/textures/tela_equalizador.webp"),
+  withBasePath("/projects/music-player/textures/tela_criar_nova_playlist.webp"),
+  withBasePath("/projects/music-player/textures/tela_inicial_tema_orange.webp"),
+  withBasePath("/projects/music-player/textures/menu_velocidades.webp"),
+  withBasePath("/projects/music-player/textures/menu_lateral_player.webp"),
 ];
 
 const slideDuration = 4000;
@@ -126,7 +127,7 @@ export default function FinalShowcase() {
   return (
     <section id="final-showcase" className="relative flex min-h-screen items-center justify-center overflow-hidden bg-black px-4 py-24 sm:px-6 sm:py-40">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.10),transparent_60%)]" aria-hidden="true" />
-      <div className="pointer-events-none absolute inset-0 opacity-[0.03] mix-blend-soft-light" style={{ backgroundImage: "url('/textures/noise-webp.webp')" }} aria-hidden="true" />
+      <div className="pointer-events-none absolute inset-0 opacity-[0.03] mix-blend-soft-light" style={{ backgroundImage: `url("${withBasePath("/textures/noise-webp.webp")}")` }} aria-hidden="true" />
       <div className="absolute left-1/2 top-1/2 h-150 w-150 -translate-x-1/2 -translate-y-1/2 rounded-full bg-violet-500/10 blur-[150px] sm:h-225 sm:w-225 sm:blur-[220px]" aria-hidden="true" />
 
       <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-col items-center text-center">
@@ -135,7 +136,7 @@ export default function FinalShowcase() {
           <div className="relative w-65 animate-[float_6s_ease-in-out_infinite] sm:w-[320px]">
             <div className="overflow-hidden rounded-[2.5rem] border border-white/10 bg-zinc-950 p-0.5 shadow-[0_40px_120px_rgba(0,0,0,0.9)] sm:rounded-[3rem]">
               <Image
-                src="/projects/music-player/textures/tela_player.webp"
+                src={withBasePath("/projects/music-player/textures/tela_player.webp")}
                 alt="Music Player"
                 width={400}
                 height={850}

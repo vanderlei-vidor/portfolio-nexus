@@ -1,3 +1,5 @@
+import { withBasePath } from "@/shared/lib/public-path";
+
 import {
     Disc,
     Layers,
@@ -14,7 +16,7 @@ export const offlinePlayerSteps = [
         tag: "Gateway / Experience",
         title: "Initial Hub Architecture",
         desc: "The home screen sets the tone with clever contextual situations and responsive three-dimensional cards.",
-        img: "/projects/music-player/textures/tela_inicial.webp",
+        img: withBasePath("/projects/music-player/textures/tela_inicial.webp"),
         color: "#3b82f6",
         icon: Music
     },
@@ -25,7 +27,7 @@ export const offlinePlayerSteps = [
         tag: "System / Navigation",
         title: "High-Fidelity Side Menu",
         desc: "A side panel designed for absolute control with advanced equalization and surgical navigation.",
-        img: "/projects/music-player/textures/tela_menu_lateral.webp",
+        img: withBasePath("/projects/music-player/textures/tela_menu_lateral.webp"),
         color: "#2563eb",
         icon: Sliders
     },
@@ -36,7 +38,7 @@ export const offlinePlayerSteps = [
         tag: "Ecosystem / Customization",
         title: "Functional Minimalism",
         desc: "A playlist journey designed to reduce cognitive load through strategic negative space.",
-        img: "/projects/music-player/textures/tela_inicial_playlist_personalizada.webp",
+        img: withBasePath("/projects/music-player/textures/tela_inicial_playlist_personalizada.webp"),
         color: "#10b981",
         icon: Layers
     },
@@ -47,7 +49,7 @@ export const offlinePlayerSteps = [
         tag: "Interactions / Modals",
         title: "Fluid Micro-Interactions",
         desc: "Smooth modals with visual depth and cinematic Gaussian blurs.",
-        img: "/projects/music-player/textures/tela_criar_nova_playlist.webp",
+        img: withBasePath("/projects/music-player/textures/tela_criar_nova_playlist.webp"),
         color: "#059669",
         icon: PlusCircle
     },
@@ -58,7 +60,7 @@ export const offlinePlayerSteps = [
         tag: "Data Curation / Playlists",
         title: "Advanced Management",
         desc: "Modular organization of local libraries with instant feedback and dynamic metadata.",
-        img: "/projects/music-player/textures/tela_playlist.webp",
+        img: withBasePath("/projects/music-player/textures/tela_playlist.webp"),
         color: "#8b5cf6",
         icon: Radio
     },
@@ -69,7 +71,7 @@ export const offlinePlayerSteps = [
         tag: "Immersion / Audio Engine",
         title: "The Choreographic and Functional Player",
         desc: "Vivid volumetric gradients and reactive lighting synchronized with the sound atmosphere.",
-        img: "/projects/music-player/textures/tela_player.webp",
+        img: withBasePath("/projects/music-player/textures/tela_player.webp"),
         color: "#7c3aed",
         icon: Disc
     }

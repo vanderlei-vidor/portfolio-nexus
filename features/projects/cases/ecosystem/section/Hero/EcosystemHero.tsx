@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
+import { withBasePath } from "@/shared/lib/public-path";
 import { useLanguage } from "@/shared/i18n/LanguageContext";
 import { ecosystemContent } from "../../content";
 import "./EcosystemHero.css";
@@ -45,7 +46,11 @@ export default function EcosystemHero() {
       <div className="absolute inset-0 z-0" aria-hidden="true">
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-size-[40px_40px]" />
         <div className="hero-glow absolute left-1/2 top-1/2 h-150 w-150 -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-600/10 blur-[180px] opacity-30" />
-        <div className="pointer-events-none absolute inset-0 bg-[url('/textures/noise-webp.webp')] opacity-[0.03] mix-blend-soft-light" />
+        <div
+          className="pointer-events-none absolute inset-0 opacity-[0.03] mix-blend-soft-light"
+          style={{ backgroundImage: `url("${withBasePath("/textures/noise-webp.webp")}")` }}
+          aria-hidden="true"
+        />
       </div>
 
       <div className="ecosystem-container relative z-10 text-center md:text-left">

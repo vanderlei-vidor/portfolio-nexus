@@ -1,7 +1,9 @@
 import { defineConfig, devices } from "@playwright/test";
 
 const e2ePort = process.env.E2E_PORT ?? "3000";
-const baseURL = `http://127.0.0.1:${e2ePort}`;
+const basePath = (process.env.NEXT_PUBLIC_BASE_PATH ?? "").replace(/\/$/, "");
+const baseURL = `http://127.0.0.1:${e2ePort}${basePath}`;
+const useStaticExport = process.env.E2E_STATIC_EXPORT === "true";
 
 export default defineConfig({
   testDir: "./e2e",
@@ -24,7 +26,9 @@ export default defineConfig({
   ],
 
   webServer: {
-    command: `npx next start -p ${e2ePort}`,
+    command: useStaticExport
+      ? `node scripts/serve-static.mjs out ${e2ePort}`
+      : `npx next start -p ${e2ePort}`,
     url: baseURL,
     reuseExistingServer: !process.env.CI,
     timeout: 120 * 1000,

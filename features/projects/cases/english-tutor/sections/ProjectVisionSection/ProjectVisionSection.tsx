@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useState } from "react";
 import Image from "next/image";
+import { withBasePath } from "@/shared/lib/public-path";
 import { Brain, ChevronLeft, ChevronRight, Globe2, Pause, Play, Zap } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useLanguage } from "@/shared/i18n/LanguageContext";
@@ -11,7 +12,7 @@ import { FutureVisionOrb } from "../../components/FutureVisionOrb/FutureVisionOr
 import { englishTutorContent } from "../../content";
 import styles from "./ProjectVisionSection.module.css";
 
-const slideImage = "/projects/english-tutor/textures/english-tutor-screen.webp";
+const slideImage = withBasePath("/projects/english-tutor/textures/english-tutor-screen.webp");
 const slideDuration = 4000;
 
 function getPillarIcon(icon: "brain" | "zap" | "globe") {
@@ -257,9 +258,8 @@ export function ProjectVisionSection() {
                       key={slide.title}
                       type="button"
                       onClick={() => setCurrentSlide(index)}
-                      className={`h-1.5 rounded-full transition-all duration-500 ${
-                        index === currentSlide ? "w-4 bg-violet-500" : "w-1.5 bg-zinc-600 hover:bg-zinc-400"
-                      }`}
+                      className={`h-1.5 rounded-full transition-all duration-500 ${index === currentSlide ? "w-4 bg-violet-500" : "w-1.5 bg-zinc-600 hover:bg-zinc-400"
+                        }`}
                       aria-label={`${t("projects.goToSlide")} ${index + 1}`}
                       aria-current={index === currentSlide}
                     />

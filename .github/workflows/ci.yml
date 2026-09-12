@@ -1,10 +1,15 @@
-name: CI - Quality & Build Pipeline (AAA Standard)
+name: CI - Quality, Build & Deploy
 
 on:
   push:
     branches: [master, main]
   pull_request:
     branches: [master, main]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -29,17 +34,17 @@ jobs:
       - name: Install Dependencies
         run: npm ci
 
-      - name: 1. Run ESLint Validation
+      - name: Run ESLint Validation
         run: npm run lint
 
-      - name: 2. Run TypeScript Type-Check
+      - name: Run TypeScript Type-Check
         run: npx tsc --noEmit
 
-      - name: 3. Run Automated Tests (Vitest)
+      - name: Run Automated Tests (Vitest)
         run: npm run test
 
   build:
-    name: Production Build & SSG Validation
+    name: Production Static Export
     needs: validate
     runs-on: ubuntu-latest
     timeout-minutes: 10
@@ -65,11 +70,24 @@ jobs:
       - name: Install Dependencies
         run: npm ci
 
-      - name: 4. Build Production (14 Static Pages)
+      - name: Build Static Site
+        env:
+          GITHUB_PAGES: ${{ github.event_name == 'push' && 'true' || 'false' }}
         run: npm run build
 
+      - name: Preserve Next.js assets on GitHub Pages
+        run: touch out/.nojekyll
+
+      - name: Upload Static Export
+        uses: actions/upload-artifact@v4
+        with:
+          name: static-export
+          path: out
+          if-no-files-found: error
+          retention-days: 7
+
   e2e:
-    name: End-to-End Tests (Playwright)
+    name: End-to-End Tests (Static Export)
     needs: build
     runs-on: ubuntu-latest
     timeout-minutes: 10
@@ -87,11 +105,45 @@ jobs:
       - name: Install Dependencies
         run: npm ci
 
+      - name: Download Static Export
+        uses: actions/download-artifact@v4
+        with:
+          name: static-export
+          path: out
+
       - name: Install Playwright Chromium
         run: npx playwright install --with-deps chromium
 
-      - name: Build Next.js
-        run: npm run build
-
-      - name: 5. Run Playwright E2E Tests
+      - name: Run Playwright E2E Tests
+        env:
+          E2E_STATIC_EXPORT: "true"
         run: npm run test:e2e
+
+  deploy:
+    name: Deploy GitHub Pages
+    if: github.event_name == 'push'
+    needs: e2e
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Download Static Export
+        uses: actions/download-artifact@v4
+        with:
+          name: static-export
+          path: out
+
+      - name: Setup GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages Artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: out
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

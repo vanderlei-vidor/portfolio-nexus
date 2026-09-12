@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { withBasePath } from "@/shared/lib/public-path";
 import { useLanguage } from "@/shared/i18n/LanguageContext";
 import { musicPlayerContent } from "../../content";
 import "./ArchitectureShowcase.css";
@@ -54,7 +55,7 @@ export default function ArchitectureShowcase() {
   return (
     <section ref={sectionRef} className="relative overflow-hidden bg-black px-6 py-28 sm:py-36 lg:py-32">
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#0c0c0c_1px,transparent_1px),linear-gradient(to_bottom,#0c0c0c_1px,transparent_1px)] bg-[size:60px_60px] opacity-20" aria-hidden="true" />
-      <div className="pointer-events-none absolute inset-0 opacity-[0.03] mix-blend-soft-light" style={{ backgroundImage: "url('/textures/noise-webp.webp')" }} aria-hidden="true" />
+      <div className="pointer-events-none absolute inset-0 opacity-[0.03] mix-blend-soft-light" style={{ backgroundImage: `url("${withBasePath("/textures/noise-webp.webp")}")` }} aria-hidden="true" />
       <div className="absolute left-1/2 top-1/2 h-[900px] w-[900px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-500/10 blur-[220px]" aria-hidden="true" />
 
       <div className="relative z-10 mx-auto max-w-7xl">
