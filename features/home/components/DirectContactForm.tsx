@@ -39,7 +39,7 @@ export default function DirectContactForm() {
   }, []);
 
   return (
-    <section className="contact-item relative overflow-hidden rounded-lg border border-white/10 bg-white/[0.03] p-6 shadow-2xl backdrop-blur-xl sm:p-8">
+    <section className="premium-card contact-item rounded-lg p-6 sm:p-8">
       <div className="mb-7 flex items-center gap-3">
         <div className="rounded-lg border border-blue-400/20 bg-blue-400/10 p-2.5 text-blue-300" aria-hidden="true">
           <Sparkles size={20} />
@@ -96,7 +96,7 @@ export default function DirectContactForm() {
         <div className="flex flex-col gap-3 pt-2 sm:flex-row">
           <a
             href={getMailtoUrl()}
-            className="inline-flex flex-1 items-center justify-center gap-2.5 rounded-lg bg-white px-6 py-3.5 text-sm font-semibold text-black shadow-[0_0_25px_rgba(255,255,255,0.1)] transition-colors duration-300 hover:bg-blue-400 hover:text-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+            className="premium-button premium-button--primary flex-1 px-6 py-3.5 text-sm font-semibold"
           >
             <Send size={16} aria-hidden="true" />
             <span>{t("contact.openEmailClient")}</span>
@@ -105,7 +105,7 @@ export default function DirectContactForm() {
           <button
             type="button"
             onClick={handleCopyFormatted}
-            className="inline-flex items-center justify-center gap-2 rounded-lg border border-white/15 px-5 py-3.5 text-sm font-medium text-zinc-300 transition-colors hover:border-white/30 hover:bg-white/5 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+            className="premium-button premium-button--secondary px-5 py-3.5 text-sm font-medium"
             title={t("contact.copyWebmail")}
             aria-label={copied ? t("contact.copied") : t("contact.copyMessage")}
           >

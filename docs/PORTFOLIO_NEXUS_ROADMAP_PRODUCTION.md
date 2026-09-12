@@ -381,15 +381,15 @@ Não usar animação como decoração indiscriminada.
 ### Project Cards
 
 - [x] Reduzir escalas agressivas (`scale-110` → aproximadamente `scale-105`).
-- [ ] Utilizar easing consistente (`cubic-bezier(0.22, 1, 0.36, 1)`).
-- [ ] Aplicar elevação e borda sutil no hover.
-- [ ] CTA com deslocamento discreto, sem cadeia excessiva de animações.
+- [x] Utilizar easing consistente (`cubic-bezier(0.22, 1, 0.36, 1)`) nos cards e padrão global.
+- [x] Aplicar elevação e borda sutil no hover dos cards principais.
+- [x] CTA com deslocamento discreto, sem cadeia excessiva de animações.
 
 ### Botões e links
 
-- [ ] Centralizar comportamento interativo em componentes compartilhados.
-- [ ] Evitar conflito entre CSS `:active` e Framer Motion.
-- [ ] Usar `scale(0.98)` apenas quando não gerar layout shift ou conflito de transformação.
+- [x] Centralizar comportamento interativo em classes globais reutilizáveis (`premium-button`, `premium-card`, `premium-link`).
+- [x] Evitar conflito entre CSS `:active` e Framer Motion no `ProjectCard` usando apenas deslocamento sutil no Framer.
+- [x] Usar escala apenas como feedback leve de active em classes globais, sem escala agressiva nos cards.
 
 ### Case studies
 
@@ -666,7 +666,7 @@ Este plano reflete o estado real após as correções de arquitetura, narrativa,
 | Sprint 1 — Higiene técnica | Fechado | Arquitetura, metadata, registry, fallback, foco, seleção, interações e lifecycle foram revisados e validados. |
 | Sprint 2 — Conteúdo técnico | Fechado | Os quatro cases visíveis foram migrados para a estrutura narrativa oficial, com claims moderados e documentação de apoio. |
 | Sprint 2.5 — Engineering Evidence | Iniciado | Portfolio Nexus tem evidências locais e Lighthouse; Music Player, SaaS Data Control e English Tutor já têm pastas de evidência com claims moderados e pendências rastreáveis. |
-| Sprint 3 — Microinterações | Parcialmente iniciado | Hover agressivo e reduced motion já foram tratados em pontos críticos. Falta consolidar padrões de botões/links e leitura longa. |
+| Sprint 3 — Microinterações | Parcialmente iniciado | Sistema global `premium-button`/`premium-card` iniciado e aplicado em cards de projetos, contato e navegação dos cases. Falta expandir para botões internos dos cases e leitura longa. |
 | Sprint 4 — Performance/homologação | Parcialmente iniciado | English Tutor já recebeu defer/lazy loading e medição inicial. Lighthouse local foi registrado; falta profiling formal e correção do LCP. |
 
 ### Próxima sequência recomendada

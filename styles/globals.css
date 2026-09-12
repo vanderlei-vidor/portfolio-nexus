@@ -1,4 +1,4 @@
-﻿@import "tailwindcss";
+@import "tailwindcss";
 
 /* Tailwind v4 design tokens. */
 @theme {
@@ -49,6 +49,135 @@ button {
   -webkit-appearance: none;
   appearance: none;
 }
+/* Premium interaction system: shared behavior for key links, buttons, and cards. */
+.premium-button,
+.premium-card,
+.premium-link {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.premium-button {
+  position: relative;
+  isolation: isolate;
+  display: inline-flex;
+  min-height: 2.75rem;
+  align-items: center;
+  justify-content: center;
+  gap: 0.625rem;
+  overflow: hidden;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(18px);
+  transition:
+    transform 220ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 220ms ease,
+    background-color 220ms ease,
+    color 220ms ease,
+    box-shadow 220ms ease;
+}
+
+.premium-button::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(110deg, transparent, rgba(255, 255, 255, 0.18), transparent);
+  opacity: 0;
+  transform: translateX(-70%);
+  transition:
+    opacity 220ms ease,
+    transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.premium-button--primary {
+  border-color: rgba(255, 255, 255, 0.72);
+  background: #ffffff;
+  color: #020617;
+  box-shadow: 0 12px 34px rgba(255, 255, 255, 0.12);
+}
+
+.premium-button--secondary,
+.premium-button--ghost {
+  background: rgba(255, 255, 255, 0.045);
+  color: #e4e4e7;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.22);
+}
+
+.premium-card {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.035);
+  box-shadow: 0 22px 60px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(18px);
+  transition:
+    transform 260ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 260ms ease,
+    background-color 260ms ease,
+    box-shadow 260ms ease;
+}
+
+.premium-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.12), transparent 34%, rgba(96, 165, 250, 0.08));
+  opacity: 0;
+  transition: opacity 260ms ease;
+}
+
+.premium-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.premium-link {
+  transition:
+    color 180ms ease,
+    opacity 180ms ease,
+    transform 180ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .premium-button:hover {
+    transform: translateY(-1px);
+    border-color: rgba(147, 197, 253, 0.55);
+    box-shadow: 0 16px 40px rgba(37, 99, 235, 0.18);
+  }
+
+  .premium-button:hover::before {
+    opacity: 1;
+    transform: translateX(70%);
+  }
+
+  .premium-button--primary:hover {
+    background: #93c5fd;
+    color: #020617;
+  }
+
+  .premium-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(147, 197, 253, 0.28);
+    background: rgba(255, 255, 255, 0.055);
+    box-shadow: 0 28px 70px rgba(37, 99, 235, 0.12), 0 18px 55px rgba(0, 0, 0, 0.25);
+  }
+
+  .premium-card:hover::after {
+    opacity: 1;
+  }
+}
+
+.premium-button:active,
+.premium-card:active {
+  transform: translateY(0) scale(0.99);
+}
+
+.premium-card:focus-within,
+.premium-card-link:focus-visible .premium-card {
+  border-color: rgba(147, 197, 253, 0.55);
+  box-shadow: 0 0 0 1px rgba(147, 197, 253, 0.32), 0 24px 60px rgba(37, 99, 235, 0.12);
+}
 
 :where(a, button, input, textarea, select, summary, [tabindex]):focus {
   outline: none;
@@ -74,5 +203,12 @@ button {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+  .premium-button,
+  .premium-card,
+  .premium-link,
+  .premium-button::before,
+  .premium-card::after {
+    transform: none !important;
   }
 }

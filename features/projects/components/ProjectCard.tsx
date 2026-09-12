@@ -1,7 +1,9 @@
 "use client";
-import { motion } from "framer-motion";
-import Link from "next/link";
+
+import { motion, useReducedMotion } from "framer-motion";
+import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 interface ProjectCardProps {
   title: string;
@@ -12,39 +14,37 @@ interface ProjectCardProps {
 }
 
 export default function ProjectCard({ title, desc, slug, imageUrl, ctaLabel }: ProjectCardProps) {
+  const shouldReduceMotion = useReducedMotion();
+
   return (
-    <Link href={`/projects/${slug}`} aria-label={`${ctaLabel}: ${title}`}>
-      <motion.div
-        whileHover={{ y: -4, scale: 1.005 }}
-        transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-        className="relative rounded-2xl overflow-hidden border border-white/[0.05] bg-zinc-900/20 backdrop-blur-xl hover:border-white/20 transition-colors duration-500 group"
+    <Link href={`/projects/${slug}`} aria-label={`${ctaLabel}: ${title}`} className="premium-card-link group block focus-visible:outline-none">
+      <motion.article
+        whileHover={shouldReduceMotion ? undefined : { y: -3 }}
+        transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+        className="premium-card rounded-2xl"
       >
-        <div className="h-48 relative overflow-hidden">
+        <div className="relative h-48 overflow-hidden">
           <Image
             src={imageUrl}
             alt={title}
             fill
             quality={75}
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            className="object-cover grayscale transition-all duration-500 group-hover:scale-105 group-hover:grayscale-0"
+            className="object-cover grayscale transition-[filter,transform] duration-500 group-hover:grayscale-0 motion-safe:group-hover:scale-[1.025]"
           />
-          <div className="absolute inset-0 bg-linear-to-t from-zinc-900 via-transparent to-transparent opacity-60" />
+          <div className="absolute inset-0 bg-linear-to-t from-zinc-950 via-zinc-950/15 to-transparent opacity-70" aria-hidden="true" />
         </div>
 
-        <div className="p-6">
-          <h3 className="text-2xl font-bold tracking-tight">{title}</h3>
-          <p className="opacity-50 text-sm mt-3 leading-relaxed">{desc}</p>
+        <div className="relative z-10 p-6">
+          <h3 className="text-2xl font-bold tracking-tight text-white">{title}</h3>
+          <p className="mt-3 text-sm leading-relaxed text-zinc-400">{desc}</p>
 
-          <div className="mt-6 flex items-center gap-2">
-            <span className="text-xs uppercase tracking-[0.2em] font-mono text-zinc-400 group-hover:text-white transition-colors duration-300">
-              {ctaLabel}
-            </span>
-            <span className="text-zinc-500 group-hover:text-white group-hover:translate-x-1 transition-all duration-300">
-              â†’
-            </span>
+          <div className="mt-6 flex items-center gap-2 text-zinc-400 transition-colors duration-300 group-hover:text-white">
+            <span className="font-mono text-xs font-semibold uppercase tracking-[0.2em]">{ctaLabel}</span>
+            <ArrowUpRight size={15} className="transition-transform duration-300 motion-safe:group-hover:-translate-y-0.5 motion-safe:group-hover:translate-x-0.5" aria-hidden="true" />
           </div>
         </div>
-      </motion.div>
+      </motion.article>
     </Link>
   );
 }
