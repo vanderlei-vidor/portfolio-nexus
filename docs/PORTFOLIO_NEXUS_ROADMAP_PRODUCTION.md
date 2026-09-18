@@ -1,425 +1,992 @@
-# Portfolio Nexus — Production-Grade Roadmap
+Portfolio Nexus — Production-Grade Roadmap v2.1
 
-> **Objetivo interno:** elevar o Portfolio Nexus a um padrão de execução comparável a produtos digitais de alto nível, com foco em engenharia, clareza narrativa, acessibilidade, performance e confiabilidade técnica.
->
-> **Regra principal:** nenhuma afirmação pública deve exceder o que pode ser demonstrado por código, teste, profiling, benchmark, documentação ou comportamento observável do produto.
+Objetivo interno: elevar o Portfolio Nexus a um padrão de execução comparável a produtos digitais de alto nível, com foco em engenharia, clareza narrativa, acessibilidade, performance, confiabilidade técnica e conversão profissional.
 
----
+Regra principal: nenhuma afirmação pública deve exceder o que pode ser demonstrado por código, teste, profiling, benchmark, documentação ou comportamento observável do produto.
 
-## 1. Princípios do projeto
+Regra de posicionamento: o termo AAA pode continuar sendo usado internamente como meta de qualidade, mas não deve aparecer como autoavaliação pública.
 
-O Portfolio Nexus não deve ser tratado apenas como uma vitrine visual. Ele deve funcionar como uma demonstração prática de capacidade de engenharia, produto e comunicação técnica.
+1. Norte do produto
 
-A experiência final deve transmitir cinco qualidades:
+O Portfolio Nexus não é apenas uma vitrine visual.
 
-1. **Clareza:** o visitante entende rapidamente o problema, a decisão técnica e o resultado de cada projeto.
-2. **Credibilidade:** métricas, claims e descrições são tecnicamente defensáveis.
-3. **Consistência:** design, motion, i18n e arquitetura seguem padrões unificados.
-4. **Performance:** efeitos visuais nunca comprometem responsividade, estabilidade ou acessibilidade.
-5. **Evidência:** toda afirmação importante possui um mecanismo de comprovação.
+Ele deve funcionar como uma demonstração prática de capacidade em:
 
-> O termo **AAA** pode continuar sendo usado internamente como meta de qualidade, mas não deve aparecer como autoavaliação pública do portfólio.
+engenharia de software;
 
----
+arquitetura;
 
-## 2. Estrutura narrativa oficial dos cases
+produto;
 
-Todos os estudos de caso devem seguir a mesma arquitetura narrativa:
+performance;
 
-### Problema
+acessibilidade;
 
-- Qual era o problema real?
-- Por que ele é tecnicamente relevante?
-- Que limitações existiam?
+comunicação técnica;
 
-### Decisão de engenharia
+qualidade de entrega;
 
-- Qual decisão principal foi tomada?
-- Quais alternativas foram consideradas?
-- Que trade-offs existiram?
+decisão baseada em evidência.
 
-### Solução
+A experiência final deve transmitir seis qualidades:
 
-- Como a arquitetura foi organizada?
-- Quais tecnologias foram usadas e por quê?
-- Quais mecanismos de segurança, desempenho ou confiabilidade foram aplicados?
+Clareza — o visitante entende rapidamente quem é Vanderlei, o que ele constrói e por que cada projeto é relevante.
 
-### Evidência
+Credibilidade — claims, métricas e descrições são tecnicamente defensáveis.
 
-- Testes automatizados.
-- Benchmarks.
-- Profiling.
-- Screenshots técnicos.
-- Diagramas de arquitetura.
-- Logs ou métricas reproduzíveis.
-- Comportamento verificável no produto.
+Consistência — design, motion, i18n, arquitetura e narrativa seguem padrões unificados.
 
-### Resultado
+Performance — efeitos visuais nunca comprometem responsividade, estabilidade ou acessibilidade.
 
-Separar sempre:
+Evidência — afirmações importantes possuem mecanismo de comprovação.
 
-- **Resultado técnico:** melhoria mensurável na implementação.
-- **Resultado para o usuário:** benefício percebido na experiência.
-- **Resultado de engenharia:** redução de risco, aumento de manutenibilidade ou ganho arquitetural.
+Conversão — recrutadores, clientes e tech leads conseguem chegar rapidamente a Projects, Resume, GitHub, LinkedIn e Contact.
 
----
+2. Estado atual consolidado
 
-## 3. Política de confiabilidade de claims
+2.1 Baseline herdado do roadmap anterior
+
+Área
+
+Estado
+
+Leitura
+
+Higiene técnica
+
+Fechada
+
+Registry, fallback, metadata, foco, seleção, interações e lifecycle principal revisados
+
+Narrativa dos cases
+
+Fechada
+
+Quatro cases migrados para Problem → Decision → Solution → Evidence → Result
+
+Engineering Evidence
+
+Em andamento
+
+Estrutura criada; faltam provas reais em alguns projetos
+
+Microinterações
+
+Parcial
+
+Padrões globais aplicados; falta fechamento de componentes internos
+
+Performance / homologação
+
+Parcial
+
+English Tutor otimizado; Lighthouse baseline criado; LCP continua crítico
+
+Hiring / conversion UX
+
+Novo
+
+Precisa virar uma frente formal do roadmap
+
+Release production gate
+
+Parcial
+
+Pipeline definido, mas precisa fechar 100% antes do release final
+
+2.2 Baseline de performance registrado
+
+Medição local em build de produção:
+
+Performance: 75
+
+Accessibility: 96
+
+Best Practices: 96
+
+SEO: 100
+
+LCP: 8.6 s
+
+CLS: 0.008
+
+TBT: 50 ms
+
+Leitura
+
+Accessibility, Best Practices e SEO já estão em bom nível.
+
+CLS e TBT não indicam, neste baseline, um problema estrutural grave.
+
+LCP é o principal gargalo técnico atual.
+
+Nenhum claim público de “alta performance” deve ser usado até a nova medição comprovar melhora.
+
+3. Ordem oficial de prioridade
+
+A partir da versão 2.1, a execução deve seguir esta ordem:
+
+Baseline e limpeza do roadmap
+
+Performance P0 — LCP
+
+Engineering Evidence
+
+Hiring / Conversion UX
+
+Case Study Proof
+
+Motion e UI polish
+
+QA, responsividade, acessibilidade e i18n
+
+Release Gate
+
+Publicação somente de métricas verificadas
+
+Nenhuma nova tecnologia visual deve ser adicionada antes de fechar os itens P0 e P1.
+
+4. Classificação de prioridade
+
+P0 — bloqueia percepção de qualidade
+
+LCP elevado.
+
+Erro de build.
+
+Erro de runtime.
+
+Falha crítica de navegação.
+
+Conteúdo incorreto ou claim não comprovado.
+
+Problema grave de acessibilidade.
+
+CTA ou contato quebrado.
+
+Regressão mobile severa.
+
+P1 — necessário para release profissional
+
+Engineering Evidence.
+
+Resume / Contact / GitHub / LinkedIn claramente acessíveis.
+
+TL;DR dos cases.
+
+Paridade PT/EN/ES.
+
+Navegação por teclado.
+
+Testes E2E críticos.
+
+Cross-browser básico.
+
+Lighthouse em build real.
+
+P2 — refinamento
+
+Microinterações adicionais.
+
+Shaders.
+
+WebGL adicional.
+
+Glassmorphism extra.
+
+Efeitos visuais experimentais.
+
+Animações decorativas.
+
+P2 nunca deve atrasar P0 ou P1.
+
+5. Política oficial de claims
 
 Nenhum claim deve ser publicado como fato sem evidência correspondente.
 
-### Classificação obrigatória
+5.1 Estados
 
-| Estado | Significado | Pode aparecer como fato público? |
-|---|---|---:|
-| **Verified** | Comprovado por teste, benchmark, profiling ou documentação verificável | Sim |
-| **Observed** | Comportamento observado, mas sem benchmark formal | Sim, com linguagem moderada |
-| **Designed** | Capacidade prevista pela arquitetura, mas ainda não validada integralmente | Somente como capacidade planejada/preparada |
-| **Target** | Meta de qualidade ou performance | Não como resultado já alcançado |
+Estado
 
-### Linguagem recomendada
+Significado
 
-Evitar:
+Uso público
 
-- “zero bugs”
-- “zero alucinações”
-- “privacidade absoluta”
-- “zero distorção”
-- “120 FPS” sem profiling
-- “cold start < 1.8s” sem benchmark reproduzível
-- “100% seguro”
+Verified
 
-Preferir:
+Comprovado por teste, benchmark, profiling, CI ou documentação reproduzível
 
-- “arquitetura projetada para...”
-- “validado por...”
-- “mitiga...”
-- “reduz a dependência de...”
-- “mantém isolamento de...”
-- “perfilado em...”
-- “meta de...”
+Sim
 
----
+Observed
 
-## 4. Narrativa técnica revisada dos projetos
+Comportamento observado sem benchmark formal
 
-### 4.1 Music Player Premium
+Sim, com linguagem moderada
 
-**Domínio e stack**  
-Flutter, Dart, SQLite e integrações nativas de áudio.
+Designed
 
-**Problema**  
-Players locais podem ocultar detalhes importantes do pipeline de áudio, incluindo resampling, roteamento incorreto e comportamento inconsistente com DACs externos.
+Capacidade prevista pela arquitetura, ainda não validada integralmente
 
-**Decisão de engenharia**  
-Priorizar uma arquitetura **local-first**, com controle explícito do pipeline de reprodução e tratamento cuidadoso do ciclo de vida assíncrono.
+Apenas como intenção/capacidade
 
-**Solução**
+Target
 
-- Reprodução local-first.
-- Arquitetura preparada para fluxo de áudio de alta fidelidade.
-- Suporte a reprodução gapless quando suportado pelo pipeline utilizado.
-- Detecção e integração com dispositivos de áudio externos conforme capacidades da plataforma.
-- Cancelamento e descarte seguro de listeners, streams e callbacks assíncronos.
+Meta futura
 
-**Evidência necessária antes de publicar claims de performance**
+Não apresentar como resultado
 
-- Profiling de frame rendering.
-- Benchmark documentado de cold start.
-- Verificação do comportamento com DAC USB.
-- Testes de lifecycle cobrindo callbacks após `dispose`.
-- Teste ou documentação específica antes de usar o termo `bit-perfect` como resultado garantido.
+5.2 Linguagem a evitar
 
-**Resultado público recomendado**  
-Player de áudio local-first com foco em alta fidelidade, reprodução contínua, integração com hardware externo e arquitetura resiliente a problemas de lifecycle.
+“zero bugs”
 
----
+“zero alucinações”
 
-### 4.2 SaaS Data Control / Task Manager Pro
+“privacidade absoluta”
 
-**Domínio e stack**  
-Java 17, Spring Boot 3.4, PostgreSQL, Vite, SASS, Docker e Testcontainers.
+“zero distorção”
 
-**Problema**  
-Aplicações CRUD multiusuário podem sofrer vazamento horizontal de dados quando a autorização é tratada apenas na camada de interface ou por identificadores previsíveis.
+“100% seguro”
 
-**Decisão de engenharia**  
-Aplicar isolamento de dados por usuário/tenant diretamente na camada de acesso a dados e cobrir fluxos críticos com testes de integração usando banco real.
+“120 FPS” sem profiling
 
-**Solução**
+“cold start < X” sem benchmark reproduzível
 
-- Consultas com escopo de usuário/tenant, como `findByIdAndUsuarioId`.
-- Mitigação de IDOR por autorização contextual no backend.
-- Rotação de refresh tokens.
-- Expurgo programado de tokens expirados.
-- Geração modular de relatórios.
-- Testes com PostgreSQL real via Testcontainers.
+“production-ready” sem critérios explícitos
 
-**Evidência recomendada**
+“enterprise-grade” sem evidência compatível
 
-- Contagem real e atualizada de testes no pipeline.
-- Relatório de cobertura dos serviços críticos.
-- Testes negativos demonstrando bloqueio de acesso cruzado entre usuários/tenants.
-- Execução CI reproduzível com Testcontainers.
+5.3 Linguagem preferida
 
-**Resultado público recomendado**  
-Plataforma SaaS com isolamento de dados aplicado no backend, autenticação com rotação de tokens e testes de integração sobre PostgreSQL real.
+“arquitetura projetada para...”
 
-> Se os “104 testes automatizados” e a “cobertura de 100% dos serviços críticos” estiverem comprovados no CI, esses números podem ser exibidos como **Verified Evidence**.
+“validado por...”
 
----
+“observado em...”
 
-### 4.3 English Tutor / AI Polyglot Tutor
+“mitiga...”
 
-**Domínio e stack**  
-Flutter, FastAPI, Python 3.11, PostgreSQL, LM Studio e Qwen 2.5 local.
+“reduz a dependência de...”
 
-**Problema**  
-Chatbots genéricos podem produzir respostas linguisticamente plausíveis sem seguir uma estratégia pedagógica consistente.
+“mantém isolamento de...”
 
-**Decisão de engenharia**  
-Separar a decisão pedagógica da geração textual: regras e progressão são determinadas por uma camada autoritativa antes da resposta do modelo.
+“perfilado em...”
 
-**Solução**
+“testado com...”
 
-- `Teacher Brain` determinístico para decisões pedagógicas.
-- `Pedagogical Card` com tradução e explicação comparativa.
-- Persistência de progresso e nível CEFR.
-- Execução local do modelo quando configurada dessa forma.
-- Suporte multilíngue conforme idiomas efetivamente implementados.
-- Interface de voz com feedback visual quando disponível.
+“meta de...”
 
-**Claims a evitar**
+6. Evidence IDs
 
-- “sem alucinações gramaticais”
-- “privacidade absoluta”
+Cada claim técnico relevante deve possuir rastreabilidade interna.
 
-**Resultado público recomendado**  
-Tutor de idiomas com arquitetura híbrida que reduz a dependência do LLM para decisões pedagógicas, mantendo regras, progressão e contexto sob controle da aplicação.
+Formato
 
-**Evidência recomendada**
+CLAIM-<PROJETO>-<NNN>
 
-- Testes do `Teacher Brain`.
-- Casos de validação pedagógica.
-- Fluxo documentado de dados enviados ou não enviados ao modelo.
-- Matriz real de idiomas suportados.
+Status:
+Verified | Observed | Designed | Target
 
----
+Claim:
+Descrição interna do que está sendo afirmado.
 
-### 4.4 Portfolio Nexus
+Evidence:
+- arquivo
+- teste
+- CI
+- benchmark
+- log
+- trace
 
-**Domínio e stack**  
-Next.js 16, React 19, TypeScript, Tailwind CSS v4, GSAP, Lenis e integrações 3D quando necessárias.
+Public wording:
+Texto aprovado para o portfólio.
 
-**Problema**  
-Portfólios técnicos frequentemente apresentam projetos como cards isolados, sem narrativa, consistência arquitetural ou evidência de decisões de engenharia.
+Last verified:
+YYYY-MM-DD
 
-**Decisão de engenharia**  
-Construir uma plataforma unificada de cases, com registro modular de projetos, i18n, SSG e motion controlado por acessibilidade.
+Exemplo
 
-**Solução**
+CLAIM-PORTFOLIO-001
 
-- Registro modular de projetos.
-- Conteúdo estruturado por case.
-- i18n em PT, EN e ES.
-- Geração estática quando compatível com a rota.
-- Transições de página discretas.
-- Suporte a `prefers-reduced-motion`.
-- Design system unificado.
+Status:
+Verified
 
-**Resultado público recomendado**  
-Ecossistema de estudos de caso com arquitetura modular, conteúdo multilíngue, geração estática e motion acessível.
+Claim:
+14 rotas são geradas estaticamente pelo build atual.
 
-> Quantidades como “14/14 páginas estáticas” devem ser exibidas somente se confirmadas pelo build atual.
+Evidence:
+- build-output.md
+- CI run
+- registro do Next.js build
 
----
+Public wording:
+"14 statically generated routes"
 
-## 5. Roadmap de execução
+Last verified:
+2026-09-XX
 
-## Sprint 1 — Higiene técnica e confiabilidade estrutural
+7. Camadas de evidência
 
-**Objetivo:** eliminar inconsistências arquiteturais e bugs que comprometem a percepção de qualidade.
+A evidência deve existir em três níveis.
 
-### Tarefas
+RAW EVIDENCE
+    ↓
+INTERNAL ENGINEERING EVIDENCE
+    ↓
+APPROVED PUBLIC EVIDENCE
+    ↓
+PORTFOLIO CASE STUDY
 
-- [x] Corrigir metadados e OpenGraph para linguagem consistente.
-- [x] Remover importações hardcoded de cases no `ProjectDetailPage.tsx`.
-- [x] Resolver carregamento através de `projectsRegistry`.
-- [x] Garantir fallback para projeto inexistente.
-- [x] Revisar `focus-visible` usando tokens do design system.
-- [x] Revisar contraste de `::selection`.
-- [x] Padronizar comportamento de botões e links interativos.
-- [x] Garantir que lifecycle de animações/listeners seja corretamente finalizado.
+Raw Evidence
 
-### Critérios de aceite
+logs;
 
-- [x] Nenhuma rota de projeto depende de import manual específico.
-- [x] Nenhum texto de metadata mistura idiomas.
-- [x] Navegação por teclado possui foco visível consistente.
-- [x] `npm run lint` sem erros.
-- [x] `npx tsc --noEmit` sem erros.
+Playwright traces;
 
----
+Lighthouse JSON;
 
-## Sprint 2 — Cases e conteúdo técnico
+screenshots técnicas;
 
-**Objetivo:** transformar cada projeto em uma narrativa de engenharia confiável.
+output de testes;
 
-### Tarefas
+coverage;
 
-- [x] Reescrever `cardDescription` e `description` em PT/EN/ES.
-- [ ] Migrar todos os cases para o formato:
-  - [x] Portfolio Nexus
-  - [x] Music Player
-  - [x] SaaS Data Control
-  - [x] English Tutor
-  - [x] SaaS Data Control
-  - [x] English Tutor
-  - [x] English Tutor
-  - Problema
-  - Decisão de engenharia
-  - Solução
-  - Evidência
-  - Resultado
-- [x] Remover claims absolutos ou não verificáveis.
-- [x] Criar documentação padrão para novos cases.
-- [x] Documentar convenções do `projectsRegistry`.
+benchmark;
 
-### Critérios de aceite
+profiling;
 
-- [x] Todo claim técnico importante está classificado como `Verified`, `Observed`, `Designed` ou `Target`.
-- [x] Nenhum número aparece como resultado sem fonte verificável.
-- [x] Conteúdo PT/EN/ES possui equivalência semântica.
-- [x] Não existem placeholders genéricos em produção.
+CI run.
 
----
+Internal Engineering Evidence
 
-## Sprint 2.5 — Engineering Evidence
+docs/evidence/<project>/
 
-**Objetivo:** transformar afirmações em provas técnicas.
+Approved Public Evidence
 
-### Criar para cada projeto
+Claims autorizados para aparecer no portfólio.
 
-- [ ] `docs/evidence/<project>/README.md`
-  - [x] Portfolio Nexus
-  - [x] Music Player
-  - [x] SaaS Data Control
-  - [x] English Tutor
-- [ ] Evidências de testes.
-  - [x] Portfolio Nexus: lint, TypeScript, Vitest e E2E registrados.
-  - [x] Music Player: matriz de lifecycle criada como plano de teste.
-  - [ ] Music Player: anexar execução real dos testes de lifecycle.
-  - [x] SaaS Data Control: matriz de segurança e CI criada como plano de evidência.
-  - [ ] SaaS Data Control: anexar testes negativos, cobertura e logs de CI.
-  - [x] English Tutor: matriz Teacher Brain, privacidade e performance do case criada.
-  - [ ] English Tutor: anexar testes pedagógicos, matriz de idiomas e fluxo real de dados.
-- [ ] Evidências de performance quando houver claim de performance.
-  - [x] Portfolio Nexus: Lighthouse local registrado.
-  - [ ] Portfolio Nexus: corrigir LCP e repetir Lighthouse para meta de Performance.
-  - [x] Music Player: plano de performance criado sem benchmark publicado.
-  - [ ] Music Player: anexar profiling/cold start quando o projeto original estiver disponível.
-  - [x] English Tutor: performance percebida do case registrada como evidência do portfolio.
-  - [ ] English Tutor: anexar profiling formal da rota e evidência do app original.
-- [ ] Diagrama arquitetural simples.
-- [ ] Lista de decisões e trade-offs.
-- [ ] Lista de claims aprovados para publicação.
-  - [x] Portfolio Nexus
-  - [x] Music Player
-  - [x] SaaS Data Control
-  - [x] English Tutor
+Portfolio Case Study
 
-### Estrutura sugerida
+Somente a informação necessária para convencer e informar o visitante.
 
-```text
+O case não deve virar um dump de documentação interna.
+
+8. Narrativa oficial dos cases
+
+Todos os cases devem seguir a mesma arquitetura.
+
+8.1 TL;DR obrigatório
+
+No topo de cada case:
+
+ROLE
+STACK
+CHALLENGE
+KEY DECISION
+EVIDENCE
+RESULT
+STATUS
+
+Objetivo: permitir leitura em 20–30 segundos.
+
+8.2 Estrutura longa
+
+Contexto
+
+Breve descrição do produto e do cenário.
+
+Problema
+
+Qual era o problema real?
+
+Por que era tecnicamente relevante?
+
+Quais restrições existiam?
+
+Decisão de engenharia
+
+Qual decisão principal foi tomada?
+
+Quais alternativas foram consideradas?
+
+Quais trade-offs existiram?
+
+Solução
+
+Como a arquitetura foi organizada?
+
+Quais tecnologias foram usadas e por quê?
+
+Quais mecanismos de segurança, desempenho ou confiabilidade foram aplicados?
+
+Evidência
+
+testes;
+
+benchmarks;
+
+profiling;
+
+diagramas;
+
+CI;
+
+logs;
+
+screenshots técnicas;
+
+comportamento reproduzível.
+
+Resultado
+
+Separar:
+
+Resultado técnico
+
+Resultado para o usuário
+
+Resultado de engenharia
+
+Trade-offs e próximos passos
+
+O que ainda pode evoluir?
+
+9. Sprint 0 — Roadmap Cleanup & Baseline
+
+Objetivo: eliminar contradições internas e estabelecer uma única fonte de verdade.
+
+Tarefas
+
+Remover duplicações do roadmap anterior.
+
+Remover tarefas marcadas como concluídas que ainda aparecem em “próximos passos”.
+
+Consolidar status de cada sprint.
+
+Registrar data do baseline atual.
+
+Confirmar stack pública de cada projeto.
+
+Confirmar números atualmente publicados.
+
+Rodar pipeline local completo.
+
+Pipeline
+
+npm run lint
+npx tsc --noEmit
+npm run test
+npm run build
+npm run test:e2e
+
+Critérios de aceite
+
+Roadmap não possui contradições.
+
+Todos os estados refletem o repositório atual.
+
+Pipeline executado e registrado.
+
+Nenhuma métrica pública sem origem rastreável.
+
+10. Sprint 1 — Performance P0: LCP
+
+Objetivo: reduzir o principal gargalo de performance antes de adicionar novos efeitos.
+
+Baseline
+
+Performance: 75
+
+LCP: 8.6 s
+
+CLS: 0.008
+
+TBT: 50 ms
+
+Etapa 1 — identificar o LCP real
+
+Registrar qual elemento é o LCP.
+
+Registrar resource timing.
+
+Verificar se é:
+
+imagem;
+
+fonte;
+
+hero;
+
+background;
+
+componente 3D;
+
+CSS;
+
+hidratação;
+
+animação;
+
+overlay;
+
+loader;
+
+recurso externo.
+
+Etapa 2 — investigar cadeia crítica
+
+Verificar preload.
+
+Verificar priority em imagem crítica.
+
+Verificar fetchPriority.
+
+Auditar next/image.
+
+Auditar fontes.
+
+Auditar CSS crítico.
+
+Auditar imports do hero.
+
+Auditar dynamic imports.
+
+Auditar código 3D.
+
+Auditar animações que atrasam visibilidade.
+
+Verificar se o LCP está visualmente pronto mas oculto por motion.
+
+Etapa 3 — corrigir
+
+Aplicar somente mudanças sustentadas por profiling.
+
+Preferências:
+
+SSR/SSG para conteúdo crítico;
+
+imagem crítica priorizada;
+
+fontes com estratégia adequada;
+
+conteúdo above-the-fold mínimo;
+
+adiar código visual não essencial;
+
+dynamic import abaixo da dobra;
+
+transformar animações de entrada em transform + opacity;
+
+evitar blur caro no carregamento inicial.
+
+Etapa 4 — medir novamente
+
+Registrar:
+
+Before:
+Performance:
+LCP:
+CLS:
+TBT:
+
+After:
+Performance:
+LCP:
+CLS:
+TBT:
+
+Environment:
+Device profile:
+Browser:
+Build:
+Date:
+
+Meta inicial
+
+Performance >= 90 mobile
+
+Accessibility >= 95
+
+Best Practices >= 95
+
+SEO >= 95
+
+LCP dentro de faixa significativamente melhor que o baseline
+
+Meta aspiracional
+
+Performance >= 95 em cenário controlado e reproduzível.
+
+Não perseguir 100 como KPI isolado.
+
+11. Sprint 2 — Engineering Evidence
+
+Objetivo: transformar afirmações em provas técnicas.
+
+Estrutura
+
 docs/
 └── evidence/
+    ├── portfolio-nexus/
     ├── music-player/
-    │   ├── README.md
-    │   ├── performance.md
-    │   ├── lifecycle-tests.md
-    │   └── claims.md
     ├── saas-data-control/
-    │   ├── README.md
-    │   ├── security-tests.md
-    │   ├── data-isolation.md
-    │   ├── ci-evidence.md
-    │   └── claims.md
-    ├── english-tutor/
-    │   ├── README.md
-    │   ├── teacher-brain-tests.md
-    │   ├── privacy-model.md
-    │   ├── performance.md
-    │   └── claims.md
-    └── portfolio-nexus/
-        ├── README.md
-        ├── lighthouse.md
-        └── accessibility.md
-```
+    └── english-tutor/
 
-### Critérios de aceite
+Arquivos mínimos por projeto
 
-- [ ] Cada projeto possui pelo menos uma evidência verificável ligada ao principal diferencial técnico.
-- [ ] Métricas públicas podem ser reproduzidas ou rastreadas.
-- [ ] Claims não comprovados foram convertidos em linguagem de arquitetura ou metas.
+README.md
+claims.md
+architecture.md
+trade-offs.md
+tests.md
+performance.md
 
----
+Arquivos adicionais conforme necessidade:
 
-## Sprint 3 — Microinterações e design premium
+security.md
+privacy-model.md
+lifecycle.md
+ci-evidence.md
+data-isolation.md
+teacher-brain-tests.md
+accessibility.md
 
-**Objetivo:** aumentar percepção de refinamento sem sacrificar performance.
+Portfolio Nexus
 
-### Regra de motion
+Lint registrado.
 
-Motion deve seguir três níveis:
+TypeScript registrado.
 
-1. **Funcional:** hover, focus, active, feedback de navegação.
-2. **Orientação:** progress bar, page transition, reveals discretos.
-3. **Storytelling:** hero e momentos específicos de destaque.
+Vitest registrado.
 
-Não usar animação como decoração indiscriminada.
+E2E registrado.
 
-### Project Cards
+Lighthouse baseline registrado.
 
-- [x] Reduzir escalas agressivas (`scale-110` → aproximadamente `scale-105`).
-- [x] Utilizar easing consistente (`cubic-bezier(0.22, 1, 0.36, 1)`) nos cards e padrão global.
-- [x] Aplicar elevação e borda sutil no hover dos cards principais.
-- [x] CTA com deslocamento discreto, sem cadeia excessiva de animações.
+Corrigir LCP.
 
-### Botões e links
+Repetir Lighthouse.
 
-- [x] Centralizar comportamento interativo em classes globais reutilizáveis (`premium-button`, `premium-card`, `premium-link`).
-- [x] Evitar conflito entre CSS `:active` e Framer Motion no `ProjectCard` usando apenas deslocamento sutil no Framer.
-- [x] Usar escala apenas como feedback leve de active em classes globais, sem escala agressiva nos cards.
+Registrar build output.
 
-### Case studies
+Registrar rotas estáticas atuais.
 
-- [x] Adicionar progress bar discreta para leitura longa no fluxo `/process`.
-- [x] Garantir que a barra não afete acessibilidade ou CLS: indicador textual saiu do topo direito e virou pill discreto sem interação.
+Registrar accessibility audit.
 
-### Hero
+Criar architecture.md.
 
-- [x] Preferir `transform` + `opacity`.
-- [ ] Evitar blur animado durante scroll por padrão.
-- [ ] Usar blur somente se profiling confirmar custo aceitável em dispositivos reais.
+Criar trade-offs.md.
 
-### Critérios de aceite
+Music Player
 
-- [ ] Nenhuma animação é necessária para compreender o conteúdo.
-- [x] `prefers-reduced-motion` desativa ou simplifica motion não essencial nos padrões globais e no fluxo `/process`.
-- [x] Nenhum efeito novo depende de layout: microinterações usam `transform`/`opacity` e o horizontal scroll removeu snap.
-- [ ] Interações permanecem responsivas em hardware intermediário.
+Plano de lifecycle criado.
 
----
+Plano de performance criado.
 
-## Sprint 4 — Transições, performance e homologação
+Executar testes reais de lifecycle.
 
-**Objetivo:** finalizar navegação, qualidade de produção e validação automatizada.
+Registrar callbacks após dispose.
 
-### Page transition recomendada
+Registrar cold start.
 
-Preferir uma transição curta de `opacity + translate`, evitando blur como padrão global.
+Fazer profiling de frame rendering.
 
-```tsx
+Testar integração com DAC USB quando disponível.
+
+Validar claims de gapless.
+
+Não publicar bit-perfect como resultado sem evidência específica.
+
+Criar architecture.md.
+
+Criar trade-offs.md.
+
+SaaS Data Control / Task Manager Pro
+
+Matriz de segurança criada.
+
+Plano de CI criado.
+
+Executar testes negativos de acesso cruzado.
+
+Registrar isolamento de tenant/usuário.
+
+Registrar coverage atual.
+
+Registrar contagem atual de testes.
+
+Registrar CI real.
+
+Registrar PostgreSQL/Testcontainers.
+
+Validar refresh-token rotation.
+
+Validar expurgo de tokens expirados.
+
+Criar architecture.md.
+
+Criar trade-offs.md.
+
+English Tutor
+
+Matriz Teacher Brain criada.
+
+Privacy model iniciado.
+
+Performance do case registrada.
+
+Executar testes do Teacher Brain.
+
+Criar matriz real de idiomas.
+
+Documentar fluxo de dados.
+
+Registrar o que sai ou não do dispositivo.
+
+Validar feedback de voz disponível.
+
+Registrar profiling da rota.
+
+Criar architecture.md.
+
+Criar trade-offs.md.
+
+Critérios de aceite
+
+Cada projeto possui pelo menos uma evidência verificável ligada ao seu principal diferencial.
+
+Toda métrica pública pode ser rastreada.
+
+Claims não comprovados foram rebaixados para Observed, Designed ou Target.
+
+Nenhum case depende de linguagem promocional vaga.
+
+12. Sprint 3 — Hiring / Conversion UX
+
+Objetivo: transformar qualidade técnica em clareza de contratação.
+
+12.1 Hero
+
+O visitante deve entender em poucos segundos:
+
+quem é Vanderlei;
+
+qual é sua função;
+
+o que ele constrói;
+
+como acessar os projetos;
+
+como entrar em contato.
+
+Estrutura recomendada
+
+VANDERLEI VIDOR
+Full Stack / Product Engineer
+
+Product. Engineering. Experience.
+
+Short positioning sentence.
+
+[Explore Case Studies]
+[Contact Me]
+
+Tarefas
+
+Nome visível na primeira viewport.
+
+Função profissional visível na primeira viewport.
+
+CTA principal para projetos.
+
+CTA secundário para contato.
+
+Link de Resume.
+
+GitHub claramente acessível.
+
+LinkedIn claramente acessível.
+
+Email/Contact acessível.
+
+Availability apresentada de forma objetiva.
+
+Não esconder links profissionais somente no footer.
+
+12.2 Navegação
+
+Navegação recomendada:
+
+Projects
+Process
+About
+Resume
+Contact
+
+GitHub e LinkedIn podem existir como ações complementares.
+
+12.3 Resume
+
+Resume em PDF atualizado.
+
+Resume em inglês.
+
+Link funcional.
+
+Nome profissional consistente.
+
+Stack coerente com os cases.
+
+Sem claims não verificáveis.
+
+12.4 Contact
+
+Formulário funcional.
+
+Estado de loading.
+
+Estado de sucesso.
+
+Estado de erro.
+
+Proteção básica contra spam.
+
+Acessibilidade.
+
+Fallback por email.
+
+CTA claro em mobile.
+
+Critérios de aceite
+
+Um visitante entende nome + função + proposta de valor em até uma primeira leitura rápida.
+
+Projects e Contact estão acessíveis sem procurar.
+
+Resume, GitHub e LinkedIn não estão escondidos.
+
+Nenhuma animação impede CTA.
+
+13. Sprint 4 — Case Study Proof
+
+Objetivo: tornar cada case convincente para leitura rápida e leitura técnica profunda.
+
+Tarefas gerais
+
+TL;DR no topo de todos os cases.
+
+Role.
+
+Stack.
+
+Challenge.
+
+Key Decision.
+
+Evidence.
+
+Result.
+
+Status.
+
+Architecture diagram quando fizer sentido.
+
+Trade-offs explícitos.
+
+Próximos passos.
+
+Links para GitHub somente quando úteis.
+
+Evitar wall of text.
+
+Regra de leitura
+
+Cada case deve funcionar em três níveis:
+
+20 segundos
+
+TL;DR.
+
+2 minutos
+
+Problema → Decisão → Solução → Evidência → Resultado.
+
+10+ minutos
+
+Arquitetura, trade-offs, segurança, testes e evidências.
+
+14. Sprint 5 — Motion & Premium UI Polish
+
+Objetivo: aumentar refinamento sem sacrificar performance, acessibilidade ou compreensão.
+
+Regra de motion
+
+Motion possui três níveis:
+
+Funcional
+
+hover;
+
+focus;
+
+active;
+
+feedback.
+
+Orientação
+
+page transition;
+
+progress;
+
+reveal discreto.
+
+Storytelling
+
+hero;
+
+momentos especiais dos cases.
+
+Motion decorativo não é prioridade.
+
+Project Cards
+
+Escalas agressivas reduzidas.
+
+Easing consistente.
+
+Elevação/borda sutil.
+
+CTA discreto.
+
+Revisar comportamento mobile/touch.
+
+Validar ausência de jank.
+
+Botões e links
+
+Classes globais reutilizáveis.
+
+Conflitos de active/motion reduzidos.
+
+Revisar todos os botões internos dos cases.
+
+Garantir feedback consistente em keyboard/touch/mouse.
+
+Hero
+
+Preferir transform + opacity.
+
+Blur somente com profiling favorável.
+
+Não atrasar LCP por efeito de entrada.
+
+Não ocultar conteúdo principal aguardando animação.
+
+Page transition
+
+Padrão:
+
 const transition = {
   initial: { opacity: 0, y: 8 },
   animate: { opacity: 1, y: 0 },
@@ -429,88 +996,289 @@ const transition = {
     ease: [0.22, 1, 0.36, 1],
   },
 };
-```
 
-Para `prefers-reduced-motion`:
+Reduced motion:
 
-```tsx
 const reducedTransition = {
   initial: { opacity: 1 },
   animate: { opacity: 1 },
   exit: { opacity: 1 },
   transition: { duration: 0 },
 };
-```
 
-### Scroll de rota
+Critérios de aceite
 
-- [ ] Restaurar topo após mudança de rota quando semanticamente adequado.
-- [ ] Sincronizar comportamento com Lenis.
-- [ ] Não quebrar navegação por histórico ou âncoras.
+Nenhuma animação é necessária para compreender conteúdo.
 
-### Pipeline de validação
+prefers-reduced-motion funciona.
 
-```bash
+Não há layout shift causado por motion.
+
+Não há jank perceptível em hardware intermediário.
+
+Mobile não recebe efeitos desnecessariamente pesados.
+
+15. Sprint 6 — QA, Accessibility, Responsive & i18n
+
+Objetivo: fechar consistência entre dispositivos, idiomas e formas de navegação.
+
+15.1 Accessibility
+
+Navegação completa por teclado.
+
+Ordem de foco coerente.
+
+focus-visible consistente.
+
+Contraste.
+
+Landmarks semânticos.
+
+Headings em ordem lógica.
+
+aria-label onde necessário.
+
+Controles sem depender exclusivamente de hover.
+
+prefers-reduced-motion.
+
+Conteúdo animado mantém valor semântico real no HTML inicial.
+
+Regra para counters
+
+Não deixar crawlers/leitores de tela enxergarem apenas 0.
+
+Preferir:
+
+<span className="sr-only">14</span>
+<span aria-hidden="true">
+  <AnimatedCounter from={0} to={14} />
+</span>
+
+ou manter o valor final semanticamente presente no SSR/SSG.
+
+15.2 Responsive
+
+Testar pelo menos:
+
+360 px
+
+390 px
+
+430 px
+
+768 px
+
+1024 px
+
+1280 px
+
+1440 px
+
+ultrawide quando possível
+
+Verificar:
+
+Hero.
+
+H1.
+
+Cards.
+
+Menus.
+
+CTA.
+
+Long text.
+
+Diagramas.
+
+Code blocks.
+
+Footer.
+
+Contact.
+
+15.3 Cross-browser
+
+Smoke test:
+
+Chrome.
+
+Edge.
+
+Firefox.
+
+Safari quando disponível.
+
+15.4 i18n
+
+PT completo.
+
+EN completo.
+
+ES completo.
+
+Sem strings hardcoded.
+
+Sem mistura de idiomas.
+
+Metadata por idioma.
+
+OpenGraph por idioma.
+
+Termos técnicos equivalentes.
+
+Slugs/URLs revisados.
+
+Language switch não destrói contexto da rota.
+
+16. Sprint 7 — Production Release Gate
+
+Objetivo: somente publicar quando o produto estiver comprovadamente pronto.
+
+16.1 Pipeline obrigatório
+
 npm run lint
 npx tsc --noEmit
 npm run test
 npm run build
 npm run test:e2e
-```
 
-### Lighthouse
+Todos devem passar.
 
-Lighthouse deve ser tratado como **gate de qualidade**, não como marketing isolado.
+16.2 Performance
 
-Meta inicial:
+Lighthouse executado em build de produção.
 
-- Performance: >= 90 mobile
-- Accessibility: >= 95
-- Best Practices: >= 95
-- SEO: >= 95
+LCP revisado.
 
-Execução registrada em 2026-09-12 para `http://127.0.0.1:3022/portfolio-aaa/`:
+Imagens otimizadas.
 
-- Performance: 75
-- Accessibility: 96
-- Best Practices: 96
-- SEO: 100
-- LCP: 8.6 s
-- CLS: 0.008
-- TBT: 50 ms
+Efeitos caros auditados.
 
-Leitura: Accessibility, Best Practices e SEO já atingiram a meta inicial nesta medição local. Performance ainda não atingiu a meta por causa do LCP e deve ser tratada como follow-up técnico, não como claim público.
+Sem regressão relevante.
 
-Meta aspiracional:
+Mobile medido.
 
-- Performance >= 95 em cenários controlados e reproduzíveis.
+16.3 Accessibility
 
-> Não bloquear release por diferenças marginais entre execuções sem investigar variabilidade de ambiente.
+Keyboard.
 
+Focus.
 
-### English Tutor: performance percebida na abertura
+Contrast.
 
-- [x] Medir o tempo de entrada da rota `/projects/english-tutor` em build de produção.
-- [x] Auditar custo inicial de GSAP, ScrollTrigger, slideshow, imagens e efeitos visuais do case.
-- [x] Identificar se o engasgo vem de JavaScript inicial, hidratação, imagem pesada, animação de entrada ou transição global.
-- [x] Aplicar lazy loading/dynamic import nas seções abaixo da primeira dobra quando fizer sentido.
-- [x] Reduzir ou adiar animações não essenciais no carregamento inicial.
-- [x] Garantir versão simplificada para `prefers-reduced-motion`.
-- [ ] Comparar antes/depois com Playwright trace, Lighthouse ou profiling do Chrome DevTools.
-**Nota de medição inicial:** após adiar as seções abaixo da primeira dobra, a rota `/projects/english-tutor` manteve o hero visível rapidamente e reduziu a carga inicial observada aos 300ms de aproximadamente 409 nós de DOM / 41 scripts para 142 nós de DOM / 32 scripts. As seções completas continuam carregando depois do idle do navegador.
+Reduced motion.
 
-### Critérios de aceite específicos
+Sem conteúdo essencial invisível ao HTML semântico.
 
-- [x] A navegação até o English Tutor não apresenta travamento perceptível antes da primeira renderização útil.
-- [x] A primeira dobra carrega antes das seções pesadas serem inicializadas.
-- [x] Nenhuma animação abaixo da dobra executa antes de ser necessária.
-- [ ] O case mantém impacto visual sem prejudicar responsividade.
+16.4 Conteúdo
 
----
+Nome e função consistentes.
 
-## 6. Arquitetura de componentes recomendada
+Nomes dos projetos consistentes.
 
-```text
+“Task Manager Pro / SaaS Data Control” padronizado.
+
+Sem placeholders.
+
+Sem claims absolutos.
+
+Métricas rastreáveis.
+
+Datas revisadas.
+
+Links externos funcionando.
+
+16.5 Hiring UX
+
+Contact.
+
+Resume.
+
+GitHub.
+
+LinkedIn.
+
+Projects.
+
+CTA hero.
+
+CTA mobile.
+
+16.6 SEO / metadata
+
+Title com nome profissional.
+
+Description coerente.
+
+Canonical.
+
+OpenGraph.
+
+Twitter/X card.
+
+Sitemap.
+
+Robots.
+
+Structured data quando aplicável.
+
+Favicons.
+
+Social preview.
+
+16.7 Final smoke test
+
+Home.
+
+Projects.
+
+Todos os cases.
+
+Process.
+
+About.
+
+Resume.
+
+Contact.
+
+404/fallback.
+
+Language switch.
+
+Back/forward browser.
+
+Deep link direto.
+
+17. Post-release validation
+
+Após publicação:
+
+Executar Lighthouse novamente no ambiente real.
+
+Validar links.
+
+Validar analytics sem bloquear performance.
+
+Validar formulário de contato.
+
+Revisar logs.
+
+Testar mobile real.
+
+Confirmar social preview.
+
+Confirmar sitemap/robots.
+
+Confirmar páginas indexáveis.
+
+Registrar release baseline.
+
+18. Arquitetura recomendada
+
 src/
 ├── app/
 ├── features/
@@ -532,214 +1300,303 @@ src/
     ├── CASE_STUDY.md
     ├── PROJECT_ORGANIZATION.md
     └── evidence/
-```
 
-### Regras
+Regras
 
-- Um novo projeto deve ser registrado sem alterar a infraestrutura central.
-- Cases devem consumir tipos compartilhados.
-- Strings públicas devem vir do sistema de i18n.
-- Componentes de motion devem respeitar reduced motion por construção.
-- Tokens visuais devem ser centralizados.
+Um projeto novo deve ser registrado sem alterar infraestrutura central.
 
----
+Cases devem consumir tipos compartilhados.
 
-## 7. Template oficial de case
+Strings públicas devem vir do sistema de i18n.
 
-```md
-# Nome do projeto
+Motion deve respeitar reduced motion por construção.
 
-## Contexto
-Breve descrição do produto e do cenário.
+Tokens visuais devem ser centralizados.
 
-## Problema
-Qual problema real precisava ser resolvido?
+Métricas públicas devem vir de fonte rastreável.
 
-## Restrições
-Quais limitações técnicas, de plataforma, prazo ou arquitetura existiam?
+Componentes não devem depender de side effects sem cleanup.
 
-## Decisão de engenharia
-Qual foi a decisão principal e por quê?
+Conteúdo crítico above-the-fold deve evitar dependência de client-side JS desnecessária.
 
-## Alternativas consideradas
-- Alternativa A
-- Alternativa B
+19. Lifecycle e side effects
 
-## Solução
-Como o sistema foi implementado?
+Todo efeito iniciado deve possuir cleanup correspondente.
 
-## Arquitetura
-Diagrama e explicação resumida.
+Auditar:
 
-## Evidências
-- Testes
-- Benchmarks
-- Profiling
-- Segurança
-- CI/CD
+GSAP contexts;
 
-## Resultado técnico
-O que melhorou tecnicamente?
+ScrollTrigger;
 
-## Resultado para o usuário
-Qual benefício surgiu para quem usa o produto?
+timers;
 
-## Trade-offs e próximos passos
-O que ainda pode evoluir?
-```
+setInterval;
 
----
+setTimeout;
 
-## 8. Definition of Done global
+event listeners;
+
+observers;
+
+RAF;
+
+subscriptions;
+
+async callbacks;
+
+resize listeners;
+
+scroll listeners.
+
+Critério
+
+MOUNT
+  ↓
+START EFFECT
+  ↓
+ROUTE CHANGE / UNMOUNT
+  ↓
+CLEANUP
+
+Nenhum efeito deve continuar executando após o componente responsável deixar a tela.
+
+20. Definition of Done global
 
 Uma alteração só é considerada pronta quando:
 
-- [ ] Funciona conforme especificado.
-- [ ] Possui tipagem válida.
-- [ ] Não introduz erro de lint.
-- [ ] Não quebra build.
-- [ ] Testes relevantes passam.
-- [ ] Fluxo crítico possui cobertura E2E quando aplicável.
-- [ ] Não degrada acessibilidade.
-- [ ] Não degrada performance de forma significativa.
-- [ ] Conteúdo público está sincronizado em PT/EN/ES.
-- [ ] Claims novos possuem classificação de evidência.
-- [ ] Motion respeita `prefers-reduced-motion`.
-- [ ] Nenhuma métrica é publicada sem validação correspondente.
+Funciona conforme especificado.
 
----
+Possui tipagem válida.
 
-## 9. Critérios de aceite para release de produção
+Não introduz erro de lint.
 
-### Conteúdo
+Não quebra build.
 
-- [ ] 100% dos textos representam capacidades reais.
-- [ ] Não existem claims absolutos sem prova.
-- [ ] Problema, decisão, solução, evidência e resultado estão claros em todos os cases.
+Testes relevantes passam.
 
-### i18n
+Fluxo crítico possui E2E quando aplicável.
 
-- [ ] PT, EN e ES possuem paridade de conteúdo.
-- [ ] Não existem strings misturadas.
-- [ ] Termos técnicos mantêm significado equivalente entre idiomas.
+Não degrada acessibilidade.
 
-### Acessibilidade
+Não degrada performance de forma significativa.
 
-- [ ] Navegação completa por teclado.
-- [ ] `focus-visible` consistente.
-- [ ] Contraste adequado.
-- [ ] `prefers-reduced-motion` respeitado em toda a aplicação.
+Conteúdo PT/EN/ES permanece sincronizado.
 
-### Performance
+Claims novos possuem classificação de evidência.
 
-- [ ] Sem layout shifts perceptíveis introduzidos por motion.
-- [ ] Imagens otimizadas.
-- [ ] Efeitos caros auditados.
-- [x] Lighthouse executado em build de produção.
+Motion respeita prefers-reduced-motion.
 
-### Qualidade
+Nenhuma métrica é publicada sem validação.
 
-- [ ] `npm run lint`
-- [ ] `npx tsc --noEmit`
-- [ ] `npm run test`
-- [ ] `npm run build`
-- [ ] `npm run test:e2e`
+Side effects possuem cleanup.
 
-### Evidência
+Mobile foi considerado.
 
-- [ ] Todo número publicado tem fonte interna rastreável.
-- [ ] Todo claim de segurança possui teste ou documentação correspondente.
-- [ ] Todo claim de performance possui benchmark/profiling correspondente.
+CTA principal continua acessível.
 
----
+21. Release blocker checklist
 
----
+O release NÃO deve ser considerado final se houver:
 
-## 10. Plano de ação atual
+erro de build;
 
-Este plano reflete o estado real após as correções de arquitetura, narrativa, contato, performance inicial do English Tutor e acessibilidade/motion.
+erro de runtime conhecido em fluxo principal;
 
-### Estado atual por sprint
+link profissional quebrado;
 
-| Sprint | Estado | Leitura prática |
-|---|---|---|
-| Sprint 1 — Higiene técnica | Fechado | Arquitetura, metadata, registry, fallback, foco, seleção, interações e lifecycle foram revisados e validados. |
-| Sprint 2 — Conteúdo técnico | Fechado | Os quatro cases visíveis foram migrados para a estrutura narrativa oficial, com claims moderados e documentação de apoio. |
-| Sprint 2.5 — Engineering Evidence | Iniciado | Portfolio Nexus tem evidências locais e Lighthouse; Music Player, SaaS Data Control e English Tutor já têm pastas de evidência com claims moderados e pendências rastreáveis. |
-| Sprint 3 — Microinterações | Parcialmente iniciado | Sistema global de interação aplicado nos pontos principais; `/process` ganhou indicador discreto, scroll horizontal sem snap e microanimações leves. Falta expandir para botões internos dos cases. |
-| Sprint 4 — Performance/homologação | Parcialmente iniciado | English Tutor já recebeu defer/lazy loading e medição inicial. Lighthouse local foi registrado; falta profiling formal e correção do LCP. |
+Contact quebrado;
 
-### Próxima sequência recomendada
+CTA principal ausente;
 
-1. **Fechar Sprint 1**
-   - Padronizar comportamento de botões e links interativos.
-   - Revisar lifecycle dos principais efeitos GSAP, timers, listeners e RAFs.
-   - Garantir que todo efeito iniciado tenha cleanup explícito.
+claim público sem evidência;
 
-2. **Sprint 2 fechada**
-   - Ajustar cada case para seguir claramente: Problema, Decisão de engenharia, Solução, Evidência e Resultado.
-   - Criar `docs/CASE_STUDY.md` como template oficial.
-   - Criar `docs/PROJECT_ORGANIZATION.md` documentando o `projectsRegistry`, slugs, i18n e estrutura de cases.
-   - Classificar claims principais como `Verified`, `Observed`, `Designed` ou `Target`.
+regressão crítica mobile;
 
-3. **Preparar Sprint 2.5**
-   - Criar a estrutura `docs/evidence/` para os quatro projetos.
-   - Para cada projeto, registrar: resumo técnico, evidências disponíveis, evidências pendentes, decisões, trade-offs e claims permitidos.
-   - Music Player já iniciou essa camada com performance/lifecycle pendentes e claims condicionais.
-   - SaaS Data Control já iniciou segurança, isolamento de dados, CI e claims pendentes de logs/testes reais.
-   - English Tutor já iniciou Teacher Brain, privacy model, performance do case e claims pendentes de testes/fluxo de dados.
-   - SaaS Data Control já iniciou segurança, isolamento de dados, CI e claims pendentes de logs/testes reais.
-   - English Tutor já iniciou Teacher Brain, privacy model, performance do case e claims pendentes de testes/fluxo de dados.
-   - Começar pelo Portfolio Nexus, porque já existem evidências locais: build, lint, TypeScript, testes unitários, E2E, SSG e medição do English Tutor.
+navegação por teclado quebrada;
 
-4. **Retomar Sprint 3/4 com base em evidência**
-   - Fazer profiling formal do English Tutor com Playwright trace ou Chrome DevTools.
-   - Usar o Lighthouse já registrado como baseline e corrigir LCP antes de publicar claim de performance.
-   - Ajustar animações restantes somente onde houver custo perceptível ou risco de acessibilidade.
+problema severo de contraste;
 
-### Critério para avançar para evidências
+LCP significativamente degradado;
 
-Antes de iniciar documentação profunda de evidências, o projeto deve ter:
+strings misturadas entre idiomas;
 
-- [x] Sprint 1 sem pendências críticas de arquitetura, foco ou lifecycle.
-- [x] Sprint 2 com todos os cases seguindo a estrutura narrativa oficial.
-- [ ] Pipeline local passando: `npm run lint`, `npx tsc --noEmit`, `npm run test`, `npm run build`, `npm run test:e2e`.
-- [x] Lista inicial de claims aprovada por projeto.
+animação bloqueando conteúdo;
 
-### Primeira tarefa recomendada agora
+metadata inconsistente.
 
-Fechar o item de maior retorno do Sprint 1: **revisar lifecycle de animações/listeners** nos efeitos compartilhados e cases principais. Isso reduz risco de travamento, memória acumulada e inconsistência entre navegações, especialmente nas páginas mais cinematográficas.
+22. Métricas que realmente importam
 
-## 11. Ordem de implementação recomendada
+Não otimizar somente para scores.
 
-1. Corrigir arquitetura e inconsistências.
-2. Remover claims inseguros ou absolutos.
-3. Reescrever narrativa dos cases.
-4. Criar camada de evidência.
-5. Sincronizar i18n.
-6. Refinar microinterações.
-7. Implementar transições globais discretas.
-8. Executar testes, build, E2E e Lighthouse.
-9. Publicar apenas métricas verificadas.
+Acompanhar:
 
----
+Performance
 
-## 12. Resultado esperado
+LCP
+
+CLS
+
+INP quando disponível
+
+TBT em auditoria
+
+JS inicial
+
+tamanho de imagens críticas
+
+hydration cost
+
+route transition responsiveness
+
+Produto
+
+clareza do hero;
+
+tempo até chegar aos projetos;
+
+tempo até encontrar Contact;
+
+leitura do TL;DR;
+
+consistência dos cases.
+
+Engenharia
+
+build;
+
+tests;
+
+E2E;
+
+coverage quando relevante;
+
+CI;
+
+evidências verificadas.
+
+23. Regra de complexidade
+
+Antes de adicionar uma biblioteca, efeito ou abstração, responder:
+
+Resolve um problema real?
+
+Melhora percepção do usuário?
+
+Pode ser medido?
+
+Tem fallback?
+
+É acessível?
+
+Afeta bundle?
+
+Afeta main thread?
+
+Possui cleanup?
+
+Vale o custo de manutenção?
+
+É mais importante que algum P0/P1 aberto?
+
+Se a resposta não justificar a complexidade, não adicionar.
+
+24. Próxima sequência prática
+
+Agora
+
+1. Fechar Sprint 0
+
+limpar o roadmap;
+
+rodar pipeline;
+
+registrar baseline.
+
+2. Atacar LCP
+
+descobrir elemento;
+
+medir cadeia crítica;
+
+corrigir;
+
+repetir Lighthouse.
+
+3. Fechar Portfolio Nexus evidence
+
+Por ser o projeto atualmente acessível e mais fácil de validar.
+
+4. Implementar Hiring / Conversion UX
+
+nome;
+
+função;
+
+CTAs;
+
+Resume;
+
+Contact;
+
+GitHub;
+
+LinkedIn.
+
+5. TL;DR dos quatro cases
+
+Criar leitura de 20–30 segundos.
+
+6. Expandir Engineering Evidence
+
+Ordem sugerida:
+
+Portfolio Nexus
+
+Task Manager Pro
+
+Music Player
+
+English Tutor
+
+7. Polish final
+
+Somente após performance e prova.
+
+8. Release Gate
+
+Rodar tudo e publicar somente o que estiver aprovado.
+
+25. Resultado esperado
 
 Ao final deste roadmap, o Portfolio Nexus deve demonstrar não apenas domínio visual, mas capacidade de:
 
-- projetar arquiteturas modulares;
-- explicar decisões e trade-offs;
-- implementar segurança e lifecycle corretamente;
-- medir performance antes de divulgá-la;
-- validar comportamento com testes;
-- construir experiências acessíveis;
-- comunicar engenharia de forma clara para recrutadores e líderes técnicos.
+projetar arquiteturas modulares;
 
-O objetivo final não é parecer complexo. É parecer **confiável, intencional e tecnicamente maduro**.
+explicar decisões e trade-offs;
 
+implementar lifecycle corretamente;
 
+comunicar segurança sem exagero;
 
+medir performance antes de divulgá-la;
 
+validar comportamento com testes;
 
+construir experiências acessíveis;
 
+criar interfaces premium sem sacrificar desempenho;
+
+trabalhar com i18n de forma consistente;
+
+apresentar evidências rastreáveis;
+
+comunicar engenharia de forma clara para recrutadores, clientes e líderes técnicos;
+
+transformar qualidade técnica em oportunidade profissional.
+
+O objetivo final não é parecer complexo.
+
+É parecer:
+
+confiável, intencional, tecnicamente maduro e pronto para ser avaliado profissionalmente.

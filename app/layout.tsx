@@ -1,15 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "@/styles/globals.css";
-import { MagneticProvider } from "@/shared/effects/magnetic/MagneticContext";
-import { MouseProvider } from "@/shared/context/MouseContext";
-import Cursor from "@/shared/effects/Cursor";
 import Grain from "@/shared/effects/Grain";
-import PageTransition from "@/shared/effects/PageTransition";
-import SmoothScroll from "@/shared/effects/SmoothScroll";
-import { SpeedInsights } from "@vercel/speed-insights/next";
-import { LanguageProvider } from "@/shared/i18n/LanguageContext";
-import LanguageSwitcher from "@/shared/ui/LanguageSwitcher";
+import AppRuntime from "@/shared/effects/AppRuntime";
 import JsonLd, { getPersonJsonLd, getWebSiteJsonLd } from "@/shared/seo/JsonLd";
 
 const geistSans = Geist({
@@ -99,22 +92,7 @@ export default function RootLayout({
       </head>
       <body className="min-h-full flex flex-col bg-black text-white" suppressHydrationWarning>
         <Grain />
-        <LanguageProvider>
-          <MouseProvider>
-            <MagneticProvider>
-              <SmoothScroll>
-                <PageTransition>
-                  <Cursor />
-                  <div className="fixed right-3 top-3 z-50 sm:right-6 sm:top-6">
-                    <LanguageSwitcher />
-                  </div>
-                  {children}
-                  <SpeedInsights />
-                </PageTransition>
-              </SmoothScroll>
-            </MagneticProvider>
-          </MouseProvider>
-        </LanguageProvider>
+        <AppRuntime>{children}</AppRuntime>
       </body>
     </html>
   );
