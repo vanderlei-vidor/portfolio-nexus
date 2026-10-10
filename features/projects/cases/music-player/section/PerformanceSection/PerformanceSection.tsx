@@ -5,6 +5,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { withBasePath } from "@/shared/lib/public-path";
 import { useLanguage } from "@/shared/i18n/LanguageContext";
+import { prefersReducedMotion } from "@/shared/lib/motion";
 import { musicPlayerContent } from "../../content";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -15,6 +16,8 @@ export default function PerformanceSection() {
   const content = musicPlayerContent[locale].performance;
 
   useEffect(() => {
+    if (prefersReducedMotion()) return;
+
     const ctx = gsap.context(() => {
       gsap.fromTo(
         ".performance-card",

@@ -18,11 +18,15 @@ export function HeroSection() {
   const content = englishTutorContent[locale].hero;
 
   useEffect(() => {
+    let cleanup: (() => void) | undefined;
     const timer = setTimeout(() => {
-      initHeroAnimation();
+      cleanup = initHeroAnimation();
     }, 50);
 
-    return () => clearTimeout(timer);
+    return () => {
+      clearTimeout(timer);
+      cleanup?.();
+    };
   }, []);
 
   const handleMouseMove = (event: React.MouseEvent<HTMLElement>) => {

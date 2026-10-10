@@ -4,6 +4,7 @@ import { useEffect, useMemo, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useLanguage } from "@/shared/i18n/LanguageContext";
+import { prefersReducedMotion } from "@/shared/lib/motion";
 import { englishTutorContent } from "../../content";
 import styles from "./ImpactResultsSection.module.css";
 
@@ -35,6 +36,11 @@ export function ImpactResultsSection() {
     const targetValue = parseMetricValue(content.metrics[0].value);
 
     if (!xpElement || !sectionElement || targetValue === null) return;
+
+    if (prefersReducedMotion()) {
+      xpElement.textContent = numberFormatter.format(targetValue);
+      return;
+    }
 
     const xp = { value: 0 };
 

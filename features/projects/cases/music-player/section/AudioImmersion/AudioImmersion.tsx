@@ -3,6 +3,7 @@
 import './AudioImmersion.css';
 import { useEffect, useRef } from "react";
 import { useLanguage } from "@/shared/i18n/LanguageContext";
+import { prefersReducedMotion } from "@/shared/lib/motion";
 import { musicPlayerContent } from "../../content";
 
 const pseudoRandom = (index: number, salt: number) => {
@@ -32,6 +33,8 @@ export default function AudioImmersion() {
   const content = musicPlayerContent[locale].audio;
 
   useEffect(() => {
+    if (prefersReducedMotion()) return;
+
     const handleMouseMove = (e: MouseEvent) => {
       if (frameRef.current !== null) return;
 

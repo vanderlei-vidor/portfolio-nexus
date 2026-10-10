@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import { ChevronLeft, ChevronRight, Pause, Play } from "lucide-react";
 import { useLanguage } from "@/shared/i18n/LanguageContext";
 import { useTranslation } from "@/shared/i18n/useTranslation";
+import { useReducedMotion } from "@/shared/hooks/useReducedMotion";
 import { musicPlayerContent } from "../../content";
 
 const slideImages = [
@@ -31,7 +32,9 @@ const slideDuration = 4000;
 export default function FinalShowcase() {
   const [isDemoOpen, setIsDemoOpen] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [isPlaying, setIsPlaying] = useState(true);
+  const [wantsAutoplay, setWantsAutoplay] = useState(true);
+  const shouldReduceMotion = useReducedMotion();
+  const isPlaying = wantsAutoplay && !shouldReduceMotion;
   const { locale } = useLanguage();
   const { t } = useTranslation();
   const content = musicPlayerContent[locale].final;
@@ -79,7 +82,7 @@ export default function FinalShowcase() {
           break;
         case " ":
           event.preventDefault();
-          setIsPlaying((previousValue) => !previousValue);
+          setWantsAutoplay((previousValue) => !previousValue);
           break;
       }
     };
@@ -187,7 +190,7 @@ export default function FinalShowcase() {
                 type="button"
                 onClick={() => {
                   setCurrentSlide(0);
-                  setIsPlaying(true);
+                  setWantsAutoplay(true);
                   setIsDemoOpen(true);
                 }}
                 className="flex-1 rounded-full border border-white/5 bg-white/2 px-6 py-4 font-mono text-[10px] uppercase tracking-widest text-zinc-400 backdrop-blur-md transition-all duration-500 hover:border-white/20 hover:text-white sm:flex-none sm:px-8 sm:text-xs"
@@ -286,7 +289,7 @@ export default function FinalShowcase() {
 
                 <button
                   type="button"
-                  onClick={() => setIsPlaying(!isPlaying)}
+                  onClick={() => setWantsAutoplay((current) => !current)}
                   className="rounded-full bg-white p-2 text-black transition-all hover:scale-105 active:scale-95"
                   aria-label={isPlaying ? t("projects.pauseSlideshow") : t("projects.playSlideshow")}
                 >

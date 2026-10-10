@@ -6,6 +6,8 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useTranslation } from "@/shared/i18n/useTranslation";
 import { useLanguage } from "@/shared/i18n/LanguageContext";
+import { useReducedMotion } from "@/shared/hooks/useReducedMotion";
+import { prefersReducedMotion } from "@/shared/lib/motion";
 import { musicPlayerContent } from "../../content";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -35,6 +37,7 @@ export default function DeviceReveal() {
   const [bootProgress, setBootProgress] = useState(0);
   const { t } = useTranslation();
   const { locale } = useLanguage();
+  const shouldReduceMotion = useReducedMotion();
   const content = musicPlayerContent[locale].device;
 
   const isMounted = useIsMounted();
@@ -57,6 +60,8 @@ export default function DeviceReveal() {
   const rotateY = useTransform(mouseX, [-300, 300], [-5, 5]);
 
   useEffect(() => {
+    if (prefersReducedMotion()) return;
+
     const handleMouseMove = (e: MouseEvent) => {
       const rect = deviceRef.current?.getBoundingClientRect();
       if (!rect) return;
@@ -73,6 +78,8 @@ export default function DeviceReveal() {
   }, [mouseX, mouseY]);
 
   useEffect(() => {
+    if (prefersReducedMotion()) return;
+
     const ctx = gsap.context(() => {
       ScrollTrigger.create({
         trigger: sectionRef.current,
@@ -180,10 +187,10 @@ export default function DeviceReveal() {
                 {/* Efeito de Vidro/Brilho interno */}
                 <motion.div
                   className="absolute inset-0 bg-linear-to-tr from-blue-600/20 via-transparent to-purple-600/20"
-                  animate={{
+                  animate={shouldReduceMotion ? undefined : {
                     opacity: isBooting ? [0.3, 0.6, 0.3] : [0.2, 0.4, 0.2],
                   }}
-                  transition={{
+                  transition={shouldReduceMotion ? undefined : {
                     duration: isBooting ? 1 : 4,
                     repeat: Infinity,
                     ease: "easeInOut"
@@ -207,10 +214,10 @@ export default function DeviceReveal() {
                   {/* Logo/Ícone pulsante */}
                   <motion.div
                     className="relative flex items-center justify-center"
-                    animate={{
+                    animate={shouldReduceMotion ? undefined : {
                       scale: isBooting ? [1, 1.2, 1] : [1, 1.05, 1],
                     }}
-                    transition={{
+                    transition={shouldReduceMotion ? undefined : {
                       duration: isBooting ? 0.5 : 3,
                       repeat: Infinity,
                       ease: "easeInOut"
@@ -218,11 +225,11 @@ export default function DeviceReveal() {
                   >
                     <motion.div
                       className="absolute h-16 w-16 rounded-full bg-blue-500/30 blur-md"
-                      animate={{
+                      animate={shouldReduceMotion ? undefined : {
                         scale: [1, 1.5, 1],
                         opacity: [0.5, 0, 0.5]
                       }}
-                      transition={{
+                      transition={shouldReduceMotion ? undefined : {
                         duration: 2,
                         repeat: Infinity,
                         ease: "easeInOut"
@@ -231,10 +238,10 @@ export default function DeviceReveal() {
                     <div className="h-10 w-10 rounded-full bg-linear-to-br from-blue-400 to-indigo-600 flex items-center justify-center border border-white/20 shadow-lg shadow-blue-500/20">
                       <motion.div
                         className="h-3 w-3 rounded-full bg-white"
-                        animate={{
+                        animate={shouldReduceMotion ? undefined : {
                           scale: [1, 1.3, 1],
                         }}
-                        transition={{
+                        transition={shouldReduceMotion ? undefined : {
                           duration: 1.5,
                           repeat: Infinity,
                           ease: "easeInOut"
@@ -309,11 +316,11 @@ export default function DeviceReveal() {
                     left: particle.left,
                     top: particle.top,
                   }}
-                  animate={{
+                  animate={shouldReduceMotion ? undefined : {
                     y: [0, -20, 0],
                     opacity: [0.2, 0.8, 0.2],
                   }}
-                  transition={{
+                  transition={shouldReduceMotion ? undefined : {
                     duration: particle.duration,
                     repeat: Infinity,
                     delay: particle.delay,

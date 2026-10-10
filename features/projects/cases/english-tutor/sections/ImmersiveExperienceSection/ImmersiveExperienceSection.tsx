@@ -13,11 +13,15 @@ export function ImmersiveExperienceSection() {
   const content = englishTutorContent[locale].immersive;
 
   useEffect(() => {
+    let cleanup: (() => void) | undefined;
     const timer = setTimeout(() => {
-      initImmersiveAnimation();
+      cleanup = initImmersiveAnimation();
     }, 50);
 
-    return () => clearTimeout(timer);
+    return () => {
+      clearTimeout(timer);
+      cleanup?.();
+    };
   }, []);
 
   return (

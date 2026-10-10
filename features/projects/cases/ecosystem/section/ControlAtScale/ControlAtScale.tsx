@@ -5,6 +5,7 @@ import { Activity, Cpu, Shield } from "lucide-react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useLanguage } from "@/shared/i18n/LanguageContext";
+import { prefersReducedMotion } from "@/shared/lib/motion";
 import { ecosystemContent } from "../../content";
 import "./ControlAtScale.css";
 
@@ -35,6 +36,8 @@ export default function ControlAtScale() {
   const content = ecosystemContent[locale].control;
 
   useEffect(() => {
+    if (prefersReducedMotion()) return;
+
     const container = containerRef.current;
     if (!container) return;
 

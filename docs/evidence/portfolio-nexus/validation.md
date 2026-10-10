@@ -60,10 +60,15 @@ Fluxos E2E atuais:
 - Project Cards usam CSS como fonte única das interações de hover, focus e active; o reveal de orientação permanece no container com suporte a movimento reduzido.
 - Transições de página usam os mesmos tokens de duração e easing e respeitam `prefers-reduced-motion`.
 - Home, Contact, Technical Proof e estados de erro foram revisados visualmente em desktop e mobile sem regressão observada.
+- A auditoria dos quatro cases cobre animações GSAP, Framer Motion e CSS, canvas, ponteiros, timers, autoplay e cleanup de timelines.
+- `npm run profile:motion` percorreu as quatro rotas em viewport 390 × 844, com motion normal e reduzido, usando o export estático do GitHub Pages.
+- Os oito cenários registraram CLS 0 e zero erros de página; em `reduced-motion`, todas as rotas terminaram com zero animações de transform ativas.
+- O perfil registrou no máximo uma tarefa longa de 56 ms no Portfolio Nexus; as outras três rotas terminaram sem tarefas longas durante o percurso medido.
+- Resultado completo e reproduzível: `motion-profile.json`.
 
 ## Limites
 
 - O baseline inicial do Lighthouse ficou abaixo da meta; a correção de LCP e a medição final da Sprint 1 estão registradas em `lighthouse-sprint1-final.report.json`.
 - E2E cobre os fluxos críticos de idioma, contato, Resume, navegação inicial, TL;DR e Technical Proof dos quatro cases, mas ainda não cobre todas as interações internas nem todos os browsers do Release Gate.
 - Performance do English Tutor possui medição inicial registrada no roadmap, mas ainda precisa de trace/profiling formal.
-- As animações específicas de cada case e a ausência de jank ou CLS em hardware mobile representativo ainda precisam de profiling antes do fechamento da Sprint 5.
+- O perfil de motion usa Chromium em viewport mobile controlada; a validação em aparelhos físicos e outros browsers permanece no escopo da Sprint 6 e do Release Gate.

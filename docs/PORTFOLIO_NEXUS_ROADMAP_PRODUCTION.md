@@ -6,7 +6,7 @@
 >
 > **Regra de posicionamento:** o termo AAA pode continuar sendo usado internamente como meta de qualidade, mas não deve aparecer como autoavaliação pública.
 >
-> **Status atual (2026-10-10):** Sprint 4 — Case Study Proof concluída. Sprint 5 — Motion & Premium UI Polish é a fase ativa.
+> **Status atual (2026-10-10):** Sprint 5 — Motion & Premium UI Polish concluída. Sprint 6 — QA, Accessibility, Responsive & i18n é a fase ativa.
 
 ---
 
@@ -36,14 +36,14 @@ A experiência final deve transmitir seis qualidades:
 
 ## 2. Estado atual consolidado
 
-### 2.1 Estado consolidado após a Sprint 4
+### 2.1 Estado consolidado após a Sprint 5
 
 | Área | Estado | Leitura |
 | :--- | :--- | :--- |
 | **Higiene técnica** | Fechada | Registry, fallback, metadata, foco, seleção, interações e lifecycle principal revisados. |
 | **Narrativa dos cases** | Fechada | Quatro cases migrados para Problem → Decision → Solution → Evidence → Result. |
 | **Engineering Evidence** | Fechada | Sprint 2 concluída com o conjunto mínimo de evidências dos quatro projetos. |
-| **Microinterações** | Parcial | Padrões globais aplicados; falta fechamento de componentes internos. |
+| **Microinterações** | Fechada | Tokens, componentes premium, motion dos cases e suporte a movimento reduzido validados. |
 | **Performance / homologação** | P0 fechada | LCP reduzido de 8.6 s para 1.20 s no cenário controlado da Sprint 1; homologação final permanece no Release Gate. |
 | **Hiring / conversion UX** | Fechada | Sprint 3 concluída com Hero, CTAs, perfis profissionais, Resume localizado e contato direto sem backend. |
 | **Case Study Proof** | Fechada | Sprint 4 concluída com TL;DR, fluxos de arquitetura, trade-offs e próximos passos localizados nos quatro cases. |
@@ -500,6 +500,8 @@ Navegação principal padronizada:
 
 **Objetivo:** aumentar o refinamento visual sem sacrificar performance, acessibilidade ou clareza.
 
+**Status:** Concluída em 2026-10-10.
+
 ### Regra de motion em 3 níveis
 1. **Funcional:** hover, focus, active, feedback de clique.
 2. **Orientação:** transições de página discretas, scroll progress, reveal sutil de seções.
@@ -566,14 +568,23 @@ export const reducedTransition = {
 - [x] Aplicar os tokens compartilhados em Home, Contact, cases, transições de página e estados de erro.
 - [x] Respeitar `prefers-reduced-motion` nos reveals dos projetos e nas transições de página.
 - [x] Revisar visualmente desktop e mobile e aprovar o pipeline em 2026-10-10: 8/8 testes unitários, 14 páginas estáticas e 6/6 jornadas E2E.
-- [ ] Auditar animações e estilos específicos ainda existentes dentro de cada case.
-- [ ] Medir jank e CLS em hardware mobile representativo ou com profiling equivalente.
+- [x] Auditar animações e estilos específicos dos quatro cases, cobrindo GSAP, Framer Motion, CSS, canvas, ponteiros, timers e autoplay.
+- [x] Medir jank e CLS com profiling equivalente em Chromium, viewport 390 × 844 e export estático: CLS 0 nas quatro rotas, zero transforms ativos em `reduced-motion`, zero erros de página e máximo de uma tarefa longa de 56 ms.
 
 ### Critérios de aceite
-- Nenhuma animação é indispensável para a compreensão do conteúdo.
-- `prefers-reduced-motion` respeitado por padrão.
-- Zero layout shift (CLS) causado por motion.
-- Sem travamentos ou jank perceptíveis em hardware intermediário e mobile.
+- [x] Nenhuma animação é indispensável para a compreensão do conteúdo.
+- [x] `prefers-reduced-motion` respeitado por padrão.
+- [x] Zero layout shift (CLS) causado por motion no perfil controlado das quatro rotas.
+- [x] Sem travamentos observados no perfil mobile controlado; resultado máximo de uma tarefa longa de 56 ms no percurso completo.
+
+### Validação de fechamento
+
+- [x] `npm run lint` — sem erros.
+- [x] `npx tsc --noEmit` — sem erros.
+- [x] `npm run test` — 3 arquivos e 8/8 testes aprovados.
+- [x] `npm run build` — build de produção aprovado com 14 páginas estáticas.
+- [x] `npm run test:e2e` — 6/6 fluxos aprovados em Chromium.
+- [x] `npm run profile:motion` — 8 cenários aprovados e evidência registrada em `docs/evidence/portfolio-nexus/motion-profile.json`.
 
 ---
 
@@ -787,9 +798,8 @@ Antes de adicionar qualquer biblioteca, shader, animação ou abstração nova, 
 ## 24. Próxima sequência prática
 
 ### Fase ativa
-1. **Polish Final & Design Tokens (Sprint 5):** aplicar refinamento visual seguro sobre a base rápida.
-2. **QA, Accessibility, Responsive & i18n (Sprint 6):** validar dispositivos, idiomas, teclado e browsers.
-3. **Production Release Gate (Sprint 7):** executar e registrar o checklist completo antes do deploy final.
+1. **QA, Accessibility, Responsive & i18n (Sprint 6):** validar dispositivos, idiomas, teclado e browsers.
+2. **Production Release Gate (Sprint 7):** executar e registrar o checklist completo antes do deploy final.
 
 ### Pendência documental paralela
 - Fechar os dois itens ainda abertos da Sprint 0: confirmar stack pública e confirmar números publicados.

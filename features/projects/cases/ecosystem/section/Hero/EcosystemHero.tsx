@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { withBasePath } from "@/shared/lib/public-path";
 import { useLanguage } from "@/shared/i18n/LanguageContext";
+import { prefersReducedMotion } from "@/shared/lib/motion";
 import { ecosystemContent } from "../../content";
 import "./EcosystemHero.css";
 
@@ -19,6 +20,8 @@ export default function EcosystemHero() {
   const content = ecosystemContent[locale].hero;
 
   useEffect(() => {
+    if (prefersReducedMotion()) return;
+
     const ctx = gsap.context(() => {
       gsap.from(".reveal-text", {
         y: 80,

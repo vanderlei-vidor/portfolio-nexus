@@ -4,6 +4,7 @@ import { useEffect, useMemo, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useLanguage } from "@/shared/i18n/LanguageContext";
+import { prefersReducedMotion } from "@/shared/lib/motion";
 import { ecosystemContent } from "../../content";
 import "./Numbers.css";
 
@@ -21,6 +22,13 @@ export default function Numbers() {
   useEffect(() => {
     const section = sectionRef.current;
     if (!section) return;
+
+    if (prefersReducedMotion()) {
+      section.querySelectorAll<HTMLElement>(".numbers-card__value-num").forEach((element) => {
+        element.innerText = formatter.format(Number(element.dataset.target ?? 0));
+      });
+      return;
+    }
 
     const ctx = gsap.context(() => {
       gsap.fromTo(".numbers__label", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6, scrollTrigger: { trigger: ".numbers__label", start: "top 85%" } });

@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useLanguage } from "@/shared/i18n/LanguageContext";
+import { prefersReducedMotion } from "@/shared/lib/motion";
 import { ecosystemContent } from "../../content";
 import "./EngineeringDNA.css";
 
@@ -17,6 +18,8 @@ export default function EngineeringDNA() {
   const content = ecosystemContent[locale].engineering;
 
   useEffect(() => {
+    if (prefersReducedMotion()) return;
+
     const ctx = gsap.context(() => {
       const bootTl = gsap.timeline();
 
@@ -30,7 +33,7 @@ export default function EngineeringDNA() {
       gsap.to(".nexus-core__ring", { rotate: 360, duration: 20, repeat: -1, ease: "none" });
       gsap.to(".nexus-core__ring--delay", { rotate: -360, duration: 15, repeat: -1, ease: "none" });
       gsap.to(".nexus-core__energy", { scale: 1.2, opacity: 0.6, repeat: -1, yoyo: true, duration: 2, ease: "power1.inOut" });
-      gsap.to(".engineering-dna__line-fill", { height: "100%", ease: "none", scrollTrigger: { trigger: ".engineering-dna__layers", start: "top center", end: "bottom center", scrub: true } });
+      gsap.to(".engineering-dna__line-fill", { scaleY: 1, ease: "none", scrollTrigger: { trigger: ".engineering-dna__layers", start: "top center", end: "bottom center", scrub: true } });
       gsap.to(".engineering-dna__line-particle", { y: () => document.querySelector(".engineering-dna__layers")?.scrollHeight || 1000, repeat: -1, duration: 4, ease: "none" });
 
       gsap.utils.toArray<HTMLElement>(".dna-layer").forEach((layer) => {

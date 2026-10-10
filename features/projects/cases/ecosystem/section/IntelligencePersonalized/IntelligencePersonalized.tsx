@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useLanguage } from "@/shared/i18n/LanguageContext";
+import { prefersReducedMotion } from "@/shared/lib/motion";
 import { ecosystemContent } from "../../content";
 import "./IntelligencePersonalized.css";
 
@@ -18,6 +19,8 @@ export default function IntelligencePersonalized() {
   const content = ecosystemContent[locale].intelligence;
 
   useEffect(() => {
+    if (prefersReducedMotion()) return;
+
     const section = sectionRef.current;
     const system = systemRef.current;
     const svg = svgRef.current;

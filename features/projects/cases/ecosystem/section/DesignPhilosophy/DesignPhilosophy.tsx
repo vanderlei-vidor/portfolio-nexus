@@ -5,6 +5,7 @@ import type { CSSProperties } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useLanguage } from "@/shared/i18n/LanguageContext";
+import { prefersReducedMotion } from "@/shared/lib/motion";
 import { ecosystemContent } from "../../content";
 import "./DesignPhilosophy.css";
 
@@ -27,6 +28,8 @@ export default function DesignPhilosophy() {
   const content = ecosystemContent[locale].design;
 
   useEffect(() => {
+    if (prefersReducedMotion()) return;
+
     const section = sectionRef.current;
     if (!section) return;
     let rafId = 0;
@@ -46,6 +49,8 @@ export default function DesignPhilosophy() {
   }, []);
 
   useEffect(() => {
+    if (prefersReducedMotion()) return;
+
     const ctx = gsap.context(() => {
       gsap.from(".philosophy-card", { y: 80, opacity: 0, stagger: 0.15, duration: 1, ease: "power3.out", scrollTrigger: { trigger: gridRef.current, start: "top 80%", toggleActions: "play none none reverse" } });
       gsap.to(".connection-path", { strokeDashoffset: 0, duration: 2, ease: "power2.inOut", scrollTrigger: { trigger: gridRef.current, start: "top 70%", end: "bottom 70%", scrub: 1 } });

@@ -140,7 +140,10 @@ npm run start
 - npm run dev: inicia o ambiente de desenvolvimento;
 - npm run build: gera a versão otimizada para produção;
 - npm run start: executa a aplicação já buildada;
-- npm run lint: valida o código com ESLint.
+- npm run lint: valida o código com ESLint;
+- npm run test: executa os testes unitários com Vitest;
+- npm run test:e2e: executa as jornadas críticas com Playwright;
+- npm run profile:motion: mede CLS, tarefas longas e movimento reduzido nos quatro cases usando o export estático em `out`.
 
 ## Qualidade de código
 

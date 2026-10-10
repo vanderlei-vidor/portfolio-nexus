@@ -6,6 +6,7 @@ import { Music, Radio, Waves, Zap } from "lucide-react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useLanguage } from "@/shared/i18n/LanguageContext";
+import { prefersReducedMotion } from "@/shared/lib/motion";
 import { ecosystemContent } from "../../content";
 import "./ExperienceReimagined.css";
 
@@ -44,6 +45,8 @@ export default function ExperienceReimagined() {
   );
 
   useEffect(() => {
+    if (prefersReducedMotion()) return;
+
     const section = sectionRef.current;
     if (!section) return;
     let rafId = 0;
@@ -69,6 +72,8 @@ export default function ExperienceReimagined() {
   }, []);
 
   useEffect(() => {
+    if (prefersReducedMotion()) return;
+
     const ctx = gsap.context(() => {
       gsap.from(".experience__label, .experience__title, .experience__description", {
         y: 60,

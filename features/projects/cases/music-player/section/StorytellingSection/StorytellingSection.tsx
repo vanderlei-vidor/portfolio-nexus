@@ -7,6 +7,7 @@ import Image from "next/image";
 import { withBasePath } from "@/shared/lib/public-path";
 import { offlinePlayerSteps } from "../../data";
 import { useLanguage } from "@/shared/i18n/LanguageContext";
+import { prefersReducedMotion } from "@/shared/lib/motion";
 import { musicPlayerContent } from "../../content";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -18,9 +19,12 @@ export default function StorytellingSection() {
   const content = musicPlayerContent[locale].story;
 
   useEffect(() => {
+    if (prefersReducedMotion()) return;
+
     if (!sectionRef.current) return;
 
     const isDesktop = window.matchMedia("(hover: hover)").matches;
+    const usesPinnedStory = window.matchMedia("(min-width: 1024px)").matches;
 
     const xTo = gsap.quickTo(".parallax-bg", "x", { duration: 0.8, ease: "power3.out" });
     const yTo = gsap.quickTo(".parallax-bg", "y", { duration: 0.8, ease: "power3.out" });
@@ -32,9 +36,9 @@ export default function StorytellingSection() {
       ScrollTrigger.create({
         trigger: sectionRef.current,
         start: "top top",
-        end: () => `+=${(offlinePlayerSteps.length - 1) * 60}%`,
+        end: usesPinnedStory ? () => `+=${(offlinePlayerSteps.length - 1) * 60}%` : "bottom top",
         scrub: true,
-        pin: true,
+        pin: usesPinnedStory,
         anticipatePin: 1,
         invalidateOnRefresh: true,
         onUpdate: (self) => {

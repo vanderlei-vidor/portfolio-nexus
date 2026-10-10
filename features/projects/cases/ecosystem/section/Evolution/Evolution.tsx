@@ -6,6 +6,7 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useLanguage } from "@/shared/i18n/LanguageContext";
+import { prefersReducedMotion } from "@/shared/lib/motion";
 import { ecosystemContent } from "../../content";
 import "./Evolution.css";
 
@@ -21,6 +22,8 @@ export default function Evolution() {
   const content = ecosystemContent[locale].evolution;
 
   useGSAP(() => {
+    if (prefersReducedMotion()) return;
+
     const mm = gsap.matchMedia();
 
     mm.add({ isDesktop: "(min-width: 769px)", isMobile: "(max-width: 768px)" }, (context) => {

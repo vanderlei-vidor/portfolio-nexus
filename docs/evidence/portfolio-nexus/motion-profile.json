@@ -1,0 +1,198 @@
+{
+  "generatedAt": "2026-10-10T21:28:53.252Z",
+  "environment": {
+    "browser": "Chromium (Playwright)",
+    "viewport": "390x844",
+    "build": "Next.js static export",
+    "basePath": "/portfolio-nexus"
+  },
+  "thresholds": {
+    "cls": 0.1,
+    "longTaskCount": 6,
+    "maxLongTaskMs": 100,
+    "pageErrors": 0,
+    "reducedMotionActiveTransformAnimations": 0
+  },
+  "results": [
+    {
+      "route": "/projects/music-player",
+      "reducedMotion": "no-preference",
+      "pageErrors": [],
+      "cls": 0,
+      "longTaskCount": 0,
+      "maxLongTaskMs": 0,
+      "activeAnimations": 83,
+      "activeTransformAnimations": 74,
+      "activeTransformTargets": [
+        "article.performance-card.group.relative",
+        "div.architecture-node.group.relative",
+        "div.jsx-1dc08e3ce0f9fa34.absolute.rounded-full",
+        "div.jsx-1dc08e3ce0f9fa34.w-[4px].md:w-[6px]",
+        "div.relative.w-65.animate-[float_6s_ease-in-out_infinite]"
+      ],
+      "largestLayoutShifts": [],
+      "scrollHeight": 15047
+    },
+    {
+      "route": "/projects/saas-data-control",
+      "reducedMotion": "no-preference",
+      "pageErrors": [],
+      "cls": 0,
+      "longTaskCount": 0,
+      "maxLongTaskMs": 0,
+      "activeAnimations": 20,
+      "activeTransformAnimations": 10,
+      "activeTransformTargets": [
+        "div.hero-glow.hero-glow-1",
+        "div.hero-glow.hero-glow-2",
+        "span.hero-badge-dot",
+        "div.hero-image-glow",
+        "div.dashboard-preview-glow",
+        "svg.lucide.lucide-settings.badge-icon",
+        "div.solution-image-glow",
+        "div.floating-stat.floating-stat-1",
+        "div.floating-stat.floating-stat-2",
+        "svg.lucide.lucide-diamond.corp-badge-icon"
+      ],
+      "largestLayoutShifts": [],
+      "scrollHeight": 17018
+    },
+    {
+      "route": "/projects/english-tutor",
+      "reducedMotion": "no-preference",
+      "pageErrors": [],
+      "cls": 0,
+      "longTaskCount": 0,
+      "maxLongTaskMs": 0,
+      "activeAnimations": 132,
+      "activeTransformAnimations": 123,
+      "activeTransformTargets": [
+        "div.HeroSection-module__Ia_KCq__backgroundGlow.hero-atmosphere",
+        "div.EnergyOrb-module__UWcozG__wrapper",
+        "div.EnergyOrb-module__UWcozG__auraFar",
+        "div.EnergyOrb-module__UWcozG__nebula",
+        "div.EnergyOrb-module__UWcozG__orb.EnergyOrb-module__UWcozG__animate",
+        "div.EnergyOrb-module__UWcozG__core",
+        "span.EnergyOrb-module__UWcozG__particle.EnergyOrb-module__UWcozG__p1",
+        "span.EnergyOrb-module__UWcozG__particle.EnergyOrb-module__UWcozG__p2",
+        "span.EnergyOrb-module__UWcozG__particle.EnergyOrb-module__UWcozG__p3",
+        "span.EnergyOrb-module__UWcozG__particle.EnergyOrb-module__UWcozG__p4",
+        "span.EnergyOrb-module__UWcozG__ring.EnergyOrb-module__UWcozG__ring1",
+        "span.EnergyOrb-module__UWcozG__ring.EnergyOrb-module__UWcozG__ring2",
+        "span.EnergyOrb-module__UWcozG__ring.EnergyOrb-module__UWcozG__ring3",
+        "span.EnergyOrb-module__UWcozG__ring.EnergyOrb-module__UWcozG__ring4",
+        "span.EnergyOrb-module__UWcozG__ring.EnergyOrb-module__UWcozG__ring5",
+        "div.HeroSection-module__Ia_KCq__scrollIndicator.hero-scroll",
+        "div.DeviceMockup-module__eYcTOq__reflection",
+        "div.DeviceMockup-module__eYcTOq__floatingXp",
+        "div.DeviceMockup-module__eYcTOq__aiHalo",
+        "div.DeviceMockup-module__eYcTOq__aiNebula"
+      ],
+      "largestLayoutShifts": [],
+      "scrollHeight": 15102
+    },
+    {
+      "route": "/projects/portfolio-nexus",
+      "reducedMotion": "no-preference",
+      "pageErrors": [],
+      "cls": 0,
+      "longTaskCount": 1,
+      "maxLongTaskMs": 56,
+      "activeAnimations": 252,
+      "activeTransformAnimations": 197,
+      "activeTransformTargets": [
+        "div.easter-egg-transition.reveal-step-100",
+        "div.neural-node.neural-node--1",
+        "div.neural-node.neural-node--2",
+        "div.neural-node.neural-node--3",
+        "div.neural-node.neural-node--4",
+        "div.neural-node.neural-node--5",
+        "article.telemetry-card.featured-card",
+        "article.telemetry-card",
+        "article.dna-layer.dna-layer--cyan",
+        "article.dna-layer.dna-layer--teal",
+        "article.dna-layer.dna-layer--white",
+        "article.philosophy-card",
+        "article.numbers-card",
+        "div.hero-glow.absolute.left-1/2",
+        "div.cw-bg-nebula.cw-bg-nebula-1",
+        "div.cw-bg-nebula.cw-bg-nebula-2",
+        "div.cw-bg-nebula.cw-bg-nebula-3",
+        "div.orb-glow.orb-glow-outer",
+        "div.orb-glow.orb-glow-inner",
+        "div.orb-ring.orb-ring-1"
+      ],
+      "largestLayoutShifts": [
+        {
+          "value": 0,
+          "sources": [
+            "div.eq-bar",
+            "div.eq-bar",
+            "div.eq-bar",
+            "div.eq-bar",
+            "div.eq-bar"
+          ]
+        },
+        {
+          "value": 0,
+          "sources": [
+            "span.label-version"
+          ]
+        }
+      ],
+      "scrollHeight": 27525
+    },
+    {
+      "route": "/projects/music-player",
+      "reducedMotion": "reduce",
+      "pageErrors": [],
+      "cls": 0,
+      "longTaskCount": 0,
+      "maxLongTaskMs": 0,
+      "activeAnimations": 0,
+      "activeTransformAnimations": 0,
+      "activeTransformTargets": [],
+      "largestLayoutShifts": [],
+      "scrollHeight": 15047
+    },
+    {
+      "route": "/projects/saas-data-control",
+      "reducedMotion": "reduce",
+      "pageErrors": [],
+      "cls": 0,
+      "longTaskCount": 0,
+      "maxLongTaskMs": 0,
+      "activeAnimations": 0,
+      "activeTransformAnimations": 0,
+      "activeTransformTargets": [],
+      "largestLayoutShifts": [],
+      "scrollHeight": 17018
+    },
+    {
+      "route": "/projects/english-tutor",
+      "reducedMotion": "reduce",
+      "pageErrors": [],
+      "cls": 0,
+      "longTaskCount": 0,
+      "maxLongTaskMs": 0,
+      "activeAnimations": 0,
+      "activeTransformAnimations": 0,
+      "activeTransformTargets": [],
+      "largestLayoutShifts": [],
+      "scrollHeight": 15102
+    },
+    {
+      "route": "/projects/portfolio-nexus",
+      "reducedMotion": "reduce",
+      "pageErrors": [],
+      "cls": 0,
+      "longTaskCount": 0,
+      "maxLongTaskMs": 0,
+      "activeAnimations": 0,
+      "activeTransformAnimations": 0,
+      "activeTransformTargets": [],
+      "largestLayoutShifts": [],
+      "scrollHeight": 26175
+    }
+  ]
+}

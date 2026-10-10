@@ -1,11 +1,8 @@
 ﻿import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { prefersReducedMotion } from "@/shared/lib/motion";
 
 gsap.registerPlugin(ScrollTrigger);
-
-function prefersReducedMotion() {
-  return typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-}
 
 export function initGamificationAnimation(container: HTMLElement | null) {
   if (!container) return;

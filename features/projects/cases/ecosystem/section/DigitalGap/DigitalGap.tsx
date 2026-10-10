@@ -5,6 +5,7 @@ import { ArrowDown } from "lucide-react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useLanguage } from "@/shared/i18n/LanguageContext";
+import { prefersReducedMotion } from "@/shared/lib/motion";
 import { ecosystemContent } from "../../content";
 import "./DigitalGap.css";
 
@@ -33,6 +34,8 @@ export default function DigitalGap() {
   const content = ecosystemContent[locale].digitalGap;
 
   useEffect(() => {
+    if (prefersReducedMotion()) return;
+
     const section = sectionRef.current;
     const pinContainer = pinContainerRef.current;
     if (!section || !pinContainer) return;

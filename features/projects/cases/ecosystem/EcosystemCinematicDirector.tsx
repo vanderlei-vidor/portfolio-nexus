@@ -112,6 +112,10 @@ export default function EcosystemCinematicDirector() {
       });
     };
 
+    setCanvasSize();
+
+    if (reduceMotion) return;
+
     const gsapContext = gsap.context(() => {
       const sections = gsap.utils.toArray<HTMLElement>(root.querySelectorAll(":scope > section"));
 
@@ -143,18 +147,16 @@ export default function EcosystemCinematicDirector() {
           onEnterBack: () => root.style.setProperty("--ecosystem-scene", String(index + 1)),
         });
 
-        if (!reduceMotion) {
-          gsap.to(section, {
-            "--scene-depth": index % 2 === 0 ? "34px" : "-24px",
-            ease: "none",
-            scrollTrigger: {
-              trigger: section,
-              start: "top bottom",
-              end: "bottom top",
-              scrub: true,
-            },
-          });
-        }
+        gsap.to(section, {
+          "--scene-depth": index % 2 === 0 ? "34px" : "-24px",
+          ease: "none",
+          scrollTrigger: {
+            trigger: section,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: true,
+          },
+        });
       });
 
       const parallaxTargets = gsap.utils.toArray<HTMLElement>(
@@ -196,12 +198,8 @@ export default function EcosystemCinematicDirector() {
       });
     }, root);
 
-    setCanvasSize();
-
-    if (!reduceMotion) {
-      draw();
-      window.addEventListener("pointermove", updateLight, { passive: true });
-    }
+    draw();
+    window.addEventListener("pointermove", updateLight, { passive: true });
 
     window.addEventListener("resize", setCanvasSize, { passive: true });
     ScrollTrigger.refresh();

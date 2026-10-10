@@ -5,6 +5,7 @@ import { Orbit } from "lucide-react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useLanguage } from "@/shared/i18n/LanguageContext";
+import { prefersReducedMotion } from "@/shared/lib/motion";
 import { ecosystemContent } from "../../content";
 import "./FutureVision.css";
 
@@ -29,6 +30,8 @@ export default function FutureVision() {
   const content = ecosystemContent[locale].future;
 
   useEffect(() => {
+    if (prefersReducedMotion()) return;
+
     const section = sectionRef.current;
     if (!section) return;
 
@@ -53,6 +56,8 @@ export default function FutureVision() {
   }, []);
 
   useEffect(() => {
+    if (prefersReducedMotion()) return;
+
     let rafId = 0;
     const handleMouseMove = (event: MouseEvent) => {
       if (rafId) return;

@@ -7,6 +7,7 @@ import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useLanguage } from "@/shared/i18n/LanguageContext";
 import { useTranslation } from "@/shared/i18n/useTranslation";
+import { prefersReducedMotion } from "@/shared/lib/motion";
 import { ecosystemContent } from "../../content";
 import "./FinalCTA.css";
 
@@ -21,6 +22,8 @@ export default function FinalCTA() {
   const content = ecosystemContent[locale].final;
 
   useEffect(() => {
+    if (prefersReducedMotion()) return;
+
     const orb = orbRef.current;
     if (!orb) return;
 
@@ -38,6 +41,8 @@ export default function FinalCTA() {
   }, []);
 
   useEffect(() => {
+    if (prefersReducedMotion()) return;
+
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
@@ -80,6 +85,8 @@ export default function FinalCTA() {
   }, []);
 
   useGSAP(() => {
+    if (prefersReducedMotion()) return;
+
     const tl = gsap.timeline({ scrollTrigger: { trigger: containerRef.current, start: "top center+=200", toggleActions: "play none none none" } });
     tl.fromTo(".final-cta__label", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" })
       .fromTo(".final-cta__title-line span", { yPercent: 100 }, { yPercent: 0, duration: 1, ease: "power4.out", stagger: 0.15 }, "-=0.4")

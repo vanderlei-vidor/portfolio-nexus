@@ -5,6 +5,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { withBasePath } from "@/shared/lib/public-path";
 import { useLanguage } from "@/shared/i18n/LanguageContext";
+import { prefersReducedMotion } from "@/shared/lib/motion";
 import { musicPlayerContent } from "../../content";
 import "./ArchitectureShowcase.css";
 
@@ -16,6 +17,8 @@ export default function ArchitectureShowcase() {
   const content = musicPlayerContent[locale].architecture;
 
   useEffect(() => {
+    if (prefersReducedMotion()) return;
+
     const section = sectionRef.current;
     if (!section) return;
 
