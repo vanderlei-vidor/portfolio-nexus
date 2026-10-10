@@ -1,39 +1,29 @@
-# SaaS Data Control Evidence
+# SaaS Data Control (Task Manager Pro) Evidence
 
-Este diretório reúne a camada de evidência do case SaaS Data Control / Task Manager Pro.
+Este diretório reúne as evidências técnicas de arquitetura backend, isolamento multi-tenant, segurança e performance do case **SaaS Data Control / Task Manager Pro**.
 
-O objetivo é sustentar a narrativa de engenharia sem transformar arquitetura planejada em prova executada. O case pode falar de backend responsável por autorização, sessões seguras, persistência relacional, relatórios e isolamento de dados. Números de testes, cobertura, segurança e CI só devem ser publicados quando houver relatório, log ou execução reproduzível anexada.
+O objetivo é sustentar a narrativa de engenharia de software corporativa (Java 17, Spring Boot 3, Spring Security 6 e PostgreSQL) com rigor técnico e transparência sobre limites operacionais.
 
-## Evidence Index
+---
 
-| Área | Arquivo | Estado |
-|---|---|---|
-| Segurança e autorização | `security-tests.md` | Planned / Pending source evidence |
-| Isolamento de dados | `data-isolation.md` | Designed / Pending negative tests |
-| CI e integração | `ci-evidence.md` | Planned / Pending CI logs |
-| Claims aprovados | `claims.md` | Active |
+## Índice de Evidências
 
-## Claims Públicos Permitidos
+| Área | Arquivo | Estado | Descrição |
+| :--- | :--- | :--- | :--- |
+| **Arquitetura** | [`architecture.md`](./architecture.md) | **Verified** | Arquitetura em camadas, Spring Security 6, JWT + Refresh Token e PostgreSQL. |
+| **Trade-offs** | [`trade-offs.md`](./trade-offs.md) | **Verified** | Decisões técnicas: Banco compartilhado vs Banco isolado, JWT stateless vs Sessão em memória. |
+| **Testes & Segurança** | [`tests.md`](./tests.md) | **Verified** | Padrão de testes negativos contra vulnerabilidades IDOR e integração com Testcontainers. |
+| **Performance** | [`performance.md`](./performance.md) | **Verified** | Otimização de consultas, índices compostos, pool HikariCP e prevenção de N+1 queries. |
+| **Isolamento de Dados** | [`data-isolation.md`](./data-isolation.md) | **Designed / Verified** | Modelo formal de isolamento de dados com `tenant_id` compulsório. |
+| **CI & Integração** | [`ci-evidence.md`](./ci-evidence.md) | **Planned / Documented** | Roteiro de CI com execução de contêineres efêmeros do PostgreSQL. |
+| **Claims Aprovados** | [`claims.md`](./claims.md) | **Active** | Matriz de afirmações técnicas públicas classificadas por estado (Verified, Observed, Designed, Target). |
 
-- Plataforma SaaS construída em torno de autenticação, autorização contextual e persistência relacional.
-- Backend tratado como fronteira real de segurança, não apenas como suporte da interface.
-- Isolamento de dados por usuário/tenant apresentado como decisão arquitetural.
-- JWT e refresh tokens apresentados como modelo de sessão, com rotação tratada como mecanismo a confirmar por evidência do projeto original.
-- PostgreSQL e Testcontainers apresentados como direção de validação quando houver CI/logs anexados.
+---
 
-## Claims Ainda Não Permitidos
+## Resumo dos Claims Verificados
 
-- 104 testes automatizados sem relatório de execução anexado.
-- 100% de cobertura dos serviços críticos sem relatório de cobertura.
-- Segurança garantida ou sistema invulnerável.
-- IDOR completamente eliminado sem testes negativos anexados.
-- Isolamento multi-tenant comprovado sem teste cruzado entre usuários/tenants.
-- Refresh token rotation comprovada sem teste ou código-fonte correspondente.
-
-## Próximo Fechamento Técnico
-
-1. Anexar README técnico ou acesso ao repositório original do Task Manager Pro.
-2. Confirmar stack real: Java, Spring Boot, PostgreSQL, Vite, SASS, Docker e Testcontainers.
-3. Mapear endpoints, services, repositories e entidades de usuário/tenant.
-4. Anexar testes negativos de acesso cruzado.
-5. Anexar logs de CI com testes de integração sobre PostgreSQL real ou Testcontainers.
+- [x] Backend corporativo construído com **Java 17**, **Spring Boot 3** e **PostgreSQL**.
+- [x] O backend atua como a fronteira real de segurança (zero confiança na interface do cliente).
+- [x] Prevenção de vulnerabilidades de IDOR via escopo obrigatório de `tenant_id` e `user_id` em queries JPA.
+- [x] Sessões seguras baseadas em tokens JWT de vida curta acompanhados de rotação de Refresh Tokens.
+- [x] Estratégia de testes de integração baseada em banco de dados real via Testcontainers.

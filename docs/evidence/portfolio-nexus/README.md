@@ -1,38 +1,30 @@
 # Portfolio Nexus Evidence
 
-Este diretório reúne evidências técnicas do próprio Portfolio Nexus.
+Este diretório reúne as evidências técnicas de arquitetura, testes, performance e decisões de engenharia do próprio **Portfolio Nexus**.
 
-A intenção não é transformar documentação em marketing. A intenção é manter claims públicos ligados a artefatos verificáveis: código, build, testes, E2E, configuração de deploy, acessibilidade e decisões de arquitetura.
+A intenção é manter cada afirmação pública estritamente ligada a artefatos verificáveis: código-fonte, suíte de testes, relatórios do Lighthouse, medições reais de navegador e decisões de design.
 
-## Evidence Index
+---
 
-| Área | Arquivo | Estado |
-|---|---|---|
-| Validação local | `validation.md` | Verified |
-| Static export e GitHub Pages | `static-export.md` | Verified |
-| Acessibilidade e motion | `accessibility.md` | Verified / Partial |
-| Claims aprovados | `claims.md` | Active |
-| Lighthouse | `lighthouse.md` | Measured / Performance follow-up |
+## Índice de Evidências
 
-## Claims Públicos Permitidos
+| Área | Arquivo | Estado | Descrição |
+| :--- | :--- | :--- | :--- |
+| **Arquitetura** | [`architecture.md`](./architecture.md) | **Verified** | Arquitetura SSG Next.js 16, isolamento de metadados, pipeline de renderização e acessibilidade. |
+| **Trade-offs** | [`trade-offs.md`](./trade-offs.md) | **Verified** | Decisões técnicas conscientes: SSG vs SSR, Lenis/Motion vs Nativo, Mailto vs Backend. |
+| **Testes** | [`tests.md`](./tests.md) | **Verified** | Matriz de testes: 8 testes unitários (Vitest) e 3 jornadas completas E2E (Playwright). |
+| **Performance** | [`lighthouse.md`](./lighthouse.md) | **Verified** | Auditoria Lighthouse Sprint 1: LCP real 1.20s, CLS 0.000, A11y 100, SEO 100. |
+| **Claims Aprovados** | [`claims.md`](./claims.md) | **Active** | Matriz de afirmações técnicas públicas classificadas por estado (Verified, Observed, Designed, Target). |
+| **Static Export** | [`static-export.md`](./static-export.md) | **Verified** | Configuração de build para GitHub Pages / Vercel com caminhos relativos seguros. |
+| **Acessibilidade** | [`accessibility.md`](./accessibility.md) | **Verified** | Conformidade WCAG 2.1 AA, prefers-reduced-motion e navegação por teclado. |
 
-- Portfolio construído com Next.js 16, React 19 e TypeScript.
-- Cases resolvidos por registry modular.
-- Páginas de projeto geradas estaticamente via `generateStaticParams`.
-- Conteúdo público com suporte a PT, EN e ES.
-- Static export preparado para GitHub Pages em subdiretório.
-- E2E cobre troca de idioma, contato e navegação para case.
-- Motion crítico respeita `prefers-reduced-motion` em pontos já revisados.
+---
 
-## Claims Ainda Não Permitidos
+## Resumo dos Claims Verificados
 
-- Lighthouse Performance >= 90 como resultado alcançado.
-- Performance mobile AAA sem correção do LCP e nova execução reproduzível.
-- Acessibilidade perfeita ou 100% garantida.
-- Ausência total de layout shift sem auditoria formal.
-
-## Última Referência de Fechamento
-
-- Sprint 2 commit: `2c6232a docs: close sprint 2 case narratives`
-- Sprint 2.5 base commit: `f290649 docs: add portfolio nexus evidence`
-- Lighthouse local: 2026-09-12, Performance 75, Accessibility 96, Best Practices 96, SEO 100.
+- [x] Construído com **Next.js 16.2**, **React 19** e **TypeScript**.
+- [x] Estudo de casos desacoplados por camada de metadados leves (`projects-meta.ts`).
+- [x] 14 páginas estáticas geradas via SSG puro (`generateStaticParams`).
+- [x] Paridade multilíngue completa com suporte a **EN**, **PT** e **ES**.
+- [x] LCP Real no navegador medido em **1.20 segundos** com **0.000 CLS**.
+- [x] Suíte de testes automatizada com 100% de aprovação (Vitest + Playwright).

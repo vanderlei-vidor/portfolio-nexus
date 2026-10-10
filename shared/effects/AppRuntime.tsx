@@ -39,18 +39,12 @@ export default function AppRuntime({ children }: { children: ReactNode }) {
         <LanguageProvider>
             <MouseProvider>
                 <MagneticProvider>
-                    {enableEnhancedEffects ? (
-                        <SmoothScroll>
-                            <PageTransition>
-                                <Cursor />
-                                {content}
-                            </PageTransition>
-                        </SmoothScroll>
-                    ) : (
+                    <SmoothScroll>
                         <PageTransition>
+                            {enableEnhancedEffects && <Cursor />}
                             {content}
                         </PageTransition>
-                    )}
+                    </SmoothScroll>
                 </MagneticProvider>
             </MouseProvider>
         </LanguageProvider>

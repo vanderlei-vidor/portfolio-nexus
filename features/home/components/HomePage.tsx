@@ -1,14 +1,15 @@
+"use client";
+
 import dynamic from 'next/dynamic';
 import Hero from "./Hero";
-import DeferredHomeEffects from "./DeferredHomeEffects";
 import DeferredSection from "./DeferredSection";
 import Projects from "@/features/projects/components/Projects";
-import TerminalWrapper from "./TerminalWrapper"; // 🚀 Importa o novo wrapper aqui
+import TerminalWrapper from "./TerminalWrapper";
 
-// Seções que podem ser pré-renderizadas no servidor (HTML estático inicial)
-const About = dynamic(() => import("./About"), { ssr: true });
-const Stack = dynamic(() => import("./Stack"), { ssr: true });
-const Contact = dynamic(() => import("./Contact"), { ssr: true });
+// Seções abaixo da dobra carregadas sob demanda quando o usuário rolar a página
+const About = dynamic(() => import("./About"), { ssr: false });
+const Stack = dynamic(() => import("./Stack"), { ssr: false });
+const Contact = dynamic(() => import("./Contact"), { ssr: false });
 
 export default function HomePage() {
   return (
@@ -17,7 +18,7 @@ export default function HomePage() {
       <Hero />
       <Projects />
 
-      {/* Seções secundárias */}
+      {/* Seções secundárias carregadas de forma deferida */}
       <DeferredSection minHeight="900px">
         <About />
       </DeferredSection>
@@ -25,7 +26,7 @@ export default function HomePage() {
         <Stack />
       </DeferredSection>
       
-      {/* 🛠️ O TerminalWrapper resolve o erro de SSR mantendo a performance */}
+      {/* Terminal carregado dinamicamente via wrapper */}
       <DeferredSection minHeight="720px">
         <TerminalWrapper />
       </DeferredSection>
@@ -33,8 +34,6 @@ export default function HomePage() {
       <DeferredSection minHeight="760px">
         <Contact />
       </DeferredSection>
-
-      <DeferredHomeEffects />
     </main>
   );
 }

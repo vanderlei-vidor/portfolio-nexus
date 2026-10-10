@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import { HeroSection } from "../sections/HeroSection";
 import ProjectCaseChrome from "@/features/projects/components/ProjectCaseChrome";
+import CaseStudySummary from "@/features/projects/components/CaseStudySummary";
 
 function SectionFallback() {
   return <div className="min-h-screen bg-[#020308]" aria-hidden="true" />;
@@ -68,6 +69,7 @@ export default function ProjectExperience() {
     <ProjectCaseChrome slug="english-tutor" title="English Tutor">
       <div className="relative overflow-hidden bg-[#020308] text-white">
         <HeroSection />
+        <CaseStudySummary slug="english-tutor" />
         <DeferredCaseSections />
       </div>
     </ProjectCaseChrome>

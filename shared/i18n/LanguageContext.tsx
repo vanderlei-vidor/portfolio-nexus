@@ -36,23 +36,19 @@ function isLocale(value: string | null): value is Locale {
   return value === "en" || value === "pt" || value === "es";
 }
 
-function getBrowserLocale(): Locale {
-  if (typeof navigator === "undefined") return defaultLocale;
+export function getInitialLocale(): Locale {
+  if (typeof window === "undefined") return defaultLocale;
 
-  const preferredLanguages = navigator.languages?.length ? navigator.languages : [navigator.language];
-  const matchedLanguage = preferredLanguages
-    .map((language) => language.toLowerCase())
-    .find((language) => language.startsWith("pt") || language.startsWith("es") || language.startsWith("en"));
+  const savedLocale = localStorage.getItem(localeStorageKey);
+  if (isLocale(savedLocale)) return savedLocale;
 
-  if (matchedLanguage?.startsWith("pt")) return "pt";
-  if (matchedLanguage?.startsWith("es")) return "es";
   return defaultLocale;
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const [locale, setLocaleState] = useState<Locale>(defaultLocale);
+  const [locale, setLocaleState] = useState<Locale>(() => getInitialLocale());
 
   const setLocale = useCallback((newLocale: Locale) => {
     setLocaleState(newLocale);
@@ -63,17 +59,12 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     }
   }, []);
 
+
   useEffect(() => {
-    if (typeof window === "undefined") return;
-
-    const saved = localStorage.getItem(localeStorageKey);
-    const targetLocale = isLocale(saved) ? saved : getBrowserLocale();
-
-    document.documentElement.lang = localeLabels[targetLocale].htmlLang;
-    const frameId = requestAnimationFrame(() => setLocaleState(targetLocale));
-
-    return () => cancelAnimationFrame(frameId);
-  }, []);
+    if (typeof window !== "undefined") {
+      document.documentElement.lang = localeLabels[locale].htmlLang;
+    }
+  }, [locale]);
 
   const messages = dictionaries[locale] || dictionaries.en;
 

@@ -11,14 +11,21 @@
     "current": "Idioma actual"
   },
   "hero": {
-    "badge": "DISPONIBLE PARA PRODUCTOS DIGITALES, PORTFOLIOS Y SISTEMAS WEB",
+    "badge": "DISPONIBLE PARA PRODUCTOS DIGITALES E INGENIERÍA DE SOFTWARE",
     "eyebrow": "Seccion principal",
+    "name": "VANDERLEI VIDOR",
+    "role": "Full Stack / Product Engineer",
     "titleLine1": "CONSTRUYENDO",
     "titleLine2": "CON CLARIDAD.",
-    "tagline": "Producto. Ingenieria. Experiencia.",
+    "tagline": "Producto. Ingeniería. Experiencia.",
     "subtitle": "Transformo problemas reales en productos digitales bien estructurados, combinando ingeniería de software, interfaces cuidadas y decisiones pensadas para el rendimiento, el mantenimiento y la evolución.",
     "startProject": "Iniciar un Proyecto",
     "exploreWork": "Explorar Casos",
+    "contactMe": "Contactar",
+    "resume": "Currículum (PDF)",
+    "resumeDownload": "Descargar PDF",
+    "resumeToast": "Descarga del currículum iniciada",
+    "email": "Email",
     "viewProcess": "Ver Proceso"
   },
   "about": {
@@ -65,6 +72,18 @@
         "description": "Explora el caso Portfolio Nexus: el propio portfolio como sistema de presentacion, contenido localizado y rutas estaticas para proyectos reales."
       }
     }
+  },
+  "caseSummary": {
+    "eyebrow": "Lectura rápida para reclutadores",
+    "title": "El caso en una mirada",
+    "intro": "La historia central de producto e ingeniería, organizada para una lectura objetiva de 20–30 segundos antes del caso completo.",
+    "role": "Rol",
+    "stack": "Stack",
+    "challenge": "Desafío",
+    "keyDecision": "Decisión principal",
+    "evidence": "Evidencia",
+    "result": "Resultado",
+    "status": "Estado"
   },
   "stack": {
     "title": "CAPACIDADES Y STACK",

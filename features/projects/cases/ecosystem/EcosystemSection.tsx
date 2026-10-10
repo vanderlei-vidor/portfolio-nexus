@@ -14,6 +14,7 @@ import Numbers from "./section/Numbers/Numbers";
 import FutureVision from "./section/FutureVision/FutureVision";
 import FinalCTA from "./section/FinalCTA/FinalCTA";
 import ProjectCaseChrome from "@/features/projects/components/ProjectCaseChrome";
+import CaseStudySummary from "@/features/projects/components/CaseStudySummary";
 
 export default function EcosystemSection() {
   return (
@@ -22,6 +23,8 @@ export default function EcosystemSection() {
       <EcosystemCinematicDirector />
 
       <EcosystemHero />
+
+      <CaseStudySummary slug="portfolio-nexus" />
 
       <ConnectedWorlds />
 

@@ -1,4 +1,4 @@
-﻿import { expect, test } from "@playwright/test";
+import { expect, test } from "@playwright/test";
 
 const basePath = (process.env.NEXT_PUBLIC_BASE_PATH ?? "").replace(/\/$/, "");
 const withBasePath = (path: string) => `${basePath}${path.startsWith("/") ? path : `/${path}`}` || "/";
@@ -31,19 +31,26 @@ test.describe("Portfolio Nexus - E2E Core Journeys", () => {
   test("updates the contact mailto link from form fields", async ({ page }) => {
     await page.goto(withBasePath("/contact"), { waitUntil: "domcontentloaded" });
 
-    await page.locator('input[type="text"]').first().fill("Recrutador Tech");
-    await page.locator('input[type="text"]').nth(1).fill("Oportunidade Engenheiro Senior");
-    await page.locator("textarea").fill(
+    const nameInput = page.locator("#contact-name");
+    const subjectInput = page.locator("#contact-subject");
+    const messageInput = page.locator("#contact-message");
+
+    await expect(nameInput).toBeVisible();
+    await nameInput.click();
+    await nameInput.fill("Recrutador Tech");
+
+    await subjectInput.click();
+    await subjectInput.fill("Oportunidade Engenheiro Senior");
+
+    await messageInput.click();
+    await messageInput.fill(
       "Ola Vanderlei, vimos seu portfolio Nexus e gostariamos de agendar uma conversa."
     );
 
     const mailtoLink = page.locator('a[href^="mailto:vanderleividor1@gmail.com"]');
     await expect(mailtoLink).toBeVisible();
-
-    const href = await mailtoLink.getAttribute("href");
-    expect(href).toContain("mailto:vanderleividor1@gmail.com");
-    expect(decodeURIComponent(href ?? "")).toContain("Oportunidade Engenheiro Senior");
-    expect(decodeURIComponent(href ?? "")).toContain("Recrutador Tech");
+    await expect(mailtoLink).toHaveAttribute("href", /Oportunidade%20Engenheiro%20Senior/);
+    await expect(mailtoLink).toHaveAttribute("href", /Recrutador%20Tech/);
   });
 
   test("navigates from home to the Music Player case study", async ({ page }) => {
@@ -57,5 +64,47 @@ test.describe("Portfolio Nexus - E2E Core Journeys", () => {
 
     await expect(page).toHaveURL(/\/projects\/music-player\/?$/);
     await expect(page.getByRole("heading", { name: "Music Player" })).toBeVisible();
+  });
+
+  test("shows a complete recruiter summary on every case study", async ({ page }) => {
+    const projectSlugs = [
+      "music-player",
+      "saas-data-control",
+      "english-tutor",
+      "portfolio-nexus",
+    ];
+
+    for (const slug of projectSlugs) {
+      await page.goto(withBasePath(`/projects/${slug}`), { waitUntil: "domcontentloaded" });
+
+      const summary = page.locator(`[data-case-study-summary="${slug}"]`);
+      await expect(summary).toBeVisible();
+      await expect(summary.getByRole("heading", { name: "Case study at a glance" })).toBeVisible();
+
+      for (const label of ["Role", "Stack", "Challenge", "Key decision", "Evidence", "Result", "Status"]) {
+        await expect(summary.getByText(label, { exact: true })).toBeVisible();
+      }
+    }
+  });
+
+  test("validates resume preview in new tab, direct download and toast feedback", async ({ page }) => {
+    await page.goto(withBasePath("/"), { waitUntil: "domcontentloaded" });
+
+    // Preview link in new tab
+    const previewLink = page.locator('a[title*="Resume (PDF)"]');
+    await expect(previewLink).toBeVisible();
+    await expect(previewLink).toHaveAttribute("target", "_blank");
+    await expect(previewLink).toHaveAttribute("href", withBasePath("/resume-en.pdf"));
+
+    // Direct download button & toast feedback
+    const downloadBtn = page.locator('a[download="Vanderlei_Vidor_Resume.pdf"]');
+    await expect(downloadBtn).toBeVisible();
+    await expect(downloadBtn).toHaveAttribute("href", withBasePath("/resume-en.pdf"));
+
+    // Click direct download and verify refined visual toast
+    await downloadBtn.click();
+    const toast = page.locator('[role="status"]');
+    await expect(toast).toBeVisible();
+    await expect(toast).toContainText("Resume download started");
   });
 });

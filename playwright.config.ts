@@ -3,7 +3,7 @@ import { defineConfig, devices } from "@playwright/test";
 const e2ePort = process.env.E2E_PORT ?? "3000";
 const basePath = (process.env.NEXT_PUBLIC_BASE_PATH ?? "").replace(/\/$/, "");
 const baseURL = `http://127.0.0.1:${e2ePort}${basePath}`;
-const useStaticExport = process.env.E2E_STATIC_EXPORT === "true";
+const useStaticExport = process.env.E2E_STATIC_EXPORT !== "false";
 
 export default defineConfig({
   testDir: "./e2e",
@@ -11,7 +11,9 @@ export default defineConfig({
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 0,
   workers: 1,
-  reporter: "list",
+  reporter: process.env.CI
+    ? [["list"], ["html", { open: "never" }]]
+    : "list",
 
   use: {
     baseURL,
@@ -30,7 +32,7 @@ export default defineConfig({
       ? `node scripts/serve-static.mjs out ${e2ePort}`
       : `npx next start -p ${e2ePort}`,
     url: baseURL,
-    reuseExistingServer: !process.env.CI,
+    reuseExistingServer: false,
     timeout: 120 * 1000,
   },
 });

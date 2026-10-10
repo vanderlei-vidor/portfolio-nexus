@@ -11,14 +11,21 @@
     "current": "Current language"
   },
   "hero": {
-    "badge": "AVAILABLE FOR DIGITAL PRODUCTS, PORTFOLIOS AND WEB SYSTEMS",
+    "badge": "AVAILABLE FOR DIGITAL PRODUCT & SOFTWARE ENGINEERING",
     "eyebrow": "Hero section",
+    "name": "VANDERLEI VIDOR",
+    "role": "Full Stack / Product Engineer",
     "titleLine1": "BUILDING",
     "titleLine2": "WITH CLARITY.",
     "tagline": "Product. Engineering. Experience.",
     "subtitle": "I turn real-world problems into well-structured digital products, combining software engineering, thoughtful interfaces, and decisions designed for performance, maintainability, and growth.",
     "startProject": "Start a Project",
     "exploreWork": "Explore Cases",
+    "contactMe": "Contact Me",
+    "resume": "Resume (PDF)",
+    "resumeDownload": "Download PDF",
+    "resumeToast": "Resume download started",
+    "email": "Email",
     "viewProcess": "View Process"
   },
   "about": {
@@ -65,6 +72,18 @@
         "description": "Explore the Portfolio Nexus case study: the portfolio itself as a presentation system with localized content and static routes for real projects."
       }
     }
+  },
+  "caseSummary": {
+    "eyebrow": "Recruiter fast track",
+    "title": "Case study at a glance",
+    "intro": "The core product and engineering story, designed for a focused 20–30 second read before the deeper case.",
+    "role": "Role",
+    "stack": "Stack",
+    "challenge": "Challenge",
+    "keyDecision": "Key decision",
+    "evidence": "Evidence",
+    "result": "Result",
+    "status": "Status"
   },
   "stack": {
     "title": "CAPABILITIES & STACK",

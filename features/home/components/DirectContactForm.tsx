@@ -16,10 +16,21 @@ export default function DirectContactForm() {
 
   const getMailtoUrl = () => {
     const visitor = name.trim() || t("contact.defaultVisitor");
-    const defaultSubject = subject.trim() || `${t("contact.defaultSubject")} - ${visitor}`;
-    const defaultBody = `${t("contact.defaultGreeting")}\n\n${message.trim() || t("contact.defaultBody")}\n\n${t("contact.defaultSignoff")}\n${visitor}`;
+    const typedSubject = subject.trim();
+    const defaultSubject = typedSubject || `${t("contact.defaultSubject")} - ${visitor}`;
+    const mailBody = [
+      t("contact.defaultGreeting"),
+      "",
+      `Visitor: ${visitor}`,
+      `Opportunity: ${typedSubject || t("contact.defaultSubject")}`,
+      "",
+      message.trim() || t("contact.defaultBody"),
+      "",
+      t("contact.defaultSignoff"),
+      visitor,
+    ].join("\n");
 
-    return `mailto:${recipientEmail}?subject=${encodeURIComponent(defaultSubject)}&body=${encodeURIComponent(defaultBody)}`;
+    return `mailto:${recipientEmail}?subject=${encodeURIComponent(defaultSubject)}&body=${encodeURIComponent(mailBody)}`;
   };
 
   const handleCopyFormatted = () => {

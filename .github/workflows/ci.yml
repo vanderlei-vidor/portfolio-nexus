@@ -5,6 +5,7 @@ on:
     branches: [master, main]
   pull_request:
     branches: [master, main]
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -126,6 +127,17 @@ jobs:
           E2E_STATIC_EXPORT: "true"
           NEXT_PUBLIC_BASE_PATH: /${{ github.event.repository.name }}
         run: npm run test:e2e
+
+      - name: Upload Playwright diagnostics
+        if: failure()
+        uses: actions/upload-artifact@v7
+        with:
+          name: playwright-diagnostics-${{ github.run_attempt }}
+          path: |
+            playwright-report
+            test-results
+          if-no-files-found: ignore
+          retention-days: 7
 
   deploy:
     name: Deploy GitHub Pages

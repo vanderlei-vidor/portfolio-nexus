@@ -35,7 +35,7 @@ export const projectsRegistry = {
     cardDescription: "AI language tutor",
     description:
       "Explore the English Tutor case study: a Flutter and FastAPI language tutor where a deterministic Teacher Brain guides learning before the local LLM writes the response.",
-    imageUrl: withBasePath("/projects/english-tutor/textures/english-tutor-screen.webp"),
+    imageUrl: withBasePath("/projects/english-tutor/textures/card_home.webp"),
     loadComponent: async () => (await import("./cases/english-tutor")).default,
   },
   "portfolio-nexus": {

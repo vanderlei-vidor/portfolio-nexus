@@ -11,6 +11,7 @@ import { TechStack } from "./sections/TechStack/TechStack";
 
 import FinalShowcasee from "./sections/FinalShowcase/FinalShowcasee";
 import ProjectCaseChrome from "@/features/projects/components/ProjectCaseChrome";
+import CaseStudySummary from "@/features/projects/components/CaseStudySummary";
 
 export function TaskManagerPage() {
   return (
@@ -18,6 +19,8 @@ export function TaskManagerPage() {
       <div className="task-manager-page">
 
       <Hero />
+
+      <CaseStudySummary slug="saas-data-control" />
 
       <DashboardAnalytics />
 

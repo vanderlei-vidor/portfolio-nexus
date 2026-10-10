@@ -2,7 +2,7 @@
 "use client";
 import ProjectCard from "./ProjectCard";
 import { motion } from "framer-motion";
-import { projectsList } from "@/features/projects/registry";
+import { projectsCardList } from "@/features/projects/projects-meta";
 import { useTranslation } from "@/shared/i18n/useTranslation";
 
 const containerVariants = {
@@ -36,7 +36,7 @@ export default function Projects() {
         viewport={{ once: true }}
         className="grid md:grid-cols-2 gap-10"
       >
-        {projectsList.map((project) => (
+        {projectsCardList.map((project) => (
           <ProjectCard
             key={project.slug}
             title={project.title}

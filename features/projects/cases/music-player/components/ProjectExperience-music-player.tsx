@@ -7,11 +7,14 @@ import ArchitectureShowcase from "../section/ArchitectureShowcase/ArchitectureSh
 import DesignSystemSection from "../section/DesignSystemSection/DesignSystemSection";
 import FinalShowcase from "../section/FinalShowcase/FinalShowcase";
 import ProjectCaseChrome from "@/features/projects/components/ProjectCaseChrome";
+import CaseStudySummary from "@/features/projects/components/CaseStudySummary";
 
 export default function ProjectExperience() {
   return (
     <ProjectCaseChrome slug="music-player" title="Music Player">
       <CinematicHero />
+
+      <CaseStudySummary slug="music-player" />
 
       <DeviceReveal />
 

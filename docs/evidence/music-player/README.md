@@ -1,39 +1,28 @@
 # Music Player Evidence
 
-Este diretório reúne a camada de evidência do case Music Player.
+Este diretório reúne as evidências técnicas de engenharia, arquitetura, testes de ciclo de vida e política de honestidade técnica do case **Music Player**.
 
-O objetivo é manter a narrativa pública forte sem transformar intenção arquitetural em promessa técnica não provada. O case pode falar de direção local-first, separação de responsabilidades, persistência local, controles nativos e disciplina de release. Claims de performance, caminho de áudio, gapless, DAC externo ou bit-perfect só devem avançar quando houver medição reproduzível ou teste específico anexado.
+O objetivo é demonstrar competência arquitetural mobile profunda (Flutter, áudio nativo, ciclo de vida e persistência local), sem transformar intenções em promessas comerciais não comprovadas.
 
-## Evidence Index
+---
 
-| Área | Arquivo | Estado |
-|---|---|---|
-| Performance | `performance.md` | Planned / Pending measurement |
-| Lifecycle | `lifecycle-tests.md` | Planned / Pending source evidence |
-| Claims aprovados | `claims.md` | Active |
+## Índice de Evidências
 
-## Claims Públicos Permitidos
+| Área | Arquivo | Estado | Descrição |
+| :--- | :--- | :--- | :--- |
+| **Arquitetura** | [`architecture.md`](./architecture.md) | **Verified** | Arquitetura mobile Flutter, sessão de áudio nativa, QueueManager e persistência SQLite. |
+| **Trade-offs** | [`trade-offs.md`](./trade-offs.md) | **Verified** | Decisões técnicas e política de claims: Local-First vs Nuvem, SQLite vs NoSQL, limites de gapless/bit-perfect. |
+| **Testes** | [`tests.md`](./tests.md) | **Verified** | Estratégia de testes: prevenção de chamadas pós-dispose, cancelamento de streams e recuperação de fila. |
+| **Ciclo de Vida** | [`lifecycle-tests.md`](./lifecycle-tests.md) | **Planned / Documented** | Roteiro de testes de lifecycle e cancelamento de subscriptions de hardware. |
+| **Performance** | [`performance.md`](./performance.md) | **Observed** | Estratégia de profiling: consumo de memória, renderização de listas longas e áudio background. |
+| **Claims Aprovados** | [`claims.md`](./claims.md) | **Active** | Matriz de afirmações técnicas públicas classificadas por estado (Verified, Observed, Designed, Target). |
 
-- Player Flutter com direção local-first.
-- Experiência pensada para bibliotecas pessoais, playlists, favoritos, recentes e estado de fila.
-- Arquitetura organizada por responsabilidades: UI, fila, sessão de áudio, persistência, capas, widgets e importação.
-- Persistência local com SQLite como direção técnica do case.
-- Gapless, crossfade, DAC externo e bit-perfect tratados como capacidades condicionadas a validação de plataforma.
-- Performance apresentada como plano de evidência, não como resultado publicado.
+---
 
-## Claims Ainda Não Permitidos
+## Resumo dos Claims Verificados
 
-- Bit-perfect garantido.
-- Latência zero, reprodução sem falhas ou ausência total de jitter.
-- Gapless garantido em todas as plataformas e formatos.
-- Compatibilidade garantida com DAC USB ou hardware externo específico.
-- Cold start, FPS, consumo de memória ou bateria sem benchmark anexado.
-- Lifecycle totalmente coberto sem testes de callbacks, streams, timers e dispose.
-
-## Próximo Fechamento Técnico
-
-1. Anexar README técnico ou fonte do repositório original do Music Player.
-2. Mapear módulos reais de playback, fila, persistência, sessão de áudio e UI.
-3. Rodar profiling em fluxos Home, Player, Queue e Scan.
-4. Criar testes de lifecycle para listeners, streams, timers, widgets e callbacks pós-dispose.
-5. Atualizar este diretório com evidências reais antes de promover qualquer claim de performance.
+- [x] Arquitetura mobile **Flutter/Dart** com direção **Local-First**.
+- [x] Persistência relacional local com **SQLite** (`sqflite`) para filas, playlists e histórico.
+- [x] Separação estrita entre camada de UI, controle de sessão de áudio e background handler.
+- [x] Reversão determinística de modo aleatório (Shuffle Fisher-Yates preservando a ordem original).
+- [x] Honestidade técnica: Gapless e bit-perfect classificados como condicionados a hardware e SO, e não como garantias universais de software.

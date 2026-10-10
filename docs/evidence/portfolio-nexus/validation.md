@@ -6,15 +6,15 @@ Este arquivo registra comandos usados para validar o Portfolio Nexus em ambiente
 
 ## Última Execução Local
 
-Data local: 2026-09-12
+Data local: 2026-10-10
 
 | Comando | Estado | Observação |
 |---|---|---|
 | `npx tsc --noEmit` | Passed | Tipagem TypeScript validada. |
 | `npm run lint` | Passed | ESLint sem erros. |
 | `npm run test` | Passed | 3 arquivos de teste, 8 testes passando. |
-| `npm run build` com `GITHUB_PAGES=true` e `NEXT_PUBLIC_BASE_PATH=/portfolio-aaa` | Passed | Next gerou 14 rotas estáticas. |
-| `npm run test:e2e` com `E2E_STATIC_EXPORT=true` e `NEXT_PUBLIC_BASE_PATH=/portfolio-aaa` | Passed | 3 fluxos E2E passando contra `out`. |
+| `npm run build` | Passed | Next gerou 14 páginas estáticas. |
+| `npm run test:e2e` | Passed | 5 fluxos E2E passando em Chromium no mesmo modo usado pelo CI do GitHub Pages. |
 
 ## Evidência de Build
 
@@ -48,10 +48,12 @@ Fluxos E2E atuais:
 
 - troca entre EN, PT e ES;
 - atualização do link `mailto` no formulário de contato;
-- navegação da home para o case Music Player.
+- navegação da home para o case Music Player;
+- presença dos sete campos do TL;DR nos quatro cases publicados;
+- preview, download localizado e feedback visual do Resume.
 
 ## Limites
 
-- Lighthouse foi anexado como evidência formal local em 2026-09-12; Performance ficou abaixo da meta e virou follow-up.
-- E2E cobre fluxos críticos iniciais, mas ainda não cobre todos os cases individualmente.
+- O baseline inicial do Lighthouse ficou abaixo da meta; a correção de LCP e a medição final da Sprint 1 estão registradas em `lighthouse-sprint1-final.report.json`.
+- E2E cobre os fluxos críticos de idioma, contato, Resume, navegação inicial e o TL;DR dos quatro cases, mas ainda não cobre todas as interações internas nem todos os browsers do Release Gate.
 - Performance do English Tutor possui medição inicial registrada no roadmap, mas ainda precisa de trace/profiling formal.
