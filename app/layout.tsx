@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import "@/styles/globals.css";
 import Grain from "@/shared/effects/Grain";
 import AppRuntime from "@/shared/effects/AppRuntime";
@@ -95,6 +96,7 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col bg-black text-white" suppressHydrationWarning>
         <Grain />
         <AppRuntime>{children}</AppRuntime>
+        <Analytics />
       </body>
     </html>
   );
