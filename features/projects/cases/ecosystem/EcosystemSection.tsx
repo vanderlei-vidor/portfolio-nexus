@@ -15,6 +15,7 @@ import FutureVision from "./section/FutureVision/FutureVision";
 import FinalCTA from "./section/FinalCTA/FinalCTA";
 import ProjectCaseChrome from "@/features/projects/components/ProjectCaseChrome";
 import CaseStudySummary from "@/features/projects/components/CaseStudySummary";
+import CaseStudyTechnicalProof from "@/features/projects/components/CaseStudyTechnicalProof";
 
 export default function EcosystemSection() {
   return (
@@ -39,6 +40,8 @@ export default function EcosystemSection() {
       <Evolution />
 
       <EngineeringDNA />
+
+      <CaseStudyTechnicalProof slug="portfolio-nexus" />
 
       <DesignPhilosophy />
 

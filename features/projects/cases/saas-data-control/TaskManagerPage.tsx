@@ -12,6 +12,7 @@ import { TechStack } from "./sections/TechStack/TechStack";
 import FinalShowcasee from "./sections/FinalShowcase/FinalShowcasee";
 import ProjectCaseChrome from "@/features/projects/components/ProjectCaseChrome";
 import CaseStudySummary from "@/features/projects/components/CaseStudySummary";
+import CaseStudyTechnicalProof from "@/features/projects/components/CaseStudyTechnicalProof";
 
 export function TaskManagerPage() {
   return (
@@ -31,6 +32,8 @@ export function TaskManagerPage() {
       <CentralizedSolution />
 
       <CorporateFeatures />
+
+      <CaseStudyTechnicalProof slug="saas-data-control" />
 
       <TechStack />
 

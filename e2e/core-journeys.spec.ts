@@ -87,6 +87,45 @@ test.describe("Portfolio Nexus - E2E Core Journeys", () => {
     }
   });
 
+  test("connects every case study to architecture, trade-offs and next steps", async ({ page }) => {
+    const projectSlugs = [
+      "music-player",
+      "saas-data-control",
+      "english-tutor",
+      "portfolio-nexus",
+    ];
+
+    for (const slug of projectSlugs) {
+      await page.goto(withBasePath(`/projects/${slug}`), { waitUntil: "domcontentloaded" });
+
+      const summary = page.locator(`[data-case-study-summary="${slug}"]`);
+      const technicalProofLink = summary.getByRole("link", { name: "Explore technical proof" });
+      await expect(technicalProofLink).toHaveAttribute("href", `#${slug}-technical-proof`);
+      await technicalProofLink.click();
+
+      const technicalProof = page.locator(`[data-case-study-technical-proof="${slug}"]`);
+      await expect(technicalProof).toBeVisible();
+      await expect(technicalProof.getByRole("heading", { name: "Architecture flow" })).toBeVisible();
+      await expect(technicalProof.getByRole("heading", { name: "Trade-offs" })).toBeVisible();
+      await expect(
+        technicalProof.getByRole("heading", { name: /Next (validation|release) steps/ })
+      ).toBeVisible();
+      await expect(technicalProof.locator("ol").first().locator("li")).toHaveCount(4);
+      await expect(technicalProof.locator("article")).toHaveCount(3);
+      await expect(technicalProof.locator("ol").nth(1).locator("li")).toHaveCount(3);
+    }
+
+    const portfolioProof = page.locator('[data-case-study-technical-proof="portfolio-nexus"]');
+
+    await page.locator('button[lang="pt-BR"]').click();
+    await expect(portfolioProof.getByRole("heading", { name: "Fluxo de arquitetura" })).toBeVisible();
+    await expect(portfolioProof.getByRole("heading", { name: "Próximos passos de release" })).toBeVisible();
+
+    await page.locator('button[lang="es"]').click();
+    await expect(portfolioProof.getByRole("heading", { name: "Flujo de arquitectura" })).toBeVisible();
+    await expect(portfolioProof.getByRole("heading", { name: "Próximos pasos de release" })).toBeVisible();
+  });
+
   test("validates resume preview in new tab, direct download and toast feedback", async ({ page }) => {
     await page.goto(withBasePath("/"), { waitUntil: "domcontentloaded" });
 

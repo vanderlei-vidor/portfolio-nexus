@@ -14,7 +14,7 @@ Data local: 2026-10-10
 | `npm run lint` | Passed | ESLint sem erros. |
 | `npm run test` | Passed | 3 arquivos de teste, 8 testes passando. |
 | `npm run build` | Passed | Next gerou 14 páginas estáticas. |
-| `npm run test:e2e` | Passed | 5 fluxos E2E passando em Chromium no mesmo modo usado pelo CI do GitHub Pages. |
+| `npm run test:e2e` | Passed | 6 fluxos E2E passando em Chromium no mesmo modo usado pelo CI do GitHub Pages. |
 
 ## Evidência de Build
 
@@ -50,10 +50,11 @@ Fluxos E2E atuais:
 - atualização do link `mailto` no formulário de contato;
 - navegação da home para o case Music Player;
 - presença dos sete campos do TL;DR nos quatro cases publicados;
+- conexão dos quatro cases com fluxo de arquitetura, trade-offs e próximos passos;
 - preview, download localizado e feedback visual do Resume.
 
 ## Limites
 
 - O baseline inicial do Lighthouse ficou abaixo da meta; a correção de LCP e a medição final da Sprint 1 estão registradas em `lighthouse-sprint1-final.report.json`.
-- E2E cobre os fluxos críticos de idioma, contato, Resume, navegação inicial e o TL;DR dos quatro cases, mas ainda não cobre todas as interações internas nem todos os browsers do Release Gate.
+- E2E cobre os fluxos críticos de idioma, contato, Resume, navegação inicial, TL;DR e Technical Proof dos quatro cases, mas ainda não cobre todas as interações internas nem todos os browsers do Release Gate.
 - Performance do English Tutor possui medição inicial registrada no roadmap, mas ainda precisa de trace/profiling formal.

@@ -6,7 +6,7 @@
 >
 > **Regra de posicionamento:** o termo AAA pode continuar sendo usado internamente como meta de qualidade, mas não deve aparecer como autoavaliação pública.
 >
-> **Status atual (2026-10-10):** Sprint 3 concluída. Sprint 4 — Case Study Proof é a fase ativa.
+> **Status atual (2026-10-10):** Sprint 4 — Case Study Proof concluída. Sprint 5 — Motion & Premium UI Polish é a fase ativa.
 
 ---
 
@@ -36,7 +36,7 @@ A experiência final deve transmitir seis qualidades:
 
 ## 2. Estado atual consolidado
 
-### 2.1 Estado consolidado após a Sprint 3
+### 2.1 Estado consolidado após a Sprint 4
 
 | Área | Estado | Leitura |
 | :--- | :--- | :--- |
@@ -46,6 +46,7 @@ A experiência final deve transmitir seis qualidades:
 | **Microinterações** | Parcial | Padrões globais aplicados; falta fechamento de componentes internos. |
 | **Performance / homologação** | P0 fechada | LCP reduzido de 8.6 s para 1.20 s no cenário controlado da Sprint 1; homologação final permanece no Release Gate. |
 | **Hiring / conversion UX** | Fechada | Sprint 3 concluída com Hero, CTAs, perfis profissionais, Resume localizado e contato direto sem backend. |
+| **Case Study Proof** | Fechada | Sprint 4 concluída com TL;DR, fluxos de arquitetura, trade-offs e próximos passos localizados nos quatro cases. |
 | **Release production gate** | Parcial | Pipeline definido, mas precisa fechar 100% antes do release final. |
 
 ### 2.2 Baseline original de performance
@@ -290,7 +291,7 @@ No topo de cada case:
 - [x] Registrar data do baseline atual.
 - [ ] Confirmar stack pública de cada projeto.
 - [ ] Confirmar números atualmente publicados.
-- [x] Rodar pipeline local completo (2026-10-10: lint, TypeScript, 8/8 testes unitários, build de 14 páginas e 5/5 fluxos E2E aprovados).
+- [x] Rodar pipeline local completo (2026-10-10: lint, TypeScript, 8/8 testes unitários, build de 14 páginas e 6/6 fluxos E2E aprovados).
 
 ### Pipeline
 ```bash
@@ -464,7 +465,7 @@ Navegação principal padronizada:
 - [x] `npx tsc --noEmit` — sem erros.
 - [x] `npm run test` — 3 arquivos e 8/8 testes aprovados.
 - [x] `npm run build` — build de produção aprovado com 14 páginas estáticas.
-- [x] `npm run test:e2e` — 5/5 fluxos aprovados em Chromium.
+- [x] `npm run test:e2e` — 6/6 fluxos aprovados em Chromium.
 
 ---
 
@@ -479,9 +480,19 @@ Navegação principal padronizada:
 
 ### Tarefas gerais
 - [x] Implementar o bloco TL;DR padronizado no topo dos 4 cases (2026-10-10: Role, Stack, Challenge, Key Decision, Evidence, Result e Status validados via Playwright).
-- [ ] Adicionar diagramas de arquitetura quando aplicável.
-- [ ] Deixar trade-offs explícitos e próximos passos técnicos claros.
-- [ ] Evitar blocos maciços de texto corrido.
+- [x] Adicionar diagramas de arquitetura quando aplicável (2026-10-10: fluxos padronizados de quatro etapas conectados às arquiteturas detalhadas já existentes).
+- [x] Deixar trade-offs explícitos e próximos passos técnicos claros (2026-10-10: três decisões e três validações futuras por case, em EN/PT/ES).
+- [x] Evitar blocos maciços de texto corrido (2026-10-10: conteúdo dividido em fluxo, cards de decisão e lista priorizada).
+
+### Validação de fechamento
+
+- [x] TL;DR conectado por âncora à prova técnica de cada case.
+- [x] Claims não comprovados mantidos como metas de validação.
+- [x] Revisão visual aprovada em desktop e mobile.
+- [x] ESLint e TypeScript aprovados.
+- [x] 8/8 testes unitários aprovados.
+- [x] Build estático aprovado com 14 páginas.
+- [x] 6/6 jornadas Playwright aprovadas no modo do GitHub Pages.
 
 ---
 
@@ -765,10 +776,9 @@ Antes de adicionar qualquer biblioteca, shader, animação ou abstração nova, 
 ## 24. Próxima sequência prática
 
 ### Fase ativa
-1. **Diagramas, trade-offs e próximos passos (Sprint 4):** conectar o TL;DR já entregue às evidências técnicas detalhadas.
-2. **Polish Final & Design Tokens (Sprint 5):** aplicar refinamento visual seguro sobre a base rápida.
-4. **QA, Accessibility, Responsive & i18n (Sprint 6):** validar dispositivos, idiomas, teclado e browsers.
-5. **Production Release Gate (Sprint 7):** executar e registrar o checklist completo antes do deploy final.
+1. **Polish Final & Design Tokens (Sprint 5):** aplicar refinamento visual seguro sobre a base rápida.
+2. **QA, Accessibility, Responsive & i18n (Sprint 6):** validar dispositivos, idiomas, teclado e browsers.
+3. **Production Release Gate (Sprint 7):** executar e registrar o checklist completo antes do deploy final.
 
 ### Pendência documental paralela
 - Fechar os dois itens ainda abertos da Sprint 0: confirmar stack pública e confirmar números publicados.

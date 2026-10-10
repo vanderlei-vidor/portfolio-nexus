@@ -1,6 +1,6 @@
 "use client";
 
-import { CheckCircle2, CircleDotDashed } from "lucide-react";
+import { ArrowDownRight, CheckCircle2, CircleDotDashed } from "lucide-react";
 import { caseStudySummaries } from "../case-study-summaries";
 import type { ProjectSlug } from "../registry";
 import { useTranslation } from "@/shared/i18n/useTranslation";
@@ -109,6 +109,14 @@ export default function CaseStudySummary({ slug }: CaseStudySummaryProps) {
             </div>
           ))}
         </dl>
+
+        <a
+          href={`#${slug}-technical-proof`}
+          className="mt-8 inline-flex min-h-11 items-center gap-2 rounded-full border border-white/15 bg-white/[0.035] px-5 py-2.5 text-sm font-semibold text-zinc-200 transition-colors hover:border-cyan-300/40 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300"
+        >
+          {t("caseSummary.technicalProofCta")}
+          <ArrowDownRight className="h-4 w-4" aria-hidden="true" />
+        </a>
       </div>
     </section>
   );

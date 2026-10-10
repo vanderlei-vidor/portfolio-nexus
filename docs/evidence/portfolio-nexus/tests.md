@@ -30,6 +30,7 @@ flowchart LR
         E2E_Contact["Formulário & Mailto Link"]
         E2E_Nav["Navegação Home -> Case Study"]
         E2E_Summary["TL;DR dos 4 Cases"]
+        E2E_Proof["Arquitetura, Trade-offs & Próximos Passos"]
         E2E_Resume["Preview & Download do Resume"]
     end
 
@@ -62,9 +63,10 @@ Executados via `npm run test:e2e` sobre o servidor estático de produção (`out
 | **Fluxo de Contato Direto** | `e2e/core-journeys.spec.ts` | Preenche os campos `#contact-name`, `#contact-subject`, `#contact-message` e valida que o atributo `href` do botão de envio é formatado com `mailto:vanderleividor1@gmail.com?subject=...&body=...`. | **Passou (2.1s)** 🟢 |
 | **Navegação de Case Study** | `e2e/core-journeys.spec.ts` | Navega a partir do card "Music Player" na Home para `/projects/music-player/`, verificando a URL canônica e os elementos de arquitetura carregados. | **Passou (740ms)** 🟢 |
 | **Leitura Rápida dos Cases** | `e2e/core-journeys.spec.ts` | Visita os quatro cases publicados e valida o bloco TL;DR com Role, Stack, Challenge, Key Decision, Evidence, Result e Status. | **Passou (2.2s)** 🟢 |
+| **Prova Técnica dos Cases** | `e2e/core-journeys.spec.ts` | Percorre os quatro cases a partir do TL;DR, valida quatro etapas de arquitetura, três trade-offs e três próximos passos por projeto e confirma a localização EN/PT/ES. | **Passou (5.4s)** 🟢 |
 | **Resume Localizado** | `e2e/core-journeys.spec.ts` | Valida preview em nova aba, download direto, feedback visual e os links com o `basePath` do GitHub Pages. | **Passou (742ms)** 🟢 |
 
-**Total E2E:** 5 / 5 jornadas completas aprovadas contra o build de produção real no mesmo modo usado pelo CI.
+**Total E2E:** 6 / 6 jornadas completas aprovadas contra o build de produção real no mesmo modo usado pelo CI.
 
 ---
 
@@ -77,5 +79,5 @@ npm run lint          # 0 erros, 0 avisos
 npx tsc --noEmit      # 0 erros de tipagem
 npm run test          # 8 testes unitários passando
 npm run build         # 14 páginas estáticas geradas
-npm run test:e2e      # 5 testes E2E executados sobre out/
+npm run test:e2e      # 6 testes E2E executados sobre out/
 ```

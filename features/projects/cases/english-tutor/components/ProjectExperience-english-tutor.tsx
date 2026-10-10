@@ -5,6 +5,7 @@ import dynamic from "next/dynamic";
 import { HeroSection } from "../sections/HeroSection";
 import ProjectCaseChrome from "@/features/projects/components/ProjectCaseChrome";
 import CaseStudySummary from "@/features/projects/components/CaseStudySummary";
+import CaseStudyTechnicalProof from "@/features/projects/components/CaseStudyTechnicalProof";
 
 function SectionFallback() {
   return <div className="min-h-screen bg-[#020308]" aria-hidden="true" />;
@@ -71,6 +72,7 @@ export default function ProjectExperience() {
         <HeroSection />
         <CaseStudySummary slug="english-tutor" />
         <DeferredCaseSections />
+        <CaseStudyTechnicalProof slug="english-tutor" />
       </div>
     </ProjectCaseChrome>
   );

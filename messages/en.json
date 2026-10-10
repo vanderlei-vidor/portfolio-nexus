@@ -83,7 +83,8 @@
     "keyDecision": "Key decision",
     "evidence": "Evidence",
     "result": "Result",
-    "status": "Status"
+    "status": "Status",
+    "technicalProofCta": "Explore technical proof"
   },
   "stack": {
     "title": "CAPABILITIES & STACK",

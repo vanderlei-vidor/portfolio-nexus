@@ -8,6 +8,7 @@ import DesignSystemSection from "../section/DesignSystemSection/DesignSystemSect
 import FinalShowcase from "../section/FinalShowcase/FinalShowcase";
 import ProjectCaseChrome from "@/features/projects/components/ProjectCaseChrome";
 import CaseStudySummary from "@/features/projects/components/CaseStudySummary";
+import CaseStudyTechnicalProof from "@/features/projects/components/CaseStudyTechnicalProof";
 
 export default function ProjectExperience() {
   return (
@@ -25,6 +26,8 @@ export default function ProjectExperience() {
       <PerformanceSection />
 
       <ArchitectureShowcase />
+
+      <CaseStudyTechnicalProof slug="music-player" />
 
       <DesignSystemSection />
 
