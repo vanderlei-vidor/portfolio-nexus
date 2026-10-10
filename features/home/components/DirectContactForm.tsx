@@ -72,7 +72,7 @@ export default function DirectContactForm() {
             value={name}
             onChange={(event) => setName(event.target.value)}
             placeholder={t("contact.namePlaceholder")}
-            className="w-full rounded-lg border border-white/10 bg-black/30 px-4 py-3 text-sm font-light text-white transition-colors placeholder:text-zinc-500 focus:border-blue-400/50 focus:outline-none focus:ring-2 focus:ring-blue-400/30"
+            className="premium-field w-full rounded-lg px-4 py-3 text-sm font-light focus:outline-none"
           />
         </div>
 
@@ -86,7 +86,7 @@ export default function DirectContactForm() {
             value={subject}
             onChange={(event) => setSubject(event.target.value)}
             placeholder={t("contact.subjectPlaceholder")}
-            className="w-full rounded-lg border border-white/10 bg-black/30 px-4 py-3 text-sm font-light text-white transition-colors placeholder:text-zinc-500 focus:border-blue-400/50 focus:outline-none focus:ring-2 focus:ring-blue-400/30"
+            className="premium-field w-full rounded-lg px-4 py-3 text-sm font-light focus:outline-none"
           />
         </div>
 
@@ -100,7 +100,7 @@ export default function DirectContactForm() {
             value={message}
             onChange={(event) => setMessage(event.target.value)}
             placeholder={t("contact.messagePlaceholder")}
-            className="w-full resize-none rounded-lg border border-white/10 bg-black/30 px-4 py-3 text-sm font-light text-white transition-colors placeholder:text-zinc-500 focus:border-blue-400/50 focus:outline-none focus:ring-2 focus:ring-blue-400/30"
+            className="premium-field w-full resize-none rounded-lg px-4 py-3 text-sm font-light focus:outline-none"
           />
         </div>
 

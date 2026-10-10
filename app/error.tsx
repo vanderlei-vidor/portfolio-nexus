@@ -44,7 +44,7 @@ export default function Error({
           <button
             type="button"
             onClick={() => reset()}
-            className="inline-flex items-center gap-2 rounded-full bg-white px-8 py-4 font-semibold text-black transition-all duration-300 hover:scale-105 hover:bg-red-500 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+            className="premium-button premium-button--primary px-8 py-4 font-semibold"
           >
             <RefreshCw className="h-4 w-4" aria-hidden="true" />
             <span>{t("error.tryAgain")}</span>
@@ -52,7 +52,7 @@ export default function Error({
 
           <Link
             href="/"
-            className="inline-flex items-center gap-2 rounded-full border border-white/20 px-8 py-4 font-semibold text-white backdrop-blur-sm transition-all duration-300 hover:border-white/50 hover:bg-white/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+            className="premium-button premium-button--ghost px-8 py-4 font-semibold"
           >
             <ArrowLeft className="h-4 w-4" aria-hidden="true" />
             <span>{t("error.backHome")}</span>

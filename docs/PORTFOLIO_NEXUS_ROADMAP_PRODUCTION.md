@@ -558,6 +558,17 @@ export const reducedTransition = {
 };
 ```
 
+### 14.3 Progresso de implementação
+
+- [x] Centralizar cores, superfícies, bordas, blur, durações e easing em tokens CSS e TypeScript.
+- [x] Consolidar os padrões compartilhados `.premium-surface`, `.premium-card`, `.premium-button`, `.premium-link` e `.premium-field`.
+- [x] Remover motion duplicado dos Project Cards e manter uma única fonte CSS para hover, focus e active.
+- [x] Aplicar os tokens compartilhados em Home, Contact, cases, transições de página e estados de erro.
+- [x] Respeitar `prefers-reduced-motion` nos reveals dos projetos e nas transições de página.
+- [x] Revisar visualmente desktop e mobile e aprovar o pipeline em 2026-10-10: 8/8 testes unitários, 14 páginas estáticas e 6/6 jornadas E2E.
+- [ ] Auditar animações e estilos específicos ainda existentes dentro de cada case.
+- [ ] Medir jank e CLS em hardware mobile representativo ou com profiling equivalente.
+
 ### Critérios de aceite
 - Nenhuma animação é indispensável para a compreensão do conteúdo.
 - `prefers-reduced-motion` respeitado por padrão.

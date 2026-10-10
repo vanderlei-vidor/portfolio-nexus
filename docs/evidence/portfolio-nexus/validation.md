@@ -53,8 +53,17 @@ Fluxos E2E atuais:
 - conexão dos quatro cases com fluxo de arquitetura, trade-offs e próximos passos;
 - preview, download localizado e feedback visual do Resume.
 
+## Evidência da Sprint 5 — Design Tokens
+
+- Cores, superfícies, bordas, blur, durações e easing compartilhados foram centralizados em `shared/design-system/tokens.ts` e `styles/globals.css`.
+- Cards, superfícies, botões, links e campos reutilizam as classes premium do design system.
+- Project Cards usam CSS como fonte única das interações de hover, focus e active; o reveal de orientação permanece no container com suporte a movimento reduzido.
+- Transições de página usam os mesmos tokens de duração e easing e respeitam `prefers-reduced-motion`.
+- Home, Contact, Technical Proof e estados de erro foram revisados visualmente em desktop e mobile sem regressão observada.
+
 ## Limites
 
 - O baseline inicial do Lighthouse ficou abaixo da meta; a correção de LCP e a medição final da Sprint 1 estão registradas em `lighthouse-sprint1-final.report.json`.
 - E2E cobre os fluxos críticos de idioma, contato, Resume, navegação inicial, TL;DR e Technical Proof dos quatro cases, mas ainda não cobre todas as interações internas nem todos os browsers do Release Gate.
 - Performance do English Tutor possui medição inicial registrada no roadmap, mas ainda precisa de trace/profiling formal.
+- As animações específicas de cada case e a ausência de jank ou CLS em hardware mobile representativo ainda precisam de profiling antes do fechamento da Sprint 5.

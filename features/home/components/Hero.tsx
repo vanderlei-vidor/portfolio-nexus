@@ -165,12 +165,12 @@ const Hero = memo(function Hero() {
         aria-label="Professional profiles and contact"
       >
         {/* Resume Group: Preview in new tab + Explicit Download */}
-        <div className="inline-flex items-center rounded-lg border border-white/10 bg-white/[0.03] p-0.5 text-zinc-300 hover:border-white/20 transition-all">
+        <div className="premium-surface inline-flex items-center rounded-lg p-0.5 text-zinc-300">
           <a
             href={resumeConfig.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 px-2.5 py-1 hover:text-white transition-colors"
+            className="premium-link inline-flex items-center gap-1.5 px-2.5 py-1 hover:text-white"
             title={`${t("hero.resume")} - Abrir em nova aba`}
           >
             <FileText className="w-3.5 h-3.5 text-emerald-400" aria-hidden="true" />
@@ -183,7 +183,7 @@ const Hero = memo(function Hero() {
             href={resumeConfig.url}
             download={resumeConfig.fileName}
             onClick={handleDownloadClick}
-            className="inline-flex items-center justify-center p-1.5 text-zinc-400 hover:text-emerald-400 hover:bg-white/[0.05] rounded-md transition-colors"
+            className="premium-link inline-flex items-center justify-center rounded-md p-1.5 text-zinc-400 hover:bg-white/[0.05] hover:text-emerald-400"
             title={t("hero.resumeDownload")}
             aria-label={`${t("hero.resumeDownload")}: ${resumeConfig.fileName}`}
           >
@@ -197,7 +197,7 @@ const Hero = memo(function Hero() {
           href="https://github.com/vanderlei-vidor"
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-1.5 hover:text-white transition-colors"
+          className="premium-link inline-flex items-center gap-1.5 hover:text-white"
           title="GitHub Profile"
         >
           <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
@@ -212,7 +212,7 @@ const Hero = memo(function Hero() {
           href="https://linkedin.com/in/vanderlei-vidor-979593410"
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-1.5 hover:text-white transition-colors"
+          className="premium-link inline-flex items-center gap-1.5 hover:text-white"
           title="LinkedIn Profile"
         >
           <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
@@ -225,7 +225,7 @@ const Hero = memo(function Hero() {
 
         <a
           href="mailto:vanderleividor1@gmail.com"
-          className="inline-flex items-center gap-1.5 hover:text-white transition-colors"
+          className="premium-link inline-flex items-center gap-1.5 hover:text-white"
           title="Email"
         >
           <Mail className="w-3.5 h-3.5" aria-hidden="true" />

@@ -32,7 +32,7 @@ export default function NotFound() {
 
         <Link
           href="/"
-          className="inline-flex items-center gap-3 rounded-full bg-white px-8 py-4 font-semibold text-black shadow-[0_0_30px_rgba(255,255,255,0.1)] transition-all duration-300 hover:scale-105 hover:bg-blue-500 hover:text-white hover:shadow-[0_0_50px_rgba(59,130,246,0.4)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+          className="premium-button premium-button--primary px-8 py-4 font-semibold"
         >
           <ArrowLeft className="h-4 w-4" aria-hidden="true" />
           <span>{t("notFound.returnHome")}</span>

@@ -52,7 +52,7 @@ export default function CaseStudyTechnicalProof({ slug }: CaseStudyTechnicalProo
             {content.stages.map((stage, index) => (
               <li
                 key={stage.title}
-                className="relative rounded-2xl border border-cyan-300/15 bg-cyan-300/[0.035] p-5 md:min-h-52"
+                className="premium-surface relative rounded-2xl p-5 md:min-h-52"
               >
                 <div className="flex items-center justify-between">
                   <span className="font-mono text-xs font-semibold text-cyan-300">0{index + 1}</span>
@@ -77,7 +77,7 @@ export default function CaseStudyTechnicalProof({ slug }: CaseStudyTechnicalProo
 
           <div className="mt-8 grid gap-3 lg:grid-cols-3">
             {content.tradeOffs.map((tradeOff, index) => (
-              <article key={tradeOff.decision} className="rounded-2xl border border-white/10 bg-white/[0.025] p-6">
+              <article key={tradeOff.decision} className="premium-surface rounded-2xl p-6">
                 <span className="font-mono text-xs font-semibold text-violet-300">0{index + 1}</span>
                 <dl className="mt-6 space-y-5">
                   <div>
@@ -109,7 +109,7 @@ export default function CaseStudyTechnicalProof({ slug }: CaseStudyTechnicalProo
 
           <ol className="grid gap-3">
             {content.nextSteps.map((step, index) => (
-              <li key={step.title} className="grid gap-4 rounded-2xl border border-white/10 bg-white/[0.025] p-5 sm:grid-cols-[auto_1fr] sm:p-6">
+              <li key={step.title} className="premium-surface grid gap-4 rounded-2xl p-5 sm:grid-cols-[auto_1fr] sm:p-6">
                 <span className="flex h-9 w-9 items-center justify-center rounded-full border border-amber-300/20 bg-amber-300/[0.06] font-mono text-xs font-semibold text-amber-200">
                   {index + 1}
                 </span>

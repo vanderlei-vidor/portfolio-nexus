@@ -9,6 +9,7 @@ export const tokens = {
     background: "#0b0b0b",
     foreground: "#ededed",
     foregroundMuted: "#a1a1aa",
+    focus: "#93c5fd",
     accent: {
       rgb: "124, 58, 237",
       hex: "#7c3aed",
@@ -16,6 +17,7 @@ export const tokens = {
     },
     surface: {
       card: "rgba(255, 255, 255, 0.035)",
+      cardHover: "rgba(255, 255, 255, 0.055)",
       cardBorder: "rgba(255, 255, 255, 0.08)",
       buttonSecondary: "rgba(255, 255, 255, 0.045)",
       buttonBorder: "rgba(255, 255, 255, 0.14)",
@@ -50,6 +52,9 @@ export const tokens = {
     },
   },
   motion: {
+    fast: {
+      duration: 0.18,
+    },
     standard: {
       duration: 0.32,
       ease: [0.22, 1, 0.36, 1],

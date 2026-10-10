@@ -19,13 +19,31 @@
   --spacing-fluid-btn-y: clamp(0.95rem, 2vw, 1.25rem);
 }
 
+:root {
+  --nexus-color-background: #0b0b0b;
+  --nexus-color-foreground: #ededed;
+  --nexus-color-muted: #a1a1aa;
+  --nexus-color-accent: #7c3aed;
+  --nexus-color-focus: #93c5fd;
+  --nexus-surface-card: rgba(255, 255, 255, 0.035);
+  --nexus-surface-card-hover: rgba(255, 255, 255, 0.055);
+  --nexus-surface-secondary: rgba(255, 255, 255, 0.045);
+  --nexus-border-card: rgba(255, 255, 255, 0.08);
+  --nexus-border-control: rgba(255, 255, 255, 0.14);
+  --nexus-blur-surface: 18px;
+  --nexus-duration-fast: 180ms;
+  --nexus-duration-interaction: 220ms;
+  --nexus-duration-standard: 320ms;
+  --nexus-ease-standard: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
 /* App globals */
 html,
 body {
   overflow-x: hidden;
   width: 100%;
-  background: #0b0b0b;
-  color: #ededed;
+  background: var(--nexus-color-background);
+  color: var(--nexus-color-foreground);
   font-family: var(--font-geist-sans), system-ui, sans-serif;
   color-scheme: dark;
 }
@@ -51,6 +69,7 @@ button {
 }
 /* Premium interaction system: shared behavior for key links, buttons, and cards. */
 .premium-button,
+.premium-surface,
 .premium-card,
 .premium-link {
   -webkit-tap-highlight-color: transparent;
@@ -66,14 +85,15 @@ button {
   gap: 0.625rem;
   overflow: hidden;
   border-radius: 9999px;
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  backdrop-filter: blur(18px);
+  border: 1px solid var(--nexus-border-control);
+  backdrop-filter: blur(var(--nexus-blur-surface));
+  touch-action: manipulation;
   transition:
-    transform 220ms cubic-bezier(0.22, 1, 0.36, 1),
-    border-color 220ms ease,
-    background-color 220ms ease,
-    color 220ms ease,
-    box-shadow 220ms ease;
+    transform var(--nexus-duration-interaction) var(--nexus-ease-standard),
+    border-color var(--nexus-duration-interaction) ease,
+    background-color var(--nexus-duration-interaction) ease,
+    color var(--nexus-duration-interaction) ease,
+    box-shadow var(--nexus-duration-interaction) ease;
 }
 
 .premium-button::before {
@@ -85,8 +105,8 @@ button {
   opacity: 0;
   transform: translateX(-70%);
   transition:
-    opacity 220ms ease,
-    transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+    opacity var(--nexus-duration-interaction) ease,
+    transform 700ms var(--nexus-ease-standard);
 }
 
 .premium-button--primary {
@@ -98,23 +118,27 @@ button {
 
 .premium-button--secondary,
 .premium-button--ghost {
-  background: rgba(255, 255, 255, 0.045);
+  background: var(--nexus-surface-secondary);
   color: #e4e4e7;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.22);
 }
 
+.premium-surface,
 .premium-card {
   position: relative;
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid var(--nexus-border-card);
+  background: var(--nexus-surface-card);
   box-shadow: 0 22px 60px rgba(0, 0, 0, 0.2);
-  backdrop-filter: blur(18px);
+  backdrop-filter: blur(var(--nexus-blur-surface));
+}
+
+.premium-card {
   transition:
-    transform 260ms cubic-bezier(0.22, 1, 0.36, 1),
-    border-color 260ms ease,
-    background-color 260ms ease,
-    box-shadow 260ms ease;
+    transform var(--nexus-duration-standard) var(--nexus-ease-standard),
+    border-color var(--nexus-duration-standard) ease,
+    background-color var(--nexus-duration-standard) ease,
+    box-shadow var(--nexus-duration-standard) ease;
 }
 
 .premium-card::after {
@@ -124,7 +148,7 @@ button {
   pointer-events: none;
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.12), transparent 34%, rgba(96, 165, 250, 0.08));
   opacity: 0;
-  transition: opacity 260ms ease;
+  transition: opacity var(--nexus-duration-standard) ease;
 }
 
 .premium-card > * {
@@ -134,9 +158,29 @@ button {
 
 .premium-link {
   transition:
-    color 180ms ease,
-    opacity 180ms ease,
-    transform 180ms cubic-bezier(0.22, 1, 0.36, 1);
+    color var(--nexus-duration-fast) ease,
+    opacity var(--nexus-duration-fast) ease,
+    transform var(--nexus-duration-fast) var(--nexus-ease-standard);
+}
+
+.premium-field {
+  border: 1px solid var(--nexus-border-control);
+  background: rgba(0, 0, 0, 0.3);
+  color: var(--nexus-color-foreground);
+  transition:
+    border-color var(--nexus-duration-fast) ease,
+    background-color var(--nexus-duration-fast) ease,
+    box-shadow var(--nexus-duration-fast) ease;
+}
+
+.premium-field::placeholder {
+  color: #71717a;
+}
+
+.premium-field:focus {
+  border-color: rgba(147, 197, 253, 0.55);
+  background: rgba(0, 0, 0, 0.42);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -159,17 +203,21 @@ button {
   .premium-card:hover {
     transform: translateY(-3px);
     border-color: rgba(147, 197, 253, 0.28);
-    background: rgba(255, 255, 255, 0.055);
+    background: var(--nexus-surface-card-hover);
     box-shadow: 0 28px 70px rgba(37, 99, 235, 0.12), 0 18px 55px rgba(0, 0, 0, 0.25);
   }
 
   .premium-card:hover::after {
     opacity: 1;
   }
+
+  .premium-link:hover {
+    color: var(--nexus-color-focus);
+  }
 }
 
 .premium-button:active,
-.premium-card:active {
+.premium-card-link:active .premium-card {
   transform: translateY(0) scale(0.99);
 }
 
@@ -184,7 +232,7 @@ button {
 }
 
 :where(a, button, input, textarea, select, summary, [tabindex]):focus-visible {
-  outline: 2px solid #93c5fd;
+  outline: 2px solid var(--nexus-color-focus);
   outline-offset: 4px;
   box-shadow: 0 0 0 6px rgba(37, 99, 235, 0.22);
 }
@@ -205,6 +253,7 @@ button {
     scroll-behavior: auto !important;
   }
   .premium-button,
+  .premium-surface,
   .premium-card,
   .premium-link,
   .premium-button::before,

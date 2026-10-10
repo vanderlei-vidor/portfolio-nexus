@@ -51,14 +51,14 @@ export default function CaseStudySummary({ slug }: CaseStudySummaryProps) {
         </header>
 
         <dl className="mt-8 grid gap-3 md:grid-cols-12">
-          <div className="rounded-2xl border border-white/10 bg-white/[0.025] p-5 md:col-span-4 sm:p-6">
+          <div className="premium-surface rounded-2xl p-5 md:col-span-4 sm:p-6">
             <dt className="font-mono text-[0.68rem] font-semibold uppercase tracking-[0.22em] text-zinc-500">
               {t("caseSummary.role")}
             </dt>
             <dd className="mt-3 text-sm leading-7 text-zinc-300 sm:text-[0.95rem]">{summary.role}</dd>
           </div>
 
-          <div className="rounded-2xl border border-white/10 bg-white/[0.035] p-5 md:col-span-8 sm:p-6">
+          <div className="premium-surface rounded-2xl p-5 md:col-span-8 sm:p-6">
             <dt className="font-mono text-[0.68rem] font-semibold uppercase tracking-[0.22em] text-zinc-500">
               {t("caseSummary.stack")}
             </dt>
@@ -76,14 +76,14 @@ export default function CaseStudySummary({ slug }: CaseStudySummaryProps) {
             </dd>
           </div>
 
-          <div className="rounded-2xl border border-white/10 bg-white/[0.025] p-5 md:col-span-8 sm:p-6">
+          <div className="premium-surface rounded-2xl p-5 md:col-span-8 sm:p-6">
             <dt className="font-mono text-[0.68rem] font-semibold uppercase tracking-[0.22em] text-zinc-500">
               {t("caseSummary.challenge")}
             </dt>
             <dd className="mt-3 text-sm leading-7 text-zinc-300 sm:text-[0.95rem]">{summary.challenge}</dd>
           </div>
 
-          <div className="rounded-2xl border border-white/10 bg-white/[0.035] p-5 md:col-span-4 sm:p-6">
+          <div className="premium-surface rounded-2xl p-5 md:col-span-4 sm:p-6">
             <dt className="font-mono text-[0.68rem] font-semibold uppercase tracking-[0.22em] text-zinc-500">
               {t("caseSummary.status")}
             </dt>
@@ -100,7 +100,7 @@ export default function CaseStudySummary({ slug }: CaseStudySummaryProps) {
           {details.map((detail) => (
             <div
               key={detail.label}
-              className={`rounded-2xl border border-white/10 bg-white/[0.025] p-5 sm:p-6 ${detail.span}`}
+              className={`premium-surface rounded-2xl p-5 sm:p-6 ${detail.span}`}
             >
               <dt className="font-mono text-[0.68rem] font-semibold uppercase tracking-[0.22em] text-zinc-500">
                 {detail.label}
@@ -112,7 +112,7 @@ export default function CaseStudySummary({ slug }: CaseStudySummaryProps) {
 
         <a
           href={`#${slug}-technical-proof`}
-          className="mt-8 inline-flex min-h-11 items-center gap-2 rounded-full border border-white/15 bg-white/[0.035] px-5 py-2.5 text-sm font-semibold text-zinc-200 transition-colors hover:border-cyan-300/40 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300"
+          className="premium-button premium-button--ghost mt-8 px-5 py-2.5 text-sm font-semibold"
         >
           {t("caseSummary.technicalProofCta")}
           <ArrowDownRight className="h-4 w-4" aria-hidden="true" />
